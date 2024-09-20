@@ -6,6 +6,7 @@ const BlogDetail = lazy(()=> import('./pages/blog/BlogDetail'))
 const About = lazy(()=> import ('./pages/About/AboutUs'))
 const DentalCamp = lazy(()=> import('./pages/dentalCamp/DentalCamp'))
 const OurClinic = lazy(()=> import('./pages/ourClinic/OurClinic'))
+const ClinicDetails = lazy(()=> import('./pages/ClinicDetails'))
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='/about' element={<About />} />
       <Route path='/dental-camp' element={<DentalCamp />} />
       <Route path='/our-clinic' element={<OurClinic />} />
+      <Route path='/our-clinic/:clinicId' element={<ClinicDetails />} />
     </Routes>
   )
 }
