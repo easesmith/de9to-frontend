@@ -8,6 +8,9 @@ const Blog = lazy(()=> import ('./pages/blog/Blog'))
 const BlogDetail = lazy(()=> import('./pages/blog/BlogDetail'))
 const About = lazy(()=> import ('./pages/About/AboutUs'))
 const Contact = lazy(()=> import ('./pages/Contact/Contact'))
+const DentalCamp = lazy(()=> import('./pages/dentalCamp/DentalCamp'))
+const OurClinic = lazy(()=> import('./pages/ourClinic/OurClinic'))
+const ClinicDetails = lazy(()=> import('./pages/ClinicDetails'))
 
 
 const App = () => {
@@ -21,6 +24,9 @@ const App = () => {
       <Route path='/blog/:id' element={<BlogDetail />} />
       <Route path='/about' element={<About />} />
       <Route path='/contact' element={<Contact />} />
+      <Route path='/dental-camp' element={<DentalCamp />} />
+      <Route path='/our-clinic' element={<OurClinic />} />
+      <Route path='/our-clinic/:clinicId' element={<ClinicDetails />} />
     </Routes>
   )
 }
