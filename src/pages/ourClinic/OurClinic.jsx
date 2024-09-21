@@ -9,6 +9,7 @@ import VerifiedCheckImg from '../../assets/verified 1.png'
 import PlusImg from '../../assets/medical-doctor-logo-for-sale 1.png'
 import VectorImg from '../../assets/Vector.png'
 import ClinicBasicDetails from '@/components/ClinicBasicDetails';
+import Clinic from '@/components/Clinic';
 
 const OurClinic = () => {
 
@@ -60,7 +61,7 @@ const OurClinic = () => {
                             </div>
                         </div>
                     </div>
-                    <ClinicBasicDetails />
+                    <Clinic />
                 </section>
             </main>
         </Layout>
