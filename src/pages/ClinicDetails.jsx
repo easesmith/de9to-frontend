@@ -11,8 +11,9 @@ const ClinicDetails = () => {
                     <FaArrowLeft className='text-[#717171]' />
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
-
-                <ClinicBasicDetails />
+                <div className="mb-5">
+                    <ClinicBasicDetails />
+                </div>
 
             </section>
         </Layout>
