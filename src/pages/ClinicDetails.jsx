@@ -14,7 +14,6 @@ const ClinicDetails = () => {
                 <div className="mb-5">
                     <ClinicBasicDetails />
                 </div>
-
             </section>
         </Layout>
     )
