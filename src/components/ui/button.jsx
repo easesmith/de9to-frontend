@@ -18,7 +18,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        category:"text-[#1A1A1A] text-sm font-light font-inter hover:bg-[#f4f4f4]",
+        category:" text-sm font-light font-inter",
         log:"text-[#FFFFFF] text-xs text-center font-bold bg-[#95C22B] font-inter hover:bg-[#9cc934]",
         submit:"text-[#FFFFFF] text-[22px] text-center font-bold bg-[#95C22B] font-openSans hover:bg-[#9cc934]",
       },
@@ -27,7 +27,7 @@ const buttonVariants = cva(
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
-        category:"border-[1px] border-[#212121] rounded-lg p-[10px]",
+        category:"border-[1px] rounded-lg p-[10px]",
         log:"border-[1px] border-[#95C22B] rounded-[35px] py-[10px] px-5",
         submit:"border-[1px] border-[#95C22B] rounded-lg py-[10px] px-7 h-[60px]"
       },

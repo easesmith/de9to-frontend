@@ -2,7 +2,7 @@ import React from 'react'
 
 const Card = ({img, heading, description}) => {
     return (
-        <div className='rounded-2xl w-[400px] relative shadow-2xl cursor-pointer'>
+        <div className='rounded-2xl w-[400px] relative shadow-custom5 cursor-pointer'>
             <img src={img} alt=""
                 className='w-fit rounded-2xl' />
             <div className=' absolute px-3 py-5 bottom-0 rounded-b-2xl bg-[#FFFFFF]'>

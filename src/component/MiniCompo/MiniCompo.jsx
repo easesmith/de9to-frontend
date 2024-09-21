@@ -1,5 +1,7 @@
+import { Button } from '@/components/ui/button';
 import React, { useState } from 'react'
-import { FaChevronUp } from 'react-icons/fa';
+import { FaArrowLeft, FaChevronUp } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const ButtonLocation = ({ location }) => {
     const [isSelectLocation, setSelectLocation] = useState(false);
@@ -45,5 +47,48 @@ const OurTeamMember = ({ img, name, profile }) => {
     )
 }
 
+const PrevLink = ({ page }) => {
+    
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate(-1);
+    };
+
+    return (
+        <div onClick={handleBackClick} className='flex items-center gap-4 h-[18px] cursor-pointer'>
+            <FaArrowLeft className='text-[#717171]' />
+            <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>{page}</span>
+        </div>
+    )
+}
+
+const CategoryBtn = ({ category }) => {
+    
+    const[isCategorySelect,setIsCategorySelect] = useState(false)
+
+    const handleSelectCategory = () =>{
+        setIsCategorySelect(!isCategorySelect)
+    }
+
+    return (
+        <Button variant='category' size='category' className={`${isCategorySelect?'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]':'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={handleSelectCategory}>{category}</Button>
+    )
+}
+
+const Pagination = ({number}) => {
+    
+    const[isCategorySelect,setIsCategorySelect] = useState(false)
+    const handleSelectCategory = () =>{
+        setIsCategorySelect(!isCategorySelect)
+    }
+
+    return (
+        // <div className='h-[45px]'>
+            <button onClick={handleSelectCategory} className={`rounded-[10px] w-[45px] h-[45px] text-base text-center font-bold font-inter shadow-custom6 ${isCategorySelect?'bg-[#95C22B] text-[#FFFFFF]':'bg-[#FFFFFF] text-[#274760]'}`}>{number}</button>
+        // </div>
+    )
+}
+
 export default ButtonLocation
-export { FilterName, MangementInfo, OurTeamMember }
+export { FilterName, MangementInfo, OurTeamMember, PrevLink, CategoryBtn, Pagination }
