@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -29,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -56,10 +58,12 @@
     --chart-5: 340 75% 55%
   }
 }
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -67,4 +71,40 @@
   /* .list-disc-inside{
     @apply list-disc p-0 m-0 text-[red]
   } */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+}
+
+/* Hide default navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+  /* Hide default navigation buttons */
+}
+
+/* Style custom navigation buttons */
+.custom-swiper-button {
+  background-color: #EFEFEF;
+  color: #000;
+  /* padding: 10px; */
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-swiper-button-prev {
+  left: -70px;
+}
+
+.custom-swiper-button-next {
+  right: -70px;
 }
