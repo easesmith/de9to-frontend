@@ -1,15 +1,21 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 
-const Card = ({img, heading, description}) => {
+const Card = ({ img, heading, description }) => {
+
+    const ab = useParams()
+    console.log(ab)
     return (
-        <div className='rounded-2xl w-[400px] relative shadow-custom5 cursor-pointer'>
-            <img src={img} alt=""
-                className='w-fit rounded-2xl' />
-            <div className=' absolute px-3 py-5 bottom-0 rounded-b-2xl bg-[#FFFFFF]'>
-                <h4 className='text-[#313131] text-2xl font-medium font-poppins mb-2 leading-6'>{heading}</h4>
-                <p className='text-[#535353] text-[15px] font-medium font-poppins'>{description}</p>
+        <Link to={'/blog/5'}>
+            <div className='rounded-2xl w-[400px] relative shadow-custom5 cursor-pointer'>
+                <img src={img} alt=""
+                    className='w-fit rounded-2xl' />
+                <div className=' absolute px-3 py-5 bottom-0 rounded-b-2xl bg-[#FFFFFF]'>
+                    <h4 className='text-[#313131] text-2xl font-medium font-poppins mb-2 leading-6'>{heading}</h4>
+                    <p className='text-[#535353] text-[15px] font-medium font-poppins'>{description}</p>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

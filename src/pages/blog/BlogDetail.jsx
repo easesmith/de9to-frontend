@@ -43,7 +43,7 @@ const BlogDetail = () => {
   }
   return (
     <Layout>
-      <main className='w-full max-w-[1240px] mx-auto'>
+      <main className='w-full max-w-[1240px] mx-auto flex flex-col gap-4'>
         <PrevLink page="Blogs Details" />
         <section className=' flex items-start justify-between'>
           <div className='w-2/3 flex flex-col gap-4'>
@@ -86,7 +86,7 @@ const BlogDetail = () => {
               <p className='text-[#717171] text-sm font-normal font-inter'>The term ‘gingivitis’ comes from the two words, ‘gingiva’, which is the medical term for gums, and ‘itis’, attached to any word indicates inflammation. Inflammation is mostly caused by the presence of a foreign body or irritation caused due to an external factor.  At times, such inflammation can also occur due to internal conditions or can be a secondary result of another disease. Gingivitis is a very common problem among the population and isn’t very critical and hence is ignored most of the time. The matter of concern here is, that gingivitis is the first stage of critical gum disease periodontitis which can lead to severe oral health issues. So, let us see how we can categorize it to understand it better.</p>
               <p className='text-[#717171] text-sm font-normal font-inter'>Gingivitis can be generally classified based on the duration of its occurrence as acute (small duration) or chronic (long duration), based on the number of teeth affected as localized (affecting a single tooth or some teeth in an arch) or generalized (affecting all teeth of an arch or both dental arches).</p>
               <h4 className='text-[#717171] text-xl font-bold font-inter'>Causes : </h4>
-              <ul>
+              <ul className=''>
                 <li className='text-[#717171] text-sm font-normal font-inter'>Causes of gingivitis can vary but the most common cause is the inability to clean the deposition of plaque on the teeth and surrounding areas i.e. not brushing or cleaning the teeth and mouth.  The collected plaque which contains the bacteria leads to inflammation of the tissue.</li>
                 <li className='text-[#717171] text-sm font-normal font-inter'>Lodging of food particles or foreign bodies such as using toothpicks, pins, etc. to pick out food. </li>
                 <li className='text-[#717171] text-sm font-normal font-inter'>Improper brushing techniques such as aggressive or wrong methods of brushing can lead to gingival irritation.</li>
@@ -207,7 +207,7 @@ const BlogDetail = () => {
             </div>
           </div>
         </section>
-        <section className='mt-4'>
+        <section className=''>
           <h3 className="text-[#717171] text-2xl font-medium font-inter mb-5">Recent Blogs</h3>
           <div className='flex items-center justify-center gap-5 mb-5'>
             <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />

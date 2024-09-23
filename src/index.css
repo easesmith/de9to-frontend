@@ -71,6 +71,11 @@
   /* .list-disc-inside{
     @apply list-disc p-0 m-0 text-[red]
   } */
+
+  ul {
+    list-style: revert; 
+    margin-left: 20px;
+  }
 }
 
 .swiper-pagination-bullet-active {
