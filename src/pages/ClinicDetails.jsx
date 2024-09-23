@@ -8,7 +8,18 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 import { FaArrowLeft } from 'react-icons/fa'
 import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import Review from '@/components/Review'
+import { Button } from '@/components/ui/button'
+import { TbEdit } from 'react-icons/tb'
 
 const ClinicDetails = () => {
     const swiperRef = useRef(null);
@@ -86,8 +97,30 @@ const ClinicDetails = () => {
 
                 <div className="flex items-start gap-2 mt-10">
                     <div className='font-inter font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
-                    <div className='w-full'>
+                    <div className='w-full mb-5'>
                         <RatingsComp />
+                        <div className='flex justify-end my-5'>
+                            <Select defaultValue='newestReview'>
+                                <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
+                                    <SelectValue placeholder="" />
+                                </SelectTrigger>
+                                <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
+                                    <SelectGroup>
+                                        <SelectItem value="newestReview">Sort by newest review</SelectItem>
+                                        <SelectItem value="oldestReview">Sort by oldest review</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div className='reviews flex flex-col gap-5 max-h-[420px] overflow-y-auto mb-5'>
+                            <Review />
+                            <Review />
+                            <Review />
+                        </div>
+                        <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
+                            <span>Write a Review</span>
+                            <TbEdit className='text-2xl' />
+                        </Button>
                     </div>
                 </div>
             </section>

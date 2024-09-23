@@ -9,6 +9,7 @@ const BlogDetail = lazy(()=> import('./pages/blog/BlogDetail'))
 const About = lazy(()=> import ('./pages/About/AboutUs'))
 const Contact = lazy(()=> import ('./pages/Contact/Contact'))
 const ClinicDetails = lazy(()=> import('./pages/ClinicDetails'))
+const DentistDetails = lazy(()=> import('./pages/DentistDetails'))
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='/' element={<Home />} />
       <Route path='/dental-camp' element={<DentalCamp />} />
       <Route path='/our-dentist' element={<OurDentist />} />
+      <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
       <Route path='/our-clinic' element={<OurClinic />} />
       <Route path='/blog' element={<Blog />} />
       <Route path='/blog/:id' element={<BlogDetail />} />

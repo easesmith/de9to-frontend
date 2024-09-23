@@ -6,8 +6,12 @@ import { FaCalendarAlt, FaClock, FaGraduationCap } from 'react-icons/fa';
 import ReactStars from 'react-stars';
 import { Button } from './ui/button';
 import { FiArrowUpRight } from 'react-icons/fi';
+import { useState } from 'react';
+import ConfirmbookingModal from './ConfirmbookingModal';
 
 const Dentist = () => {
+    const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+
     return (
         <div className='border-2 border-[#5B5B5B] border-l-8 border-l-[#95C22B] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
             <div>
@@ -61,13 +65,20 @@ const Dentist = () => {
                 <div className="flex justify-end">
                     <div className="flex items-center gap-3">
                         <p className='text-[#5B5B5B]'><span className='line-through'>₹500</span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
-                        <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
+                        <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
                             <span>Book Appointment</span>
                             <FiArrowUpRight className='text-2xl' />
                         </Button>
                     </div>
                 </div>
             </div>
+
+            {isConfirmBookingModalOpen &&
+                <ConfirmbookingModal
+                    isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+                    setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                />
+            }
         </div>
     )
 }
