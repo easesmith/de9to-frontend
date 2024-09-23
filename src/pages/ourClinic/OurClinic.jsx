@@ -18,7 +18,6 @@ import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
 import DoctorImg from '../../assets/codifyformatter__2_-removebg-preview 1.png'
 import ImgBackgroundImg from '../../assets/Group.png'
-// import ClinicBasicDetails from '@/components/ClinicBasicDetails';
 
 const OurClinic = () => {
 
@@ -81,7 +80,6 @@ const OurClinic = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <ClinicBasicDetails /> */}
                     <Clinic />
                 </section>
             </main>

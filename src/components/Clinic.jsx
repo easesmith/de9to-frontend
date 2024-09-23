@@ -18,7 +18,6 @@ const Clinic = () => {
                         <div className='flex items-center justify-between gap-4'>
                             <div className='flex items-center gap-4'>
                                 <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
-                                
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <ReactStars size={16} count={5} value={5} color2={'#FF8A00'} />
