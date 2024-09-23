@@ -8,15 +8,36 @@ import ButtonLocation, { FilterName } from '@/component/MiniCompo/MiniCompo';
 import VerifiedCheckImg from '../../assets/verified 1.png'
 import PlusImg from '../../assets/medical-doctor-logo-for-sale 1.png'
 import VectorImg from '../../assets/Vector.png'
-import ClinicBasicDetails from '@/components/ClinicBasicDetails';
+import Clinic from '@/components/Clinic';
+import ProfessionalImg1 from '../../assets/Ellipse 3.png'
+import ProfessionalImg2 from '../../assets/Ellipse 4.png'
+import ProfessionalImg3 from '../../assets/Ellipse 5.png'
+import ProfessionalImg4 from '../../assets/Ellipse 6.png'
+import ProfessionalImg5 from '../../assets/Ellipse 7.png'
+import ProfessionalImg6 from '../../assets/Ellipse 8.png'
+import ProfessionalImg7 from '../../assets/Ellipse 9.png'
+import DoctorImg from '../../assets/codifyformatter__2_-removebg-preview 1.png'
+import ImgBackgroundImg from '../../assets/Group.png'
+// import ClinicBasicDetails from '@/components/ClinicBasicDetails';
 
 const OurClinic = () => {
 
     return (
         <Layout>
-            <main>
-                <section className='w-full'>
-                    <div className='p-4 rounded-[5px] w-[308px]'>
+            <main className='max-w-[1240px] w-full mx-auto flex flex-col gap-10'>
+                <section className='flex items-center justify-between w-full'>
+                    <div className='flex flex-col gap-[18px] w-[483px]'>
+                        <h1 className='text-[#0D0E0E] text-[60px] font-bold font-inter leading-[72px]'>Expert Care,<br /> Right Next Door</h1>
+                        <p className='text-[#787878] text-base italic font-bold font-inter'>Where you get the list of certified doctors with years of
+                            professional experiences</p>
+                    </div>
+                    <div className='relative'>
+                        <img src={DoctorImg} alt="doctor-img" />
+                        <img src={ImgBackgroundImg} alt="background-img" className='absolute -top-[13%] left-[5%] -z-10' />
+                    </div>
+                </section>
+                <section className='w-full flex justify-between gap-6'>
+                    <div className='p-4 rounded-[5px] w-[307px]'>
                         <p className='text-[#838383] text-xl font-semibold font-inter'>Advance Filter</p>
                         <div>
                             <FilterName name="Free Range" />
@@ -60,7 +81,8 @@ const OurClinic = () => {
                             </div>
                         </div>
                     </div>
-                    <ClinicBasicDetails />
+                    {/* <ClinicBasicDetails /> */}
+                    <Clinic />
                 </section>
             </main>
         </Layout>

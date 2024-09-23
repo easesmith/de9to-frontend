@@ -12,14 +12,14 @@ const Footer = () => {
         <div className="logo text-[#95C22B] text-4xl font-medium">
           LOGO
         </div>
-        <ul className='flex justify-between items-center gap-10'>
+        <ul className='flex justify-between items-center gap-10 list-none ml-0'>
           <li className='text-[#000000] text-xl font-medium font-poppins'><Link>About Us</Link></li>
           <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Our Dentist</Link></li>
           <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Denatl Camps</Link></li>
           <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Press & Blog</Link></li>
           <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Contact Us</Link></li>
         </ul>
-        <ul className='flex justify-between items-center gap-10'>
+        <ul className='flex justify-between items-center gap-10 list-none ml-0'>
           <li className='text-[#95C22B] text-xl font-medium font-poppins'><Link><FiFacebook /></Link></li>
           <li className='text-[#95C22B] text-xl font-medium font-poppins'><Link><FaInstagram /></Link></li>
           <li className='text-[#95C22B] text-xl font-medium font-poppins'><Link><FaLinkedin /></Link></li>
