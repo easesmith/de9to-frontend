@@ -38,10 +38,10 @@ import { Input } from '@/components/ui/input'
 import { MangementInfo } from '@/component/MiniCompo/MiniCompo'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css';
-import 'swiper/css/navigation';j
+import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';j
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 const DentalCamp = () => {
 

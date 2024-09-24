@@ -73,7 +73,7 @@
   } */
 
   ul {
-    list-style: revert; 
+    list-style: revert;
     margin-left: 20px;
   }
 }
@@ -112,4 +112,8 @@
 
 .custom-swiper-button-next {
   right: -70px;
+}
+
+.reviews::-webkit-scrollbar {
+  display: none;
 }

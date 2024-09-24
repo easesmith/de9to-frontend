@@ -1,4 +1,5 @@
 import ReactStars from 'react-stars'
+import { Rating } from './Rating'
 
 const RatingsComp = () => {
     return (
@@ -6,24 +7,30 @@ const RatingsComp = () => {
             <div>
                 <p className='text-sm font-inter font-medium text-[#0D0C22]'>Patient Reviews</p>
                 <h2 className='font-inter font-bold text-4xl mt-1'>4.7</h2>
-                <ReactStars size={35} count={5} value={5} color2={'#FF8A00'} />
+                <ReactStars edit={false} size={35} count={5} value={5} color2={'#FF8A00'} />
                 <p className='text-xs font-inter text-[#858585]'>(578 Reviews)</p>
             </div>
             <div className='flex flex-col gap-3'>
-                <div className='grid grid-cols-[6%_87%_6%] items-center gap-3'>
-                    <p className='font-inter text-xs font-medium'>5 stars</p>
-                    <div className='w-11/12 h-2 bg-[#d2d8df] rounded-3xl overflow-hidden'>
-                        <div className='w-full h-full rounded-3xl bg-[#95C22B]'></div>
-                    </div>
-                    <div className='font-inter text-xs font-medium'>488</div>
-                </div>
-                <div className='grid grid-cols-[6%_87%_6%] items-center gap-3'>
-                    <p className='font-inter text-xs font-medium'>4 stars</p>
-                    <div className='w-11/12 h-2 bg-[#d2d8df] rounded-3xl overflow-hidden'>
-                        <div className='w-full h-full rounded-3xl transform -translate-x-40 bg-[#95C22B]'></div>
-                    </div>
-                    <div className='font-inter text-xs font-medium'>488</div>
-                </div>
+                <Rating
+                    ratingStar={5}
+                    ratingValue={488}
+                />
+                <Rating
+                    ratingStar={4}
+                    ratingValue={74}
+                />
+                <Rating
+                    ratingStar={3}
+                    ratingValue={14}
+                />
+                <Rating
+                    ratingStar={2}
+                    ratingValue={0}
+                />
+                <Rating
+                    ratingStar={1}
+                    ratingValue={0}
+                />
             </div>
         </div>
     )

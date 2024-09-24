@@ -10,26 +10,30 @@ const About = lazy(() => import('./pages/About/AboutUs'))
 const Contact = lazy(() => import('./pages/Contact/Contact'))
 const ClinicDetails = lazy(() => import('./pages/ClinicDetails'))
 const NotFound = lazy(() => import('./pages/notFound/NotFound'))
+const DentistDetails = lazy(() => import('./pages/DentistDetails'))
 
 
 const App = () => {
   return (
-    <Routes>
+    <>
       <Suspense fallback={<div className='w-full h-screen bg-white text-black flex justify-center items-center text-xl font-semibold'>Loading...</div>}>
-        <Route path='/' element={<Home />} />
-        <Route path='/dental-camp' element={<DentalCamp />} />
-        <Route path='/our-dentist' element={<OurDentist />} />
-        <Route path='/our-clinic' element={<OurClinic />} />
-        <Route path='/blog' element={<Blog />} />
-        <Route path='/blog/:id' element={<BlogDetail />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/dental-camp' element={<DentalCamp />} />
-        <Route path='/our-clinic' element={<OurClinic />} />
-        <Route path='/our-clinic/:clinicId' element={<ClinicDetails />} />
-        <Route path='*' element={<NotFound />} />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/dental-camp' element={<DentalCamp />} />
+          <Route path='/our-dentist' element={<OurDentist />} />
+          <Route path='/our-clinic' element={<OurClinic />} />
+          <Route path='/blog' element={<Blog />} />
+          <Route path='/blog/:id' element={<BlogDetail />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/dental-camp' element={<DentalCamp />} />
+          <Route path='/our-clinic' element={<OurClinic />} />
+          <Route path='/our-clinic/:clinicId' element={<ClinicDetails />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
+        </Routes>
       </Suspense>
-    </Routes>
+    </>
   )
 }
 
