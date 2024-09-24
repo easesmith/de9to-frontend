@@ -4,7 +4,7 @@ import Layout from '../../component/Layout/Layout'
 const DentistList = () => {
   return (
     <Layout>
-      noio
+      hii
     </Layout>
   )
 }

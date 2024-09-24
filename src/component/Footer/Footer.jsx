@@ -13,11 +13,11 @@ const Footer = () => {
           LOGO
         </div>
         <ul className='flex justify-between items-center gap-10 list-none ml-0'>
-          <li className='text-[#000000] text-xl font-medium font-poppins'><Link>About Us</Link></li>
-          <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Our Dentist</Link></li>
-          <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Denatl Camps</Link></li>
-          <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Press & Blog</Link></li>
-          <li className='text-[#000000] text-xl font-medium font-poppins'><Link>Contact Us</Link></li>
+          <Link to={'/about'} className='text-[#000000] text-xl font-medium font-poppins'><>About Us</></Link>
+          <Link to={'/our-dentist'} className='text-[#000000] text-xl font-medium font-poppins'><>Our Dentist</></Link>
+          <Link to={'/dental-camp'} className='text-[#000000] text-xl font-medium font-poppins'><>Denatl Camps</></Link>
+          <Link to={'/blog'} className='text-[#000000] text-xl font-medium font-poppins'><>Press & Blog</></Link>
+          <Link to={'/contact'} className='text-[#000000] text-xl font-medium font-poppins'><>Contact Us</></Link>
         </ul>
         <ul className='flex justify-between items-center gap-10 list-none ml-0'>
           <li className='text-[#95C22B] text-xl font-medium font-poppins'><Link><FiFacebook /></Link></li>
