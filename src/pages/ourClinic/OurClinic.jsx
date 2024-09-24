@@ -20,7 +20,7 @@ import DoctorImg from '../../assets/codifyformatter__2_-removebg-preview 1.png'
 import ImgBackgroundImg from '../../assets/Group.png'
 // import ClinicBasicDetails from '@/components/ClinicBasicDetails';
 // import ClinicBasicDetails from '@/components/ClinicBasicDetails';
-import { Slider } from "@/components/ui/slider"
+// import { Slider } from "@/components/ui/slider"
 import ShadcnPagination from '@/components/shadcnCompo/ShadCompo';
 
 
