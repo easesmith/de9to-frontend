@@ -7,6 +7,8 @@ import { FaLocationArrow } from 'react-icons/fa';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import ReactStars from 'react-stars';
 import { Button } from './ui/button';
+// import { IoMdCall } from "react-icons/io";
+import { IoCall } from "react-icons/io5";
 
 const Clinic = () => {
 
@@ -50,7 +52,7 @@ const Clinic = () => {
                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Search on map</span>
                         </button>
                         <button className='rounded-[6px] border-[1px] border-[#95C22B] py-[6px] px-2 flex items-center gap-[6px]'>
-                            <FaLocationArrow className='text-[#95C22B] text-xs' />
+                            <IoCall className='text-[#95C22B] text-xs' />
                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Call now</span>
                         </button>
                     </div>
