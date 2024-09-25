@@ -12,6 +12,7 @@ const Contact = lazy(() => import('./pages/Contact/Contact'))
 const ClinicDetails = lazy(() => import('./pages/ClinicDetails'))
 const NotFound = lazy(() => import('./pages/notFound/NotFound'))
 const DentistDetails = lazy(() => import('./pages/DentistDetails'))
+const PaymentPage = lazy(() => import('./pages/PaymentPage'))
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <Route path='*' element={<NotFound />} />
           <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
           <Route path='/confirm-booking' element={<ConfirmBookingPage />} />
+          <Route path='/payment' element={<PaymentPage />} />
         </Routes>
       </Suspense>
     </>
