@@ -25,7 +25,7 @@ const Dentist = () => {
                 <div className="flex justify-between items-start gap-3">
                     <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>Dr. Tanya Batra</h2>
                     <div>
-                        <ReactStars size={25} count={5} value={5} color2={'#FF8A00'} />
+                        <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
                         <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
                     </div>
                 </div>

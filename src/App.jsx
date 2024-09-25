@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import ConfirmBookingPage from './pages/ConfirmBookingPage'
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
 const OurDentist = lazy(() => import('./pages/ourDentist/OurDentist'))
@@ -31,6 +32,7 @@ const App = () => {
           <Route path='/our-clinic/:clinicId' element={<ClinicDetails />} />
           <Route path='*' element={<NotFound />} />
           <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
+          <Route path='/confirm-booking' element={<ConfirmBookingPage />} />
         </Routes>
       </Suspense>
     </>

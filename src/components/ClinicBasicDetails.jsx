@@ -34,7 +34,7 @@ const ClinicBasicDetails = () => {
                                 </Button>
                             </div>
                             <div>
-                                <ReactStars size={25} count={5} value={5} color2={'#FF8A00'} />
+                                <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
                                 <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
                             </div>
                         </div>
@@ -67,8 +67,8 @@ const ClinicBasicDetails = () => {
                     spaceBetween={50}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
                     autoplay={{
                         delay: 2000,
                         disableOnInteraction: false,
