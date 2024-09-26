@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
 import { Label } from "./ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import noSlot from "@/assets/Vector (7).png";
 import { Button } from "./ui/button";
@@ -81,12 +81,12 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const slotTimes = {
         morning: [
             ["09:00 AM", "09:30 AM"], // Today
-            ["09:00 AM", "10:00 AM", "10:30 AM"], // Tomorrow
+            ["09:00 AM", "10:00 AM", "10:30 AM","09:00 AM", "09:30 AM"], // Tomorrow
             [], // Day 3: No slots available
             ["09:00 AM"], // Day 4
             ["10:00 AM", "11:00 AM"], // Day 5
-            ["09:30 AM", "10:30 AM"], // Day 6
-            ["08:00 AM", "09:00 AM"]  // Day 7
+            ["05:00 PM"], // Day 6
+            []  // Day 7
         ],
         afternoon: [
             ["12:00 PM", "12:30 PM"], // Today
@@ -94,17 +94,17 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             [], // Day 3: No slots available
             ["01:00 PM"], // Day 4
             ["02:00 PM", "03:00 PM"], // Day 5
-            ["01:30 PM", "02:30 PM"], // Day 6
+            ["05:00 PM"], // Day 6
             [] // Day 7
         ],
         evening: [
             ["05:00 PM", "05:30 PM"], // Today
             ["06:00 PM", "06:30 PM", "07:00 PM"], // Tomorrow
-            ["06:00 PM", "06:30 PM", "07:00 PM"], // Day 3: No slots available
+            [], // Day 3: No slots available
             ["06:00 PM"], // Day 4
             ["07:00 PM", "08:00 PM"], // Day 5
-            ["06:30 PM", "07:30 PM"], // Day 6
-            ["05:00 PM"] // Day 7
+            ["05:00 PM"], // Day 6
+            [] // Day 7
         ],
         night: [
             ["08:00 PM", "08:30 PM"], // Today
@@ -112,8 +112,8 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             [], // Day 3: No slots available
             ["09:00 PM"], // Day 4
             ["10:00 PM", "11:00 PM"], // Day 5
-            ["09:30 PM", "10:30 PM"], // Day 6
-            ["08:00 PM"] // Day 7
+            ["08:00 PM"], // Day 6
+            [], // Day 7
         ]
     };
 
@@ -133,13 +133,37 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     };
 
     const handleDaySelection = (index) => {
-        setSelected(`selected${index}`); // Update selected day visually
-        // Reset selected slot when day is changed
-        setSelectedSlot(""); // Optional: Reset slot when changing day
-        // Set form value for date as per the selected day
-        const selectedDate = days[index].date; // Get the date of the selected day
-        form.setValue("date", selectedDate); // Update form value for date
+        setSelected(`selected${index}`);
+        setSelectedSlot("");
+        const selectedDate = days[index].date;
+        form.setValue("date", selectedDate);
     };
+
+    const findNextAvailableDate = (currentDate) => {
+        const currentIndex = days.findIndex(day => day.date === currentDate);
+        for (let i = currentIndex + 1; i < days.length; i++) {
+            if (days[i].slotsAvailable) {
+                return days[i].name; // Return the display name of the next available date
+            }
+        }
+        return null; // No next available date found
+    };
+
+    // const handleDaySelection = (index) => {
+    //     setSelected(`selected${index}`);
+    //     setSelectedSlot("");
+
+    //     const selectedDate = days[index].date;
+    //     form.setValue("date", selectedDate);
+
+    //     // Check if the selected day has slots available
+    //     if (!days[index].slotsAvailable) {
+    //         const nextAvailable = findNextAvailableDate(selectedDate);
+    //         if (nextAvailable) {
+    //             alert(`Next availability on ${nextAvailable}`);
+    //         }
+    //     }
+    // };
 
     // Handle next and previous navigation
     const handleNext = () => {
@@ -154,12 +178,19 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         }
     };
 
+    const [visibleDays, setVisibleDays] = useState([])
+    useEffect(() => {
+        const VisibleDays = days.slice(startIndex, startIndex + 3);
+        setVisibleDays(VisibleDays)
+    }, [startIndex])
+    
+
+
     // Get the visible days (3 at a time)
-    const visibleDays = days.slice(startIndex, startIndex + 3);
 
     return (
         <Dialog open={isConfirmBookingModalOpen} onOpenChange={setIsConfirmBookingModalOpen}>
-            <DialogContent className="max-w-[700px] max-h-[80vh] overflow-y-scroll w-full">
+            <DialogContent className="max-w-[700px] max-h-[90vh] overflow-y-auto w-full">
                 <DialogHeader>
                     <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-2xl">Confirm Your Booking</DialogTitle>
                     <Form {...form}>
@@ -253,11 +284,16 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                 </Button>
                                             </div>
                                         ) : (
-                                            <div className="flex flex-col gap-2 items-center w-full">
+                                            <div className={`flex flex-col gap-2 items-center w-full ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
                                                 <img src={noSlot} alt="No slots available" />
                                                 <p className="font-inter text-[#1A1A1A]">Sorry, no slots available today</p>
-                                                <Button type="button" className="bg-[#95C22B] w-full">
-                                                    Next availability on {format(addDays(new Date(), 1), "EEE, dd MMM")} {/* Dynamic date */}
+                                                <Button
+                                                    type="button"
+                                                    className="bg-[#95C22B] w-full"
+                                                    onClick={() => handleDaySelection(dayIndex + 1)}
+                                                    disabled={!findNextAvailableDate(day.date)}
+                                                >
+                                                    Next availability on {findNextAvailableDate(day.date)} {/* Dynamic date */}
                                                 </Button>
                                             </div>
                                         )}

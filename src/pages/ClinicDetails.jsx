@@ -58,9 +58,9 @@ const ClinicDetails = () => {
                             //     nextEl: '.swiper-button-next',
                             //     prevEl: '.swiper-button-prev',
                             // }}
-                            // onSwiper={(swiper) => {
-                            //     swiperRef.current = swiper; // Assign the Swiper instance to the ref
-                            // }}
+                            onSwiper={(swiper) => {
+                                swiperRef.current = swiper; // Assign the Swiper instance to the ref
+                            }}
                             // onSlideChange={() => console.log('slide change')}
                         >
                             <SwiperSlide>

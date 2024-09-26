@@ -33,3 +33,9 @@ export const commentSchema = z.object({
     emailId: z.string().email("Invalid email address"),
     comment: z.string().min(4, "comment is required"),
 })
+
+export const ConfirmBookingFormSchema = z.object({
+    for: z.string().min(1, "Please select at least one option"),
+    name: z.string().min(1, "Name is required"),
+    time: z.string().min(1, "Please select a time slot"),
+});

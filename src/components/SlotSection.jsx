@@ -8,7 +8,7 @@ const SlotSection = ({ title, slots, selectedSlot, handleSlotClick, dayDate }) =
             <h4 className="font-inter text-[#1A1A1A]">{title}</h4>
         </div>
         {slots.length > 0 ? (
-            <div className="grid grid-cols-[repeat(4,1fr)] gap-2">
+            <div className="grid grid-cols-[repeat(5,1fr)] gap-2">
                 {slots.map((slot, slotIndex) => (
                     <Button
                         type="button"
