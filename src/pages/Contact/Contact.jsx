@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import DoctorImg from '../../assets/excited-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-doing-call-gesture.png'
 import { Textarea } from '@/components/ui/textarea'
-import { FaArrowLeft } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 import { PrevLink } from '@/component/MiniCompo/MiniCompo'
 
 
@@ -49,9 +49,9 @@ const Contact = () => {
 
   return (
     <Layout>
-      <main className='max-w-[1240px] mx-auto flex flex-col gap-10'>
+      <main className='max-w-[1240px] mx-auto flex flex-col gap-10 mt-4 mb-2'>
         <PrevLink page='Contact Us' />
-        <div className='flex flex-col justify-center items-center'>
+        <section className='flex flex-col justify-center items-center'>
           <h1 className='text-[#95C22B] text-5xl text-center font-bold font-inter opacity-90 mb-2'>Get in touch</h1>
           <p className='text-[#717171] text-lg text-center font-medium font-inter opacity-70'>We're Here to Help Your Smile</p>
           <div className=' w-[1130px] flex justify-between items-start gap-5 shadow-custom rounded-[20px] p-5 my-10'>
@@ -64,7 +64,7 @@ const Contact = () => {
                     name="fullName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Full Name <span className='text-[red]'>*</span></FormLabel>
+                        <FormLabel className="text-xl font-medium font-inter mb-4">Full Name <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Input placeholder="Enter full name" {...field}
                             className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
@@ -80,7 +80,7 @@ const Contact = () => {
                       name="contactNumber"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Contact Number <span className='text-[red]'>*</span></FormLabel>
+                          <FormLabel className="text-xl font-medium font-inter mb-4">Contact Number <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
                             <Input placeholder="Enter contact number" {...field}
                               className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
@@ -95,7 +95,7 @@ const Contact = () => {
                       name="emailId"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Email Id <span className='text-[red]'>*</span></FormLabel>
+                          <FormLabel className="text-xl font-medium font-inter mb-4">Email Id <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
                             <Input placeholder="Enter email id" {...field}
                               className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
@@ -111,12 +111,15 @@ const Contact = () => {
                     name="location"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Location <span className='text-[red]'>*</span></FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your location" {...field}
-                            className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                          />
-                        </FormControl>
+                        <FormLabel className="text-xl font-medium font-inter mb-4">Location <span className='text-[red]'>*</span></FormLabel>
+                        <div className='relative'>
+                          <FormControl>
+                            <Input placeholder="Enter your location" {...field}
+                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            />
+                          </FormControl>
+                          <FaLocationDot className='text-[#C8C8C8] text-xl absolute top-[35%] right-[4%]' />
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -126,7 +129,7 @@ const Contact = () => {
                     name="pincode"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Pincode <span className='text-[red]'>*</span></FormLabel>
+                        <FormLabel className="text-xl font-medium font-inter mb-4">Pincode <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Input placeholder="Enter your pincode" {...field}
                             className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
@@ -141,10 +144,10 @@ const Contact = () => {
                     name="dentalIssue"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Dental Issue <span className='text-[red]'>*</span></FormLabel>
+                        <FormLabel className="text-xl font-medium font-inter mb-4">Dental Issue <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Textarea placeholder="Write your dental issue..." {...field} id="message-2"
-                            className="h-[110px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            className="max-h-[109px] min-h-[109px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                           />
                         </FormControl>
                         <FormMessage />
@@ -159,7 +162,7 @@ const Contact = () => {
               <img src={DoctorImg} alt="" className='' />
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </Layout>
   )

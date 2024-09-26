@@ -67,6 +67,7 @@ export default {
 				custom4: '0px 0px 40px 0px rgba(0, 0, 0, 0.06)',
 				custom5: '0px 4px 4px 0px rgba(0, 0, 0, 0.07)',
 				custom6: '0px 3px 8px 0px rgba(0, 0, 0, 0.24)',
+				custom7: '0px 4px 54px 0px rgba(149, 194, 43, 0.25)',
 			},
 		}
 	},

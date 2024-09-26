@@ -116,8 +116,7 @@ const OurClinic = () => {
                                 <Clinic />
                                 <Clinic />
                             </div>
-                            <ShadcnPagination />
-                            <ReactPagination pageCount={4}/>
+                            <ReactPagination />
                         </div>
                     </section>
                 </div>

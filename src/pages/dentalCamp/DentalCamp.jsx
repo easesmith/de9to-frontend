@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Layout from '@/component/Layout/Layout'
 import PreventingImg from '../../assets/noun-toothache-6895920 3.png'
 import GumDiseaseImg from '../../assets/noun-tooth-7037140 1.png'
@@ -21,6 +21,7 @@ import DentalConsultationImg from '../../assets/checklist 1.png'
 import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
 import PinCodersCoveredImg from '../../assets/maps.png'
 import HealthWebinarImg from '../../assets/image 158.png'
+import DentalCampImg1 from '../../assets/Frame 1171283211.png'
 
 
 import NGOImg1 from '../../assets/image.png'
@@ -41,9 +42,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { FaLocationDot } from 'react-icons/fa6'
+import { MdAccessTimeFilled } from "react-icons/md";
+import { MdCalendarMonth } from "react-icons/md";
+import BackgroundImg from '../../assets/Subtract.png'
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const DentalCamp = () => {
+
+  const swiperRef = useRef(null);
+  const swiperRef1 = useRef(null);
+
 
   const form = useForm({
     resolver: zodResolver(requestDentalCampSchema),
@@ -75,8 +87,8 @@ const DentalCamp = () => {
 
   return (
     <Layout>
-      <main className='flex flex-col gap-12'>
-        <section className="flex items-end gap-[30px] bg-[#F6F6F6] w-full py-[70px] px-[100px]">
+      <main className=''>
+        <section className="flex items-end gap-[30px] bg-[#F6F6F6] w-full py-7 px-[100px]">
           <div className="left-side w-1/2 flex flex-col gap-10">
             <div className="upper flex flex-col items-start gap-[15px]">
               <span className='text-[#95C22B] text-xl italic font-bold font-inter'>Request</span>
@@ -156,12 +168,15 @@ const DentalCamp = () => {
                       name="campPerferredDate"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
-                          <FormControl>
-                            <Input placeholder="Select a date" {...field}
-                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                            />
-                          </FormControl>
+                          <FormLabel className="text-xl font-medium font-inter mb-4">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
+                          <div className='relative'>
+                            <FormControl>
+                              <Input placeholder="Select a date" {...field}
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              />
+                            </FormControl>
+                            <MdCalendarMonth className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
+                          </div>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -171,12 +186,15 @@ const DentalCamp = () => {
                       name="campTiming"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Camp Timings <span className='text-[red]'>*</span></FormLabel>
-                          <FormControl>
-                            <Input placeholder="Select timing" {...field}
-                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                            />
-                          </FormControl>
+                          <FormLabel className="text-xl font-medium font-inter mb-4">Camp Timings <span className='text-[red]'>*</span></FormLabel>
+                          <div className='relative'>
+                            <FormControl>
+                              <Input placeholder="Select timing" {...field}
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              />
+                            </FormControl>
+                            <MdAccessTimeFilled className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
+                          </div>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -187,23 +205,26 @@ const DentalCamp = () => {
                     name="location"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Location <span className='text-[red]'>*</span></FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your location" {...field}
-                            className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                          />
-                        </FormControl>
+                        <FormLabel className="text-xl font-medium font-inter mb-4">Location <span className='text-[red]'>*</span></FormLabel>
+                        <div className='relative'>
+                          <FormControl>
+                            <Input placeholder="Enter your location" {...field}
+                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            />
+                          </FormControl>
+                          <FaLocationDot className='text-[#838383] text-xl absolute top-[35%] right-[3%]' />
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button variant='submit' size='submit' className='' type="submit">Submit</Button>
+                  <Button variant='submit' size='lg' className='h-16' type="submit">Submit</Button>
                 </form>
               </Form>
             </div>
           </div>
-          <div className="right-side relative">
-            <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 absolute left-[6%]'>
+          <div className="right-side relative w-fit">
+            <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 absolute left-[6%] z-20'>
               <h5 className='text-[#000000] text-center font-normal font-poppins mb-1'>our professionals</h5>
               <div className='flex relative'>
                 <img src={ProfessionalImg1} alt="" className='absolute  z-0' />
@@ -219,8 +240,11 @@ const DentalCamp = () => {
               </div>
             </div>
             <img src={RequestDentalImg} alt="" />
+            <img src={BackgroundImg} alt="" className='w-[750px] absolute -top-[17%] -right-[24%]' />
           </div>
         </section>
+
+
         <section className="min-h-[228px] flex justify-between items-center gap-9 px-[125px] text-[#808080]">
           <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
           <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
@@ -236,7 +260,7 @@ const DentalCamp = () => {
               <p className='text-[#606060] text-xl font-semibold font-roboto'>To create awareness and on-spot dental solutions De9to has a portable setup of modern dental equipment which can be installed in areas</p>
             </div>
             <div className="right-upper">
-              <Button variant='submit' size='submit'>Book Dental Camp</Button>
+              <Button variant='submit' size='lg'>Book Dental Camp</Button>
             </div>
           </div>
           <div className="lower flex gap-[30px] justify-between">
@@ -275,28 +299,67 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <Swiper
-       modules={[Navigation, Pagination, Scrollbar, A11y]}
-       spaceBetween={50}
-       slidesPerView={3}
-       navigation
-       pagination={{ clickable: true }}
-       scrollbar={{ draggable: true }}
-       onSwiper={(swiper) => console.log(swiper)}
-       onSlideChange={() => console.log('slide change')}
-    >
-      <SwiperSlide>Slide 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      ...
-    </Swiper>
+        <section className='max-w-[1240px] mx-auto my-36'>
+          <div className='flex justify-between mb-12'>
+            <div className='flex flex-col items-start gap-2'>
+              <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
+              <h4 className='text-[#95C22B] text-[40px] font-extrabold font-inter'>De9to<span className='text-black'>’s Successful Dental Camps</span></h4>
+              <p className='text-[#606060] text-xl font-semibold font-roboto'>Elevating Oral Health Awareness</p>
+            </div>
+            <div className='flex items-center gap-5'>
+              <div
+                className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
+                onClick={() => swiperRef.current?.slidePrev()} // Navigate to the previous slide
+              >
+                <BsArrowLeft className='text-2xl ' />
+              </div>
+              <div
+                className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
+                onClick={() => swiperRef.current?.slideNext()} // Navigate to the next slide
+              >
+                <BsArrowRight className='text-2xl' />
+              </div>
+            </div>
+          </div>
+          <div className='flex justify-between dental-camp'>
+            <Swiper
+              loop={true}
+              modules={[Pagination, Autoplay]}
+              slidesPerView={3}
+              pagination={{ clickable: true }}
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              onSlideChange={() => console.log('slide change')}
+              className=''
+            >
+              <SwiperSlide>
+                <img src={DentalCampImg1} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={DentalCampImg1} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={DentalCampImg1} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={DentalCampImg1} alt="" />
+              </SwiperSlide>
+            </Swiper>
+          </div>
 
-        <section className='w-full px-[125px] h-[464px]'>
+        </section>
+
+
+        <section className='w-full h-[464px] max-w-[1240px] mx-auto'>
           <div className='bg-[#95C22B] rounded-3xl flex items-center justify-center gap-20 h-full'>
             <div className='w-[327px] h-[234px] flex flex-col '>
               <p className='text-[#FFFFFF] text-base font-semibold font-inter '>TESTIMONIALs</p>
-              <h3 className='text-[#FFFFFF] text-4xl font-bold font-inter leading-[48px]'>The Honest<br/>Review<br/>
+              <h3 className='text-[#FFFFFF] text-4xl font-bold font-inter leading-[48px]'>The Honest<br />Review<br />
                 From Our Dentists</h3>
               <p className='text-[#FFFFFF] text-base font-medium font-inter '>See what our dentists are saying about their experiences of our service</p>
             </div>
@@ -325,25 +388,55 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section>
-          <div className="relative w-full max-w-screen-lg mx-auto px-4 py-8">
-            {/* Title Section */}
+        <section className='max-w-[1240px] mx-auto my-36'>
+          <div className="relative w-full ">
             <div className="upper">
-              <div className='w-full flex justify-between items-center'>
+              <div className='w-full flex justify-between items-center mb-12'>
                 <div className='flex flex-col gap-[15px]'>
                   <p className='text-[#95C22B] text-xl font-bold font-inter'>Our  Best Practices</p>
-                  <h2 className='text-[#000A2D] text-5xl font-bold font-inter '>
+                  <h2 className='text-[#000A2D] w-[900px] text-[40px] font-bold font-inter '>
                     Our Dental Camp Organized In Association With Sharp NGO
                   </h2>
                 </div>
-                <div>
-                  <button className='bg-[#F4F4F4] py-[7px] px-[13px] rounded-full '><GoArrowLeft className='text-xl' /></button>
-                  <GoArrowRight className='bg-[#F4F4F4] rounded-full' />
+                <div className='flex items-center gap-5'>
+                  <div
+                    className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
+                    onClick={() => swiperRef1.current?.slidePrev()} // Navigate to the previous slide
+                  >
+                    <BsArrowLeft className='text-2xl ' />
+                  </div>
+                  <div
+                    className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
+                    onClick={() => swiperRef1.current?.slideNext()} // Navigate to the next slide
+                  >
+                    <BsArrowRight className='text-2xl' />
+                  </div>
                 </div>
               </div>
               <div className='flex justify-center items-center gap-8'>
-                <img src={NGOImg1} alt="" className='cursor-pointer' />
-                <img src={NGOImg1} alt="" className='cursor-pointer' />
+                <Swiper
+                  loop={true}
+                  modules={[Pagination, Autoplay]}
+                  slidesPerView={2}
+                  navigation={{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  }}
+                  onSwiper={(swiper) => {
+                    swiperRef1.current = swiper;
+                  }}
+                  onSlideChange={() => console.log('slide change')}
+                >
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
+                </Swiper>
               </div>
             </div>
             <div className="lower">
@@ -352,7 +445,7 @@ const DentalCamp = () => {
 
           </div>
         </section>
-        <section className=" flex flex-col items-center gap-10 px-[70px] w-full">
+        <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto">
           <div className='flex flex-col items-center'>
             <span className='text-[#000000] text-xl text-center italic font-bold font-inter'>Our Contributors</span>
             <h3 className='text-[#000000] text-[40px] text-center font-bold font-inter '>Our Collaborators</h3>
@@ -364,6 +457,7 @@ const DentalCamp = () => {
             <img src={OurCollaboratorImg4} alt="" />
           </div>
         </section>
+
       </main>
     </Layout>
   )

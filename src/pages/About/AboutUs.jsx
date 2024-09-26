@@ -1,6 +1,5 @@
 import Layout from '@/component/Layout/Layout'
 import React from 'react'
-import { FaArrowLeft } from 'react-icons/fa'
 import DestistSignupImg from '../../assets/dentist 1.png'
 import DentalConsultationImg from '../../assets/checklist 1.png'
 import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
@@ -13,18 +12,15 @@ import TeamMemberOne from '../../assets/WhatsApp-Image-2021-07-30-at-6.20.59-PM.
 import TeamMemberTwo from '../../assets/yash-1.png.png'
 import TeamMemberThree from '../../assets/mohit-1.png.png'
 import HappyDentistImg from '../../assets/happy-dentists-with-patient 1.png'
-import { MangementInfo, OurTeamMember } from '@/component/MiniCompo/MiniCompo'
+import { MangementInfo, OurTeamMember, PrevLink } from '@/component/MiniCompo/MiniCompo'
 
 
 const AboutUs = () => {
     return (
         <Layout>
-            <main className='px-24 flex flex-col gap-[60px]'>
-                <div className='flex items-center gap-4 h-[18px] my-5'>
-                    <FaArrowLeft className='text-[#717171] cursor-pointer' />
-                    <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>About us</span>
-                </div>
-                <section className='min-h-[593px]'>
+            <main className=' max-w-[1240px] mx-auto flex flex-col gap-[60px] mb-12 mt-4'>
+                <PrevLink page='About us' />
+                <section className=''>
                     <div className="min-h-[365px] rounded-3xl flex justify-center items-center">
                         <div className='w-[400px]'>
                             <h1 className='text-[#95C22B] text-[64px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
@@ -146,7 +142,7 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </section>
-                <section className='h-[455px] mb-4'>
+                <section className='h-[455px]'>
                     <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Team</h3>
                     <div className='flex justify-between items-center gap-10'>
                         <OurTeamMember img={TeamMemberOne} name="Dr. Gajendra Yadav" profile="Director and COO" />

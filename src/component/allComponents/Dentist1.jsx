@@ -51,10 +51,6 @@ const Dentist1 = () => {
                 <div className="flex items-center gap-2 mt-1">
                     <FaClock className='text-[#717171] text-xl' />
                     <p className=' text-[#717171] font-inter font-normal'>L-31, Block L, Vinay Gulati Marg, West Patel Nagar, Patel Nagar, New Delhi, Delhi 110008</p>
-                    {/* <div className='flex gap-2 items-center'>
-                        <p className=' text-[#717171] font-inter font-normal'>Timings: </p>
-                        <p className='text-[#717171] font-inter font-semibold'>10:45AM- 4:00PM</p>
-                    </div> */}
                 </div>
                 <p className='text-[#717171] font-inter font-normal text-sm mt-1'>Dr Tanya Batra completed his graduation from Dr MGR Medical University Chennai in the year 2006 and internship in the year 2007</p>
                 <div className="flex items-center gap-2 mt-2">
