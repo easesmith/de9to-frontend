@@ -3,8 +3,8 @@ import doctorImg from '@/assets/Rectangle 34624568.png'
 import VectorImg5 from '@/assets/Vector (5).png'
 import VerifiedImg from '@/assets/verified 1.png'
 import Layout from '@/component/Layout/Layout'
-import ConfirmBookingForm from '@/components/ConfirmBookingForm'
-import ConfirmBookingModal from '@/components/ConfirmbookingModal'
+import ConfirmBookingForm from '@/components/confirm-booking/ConfirmBookingForm'
+import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModal'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { FaGraduationCap, FaLocationArrow, FaRegCalendarAlt, FaRegClock } from 'react-icons/fa'
@@ -13,6 +13,15 @@ import ReactStars from 'react-stars'
 
 const ConfirmBookingPage = () => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState("2024-09-27");  // Initialize with default values
+    const [selectedTime, setSelectedTime] = useState("02:00 PM");  // Initialize with default values
+
+
+    // Function to update the selected date and time
+    const updateDateAndTime = (date, time) => {
+        setSelectedDate(date);
+        setSelectedTime(time);
+    };
 
     return (
         <Layout>
@@ -35,7 +44,7 @@ const ConfirmBookingPage = () => {
                     </div>
 
                     <h4 className='font-inter mt-4 text-[#1A1A1A] font-semibold'>Selected Dentist</h4>
-                    <div className='border-2 border-[#5B5B5B] rounded-md p-3 mt-5 grid grid-cols-[24%_73%] gap-3'>
+                    <div className='border-2 border-[#C9C9C9] rounded-md p-3 mt-5 grid grid-cols-[24%_73%] gap-3'>
                         <div>
                             <div className='rounded-[6px] relative w-full'>
                                 <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
@@ -65,7 +74,7 @@ const ConfirmBookingPage = () => {
                     </div>
 
                     <h4 className='font-inter mt-4 text-[#1A1A1A] font-semibold'>Selected Clinic</h4>
-                    <div className='shadow-lg rounded-md p-3 mt-5 bg-white grid grid-cols-[24%_73%] gap-3'>
+                    <div className='shadow-lg rounded-md p-3 mt-5 bg-white grid grid-cols-[30%_68%] gap-3'>
                         <div className='rounded-[6px] relative'>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                             <img className='h-full w-full' src={PlusImg} alt="" />
@@ -100,11 +109,15 @@ const ConfirmBookingPage = () => {
                         <ConfirmBookingModal
                             isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                             setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                            selectedDate={selectedDate}
+                            selectedTime={selectedTime}
+                            updateDateAndTime={updateDateAndTime}
+                            selectedIndex={"selected1"}
                         />
                     }
                 </div>
                 <div className='px-4 py-6'>
-                    <h2 className='font-inter text-xl font-medium'>Enter Patient Details</h2>
+                    <h2 className='font-inter text-xl font-medium mb-4'>Enter Patient Details</h2>
                     <ConfirmBookingForm />
                 </div>
             </div>

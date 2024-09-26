@@ -11,7 +11,7 @@ import ReactStars from 'react-stars';
 import { Button } from '@/components/ui/button';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { useState } from 'react';
-import ConfirmbookingModal from '@/components/ConfirmbookingModal';
+import ConfirmbookingModal from '@/components/confirm-booking/ConfirmbookingModal';
 
 const Dentist1 = () => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
