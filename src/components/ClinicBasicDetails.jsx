@@ -30,7 +30,7 @@ const ClinicBasicDetails = () => {
                             <div className='flex items-center justify-between gap-4'>
                                 <div className='flex items-center gap-4'>
                                     <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
-                                    <Button variant="outline" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
+                                    <Button variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                                         <FaLocationArrow className='text-[#95C22B]' />
                                         <span>Search on map</span>
                                     </Button>
