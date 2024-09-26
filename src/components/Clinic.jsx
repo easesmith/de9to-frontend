@@ -14,7 +14,7 @@ const Clinic = () => {
 
     return (
         <div className='p-4 rounded-[6px] flex gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
-            <div className='rounded-[6px] w-[210px] h-[210px] flex justify-center items-end relative'>
+            <div className='rounded-[6px] w-[210px] h-[210px] flex justify-center items-end relative -mt-[10px]'>
                 <img src={PlusImg} alt="" />
                 <img src={VerifiedImg} alt="" className='absolute top-[8%] right-[3%]' />
             </div>

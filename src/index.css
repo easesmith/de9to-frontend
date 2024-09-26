@@ -159,3 +159,22 @@
   color: #95C22B;
   background: #FFFFFF;
 }
+
+textarea::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px; 
+  margin-right:10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: darkgrey; 
+  border-radius: 10px; 
+}
+
+textarea::-webkit-scrollbar-track {
+  background-color: lightgrey; 
+}
+
+.dental-camp .swiper-pagination-bullet-active{
+  background-color: green !important;
+}

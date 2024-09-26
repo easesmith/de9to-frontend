@@ -20,13 +20,15 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         paginationInActive:"bg-[#FFFFFF] text-[#274760] shadow-custom6",
         paginationActive:"bg-[#95C22B] text-[#FFFFFF] shadow-custom6",
-        submit:"bg-[#95C22B] hover:bg-[#9bc833] text-[#FFFFFF] font-bold font-openSans"
+        submit:"bg-[#95C22B] hover:bg-[#9bc833] text-[#FFFFFF] font-bold font-openSans",
+        log:"bg-[#95C22B] hover:bg-[#9bc833] text-xs text-[#FFFFFF] font-bold font-inter"
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "text-xl rounded-lg py-2 px-2",
         icon: "h-10 w-10",
+        log:"rounded-[35px] py-[10px] px-5"
       },
     },
     defaultVariants: {
