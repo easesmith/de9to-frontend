@@ -13,6 +13,11 @@ import TeamMemberTwo from '../../assets/yash-1.png.png'
 import TeamMemberThree from '../../assets/mohit-1.png.png'
 import HappyDentistImg from '../../assets/happy-dentists-with-patient 1.png'
 import { MangementInfo, OurTeamMember, PrevLink } from '@/component/MiniCompo/MiniCompo'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper/modules'
+import 'swiper/css';
+import 'swiper/css/pagination';
+// import './styles.css';
 
 
 const AboutUs = () => {
@@ -60,7 +65,7 @@ const AboutUs = () => {
                         <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>Our mission at De9to is to make quality dental care accessible and affordable for everyone. By 2025, we aim to onboard over 5,000 dental clinics and serve more than 100,000 patients, ensuring that everyone has access to the best in oral health.</p>
                     </div>
                 </section>
-                <section>
+                {/* <section>
                     <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Values</h3>
                     <p className='text-[#5C5C5C] text-2xl font-normal font-inter mb-10'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
                     <div className="cards flex flex-col gap-10">
@@ -141,6 +146,90 @@ const AboutUs = () => {
                             </div>
                         </div>
                     </div>
+                </section> */}
+
+                <section>
+                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Values</h3>
+                    <p className='text-[#5C5C5C] text-2xl font-normal font-inter mb-10'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
+                    <Swiper
+                        loop={true}
+                        spaceBetween={30}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper about-us h-[290px] w-[900px]"
+                    >
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+
+                                <img src={CardImg} alt="" />
+                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
+                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
+                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    </Swiper>
                 </section>
                 <section className='h-[455px]'>
                     <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Team</h3>

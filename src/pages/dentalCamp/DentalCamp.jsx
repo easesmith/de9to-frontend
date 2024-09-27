@@ -16,11 +16,11 @@ import ProfessionalImg5 from '../../assets/Ellipse 7.png'
 import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
 import RequestDentalImg from '../../assets/codifyformatter__1_-removebg-preview 1.png'
-import DestistSignupImg from '../../assets/dentist 1.png'
-import DentalConsultationImg from '../../assets/checklist 1.png'
-import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
-import PinCodersCoveredImg from '../../assets/maps.png'
-import HealthWebinarImg from '../../assets/image 158.png'
+import DestistSignupImg from '../../assets/Frame.png'
+import DentalConsultationImg from '../../assets/Frame (1).png'
+import DestistCampsImg from '../../assets/Frame (2).png'
+import PinCodersCoveredImg from '../../assets/Frame (3).png'
+import HealthWebinarImg from '../../assets/Frame (4).png'
 import DentalCampImg1 from '../../assets/Frame 1171283211.png'
 import DentalCampImg2 from '../../assets/Frame 1171283212.png'
 import DentalCampImg3 from '../../assets/image 150.png'
@@ -44,7 +44,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel, Keyboard } from 'swiper/modules';
 import { FaLocationDot } from 'react-icons/fa6'
 import { MdAccessTimeFilled } from "react-icons/md";
 import { MdCalendarMonth } from "react-icons/md";
@@ -59,10 +59,14 @@ import WhyDentalCampsCarousel from '@/components/SwiperCompo'
 import Img1 from '../../assets/Frame 1171277952.png'
 
 
+
+
 const DentalCamp = () => {
 
-  const swiperRef = useRef(null);
+  // const swiperRef = useRef(null);
   const swiperRef1 = useRef(null);
+  const swiperRef2 = useRef(null);
+  const swiperRef3 = useRef(null);
 
   const [selectedPlan, setSelectedPlan] = useState(null);
 
@@ -98,7 +102,87 @@ const DentalCamp = () => {
     {
       image: Img1,
       description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
-    }
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
   ]
 
 
@@ -132,8 +216,8 @@ const DentalCamp = () => {
 
   return (
     <Layout>
-      <main className=''>
-        <section className="flex items-end gap-[30px] bg-[#F6F6F6] w-full py-7 px-[100px]">
+      <main className=' relative'>
+        <section className="flex items-end gap-[30px] bg-[#F6F6F6] w-full py-7 ps-[100px]">
           <div className="left-side w-1/2 flex flex-col gap-10">
             <div className="upper flex flex-col items-start gap-[15px]">
               <span className='text-[#95C22B] text-xl italic font-bold font-inter'>Request</span>
@@ -268,8 +352,8 @@ const DentalCamp = () => {
               </Form>
             </div>
           </div>
-          <div className="right-side relative w-fit">
-            <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 absolute left-[6%] z-20'>
+          <div className="right-side relative w-fit flex flex-col items-center">
+            <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 -mb-5 ml-8'>
               <h5 className='text-[#000000] text-center font-normal font-poppins mb-1'>our professionals</h5>
               <div className='flex relative'>
                 <img src={ProfessionalImg1} alt="" className='absolute  z-0' />
@@ -284,13 +368,12 @@ const DentalCamp = () => {
                 </div>
               </div>
             </div>
-            <img src={RequestDentalImg} alt="" />
-            <img src={BackgroundImg} alt="" className='w-[750px] absolute -top-[17%] -right-[24%]' />
+            <img src={RequestDentalImg} alt="" className='-mb-20 relative z-10' />
           </div>
         </section>
+        <img src={BackgroundImg} alt="" className='min-w-[685px] absolute top-[0%] right-[0%] -z-0' />
 
-
-        <section className="min-h-[228px] flex justify-between items-center gap-9 px-[125px] text-[#808080]">
+        <section className="min-h-[228px] flex justify-between items-end gap-9 px-[125px] text-[#808080] bg-[#FFFFFF] relative z-10 pt-20 mb-6">
           <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
           <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
           <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
@@ -305,7 +388,7 @@ const DentalCamp = () => {
               <p className='text-[#606060] text-xl font-semibold font-roboto'>To create awareness and on-spot dental solutions De9to has a portable setup of modern dental equipment which can be installed in areas</p>
             </div>
             <div className="right-upper">
-              <Button variant='submit' size='lg'>Book Dental Camp</Button>
+              <Button variant='submit' size='sm'>Book Dental Camp</Button>
             </div>
           </div>
           <div className="lower flex gap-[30px] justify-between">
@@ -354,13 +437,13 @@ const DentalCamp = () => {
             <div className='flex items-center gap-5'>
               <div
                 className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                onClick={() => swiperRef.current?.slidePrev()} // Navigate to the previous slide
+                onClick={() => swiperRef1.current?.slidePrev()} // Navigate to the previous slide
               >
                 <BsArrowLeft className='text-2xl ' />
               </div>
               <div
                 className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                onClick={() => swiperRef.current?.slideNext()} // Navigate to the next slide
+                onClick={() => swiperRef1.current?.slideNext()} // Navigate to the next slide
               >
                 <BsArrowRight className='text-2xl' />
               </div>
@@ -368,41 +451,42 @@ const DentalCamp = () => {
           </div>
           <div className='flex justify-between dental-camp'>
             <Swiper
-              loop={true}
-              modules={[Pagination, Autoplay]}
               slidesPerView={3}
-              pagination={{ clickable: true }}
+              spaceBetween={30}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
               navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
               }}
+              modules={[Pagination, Navigation]}
               onSwiper={(swiper) => {
-                swiperRef.current = swiper;
+                swiperRef1.current = swiper;
               }}
-              onSlideChange={() => console.log('slide change')}
-              className=''
+              className='h-[430px]'
             >
               <SwiperSlide>
-                <img src={DentalCampImg1} alt="" />
+                <img src={DentalCampImg1} alt="" className='cursor-pointer' />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg2} alt="" />
+                <img src={DentalCampImg2} alt="" className='cursor-pointer' />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg3} alt="" />
+                <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer' />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg1} alt="" />
+                <img src={DentalCampImg1} alt="" className='cursor-pointer' />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg2} alt="" />
+                <img src={DentalCampImg2} alt="" className='cursor-pointer' />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg3} alt="" />
+                <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer' />
               </SwiperSlide>
             </Swiper>
           </div>
-
         </section>
 
         <section className='max-w-[1240px] mx-auto my-36'>
@@ -415,8 +499,8 @@ const DentalCamp = () => {
           </div>
           <div className="min-h-screen flex items-end justify-center gap-9">
             <ChoosePlanCompo title='BASIC' amount='1000' isSelected={selectedPlan === 1} onSelect={() => handleSelectPlan(1)} />
-            <ChoosePlanCompo title='PROFESSIONAL' amount='2000' isSelected={selectedPlan === 2} onSelect={() => handleSelectPlan(2)} />
-            <ChoosePlanCompo title='ADVANCED' amount='3000' isSelected={selectedPlan === 3} onSelect={() => handleSelectPlan(3)} />
+            <ChoosePlanCompo title='PROFESSIONAL' amount='3000' isSelected={selectedPlan === 3} onSelect={() => handleSelectPlan(3)} />
+            <ChoosePlanCompo title='ADVANCED' amount='2000' isSelected={selectedPlan === 2} onSelect={() => handleSelectPlan(2)} />
           </div>
         </section>
 
@@ -427,11 +511,10 @@ const DentalCamp = () => {
               <h4 className='text-[#1A1A1A] text-[40px] font-extrabold font-inter'>Why Dental Camps are Important</h4>
             </div>
           </div>
-          {/* <WhyDentalCampsCarousel /> */}
-          <div className='flex gap-12 items-center'>
+          <div className='flex gap-12 items-center overflow-hidden'>
             {data.map((e, i) => {
               return (
-                <div key={i} className='rounded-2xl bg-[#FFFFFF] flex flex-col items-center gap-5 py-3 px-2 w-[180px] h-[170px] shadow-lg cursor-pointer '>
+                <div key={i} className=' animate-scroll rounded-2xl bg-[#FFFFFF] flex flex-col items-center gap-5 py-3 px-2 min-w-[180px] h-[170px] shadow-lg cursor-pointer '>
                   <img src={e.image} alt="" className='w-[64px] h-[36px]' />
                   <p className={`text-[#1A1A1A] text-center text-sm font-normal font-inter`}>{e.description}</p>
                 </div>
@@ -439,25 +522,6 @@ const DentalCamp = () => {
             })}
           </div>
         </section>
-
-        <div class="scroll">
-          <div class="m-scroll">
-            <div class='ab'>
-              <h1>
-                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
-              </h1>
-              <h1>
-                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
-              </h1>
-              <h1>
-                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
-              </h1>
-              <h1>
-                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
-              </h1>
-            </div>
-          </div>
-        </div>
 
         <section className='w-full h-[464px] max-w-[1240px] mx-auto'>
           <div className='bg-[#95C22B] rounded-3xl flex items-center justify-center gap-20 h-full'>
@@ -469,21 +533,59 @@ const DentalCamp = () => {
             </div>
             <div className='border-2 border-[#FFFFFF] h-[320px]'></div>
             <div className='w-[500px]'>
-              <p className='text-[#FFFFFF] text-2xl font-bold font-inter mb-16'>I joined De9to with the aim of promoting oral health awareness, benefiting from their free registration. My experience has been excellent, resulting in revenue exceeding 2.5 lac</p>
-              <div className='flex justify-between items-center gap-4'>
-                <div className="profile flex gap-3">
-                  <img src={ProfileImg} alt="" />
-                  <div className=' flex flex-col items-start justify-start'>
-                    <ReactStars count={5} value={4} />
-                    <h5 className="text-[#FFFFFF] text-xl font-bold font-inter">Dr. Jonathan Vallem</h5>
-                    <p className="text-[#FFFFFF] text-sm font-medium font-inter">New york, USA</p>
-                  </div>
-                </div>
+              <div className='flex justify-between items-end gap-4'>
+                <Swiper
+                  loop={true}
+                  modules={[Pagination, Autoplay]}
+                  slidesPerView={1}
+                  navigation={{
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  }}
+                  onSwiper={(swiper) => {
+                    swiperRef2.current = swiper;
+                  }}
+                  onSlideChange={() => console.log('slide change')}
+                >
+                  <SwiperSlide>
+                    <p className='text-[#FFFFFF] text-2xl font-bold font-inter mb-16'>I joined De9to with the aim of promoting oral health awareness, benefiting from their free registration. My experience has been excellent, resulting in revenue exceeding 2.5 lac</p>
+                    <div className="profile flex gap-3">
+                      <img src={ProfileImg} alt="" />
+                      <div className=' flex flex-col items-start justify-start'>
+                        <ReactStars edit={false} count={5} value={4} color2='#FFD400' />
+                        <h5 className="text-[#FFFFFF] text-xl font-bold font-inter">Dr. Jonathan Vallem</h5>
+                        <p className="text-[#FFFFFF] text-sm font-medium font-inter">New york, USA</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <p className='text-[#FFFFFF] text-2xl font-bold font-inter mb-16'>I joined De9to with the aim of promoting oral health awareness, benefiting from their free registration. My experience has been excellent, resulting in revenue exceeding 2.5 lac</p>
+                    <div className="profile flex gap-3">
+                      <img src={ProfileImg} alt="" />
+                      <div className=' flex flex-col items-start justify-start'>
+                        <ReactStars edit={false} count={5} value={4} color2='#FFD400' />
+                        <h5 className="text-[#FFFFFF] text-xl font-bold font-inter">Dr. Jonathan Vallem</h5>
+                        <p className="text-[#FFFFFF] text-sm font-medium font-inter">New york, USA</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <p className='text-[#FFFFFF] text-2xl font-bold font-inter mb-16'>I joined De9to with the aim of promoting oral health awareness, benefiting from their free registration. My experience has been excellent, resulting in revenue exceeding 2.5 lac</p>
+                    <div className="profile flex gap-3">
+                      <img src={ProfileImg} alt="" />
+                      <div className=' flex flex-col items-start justify-start'>
+                        <ReactStars edit={false} count={5} value={4} color2='#FFD400' />
+                        <h5 className="text-[#FFFFFF] text-xl font-bold font-inter">Dr. Jonathan Vallem</h5>
+                        <p className="text-[#FFFFFF] text-sm font-medium font-inter">New york, USA</p>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                </Swiper>
                 <div className='flex justify-center items-end gap-4'>
-                  <div className='w-[48px] h-[48px] bg-[#E1FF9A] flex justify-center items-center rounded-full cursor-pointer'>
+                  <div className='w-[48px] h-[48px] bg-[#E1FF9A] flex justify-center items-center rounded-full cursor-pointer' onClick={() => swiperRef2.current?.slidePrev()}>
                     <GoArrowLeft className='text-2xl' />
                   </div>
-                  <div className='w-[62px] h-[62px] bg-[#FFFFFF] flex justify-center items-center rounded-full cursor-pointer'>
+                  <div className='w-[62px] h-[62px] bg-[#FFFFFF] flex justify-center items-center rounded-full cursor-pointer' onClick={() => swiperRef2.current?.slideNext()}>
                     <GoArrowRight className='text-2xl' />
                   </div>
                 </div>
@@ -494,7 +596,7 @@ const DentalCamp = () => {
 
         <section className='max-w-[1240px] mx-auto my-36'>
           <div className="relative w-full ">
-            <div className="upper">
+            <div className="">
               <div className='w-full flex justify-between items-center mb-12'>
                 <div className='flex flex-col gap-[15px]'>
                   <p className='text-[#95C22B] text-xl font-bold font-inter'>Our  Best Practices</p>
@@ -505,32 +607,45 @@ const DentalCamp = () => {
                 <div className='flex items-center gap-5'>
                   <div
                     className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                    onClick={() => swiperRef1.current?.slidePrev()} // Navigate to the previous slide
+                    onClick={() => swiperRef3.current?.slidePrev()} // Navigate to the previous slide
                   >
                     <BsArrowLeft className='text-2xl ' />
                   </div>
                   <div
                     className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                    onClick={() => swiperRef1.current?.slideNext()} // Navigate to the next slide
+                    onClick={() => swiperRef3.current?.slideNext()} // Navigate to the next slide
                   >
                     <BsArrowRight className='text-2xl' />
                   </div>
                 </div>
               </div>
-              <div className='flex justify-center items-center gap-8'>
+              <div className='flex justify-between items-center gap-8'>
                 <Swiper
-                  loop={true}
-                  modules={[Pagination, Autoplay]}
                   slidesPerView={2}
+                  spaceBetween={30}
+                  loop={true}
+                  pagination={{
+                    clickable: true,
+                  }}
                   navigation={{
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   }}
+                  modules={[Pagination, Navigation]}
                   onSwiper={(swiper) => {
-                    swiperRef1.current = swiper;
+                    swiperRef3.current = swiper;
                   }}
-                  onSlideChange={() => console.log('slide change')}
+                  className="mySwiper h-[450px] dental-camp"
                 >
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  </SwiperSlide>
                   <SwiperSlide>
                     <img src={NGOImg1} alt="" className='cursor-pointer' />
                   </SwiperSlide>
@@ -543,10 +658,6 @@ const DentalCamp = () => {
                 </Swiper>
               </div>
             </div>
-            <div className="lower">
-
-            </div>
-
           </div>
         </section>
         <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto my-36">
@@ -561,7 +672,6 @@ const DentalCamp = () => {
             <img src={OurCollaboratorImg4} alt="" />
           </div>
         </section>
-
       </main>
     </Layout>
   )

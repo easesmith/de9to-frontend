@@ -72,7 +72,7 @@ export default {
 				custom8: '0px 24px 24px -8px rgba(14, 63, 126, 0.04)'
 			},
 			animation: {
-				scroll: 'scroll 20s linear infinite',
+				scroll: 'scroll 2s linear infinite ',
 			  },
 			  keyframes: {
 				scroll: {
