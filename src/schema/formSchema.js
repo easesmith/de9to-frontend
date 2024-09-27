@@ -37,5 +37,14 @@ export const commentSchema = z.object({
 export const ConfirmBookingFormSchema = z.object({
     for: z.string().min(1, "Please select at least one option"),
     name: z.string().min(1, "Name is required"),
-    time: z.string().min(1, "Please select a time slot"),
+    mobile: z
+        .string()
+        .length(10, "Mobile No. must be exactly 10 digits")
+        .regex(/^\d+$/, "Mobile No. must contain only numbers"),
+    email: z
+        .string()
+        .optional()
+        .refine((value) => !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value), {
+            message: "Invalid email address",
+        }),
 });

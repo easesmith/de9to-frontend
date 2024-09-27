@@ -9,14 +9,14 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
-import { Label } from "./ui/label";
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import noSlot from "@/assets/Vector (7).png";
-import { Button } from "./ui/button";
 import { format, addDays } from 'date-fns';  // Import for date manipulation
-import SlotSection from "./SlotSection";
 import { useNavigate } from "react-router-dom";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import SlotSection from "../SlotSection";
 
 const clinicSchema = z.object({
     clinic: z.string().min(1, "Please select a clinic"),
@@ -24,15 +24,16 @@ const clinicSchema = z.object({
     time: z.string().min(1, "Please select a time slot"),
 });
 
-const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen }) => {
+const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, updateDateAndTime, selectedIndex }) => {
     const navigate = useNavigate();
 
     const form = useForm({
         resolver: zodResolver(clinicSchema),
         defaultValues: {
             clinic: "",
-            date: "",
-            time: "",
+            date: selectedDate || "",
+            time: selectedTime || "",
+            selectedIndex: selectedIndex || "",
         },
     });
 
@@ -41,13 +42,14 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
         // reset();
-        // setIsConfirmBookingModalOpen(false); // Close modal after submission
+        updateDateAndTime(data.date, data.time);  // Pass the updated values back to the parent
+        setIsConfirmBookingModalOpen(false); // Close modal after submission
         navigate("/confirm-booking");
     };
 
-    const [selectedSlot, setSelectedSlot] = useState("");
-    const [selectedDay, setSelectedDay] = useState("");
-    const [selected, setSelected] = useState("selected0");
+    const [selectedSlot, setSelectedSlot] = useState(selectedTime);
+    const [selectedDay, setSelectedDay] = useState(selectedDate);
+    const [selected, setSelected] = useState(selectedIndex || "selected0");
     const [startIndex, setStartIndex] = useState(0);
 
     // Generate dates dynamically
@@ -81,7 +83,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const slotTimes = {
         morning: [
             ["09:00 AM", "09:30 AM"], // Today
-            ["09:00 AM", "10:00 AM", "10:30 AM","09:00 AM", "09:30 AM"], // Tomorrow
+            ["09:00 AM", "10:00 AM", "10:30 AM", "09:00 AM", "09:30 AM"], // Tomorrow
             [], // Day 3: No slots available
             ["09:00 AM"], // Day 4
             ["10:00 AM", "11:00 AM"], // Day 5
@@ -136,6 +138,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         setSelected(`selected${index}`);
         setSelectedSlot("");
         const selectedDate = days[index].date;
+        setSelectedDay(selectedDate);
         form.setValue("date", selectedDate);
     };
 
@@ -183,7 +186,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         const VisibleDays = days.slice(startIndex, startIndex + 3);
         setVisibleDays(VisibleDays)
     }, [startIndex])
-    
+
 
 
     // Get the visible days (3 at a time)
@@ -243,7 +246,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                             type="button"
                                             key={index + startIndex}
                                             onClick={() => handleDaySelection(index + startIndex)}
-                                            className={`${selected === `selected${index + startIndex}` ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
+                                            className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
                                         >
                                             <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
                                             <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>

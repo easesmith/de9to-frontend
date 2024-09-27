@@ -12,46 +12,48 @@ import 'swiper/css/scrollbar';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from './ui/button';
+import { FaLocationDot } from 'react-icons/fa6';
 
 
 const ClinicBasicDetails = () => {
     return (
-        <div className="grid grid-cols-[77%_260px] gap-4">
-            <div className='rounded-[5px] flex flex-col gap-5'>
+        <div className="grid grid-cols-[77%_260px] h-full gap-4">
+            <div className='rounded-[5px] flex flex-col h-full gap-5'>
                 {/* <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p> */}
-                <div className='p-4 rounded-[6px] flex gap-[10px] shadow-lg'>
-                    <div className='rounded-[6px] relative w-[210px] h-[210px]'>
+                <div className='p-4 rounded-[6px] h-full flex gap-[10px] shadow-lg'>
+                    <div className='rounded-[6px] relative w-[210px]'>
                         <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                         <img className='h-full w-full' src={PlusImg} alt="" />
                     </div>
-                    <div className='pe-[25px] ps-[9px] gap-6 w-[calc(100%-210px)]'>
-                        <div className='flex items-center justify-between gap-4'>
-                            <div className='flex items-center gap-4'>
-                                <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
-                                <Button variant="outline" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
-                                    <FaLocationArrow className='text-[#95C22B]' />
-                                    <span>Search on map</span>
-                                </Button>
+                    <div className='pe-[25px] h-full ps-[9px] flex flex-col items-start justify-between w-[calc(100%-210px)]'>
+                        <div>
+                            <div className='flex items-center justify-between gap-4'>
+                                <div className='flex items-center gap-4'>
+                                    <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
+                                    <Button variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
+                                        <FaLocationArrow className='text-[#95C22B]' />
+                                        <span>Search on map</span>
+                                    </Button>
+                                </div>
+                                <div>
+                                    <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
+                                    <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                                </div>
                             </div>
-                            <div>
-                                <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
-                                <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                            <div className='flex flex-col justify-start gap-2'>
+                                <div className="flex gap-2 items-center">
+                                    <img src={VectorImg5} alt="" />
+                                    <h5 className='text-[#717171] text-base font-semibold font-inter'>Multi-Speciality Clinic</h5>
+                                </div>
+                                <div className="flex gap-2 items-center my-[2px]">
+                                    <FaLocationDot className='text-[#717171]' />
+                                    <p className='text-sm text-[#717171] leading-[10px]'>L-31, Block L, Vinay Gulati Marg, West Patel Nagar, Patel Nagar, New Delhi, Delhi 110008</p>
+                                </div>
+                                <p className='text-[#717171] font-inter'>Best in <span className='font-semibold text-black'>Dental Care, State-of-the-Art-Facilities</span></p>
                             </div>
                         </div>
-                        <div className='flex flex-col justify-start gap-2'>
-                            <div className="flex gap-2 items-center">
-                                <img src={VectorImg5} alt="" />
-                                <h5 className='text-[#717171] text-base font-semibold font-inter'>Multi-Speciality Clinic</h5>
-                            </div>
-                            <ul className='flex flex-col gap-2'>
-                                <li className='text-sm text-[#717171] leading-[10px]'><b>DentMarc:</b> Your One-Stop Dental Solution</li>
-                                <li className='text-sm text-[#717171] leading-[10px]'><b>Multi-Specialty Practice:</b> Comprehensive care for all dental needs</li>
-                                <li className='text-sm text-[#717171] leading-[10px]'><b>State-of-the-Art Facilities:</b> Equipped with the latest technology for exceptional care</li>
-                                <li className='text-sm text-[#717171] leading-[10px]'><b>Unique Dental Experience:</b> Focused on customer service and practical solutions</li>
-                                <li className='text-sm text-[#717171] leading-[10px]'><b>Continuity of Care:</b> Ensuring consistent, high-quality treatment across all services</li>
-                            </ul>
-                        </div>
-                        <Button variant="outline" className="flex mt-3 gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
+
+                        <Button variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                             <MdCall className='text-[#95C22B] text-xl' />
                             <span>Call now</span>
                         </Button>
