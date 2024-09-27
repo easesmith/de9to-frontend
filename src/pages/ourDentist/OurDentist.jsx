@@ -103,7 +103,7 @@ const OurDentist = () => {
               <Dentist1 />
               <Dentist1 />
             </div>
-            <ReactPagination />
+            <ReactPagination pages='6' />
           </div>
         </section>
       </main>
