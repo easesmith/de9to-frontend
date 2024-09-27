@@ -16,6 +16,13 @@ import { FaLocationDot } from 'react-icons/fa6';
 
 
 const ClinicBasicDetails = () => {
+    const handleMapSearch = () => {
+        const latitude = 28.6466773;
+        const longitude = 77.1564994;
+        const mapUrl = `https://www.google.com/maps/@?api=1&map_action=map&center=${latitude},${longitude}&zoom=15`;
+        window.open(mapUrl, '_blank'); // Opens Google Maps in a new tab with the coordinates
+    };
+    
     return (
         <div className="grid grid-cols-[77%_260px] h-full gap-4">
             <div className='rounded-[5px] flex flex-col h-full gap-5'>
@@ -30,7 +37,7 @@ const ClinicBasicDetails = () => {
                             <div className='flex items-center justify-between gap-4'>
                                 <div className='flex items-center gap-4'>
                                     <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
-                                    <Button variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
+                                    <Button onClick={handleMapSearch} variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                                         <FaLocationArrow className='text-[#95C22B]' />
                                         <span>Search on map</span>
                                     </Button>

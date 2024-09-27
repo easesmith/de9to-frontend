@@ -2,8 +2,12 @@ import clinicImg from '@/assets/image (5).png'
 import { FaLocationArrow } from 'react-icons/fa'
 import ReactStars from 'react-stars'
 import { Button } from './ui/button'
+import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal'
+import { useState } from 'react'
 
 const ClinicAppointment = () => {
+    const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+
     const handleMapSearch = () => {
         const latitude = 28.6466773;
         const longitude = 77.1564994;
@@ -34,11 +38,17 @@ const ClinicAppointment = () => {
                             <Button onClick={() => { }} className="bg-[#465C13] mt-2 hover:bg-[#526d13] flex gap-3 items-center px-6 rounded-[10px]">
                                 Pending
                             </Button>
-                            {/* <Button onClick={() => { }} className="bg-[#95C22B] w-full mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
+                            {/* <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] w-full mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
                                 <span>Book Appointment</span>
                                 <FiArrowUpRight className='text-2xl' />
                             </Button> */}
                         </div>
+                        {isConfirmBookingModalOpen &&
+                            <ConfirmBookingModal
+                                isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+                                setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                            />
+                        }
                     </div>
                 </div>
             </div>
