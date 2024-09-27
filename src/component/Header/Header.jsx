@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import De9toLogo from '../../assets/de9to-logo-qc7xun2b6cqji9b2etrrmn9ecu7aif9fr5oesz8pp6-1.png.png'
 import { Button } from '@/components/ui/button'
 
 const Header = () => {
+const navigate = useNavigate();
 
   const urlAndUrlName = [
     {
@@ -58,7 +59,7 @@ const Header = () => {
             )
           })}
         </ul>
-        <Button variant='log' size='log'>Log in</Button>
+        <Button onClick={()=>navigate("/login")} variant='log' size='log'>Log in</Button>
       </nav>
     </header>
   )

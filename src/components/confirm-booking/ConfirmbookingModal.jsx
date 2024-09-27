@@ -24,7 +24,7 @@ const clinicSchema = z.object({
     time: z.string().min(1, "Please select a time slot"),
 });
 
-const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, updateDateAndTime, selectedIndex }) => {
+const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex }) => {
     const navigate = useNavigate();
 
     const form = useForm({
@@ -42,13 +42,12 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
         // reset();
-        updateDateAndTime(data.date, data.time);  // Pass the updated values back to the parent
         setIsConfirmBookingModalOpen(false); // Close modal after submission
         navigate("/confirm-booking");
     };
 
     const [selectedSlot, setSelectedSlot] = useState(selectedTime);
-    const [selectedDay, setSelectedDay] = useState(selectedDate);
+    const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(),"yyyy-MM-dd"));
     const [selected, setSelected] = useState(selectedIndex || "selected0");
     const [startIndex, setStartIndex] = useState(0);
 

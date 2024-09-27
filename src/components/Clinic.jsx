@@ -9,8 +9,18 @@ import ReactStars from 'react-stars';
 import { Button } from './ui/button';
 // import { IoMdCall } from "react-icons/io";
 import { IoCall } from "react-icons/io5";
+import { useState } from 'react';
+import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
 
 const Clinic = () => {
+    const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+
+    const handleMapSearch = () => {
+        const latitude = 28.6466773;
+        const longitude = 77.1564994;
+        const mapUrl = `https://www.google.com/maps/@?api=1&map_action=map&center=${latitude},${longitude}&zoom=15`;
+        window.open(mapUrl, '_blank'); // Opens Google Maps in a new tab with the coordinates
+    };
 
     return (
         <div className='p-4 rounded-[6px] flex gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
@@ -47,7 +57,7 @@ const Clinic = () => {
                 </div>
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-2'>
-                        <button className='rounded-[6px] border-[1px] border-[#95C22B] py-[6px] px-2 flex items-center gap-[6px]'>
+                        <button onClick={handleMapSearch} className='rounded-[6px] border-[1px] border-[#95C22B] py-[6px] px-2 flex items-center gap-[6px]'>
                             <FaLocationArrow className='text-[#95C22B] text-xs' />
                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Search on map</span>
                         </button>
@@ -58,12 +68,18 @@ const Clinic = () => {
                     </div>
                     <div className='flex items-center gap-2'>
                         <p className='text-[#838383] text-sm font-normal font-poppins'><span className='line-through'>₹500</span> <span className='font-semibold'>FREE</span> via <span className='font-semibold'>de<span className='text-[#95C22B]'>9</span>to</span></p>
-                        <button className='rounded-[6px] border-[1px] border-[#95C22B] bg-[#95C22B] py-[6px] px-2 flex justify-center items-center gap-[6px]'>
+                        <button onClick={() => setIsConfirmBookingModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] bg-[#95C22B] py-[6px] px-2 flex justify-center items-center gap-[6px]'>
                             <span className='text-[#FFFFFF] text-xs font-semibold font-inter'>Book for consultation</span>
                             <MdOutlineArrowOutward className='text-[#FFFFFF] text-xs' />
                         </button>
                     </div>
                 </div>
+                {isConfirmBookingModalOpen &&
+                    <ConfirmBookingModal
+                        isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+                        setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                    />
+                }
             </div>
         </div>
     )

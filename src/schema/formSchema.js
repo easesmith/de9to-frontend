@@ -48,3 +48,44 @@ export const ConfirmBookingFormSchema = z.object({
             message: "Invalid email address",
         }),
 });
+
+
+const phoneRegex = /^\d{10}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+
+export const LoginSchema = z.object({
+    emailOrPhone: z
+        .string()
+        .min(1, "Email or Phone number is required")
+        .refine((value) => phoneRegex.test(value) || emailRegex.test(value), {
+            message: "Must be a valid email or phone number",
+        }),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+    rememberMe: z.boolean().optional(),
+    loginWithOtp: z.boolean().optional(),
+});
+
+
+export const LoginSchema1 = z.object({
+    emailOrPhone: z
+        .string()
+        .min(1, "Email or Phone number is required")
+        .refine((value) => phoneRegex.test(value) || emailRegex.test(value), {
+            message: "Must be a valid email or phone number",
+        }),
+    rememberMe: z.boolean().optional(),
+    loginWithOtp: z.boolean().optional(),
+});
+
+export const OtpSchema = z.object({
+    otp: z
+        .string()
+        .length(6, { message: "OTP must be exactly 6 digits" }) // Enforces exactly 6 digits
+        .regex(/^\d+$/, { message: "OTP must contain only numbers" }), // Numeric-only validation
+});
+
