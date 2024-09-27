@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
 
-const ReactPagination = () => {
+const ReactPagination = ({pages}) => {
 
-    const pageCount = 5
+    const pageCount = pages
+    const[page,setPage] = useState(1)
 
     return (
         <>
@@ -14,7 +15,7 @@ const ReactPagination = () => {
                     nextLabel={'→'}
                     pageCount={pageCount}
                     onPageChange={(e) => setPage(e.selected + 1)}
-                    containerClassName={'flex items-center justify-center gap-6 min-w-[420px]'}
+                    containerClassName={'flex items-center justify-center gap-6 min-w-[420px] list-none'}
                     pageClassName={'flex justify-center items-center w-11 h-11 rounded-lg shadow-custom6 text-[#274760] font-inter'}
                     pageLinkClassName={'flex justify-center items-center w-full h-full rounded-lg  '}
                     activeClassName={'bg-[#95C22B] text-[#FFFFFF]'}

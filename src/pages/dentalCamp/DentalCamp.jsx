@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
 import PreventingImg from '../../assets/noun-toothache-6895920 3.png'
 import GumDiseaseImg from '../../assets/noun-tooth-7037140 1.png'
@@ -22,6 +22,8 @@ import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
 import PinCodersCoveredImg from '../../assets/maps.png'
 import HealthWebinarImg from '../../assets/image 158.png'
 import DentalCampImg1 from '../../assets/Frame 1171283211.png'
+import DentalCampImg2 from '../../assets/Frame 1171283212.png'
+import DentalCampImg3 from '../../assets/image 150.png'
 
 
 import NGOImg1 from '../../assets/image.png'
@@ -48,13 +50,56 @@ import { MdAccessTimeFilled } from "react-icons/md";
 import { MdCalendarMonth } from "react-icons/md";
 import BackgroundImg from '../../assets/Subtract.png'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { FaCircleXmark } from "react-icons/fa6";
 import 'swiper/css';
 import 'swiper/css/navigation';
+import ChoosePlanCompo from '@/components/ChoosePlanCompo'
+import WhyDentalCampsCarousel from '@/components/SwiperCompo'
+import Img1 from '../../assets/Frame 1171277952.png'
+
 
 const DentalCamp = () => {
 
   const swiperRef = useRef(null);
   const swiperRef1 = useRef(null);
+
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const handleSelectPlan = (planIndex) => {
+    setSelectedPlan(planIndex);
+  };
+
+  const data = [
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    },
+    {
+      image: Img1,
+      description: 'Provide free or low-cost dental care, making oral health services accessible to everyone.'
+    }
+  ]
 
 
   const form = useForm({
@@ -341,19 +386,78 @@ const DentalCamp = () => {
                 <img src={DentalCampImg1} alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg1} alt="" />
+                <img src={DentalCampImg2} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={DentalCampImg3} alt="" />
               </SwiperSlide>
               <SwiperSlide>
                 <img src={DentalCampImg1} alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src={DentalCampImg1} alt="" />
+                <img src={DentalCampImg2} alt="" />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img src={DentalCampImg3} alt="" />
               </SwiperSlide>
             </Swiper>
           </div>
 
         </section>
 
+        <section className='max-w-[1240px] mx-auto my-36'>
+          <div className='flex justify-between mb-12'>
+            <div className='flex flex-col items-start gap-2'>
+              <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
+              <h4 className='text-[#1A1A1A] text-[40px] font-extrabold font-inter'>Pick a Plan that is right for You</h4>
+              <p className='text-[#606060] text-xl font-semibold font-roboto'>Elevating Oral Health Awareness</p>
+            </div>
+          </div>
+          <div className="min-h-screen flex items-end justify-center gap-9">
+            <ChoosePlanCompo title='BASIC' amount='1000' isSelected={selectedPlan === 1} onSelect={() => handleSelectPlan(1)} />
+            <ChoosePlanCompo title='PROFESSIONAL' amount='2000' isSelected={selectedPlan === 2} onSelect={() => handleSelectPlan(2)} />
+            <ChoosePlanCompo title='ADVANCED' amount='3000' isSelected={selectedPlan === 3} onSelect={() => handleSelectPlan(3)} />
+          </div>
+        </section>
+
+        <section className=' my-36'>
+          <div className='flex justify-between mb-12 max-w-[1240px] mx-auto'>
+            <div className='flex flex-col items-start gap-2'>
+              <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Why Dental Camps?</h5>
+              <h4 className='text-[#1A1A1A] text-[40px] font-extrabold font-inter'>Why Dental Camps are Important</h4>
+            </div>
+          </div>
+          {/* <WhyDentalCampsCarousel /> */}
+          <div className='flex gap-12 items-center'>
+            {data.map((e, i) => {
+              return (
+                <div key={i} className='rounded-2xl bg-[#FFFFFF] flex flex-col items-center gap-5 py-3 px-2 w-[180px] h-[170px] shadow-lg cursor-pointer '>
+                  <img src={e.image} alt="" className='w-[64px] h-[36px]' />
+                  <p className={`text-[#1A1A1A] text-center text-sm font-normal font-inter`}>{e.description}</p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+        <div class="scroll">
+          <div class="m-scroll">
+            <div class='ab'>
+              <h1>
+                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
+              </h1>
+              <h1>
+                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
+              </h1>
+              <h1>
+                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
+              </h1>
+              <h1>
+                <span>TEXT </span><span>INFINITE </span><span>SCROLL</span>
+              </h1>
+            </div>
+          </div>
+        </div>
 
         <section className='w-full h-[464px] max-w-[1240px] mx-auto'>
           <div className='bg-[#95C22B] rounded-3xl flex items-center justify-center gap-20 h-full'>
@@ -445,7 +549,7 @@ const DentalCamp = () => {
 
           </div>
         </section>
-        <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto">
+        <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto my-36">
           <div className='flex flex-col items-center'>
             <span className='text-[#000000] text-xl text-center italic font-bold font-inter'>Our Contributors</span>
             <h3 className='text-[#000000] text-[40px] text-center font-bold font-inter '>Our Collaborators</h3>
