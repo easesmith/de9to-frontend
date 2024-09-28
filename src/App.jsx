@@ -1,5 +1,6 @@
-import React, { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { Route, Routes } from 'react-router-dom'
+
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
 const OurDentist = lazy(() => import('./pages/ourDentist/OurDentist'))
@@ -14,6 +15,15 @@ const DentistDetails = lazy(() => import('./pages/DentistDetails'))
 const PaymentPage = lazy(() => import('./pages/PaymentPage'))
 const ConfirmBookingPage = lazy(() => import('./pages/ConfirmBookingPage'))
 const Login = lazy(() => import('./pages/Login'))
+
+const MedicalRecords = lazy(() => import('./pages/profile/MedicalRecords'))
+const Appointments = lazy(() => import('./pages/profile/Appointments'))
+const MyFeedback = lazy(() => import('./pages/profile/MyFeedback'))
+const Payment = lazy(() => import('./pages/profile/Payment'))
+const UpdateProfile = lazy(() => import('./pages/profile/UpdateProfile'))
+const ChangePassword = lazy(() => import('./pages/profile/ChangePassword'))
+const NotificationsSettings = lazy(() => import('./pages/profile/NotificationsSettings'))
+const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
 
 
 const App = () => {
@@ -37,6 +47,15 @@ const App = () => {
           <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
           <Route path='/confirm-booking' element={<ConfirmBookingPage />} />
           <Route path='/payment' element={<PaymentPage />} />
+
+          <Route path='/profile/medical-records' element={<MedicalRecords />} />
+          <Route path='/profile/appointments' element={<Appointments />} />
+          <Route path='/profile/my-feedback' element={<MyFeedback />} />
+          <Route path='/profile/payment' element={<Payment />} />
+          <Route path='/profile/update-profile' element={<UpdateProfile />} />
+          <Route path='/profile/change-password' element={<ChangePassword />} />
+          <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
+          <Route path='/profile/delete-account' element={<DeleteAccount />} />
         </Routes>
       </Suspense>
     </>
