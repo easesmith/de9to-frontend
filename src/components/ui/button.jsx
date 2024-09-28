@@ -21,6 +21,7 @@ const buttonVariants = cva(
         paginationInActive:"bg-[#FFFFFF] text-[#274760] shadow-custom6",
         paginationActive:"bg-[#95C22B] text-[#FFFFFF] shadow-custom6",
         submit:"bg-[#95C22B] text-xl hover:bg-[#9bc833] text-[#FFFFFF] font-bold font-openSans",
+        comment:"bg-[#95C22B] text-lg hover:bg-[#9bc833] text-[#FFFFFF] font-medium font-inter",
         log:"bg-[#95C22B] hover:bg-[#9bc833] text-xs text-[#FFFFFF] font-bold font-inter",
         moreBlog:"hover:bg-[#FFFFFF] border-[1px] border-[#95C22B] text-sm text-[#1A1A1A] font-normal font-inter",
         category:"border-[1px] border-[#212121] text-sm text-[#1A1A1A] font-light font-inter"

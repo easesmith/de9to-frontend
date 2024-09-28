@@ -21,6 +21,8 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { useNavigate } from 'react-router-dom'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import { BsChevronDoubleDown } from "react-icons/bs";
+import CategoryData from '@/data/Blog/categoryData.json'
+
 
 const Blog = () => {
 
@@ -29,6 +31,16 @@ const Blog = () => {
     // const handleNagigate = (i) =>{
     //     navigate(`/blog/${i}`)
     // }
+
+    const [isCategorySelected, setIsCategorySelected] = useState('All')
+
+    const handleSelectCategoryed = (title) => {
+        setIsCategorySelected(title)
+    }
+
+    // const filteredItems = CategoryData.filter((item) =>
+    //     isCategorySelected === 'All' ? true : item.category === isCategorySelected
+    //   );
 
     return (
         <Layout>
@@ -52,7 +64,7 @@ const Blog = () => {
                     <h3 className="text-[#717171] text-2xl font-medium font-inter">Choose Topic</h3>
                     <div className=' flex justify-between items-center'>
                         <div className=' flex items-center gap-4'>
-                            <CategoryBtn />
+                            <CategoryBtn isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
                         </div>
                         <Select>
                             <SelectTrigger className="w-[110px] border-[1px] border-[#95C22B]">
@@ -73,7 +85,7 @@ const Blog = () => {
                 </section>
                 <section className='flex flex-col items-center gap-4'>
                     <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Popular Blogs</h3>
-                    <Card />
+                    <Card isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
                 </section>
                 <section className='flex flex-col items-center gap-4'>
                     <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Recent Blogs</h3>

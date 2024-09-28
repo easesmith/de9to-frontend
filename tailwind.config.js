@@ -69,10 +69,11 @@ export default {
 				custom6: '0px 3px 8px 0px rgba(0, 0, 0, 0.24)',
 				custom7: '0px 4px 54px 0px rgba(149, 194, 43, 0.25)',
 				custom7: '0px 4px 54px 0px rgba(149, 194, 43, 0.25)',
-				custom8: '0px 24px 24px -8px rgba(14, 63, 126, 0.04)'
+				custom8: '0px 24px 24px -8px rgba(14, 63, 126, 0.04)',
+				custom9: '0px 4px 4px 2px rgba(0, 0, 0, 0.07)'
 			},
 			animation: {
-				scroll: 'scroll 2s linear infinite ',
+				scroll: 'scroll 5s linear infinite ',
 				"caret-blink": "caret-blink 1.25s ease-out infinite",
 			},
 			keyframes: {
