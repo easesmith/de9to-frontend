@@ -70,6 +70,19 @@ export const LoginSchema = z.object({
     loginWithOtp: z.boolean().optional(),
 });
 
+export const RegisterSchema = z.object({
+    name: z.string().min(1, "Name is required"),
+    phone: z
+        .string()
+        .length(10, "Mobile No. must be exactly 10 digits")
+        .regex(/^\d+$/, "Mobile No. must contain only numbers"),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+    getUpdates: z.boolean().optional(),
+});
+
 
 export const LoginSchema1 = z.object({
     emailOrPhone: z
@@ -87,5 +100,26 @@ export const OtpSchema = z.object({
         .string()
         .length(6, { message: "OTP must be exactly 6 digits" }) // Enforces exactly 6 digits
         .regex(/^\d+$/, { message: "OTP must contain only numbers" }), // Numeric-only validation
+});
+
+export const ChangePasswordSchema = z.object({
+        newPassword: z
+        .string()
+        .min(8, "New Password must be at least 8 characters long")
+        .regex(passwordRegex, "New Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+        confirmNewPassword: z
+        .string()
+        .min(8, "Confirm New Password must be at least 8 characters long")
+        .regex(passwordRegex, "Confirm New Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+});
+
+export const NotificationSettingSchema = z.object({
+    receiveAllSms: z.boolean().optional(),
+    announcements: z.boolean().optional(),
+    savings: z.boolean().optional(),
+    feedback: z.boolean().optional(),
+    healthTips: z.boolean().optional(),
+    informational: z.boolean().optional(),
+    updatesViaWhatsapp: z.boolean().optional(),
 });
 

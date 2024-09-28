@@ -22,7 +22,9 @@ const Login = () => {
             }
 
             {selected === "register" ?
-                <LoginSignupWelcome />
+                <div className='sticky top-0 right-0 h-[97vh]'>
+                    <LoginSignupWelcome />
+                </div>
                 :
                 <LoginSignupWelcome2
                     selected={selected}

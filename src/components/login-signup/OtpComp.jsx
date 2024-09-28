@@ -92,7 +92,7 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setIsShowTabs }) => {
                             )}
                         />
 
-                        <div className="flex justify-between mt-5">
+                        <div className="flex justify-between mt-5 w-full">
                             <div className='font-inter text-sm text-[#717171]'>Next OTP after {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')} secs</div>
                             <button type='button' onClick={handleOpenClose} className='font-inter text-sm text-[#717171] flex items-center gap-1'>
                                 <BiSolidPencil />
