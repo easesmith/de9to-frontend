@@ -1,0 +1,32 @@
+[
+    {
+      "image": "TeethImg",
+      "name": "Cracked Tooth",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    },
+    {
+      "image": "TeethImg",
+      "name": "Stained Teeth",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    },
+    {
+      "image": "TeethImg",
+      "name": "Toothache",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    },
+    {
+      "image": "TeethImg",
+      "name": "Sensitive to Cold",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    },
+    {
+      "image": "TeethImg",
+      "name": "Chipped Tooth",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    },
+    {
+      "image": "TeethImg",
+      "name": "Chipped Tooth",
+      "description": "diagnose, treat teeth and jaw irregularities"
+    }
+]

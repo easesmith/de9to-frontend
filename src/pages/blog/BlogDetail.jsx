@@ -178,7 +178,7 @@ const BlogDetail = () => {
                           <FormItem>
                             <FormControl>
                               <Textarea placeholder="Enter your comment here..." {...field} id="message-2"
-                                className="h-[110px] text-[#838383] text-sm font-normal font-inter border-[1px] border-[#EBF2F3] rounded-lg p-[14px] placeholder:text-[#757575]]"
+                                className="min-h-[110px] max-h-[110px] text-[#838383] text-sm font-normal font-inter border-[1px] border-[#EBF2F3] rounded-lg p-[14px] placeholder:text-[#757575]]"
                               />
                             </FormControl>
                             <FormMessage />
@@ -186,7 +186,7 @@ const BlogDetail = () => {
                         )}
                       />
                     </div>
-                    <Button variant='submit' size='submit'>Post Comment</Button>
+                    <Button variant='comment' size='sm'>Post Comment</Button>
                   </form>
                 </div>
               </Form>
@@ -195,11 +195,7 @@ const BlogDetail = () => {
           <div className='flex flex-col items-center gap-4 w-1/3'>
             <div className=''>
               <h3 className="text-[#717171] text-2xl font-medium font-inter mb-5">Popular Blogs</h3>
-              <div className='flex flex-wrap items-center justify-center gap-5'>
-                <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-                <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-                <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-              </div>
+              <Card hidden={'hidden'} />
             </div>
             <div className='h-[104px] w-[400px] rounded-2xl py-5 shadow-custom5'>
               <h3 className='text-[#313131] text-2xl font-medium font-inter py-1 px-4'>Comments</h3>
@@ -207,30 +203,9 @@ const BlogDetail = () => {
             </div>
           </div>
         </section>
-        <section className=''>
+        <section className='pb-12'>
           <h3 className="text-[#717171] text-2xl font-medium font-inter mb-5">Recent Blogs</h3>
-          <div className='flex items-center justify-center gap-5 mb-5'>
-            <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-            <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-            <Card img={Img1} heading="Shield Your Smile: How Dental Sealants Block Cavities" description="June 28, 2024" />
-          </div>
-          <div className='flex justify-center mb-5'>
-            <Select>
-              <SelectTrigger className="w-[190px] border-[1px] border-[#95C22B]">
-                <SelectValue placeholder="Show more blogs" />
-              </SelectTrigger>
-              <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
-                <SelectGroup>
-                  <SelectLabel>Fruits</SelectLabel>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
+          <Card />
         </section>
       </main>
     </Layout>

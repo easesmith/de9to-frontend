@@ -9,6 +9,7 @@ import ProfessionalImg4 from '../../assets/Ellipse 6.png'
 import ProfessionalImg5 from '../../assets/Ellipse 7.png'
 import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
+import CategoryData from '@/data/Blog/categoryData.json'
 
 const ButtonLocation = ({ location }) => {
   const [isSelectLocation, setSelectLocation] = useState(false);
@@ -70,20 +71,21 @@ const PrevLink = ({ page }) => {
   )
 }
 
-const CategoryBtn = () => {
+// const [isCategorySelect, setIsCategorySelect] = useState('All')
 
-  const [isCategorySelect, setIsCategorySelect] = useState(null)
+// const handleSelectCategory = (number) => {
+//   setIsCategorySelect(number)
+// }
+const CategoryBtn = ({isCategorySelected, setIsCategorySelected, handleSelectCategoryed}) => {
 
-  const handleSelectCategory = (number) => {
-    setIsCategorySelect(number)
-  }
 
   return (
     <>
-      <Button variant='category' size='lg' className={`${isCategorySelect ===1 ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategory(1)}>Bleeding Gums</Button>
-      <Button variant='category' size='lg' className={`${isCategorySelect ===2 ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategory(2)}>Teeth Care</Button>
-      <Button variant='category' size='lg' className={`${isCategorySelect ===3 ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategory(3)}>Cavity</Button>
-      <Button variant='category' size='lg' className={`${isCategorySelect ===4 ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategory(4)}>Healthy Gum</Button>
+      {CategoryData.map((e, i)=>{
+        return (
+          <Button key={i} variant='category' size='lg' className={`${isCategorySelected === e.category ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategoryed(e.category)}>{e.category}</Button>
+        )
+      })}
     </>
   )
 }

@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactStars from 'react-stars'
 import doctorProfileImg from '@/assets/Rectangle 34624568.png'
 import { FaGraduationCap } from 'react-icons/fa6'
 import LocationCompo from '@/component/allComponents/LocationCompo'
 
 const SearchListCompo = () => {
+    const[query, setQuery] = useState(false)
+
+    const handleQuery = () =>{
+        setQuery(true)
+        console.log(true)
+    }
+    console.log(query)
+
     return (
-        <section className=' shadow-custom7 max-w-[1240px] w-full mx-auto'>
-            <LocationCompo />
-            <div className='flex flex-col py-8 px-10 gap-8 max-w-[1240px] w-full mx-auto'>
+        <section className={`max-w-[1240px] w-full mx-auto ${query === true && 'shadow-custom7'}`}>
+            <LocationCompo handleQuery={handleQuery} />
+            {query === true &&
+            <div className='flex flex-col py-8 px-10 gap-8 max-w-[1240px] w-full mx-auto absolute z-10 bg-white'>
                 <div className='flex justify-center gap-10'>
                     <button className='text-[#95C22B] text-base font-bold font-inter border border-[#808080] rounded-[10px] py-3 px-24'>Doctor</button>
                     <button className='text-[#95C22B] text-base font-bold font-inter border border-[#808080] rounded-[10px] py-3 px-24'>Clinics</button>
@@ -131,7 +140,7 @@ const SearchListCompo = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </section>
     )
 }
