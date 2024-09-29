@@ -32,7 +32,7 @@ const Blog = () => {
     //     navigate(`/blog/${i}`)
     // }
 
-    const [isCategorySelected, setIsCategorySelected] = useState('All')
+    const [isCategorySelected, setIsCategorySelected] = useState('')
 
     const handleSelectCategoryed = (title) => {
         setIsCategorySelected(title)
@@ -83,14 +83,22 @@ const Blog = () => {
                         </Select>
                     </div>
                 </section>
-                <section className='flex flex-col items-center gap-4'>
-                    <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Popular Blogs</h3>
-                    <Card isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
-                </section>
-                <section className='flex flex-col items-center gap-4'>
-                    <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Recent Blogs</h3>
-                    <Card />
-                </section>
+                {isCategorySelected ?
+                <>
+                    <Card hidden={"hidden"} isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
+                    <ReactPagination pages={5} />
+                </>
+
+                    : <>
+                        <section className='flex flex-col items-center gap-4'>
+                            <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Popular Blogs</h3>
+                            <Card isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
+                        </section>
+                        <section className='flex flex-col items-center gap-4'>
+                            <h3 className="text-[#717171] text-2xl font-medium font-inter self-start">Recent Blogs</h3>
+                            <Card />
+                        </section>
+                    </>}
             </main>
         </Layout>
     )
