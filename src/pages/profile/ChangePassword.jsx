@@ -27,6 +27,7 @@ const ChangePassword = () => {
         console.log("Data:", data);
         // reset();
     };
+    
     return (
         <ProfileLayout>
             <div className='w-full h-full flex justify-center items-center'>

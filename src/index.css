@@ -186,6 +186,10 @@ textarea::-webkit-scrollbar-track {
   overflow-x: hidden !important;
 } */
 
+.textWhite{
+  color: white !important;
+}
+
 .scroll {
   display: flex;
   position: relative;

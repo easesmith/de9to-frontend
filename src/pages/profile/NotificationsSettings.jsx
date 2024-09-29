@@ -159,7 +159,7 @@ const NotificationsSettings = () => {
 
                                                     <label
                                                         htmlFor="notificationFromDento"
-                                                        className="text-[#1A1A1A] font-medium leading-none peer-disabled:cursor-not-allowed text-base peer-disabled:opacity-70"
+                                                        className="text-[#1A1A1A] font-medium text-base"
                                                     >
                                                         I don’t want  to receive any notification from De9to
                                                     </label>
@@ -170,7 +170,7 @@ const NotificationsSettings = () => {
                                     )}
                                 />
 
-                                <div className='mt-3'>
+                                {/* <div className='mt-3'>
                                     <FormField
                                         control={form.control}
                                         name="test"
@@ -229,7 +229,7 @@ const NotificationsSettings = () => {
                                             </FormItem>
                                         )}
                                     />
-                                </div>
+                                </div> */}
 
                             </div>
 

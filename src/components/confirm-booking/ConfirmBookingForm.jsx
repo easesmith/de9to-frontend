@@ -1,17 +1,15 @@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ConfirmBookingFormSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { Input } from '../ui/input';
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
-import { Button } from '../ui/button';
 import { FaUser } from 'react-icons/fa';
 import { MdCall, MdEmail } from 'react-icons/md';
-import { Label } from '../ui/label';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import ConfirmBookingSuccessModal from './ConfirmBookingSuccessModal';
-import { useState } from 'react';
 
 const ConfirmBookingForm = () => {
     const navigate = useNavigate();

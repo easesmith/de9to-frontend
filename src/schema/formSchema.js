@@ -103,11 +103,11 @@ export const OtpSchema = z.object({
 });
 
 export const ChangePasswordSchema = z.object({
-        newPassword: z
+    newPassword: z
         .string()
         .min(8, "New Password must be at least 8 characters long")
         .regex(passwordRegex, "New Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
-        confirmNewPassword: z
+    confirmNewPassword: z
         .string()
         .min(8, "Confirm New Password must be at least 8 characters long")
         .regex(passwordRegex, "Confirm New Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
@@ -123,3 +123,25 @@ export const NotificationSettingSchema = z.object({
     updatesViaWhatsapp: z.boolean().optional(),
 });
 
+
+export const ProfileSchema = z.object({
+    profileImg: z.any(),  // Optional string for profile image URL or path
+    name: z.string().min(1, "Name is required"),  // Name is required
+    mobile: z.string()
+        .min(1, "Mobile number is required")
+        .min(10, "Mobile number must be at least 10 digits")
+        .max(15, "Mobile number can't exceed 15 digits"),  // Mobile is required and validated
+    email: z.string().email().optional(),  // Optional email with valid format
+    gender: z.string().optional(),  // Optional gender field
+    dateOfBirth: z.date().optional(),  // Optional date of birth as string, could use date type
+    bloodGroup: z.string().optional(),  // Optional blood group with validation
+    timezone: z.string().optional(),  // Optional timezone
+    streetName: z.string().optional(),  // Optional street name
+    locality: z.string().optional(),  // Optional locality
+    city: z.string().optional(),  // Optional city
+    state: z.string().optional(),  // Optional state
+    country: z.string().optional(),  // Optional country
+    pincode: z.string().optional(),  // Optional pincode
+    alternateMobileNumber: z.string().optional(),  // Optional alternate mobile number
+    language: z.string().optional()  // Optional language
+});
