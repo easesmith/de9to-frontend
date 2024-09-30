@@ -14,7 +14,7 @@ const PaymentPage = () => {
     const handleRazorpayPayment = async () => {
         try {
             const { data } = await axios.post(
-                `${import.meta.env.VITE_APP_API_URL}/dentist/make-payment`, { amount: "100", currency: "INR" },
+                `${import.meta.env.VITE_BACKEND_URL}/dentist/make-payment`, { amount: "100", currency: "INR" },
                 { withCredentials: true }
             );
 
