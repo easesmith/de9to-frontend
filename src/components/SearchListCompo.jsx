@@ -6,16 +6,19 @@ import LocationCompo from '@/component/allComponents/LocationCompo'
 
 const SearchListCompo = () => {
     const[query, setQuery] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
 
     const handleQuery = () =>{
         setQuery(true)
-        console.log(true)
+        // console.log(true)
     }
-    console.log(query)
+
+    // console.log(query)
+    // console.log(searchQuery)
 
     return (
         <section className={`max-w-[1240px] w-full mx-auto ${query === true && 'shadow-custom7'}`}>
-            <LocationCompo handleQuery={handleQuery} />
+            <LocationCompo searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleQuery={handleQuery} />
             {query === true &&
             <div className='flex flex-col py-8 px-10 gap-8 max-w-[1240px] w-full mx-auto absolute z-10 bg-white'>
                 <div className='flex justify-center gap-10'>

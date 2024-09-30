@@ -12,22 +12,36 @@ import { Button } from '@/components/ui/button';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { useState } from 'react';
 import ConfirmbookingModal from '@/components/confirm-booking/ConfirmbookingModal';
+import { useNavigate } from 'react-router-dom';
 
-const Dentist1 = () => {
+const Dentist1 = (props) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
 
-  return (
-    <div className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
+    // console.log("dentist", props.dentist) 
+    const { personalDetails, _id } = props.dentist || {}
+    // console.log("personalDetails", personalDetails)
+    // console.log("id", _id)
+
+
+    const navigate = useNavigate()
+
+    function handleNavigateDentistDetailPage(id) {
+        navigate(`/our-dentist/${id}`)
+    }
+
+    return (
+        <div onClick={()=>handleNavigateDentistDetailPage(_id)} className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
             <div>
                 <div className='rounded-[6px] relative w-full'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                    <img className='h-full w-full' src={doctorImg} alt="" />
+                    <img className='h-full w-full' src={personalDetails?.image} alt="" />
                 </div>
                 <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
             </div>
             <div>
                 <div className="flex justify-between items-start gap-3">
-                    <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>Dr. Tanya Batra</h2>
+                    <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{personalDetails?.prefix
+                    } {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
                         <ReactStars size={25} count={5} value={5} edit={false} color2={'#FF8A00'} />
                         <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
@@ -36,7 +50,7 @@ const Dentist1 = () => {
                 <div className="flex items-center gap-2 mt-1">
                     <FaGraduationCap className='text-[#717171] text-2xl' />
                     <div className='flex gap-2 items-center'>
-                        <p className=' text-[#FF8A00] font-inter font-semibold'>BDS</p>
+                        <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
                         <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
                         <p className='text-[#FF8A00] font-inter font-semibold'>Dr. Narang’s Dental Hub</p>
                     </div>
@@ -85,7 +99,7 @@ const Dentist1 = () => {
                 />
             }
         </div>
-  )
+    )
 }
 
 export default Dentist1
