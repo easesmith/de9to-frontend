@@ -7,7 +7,7 @@ import { FaGraduationCap, FaPlay } from 'react-icons/fa';
 import ReactPlayer from 'react-player';
 import ReactStars from 'react-stars';
 
-const DentistBasicDetails = () => {
+const DentistBasicDetails = ({details}) => {
 
     return (
         <div className="grid grid-cols-[75%_300px] gap-4">
@@ -17,14 +17,14 @@ const DentistBasicDetails = () => {
                     <div>
                         <div className='rounded-[6px] relative w-[210px] h-[210px]'>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='h-full w-full' src={PlusImg} alt="" />
+                            <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${details?.personalDetails?.image}`} alt="" />
                         </div>
-                        <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
+                        <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {details?.educationalQualification?.regNumber}</p>
                     </div>
                     <div className='pe-[25px] ps-[9px] gap-6 w-[calc(100%-210px)]'>
                         <div className='flex items-center justify-between gap-4'>
                             <div className='flex items-center gap-4'>
-                                <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
+                                <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>{`${details?.personalDetails?.Firstname} ${details?.personalDetails?.lastName}`}</h4>
                                 {/* <Button variant="outline" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                                     <FaLocationArrow className='text-[#95C22B]' />
                                     <span>Search on map</span>
@@ -39,7 +39,7 @@ const DentistBasicDetails = () => {
                             <div className="flex items-center gap-2 mt-1">
                                 <FaGraduationCap className='text-[#95C22B] text-2xl' />
                                 <div className='flex gap-2 items-center'>
-                                    <p className=' text-[#95C22B] font-inter font-semibold'>BDS</p>
+                                    <p className=' text-[#95C22B] font-inter font-semibold'>{details?.personalDetails?.degree}</p>
                                     <div className='w-[2px] h-[14px] bg-[#95C22B]'></div>
                                     <p className='text-[#95C22B] font-inter font-semibold'>Oral Pathology</p>
                                     <div className='w-[2px] h-[14px] bg-[#95C22B]'></div>
@@ -52,7 +52,7 @@ const DentistBasicDetails = () => {
                                 <li className='text-sm text-[#717171] leading-[10px]'><b>Approach:</b> Focused on patient comfort and long-term oral health</li>
                             </ul>
                         </div>
-                        <Badge className="rounded-md text-[#95C22B] text-sm font-semibold border-[#95C22B] mt-8" variant="outline">2+ years Experience</Badge>
+                        <Badge className="rounded-md text-[#95C22B] text-sm font-semibold border-[#95C22B] mt-8" variant="outline">{details?.educationalQualification?.yearsOfExperience} + years Experience</Badge>
 
                         {/* <div>
                         </div> */}

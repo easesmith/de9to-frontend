@@ -63,9 +63,9 @@ export const LoginSchema = z.object({
             message: "Must be a valid email or phone number",
         }),
     password: z
-        .string()
-        .min(8, "Password must be at least 8 characters long")
-        .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+        .string(),
+        // .min(8, "Password must be at least 8 characters long")
+        // .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
     rememberMe: z.boolean().optional(),
     loginWithOtp: z.boolean().optional(),
 });

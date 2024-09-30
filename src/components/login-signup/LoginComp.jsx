@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
 import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
+import usePostApiReq from '@/hooks/usePostApiReq';
 
 const LoginComp = ({ setIsShowTabs }) => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -25,6 +26,7 @@ const LoginComp = ({ setIsShowTabs }) => {
     },
   });
 
+  const { res, fetchData, isLoading } = usePostApiReq();
   const { reset, handleSubmit, getValues, watch } = form;
 
   const loginWithOtp = watch("loginWithOtp");
@@ -35,12 +37,20 @@ const LoginComp = ({ setIsShowTabs }) => {
 
   const onSubmit = (data) => {
     console.log("Data:", data);
-    if (isLoginwithOtp) {
-      setIsShowTabs(false);
-      setIsOtpSectionOpen(true);
-    }
+    fetchData(`/dentist/login-dentist`, { phone: data.emailOrPhone, password: data.password });
     // reset();
   };
+
+
+  useEffect(() => {
+    if (res?.status === 200 || res?.status === 201) {
+      console.log("Dentist login res", res);
+      if (isLoginwithOtp) {
+        setIsShowTabs(false);
+        setIsOtpSectionOpen(true);
+      }
+    }
+  }, [res])
 
   return (
     <div className='h-full '>
