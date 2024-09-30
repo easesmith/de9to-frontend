@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 
 
-const ReactPagination = ({pages}) => {
+const ReactPagination = ({page, setPage}) => {
 
-    const pageCount = pages
-    const[page,setPage] = useState(1)
+    const pageCount = page
+    // const[page,setPage] = useState(3)
 
     return (
         <>
