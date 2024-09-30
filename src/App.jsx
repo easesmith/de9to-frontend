@@ -1,5 +1,11 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { Dialog } from './components/ui/dialog'
+import ErrorModal from './components/ErrorModal'
+import UnAuthorizationAlert from './components/unauthorization-alert/UnAuthorizationAlert'
+import BackdropLoader from './components/backdrop-loader/BackdropLoader'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleErrorModal } from './store/slices/errorSlice'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -27,8 +33,23 @@ const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
 
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  const { isErrorModalOpen, message, isUnautorizedModalOpen } = useSelector((state) => state.error);
+  const { isLoading } = useSelector((state) => state.loading);
+
   return (
     <>
+      <Dialog open={isErrorModalOpen} onOpenChange={() => dispatch(handleErrorModal({ isOpen: false, message: "" }))}>
+        <ErrorModal message={message} />
+      </Dialog>
+
+      <UnAuthorizationAlert
+        authorizationAlertModalOpen={isUnautorizedModalOpen}
+      />
+
+      {isLoading && <BackdropLoader />}
+
       <Suspense fallback={<div className='w-full h-screen bg-white text-black flex justify-center items-center text-xl font-semibold'>Loading...</div>}>
         <Routes>
           <Route path='/login' element={<Login />} />

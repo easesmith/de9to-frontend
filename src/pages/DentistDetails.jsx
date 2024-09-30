@@ -14,10 +14,27 @@ import {
     SelectTrigger,
     SelectValue
 } from "@/components/ui/select"
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { useCallback, useEffect } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { TbEdit } from 'react-icons/tb'
 
 const DentistDetails = () => {
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const getDentistDetails = useCallback(async () => {
+        fetchData(`/admin/get-partners?`);
+    }, [fetchData])
+
+    useEffect(() => {
+        getDentistDetails();
+    }, [])
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            // setAllPartners(res?.data?.partners);
+        }
+    }, [res])
+
     return (
         <Layout>
             <section className='max-w-[1240px] px-4 mx-auto'>

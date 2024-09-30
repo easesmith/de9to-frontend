@@ -22,7 +22,7 @@ const PaymentPage = () => {
 
 
             const options = {
-                key: import.meta.env.VITE_APP_API_KEY,
+                key: import.meta.env.VITE_APP_RAZORPAY_API_KEY,
                 amount: "100",
                 currency: "INR",
                 name: "Dento",
