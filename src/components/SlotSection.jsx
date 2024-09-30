@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import icon from "@/assets/Frame (4).png";
+import icon from "@/assets/Frame (5).png";
 
 const SlotSection = ({ title, slots, selectedSlot, handleSlotClick, dayDate }) => (
     <div className="grid grid-cols-[120px_1fr] gap-3">

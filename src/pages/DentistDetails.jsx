@@ -15,14 +15,18 @@ import {
     SelectValue
 } from "@/components/ui/select"
 import useGetApiReq from '@/hooks/useGetApiReq'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { TbEdit } from 'react-icons/tb'
+import { useParams } from 'react-router-dom'
 
 const DentistDetails = () => {
+    const params = useParams();
     const { res, fetchData, isLoading } = useGetApiReq();
+    const [dentistDetails, setDentistDetails] = useState("")
+
     const getDentistDetails = useCallback(async () => {
-        fetchData(`/admin/get-partners?`);
+        fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId ||"66d02520cd6af954e0eba864"}`);
     }, [fetchData])
 
     useEffect(() => {
@@ -31,7 +35,8 @@ const DentistDetails = () => {
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            // setAllPartners(res?.data?.partners);
+            console.log("Dentist details res", res);
+            setDentistDetails(res?.data?.data);
         }
     }, [res])
 
@@ -43,7 +48,7 @@ const DentistDetails = () => {
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
                 <div className="mb-10">
-                    <DentistBasicDetails />
+                    <DentistBasicDetails details={dentistDetails} />
                 </div>
 
                 <div className="flex items-start gap-2">

@@ -1,5 +1,5 @@
 import { handleErrorModal } from "../store/slices/errorSlice";
-import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
+import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { BiSolidError } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "./ui/button";
@@ -31,13 +31,6 @@ const ErrorModal = ({ message }) => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             toast.success(res?.data?.message);
-            if (user?.abc === "client") {
-                navigate("/");
-            } else if (user?.abc === "partner") {
-                navigate("/partner/login");
-            } else if (user?.abc === "admin") {
-                navigate("/admin/login");
-            }
             dispatch(handleErrorModal({ isOpen: false, message: "", isLogoutBtn: false }));
         }
     }, [res]);
@@ -46,10 +39,12 @@ const ErrorModal = ({ message }) => {
         <>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
+                    <DialogTitle></DialogTitle>
                     <div className="flex justify-center">
                         <BiSolidError color="red" size={70} />
                     </div>
                 </DialogHeader>
+                <DialogDescription></DialogDescription>
                 <div className="grid gap-4 text-center">
                     <p>{message}</p>
                     <div className="flex items-center justify-end gap-2">

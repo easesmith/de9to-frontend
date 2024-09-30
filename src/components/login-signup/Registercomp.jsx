@@ -1,7 +1,7 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { RegisterSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaUnlockAlt, FaUser } from 'react-icons/fa';
 import { MdCall } from 'react-icons/md';
@@ -9,6 +9,7 @@ import { Button } from '../ui/button';
 import { Checkbox } from '../ui/checkbox';
 import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
+import usePostApiReq from '@/hooks/usePostApiReq';
 
 const Registercomp = ({ setIsShowTabs }) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -24,15 +25,23 @@ const Registercomp = ({ setIsShowTabs }) => {
         },
     });
 
+    const { res, fetchData, isLoading } = usePostApiReq();
     const { reset, handleSubmit, getValues, watch } = form;
 
 
     const onSubmit = (data) => {
         console.log("Data:", data);
-        setIsShowTabs(false);
-        setIsOtpSectionOpen(true);
+        fetchData(`/dentist/signup-dentis`, { name: data.name, phone: data.phone, password: data.password });
         // reset();
     };
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("Dentist register res", res);
+            setIsShowTabs(false);
+            setIsOtpSectionOpen(true);
+        }
+    }, [res])
 
     return (
         <div>
