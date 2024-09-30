@@ -38,13 +38,13 @@ const OurDentist = () => {
       // setAllPartners(res?.data?.partners);
       // const count = Math.ceil(res?.data?.count / limit)
       // setPageCount(count);
-      // console.log("res :",res)
+      console.log("res :",res)
       setAllDentists(res.data.data.dentists)
       // console.log("cureentPages :",res.data.currentPage)
       console.log("totalPages :",res.data.totalPages)
       setPage(res.data.totalPages)
     }
-  }, [res, page])
+  }, [res])
 
   // console.log("allDentists :",allDentists);
   // console.log("page :",page);

@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const Dentist1 = (props) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
 
-    // console.log("dentist", props.dentist) 
+    console.log("dentist", props.dentist) 
     const { personalDetails, _id } = props.dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
