@@ -12,8 +12,8 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const handleLogin = () => {
-    // navigate("/login");
     setIsLogin(true);
+    navigate("/login");
   }
 
   const urlAndUrlName = [

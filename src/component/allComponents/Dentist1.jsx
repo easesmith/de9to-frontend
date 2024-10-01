@@ -16,11 +16,30 @@ import { useNavigate } from 'react-router-dom';
 
 const Dentist1 = (props) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+    const daysOfWeek = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
 
-    console.log("dentist", props.dentist) 
-    const { personalDetails, _id } = props.dentist || {}
+
+    console.log("dentist", props.dentist)
+    const { personalDetails, _id, clinic } = props.dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
+
+    const availabilityData = clinic[0]?.weeklyHoliday?.map((item) => {
+        if (daysOfWeek.some(day => day.toLowerCase() === item.day.toLowerCase())) {
+            const dayAbbreviation = item.day.substring(0, 3);
+            return dayAbbreviation.charAt(0).toUpperCase() + dayAbbreviation.slice(1);
+        }
+    })
+
+    console.log("availabilityData", availabilityData);
 
 
     const navigate = useNavigate()
@@ -30,11 +49,11 @@ const Dentist1 = (props) => {
     }
 
     return (
-        <div onClick={()=>handleNavigateDentistDetailPage(_id)} className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
+        <div onClick={() => handleNavigateDentistDetailPage(_id)} className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
             <div>
                 <div className='rounded-[6px] relative w-full'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                    <img className='h-full w-full' src={personalDetails?.image} alt="" />
+                    <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${personalDetails?.image}`} alt="" />
                 </div>
                 <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
             </div>
@@ -52,19 +71,19 @@ const Dentist1 = (props) => {
                     <div className='flex gap-2 items-center'>
                         <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
                         <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                        <p className='text-[#FF8A00] font-inter font-semibold'>Dr. Narang’s Dental Hub</p>
+                        <p className='text-[#FF8A00] font-inter font-semibold'>{clinic[0]?.clinicName}</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                     <FaCalendarAlt className='text-[#717171] text-xl' />
                     <div className='flex gap-2 items-center'>
                         <p className=' text-[#717171] font-inter font-normal'>Availability: </p>
-                        <p className='text-[#717171] font-inter font-semibold'>Tue - Wed- Thu</p>
+                        <p className='text-[#717171] font-inter font-semibold'>{availabilityData?.join(" - ")}</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                     <FaClock className='text-[#717171] text-xl' />
-                    <p className=' text-[#717171] font-inter font-normal'>L-31, Block L, Vinay Gulati Marg, West Patel Nagar, Patel Nagar, New Delhi, Delhi 110008</p>
+                    <p className=' text-[#717171] font-inter font-normal'>{clinic[0]?.clinicAddress}</p>
                 </div>
                 <p className='text-[#717171] font-inter font-normal text-sm mt-1'>Dr Tanya Batra completed his graduation from Dr MGR Medical University Chennai in the year 2006 and internship in the year 2007</p>
                 <div className="flex items-center gap-2 mt-2">
