@@ -16,11 +16,11 @@ import Dentist1 from '@/component/allComponents/Dentist1'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import SearchListCompo from '@/components/SearchListCompo'
 import useGetApiReq from '@/hooks/useGetApiReq'
-import { useNavigate, useParams } from 'react-router-dom'
 
 const OurDentist = () => {
 
   const { res, fetchData, isLoading } = useGetApiReq();
+  const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
   const [allDentists, setAllDentists] = useState([])
 
@@ -35,20 +35,15 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
-      // setAllPartners(res?.data?.partners);
-      // const count = Math.ceil(res?.data?.count / limit)
-      // setPageCount(count);
-      console.log("res :",res)
+      // console.log("res :",res)
       setAllDentists(res.data.data.dentists)
       // console.log("cureentPages :",res.data.currentPage)
-      console.log("totalPages :",res.data.totalPages)
-      setPage(res.data.totalPages)
+      setPageCount(res.data.totalPages)
+      setPage(res.data.currentPage)
+      // console.log("totalPages :", res.data.totalPages)
+      // console.log("cure :", res.data.currentPage)
     }
   }, [res])
-
-  // console.log("allDentists :",allDentists);
-  // console.log("page :",page);
-
 
   return (
     <Layout>
@@ -133,22 +128,13 @@ const OurDentist = () => {
               <p className='text-[#838383] text-base font-semibold font-inter'>Choose Your Dentist</p>
               {
                 allDentists.length > 0 && allDentists.map((e, i) => {
-                  // console.log(" ourDentist :",e)
-
                   return (
-                    <div key={i}>
-                      <Dentist1 dentist={e} />
-                      {/* <p>{e?.personalDetails?.email}</p> */}
-                    </div>
+                    <Dentist1 key={i} dentist={e} />
                   )
                 })
               }
-              {/* <Dentist1 />
-              <Dentist1 />
-              <Dentist1 />
-              <Dentist1 /> */}
             </div>
-            <ReactPagination page={page} setPage={setPage}  />
+            <ReactPagination pageCount={pageCount} setPage={setPage} />
           </div>
         </section>
       </main>
