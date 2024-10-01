@@ -37,7 +37,7 @@ const LoginComp = ({ setIsShowTabs }) => {
 
   const onSubmit = (data) => {
     console.log("Data:", data);
-    fetchData(`/dentist/login-dentist`, { phone: data.emailOrPhone, password: data.password });
+    fetchData(`/dentist/login-dentist`, { loginInput: data.emailOrPhone, password: data.password });
     // reset();
   };
 

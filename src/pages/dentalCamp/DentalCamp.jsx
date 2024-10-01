@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
 import PreventingImg from '../../assets/noun-toothache-6895920 3.png'
 import GumDiseaseImg from '../../assets/noun-tooth-7037140 1.png'
@@ -58,7 +58,18 @@ import ChoosePlanCompo from '@/components/ChoosePlanCompo'
 import WhyDentalCampsCarousel from '@/components/SwiperCompo'
 import Img1 from '../../assets/Frame 1171277952.png'
 
-
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { format } from 'date-fns'
+import { generateTimeOptions } from '@/utils/generateTimeOptions'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import usePostApiReq from '@/hooks/usePostApiReq'
+import toast from 'react-hot-toast'
 
 
 const DentalCamp = () => {
@@ -73,6 +84,8 @@ const DentalCamp = () => {
   const handleSelectPlan = (planIndex) => {
     setSelectedPlan(planIndex);
   };
+
+  const timeOptions = generateTimeOptions();
 
   const data = [
     {
@@ -199,20 +212,40 @@ const DentalCamp = () => {
     }
   })
 
+  const { res, fetchData, isLoading } = usePostApiReq();
   const { reset, handleSubmit } = form
 
   const onSubmit = (data) => {
     console.log(data)
-    reset({
-      organiserName: "",
-      campType: "",
-      emailId: "",
-      contactNumber: "",
-      campPerferredDate: "",
-      campTiming: "",
-      location: ""
-    })
+    fetchData(`/patient/submit-dental-camp-form`,
+      {
+        name: data.organiserName,
+        email: data.emailId,
+        phone: data.contactNumber,
+        position: "",
+        place: data.location,
+        time: data.campTiming,
+        address: "",
+        date: data.campPerferredDate
+      });
+
   }
+
+  useEffect(() => {
+    if (res?.status === 200 || res?.status === 201) {
+      console.log("dental camp form res", res);
+      toast.success(res?.data?.message)
+      reset({
+        organiserName: "",
+        campType: "",
+        emailId: "",
+        contactNumber: "",
+        campPerferredDate: "",
+        campTiming: "",
+        location: ""
+      })
+    }
+  }, [res])
 
   return (
     <Layout>
@@ -250,9 +283,23 @@ const DentalCamp = () => {
                         <FormItem>
                           <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Choose Camp Type <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
-                            <Input placeholder="Select Type" {...field}
-                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                            />
+                            <Select
+                              {...field}
+                              onValueChange={(e) => {
+                                field.onChange(e);
+                              }}
+                            >
+                              <SelectTrigger className="w-full border-[#808080] h-[60px] px-5">
+                                <SelectValue placeholder="Select Type" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectGroup>
+                                  <SelectItem value="camp1">Camp1</SelectItem>
+                                  <SelectItem value="camp2">Camp2</SelectItem>
+                                  <SelectItem value="camp3">Camp3</SelectItem>
+                                </SelectGroup>
+                              </SelectContent>
+                            </Select>
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -300,11 +347,38 @@ const DentalCamp = () => {
                           <FormLabel className="text-xl font-medium font-inter mb-4">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
                           <div className='relative'>
                             <FormControl>
-                              <Input placeholder="Select a date" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                              />
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <FormControl>
+                                    <Button
+                                      variant={"outline"}
+                                      className={cn(
+                                        "w-full flex h-[60px] border-[#808080] gap-2 justify-start text-[#717171]",
+                                        !field.value && "text-muted-foreground"
+                                      )}
+                                    >
+                                      <MdCalendarMonth className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
+                                      {field.value ? (
+                                        format(field.value, "PPP")
+                                      ) : (
+                                        <span className='text-lg font-normal'>Select a date</span>
+                                      )}
+                                    </Button>
+                                  </FormControl>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0" align="start">
+                                  <Calendar
+                                    mode="single"
+                                    selected={field.value}
+                                    onSelect={field.onChange}
+                                    // disabled={(date) =>
+                                    //   date > new Date() || date < new Date("1900-01-01")
+                                    // }
+                                    initialFocus
+                                  />
+                                </PopoverContent>
+                              </Popover>
                             </FormControl>
-                            <MdCalendarMonth className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
                           </div>
                           <FormMessage />
                         </FormItem>
@@ -318,9 +392,25 @@ const DentalCamp = () => {
                           <FormLabel className="text-xl font-medium font-inter mb-4">Camp Timings <span className='text-[red]'>*</span></FormLabel>
                           <div className='relative'>
                             <FormControl>
-                              <Input placeholder="Select timing" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
-                              />
+                              <Select
+                                {...field}
+                                onValueChange={(e) => {
+                                  field.onChange(e);
+                                }}
+                              >
+                                <SelectTrigger className="w-full border-[#808080] h-[60px] px-5">
+                                  <SelectValue placeholder="Select timing" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectGroup>
+                                    {timeOptions.map((time, index) => (
+                                      <SelectItem key={index} value={time}>
+                                        {time}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectGroup>
+                                </SelectContent>
+                              </Select>
                             </FormControl>
                             <MdAccessTimeFilled className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
                           </div>
@@ -338,7 +428,7 @@ const DentalCamp = () => {
                         <div className='relative'>
                           <FormControl>
                             <Input placeholder="Enter your location" {...field}
-                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
                           <FaLocationDot className='text-[#838383] text-xl absolute top-[35%] right-[3%]' />

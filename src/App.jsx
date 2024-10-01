@@ -6,6 +6,7 @@ import UnAuthorizationAlert from './components/unauthorization-alert/UnAuthoriza
 import BackdropLoader from './components/backdrop-loader/BackdropLoader'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleErrorModal } from './store/slices/errorSlice'
+import { Toaster } from 'react-hot-toast'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -79,6 +80,7 @@ const App = () => {
           <Route path='/profile/delete-account' element={<DeleteAccount />} />
         </Routes>
       </Suspense>
+      <Toaster />
     </>
   )
 }

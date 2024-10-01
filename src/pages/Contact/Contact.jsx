@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../component/Layout/Layout'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -17,6 +17,8 @@ import DoctorImg from '../../assets/excited-young-female-doctor-wearing-medical-
 import { Textarea } from '@/components/ui/textarea'
 import { FaLocationDot } from "react-icons/fa6";
 import { PrevLink } from '@/component/MiniCompo/MiniCompo'
+import usePostApiReq from '@/hooks/usePostApiReq'
+import toast from 'react-hot-toast'
 
 
 const Contact = () => {
@@ -33,19 +35,36 @@ const Contact = () => {
     },
   })
 
+  const { res, fetchData, isLoading } = usePostApiReq();
   const { reset, handleSubmit } = form
 
   const onSubmit = (data) => {
     console.log(data)
-    reset({
-      fullName: "",
-      contactNumber: "",
-      emailId: "",
-      location: "",
-      pincode: "",
-      dentalIssue: ""
-    })
+    fetchData(`/patient/submit-contact-form`,
+      {
+        name: data.fullName,
+        email: data.emailId,
+        phone: data.contactNumber,
+        location: data.location,
+        pincode: data.pincode,
+        dentalIssues: data.dentalIssue
+      });
   }
+
+  useEffect(() => {
+    if (res?.status === 200 || res?.status === 201) {
+      console.log("contact form res", res);
+      toast.success(res?.data?.message)
+      reset({
+        fullName: "",
+        contactNumber: "",
+        emailId: "",
+        location: "",
+        pincode: "",
+        dentalIssue: ""
+      })
+    }
+  }, [res])
 
   return (
     <Layout>
@@ -115,7 +134,7 @@ const Contact = () => {
                         <div className='relative'>
                           <FormControl>
                             <Input placeholder="Enter your location" {...field}
-                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
                           <FaLocationDot className='text-[#C8C8C8] text-xl absolute top-[35%] right-[4%]' />

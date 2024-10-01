@@ -23,7 +23,7 @@ export const requestDentalCampSchema = z.object({
         .string()
         .min(10, "Contact Number must be at least 10 digits")
         .max(15, "Contact Number cannot exceed 15 digits"),
-    campPerferredDate: z.string().min(1, "Preferred Date is required"),
+        campPerferredDate: z.date({ required_error: "Preferred Date is required" }),
     campTiming: z.string().min(1, "Camp Timings are required"),
     location: z.string().min(1, "Camp Venue/Location is required"),
 })
@@ -64,14 +64,15 @@ export const LoginSchema = z.object({
         }),
     password: z
         .string(),
-        // .min(8, "Password must be at least 8 characters long")
-        // .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+    // .min(8, "Password must be at least 8 characters long")
+    // .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
     rememberMe: z.boolean().optional(),
     loginWithOtp: z.boolean().optional(),
 });
 
 export const RegisterSchema = z.object({
-    name: z.string().min(1, "Name is required"),
+    firstName: z.string().min(1, "FirstName is required"),
+    lastName: z.string().min(1, "LastName is required"),
     phone: z
         .string()
         .length(10, "Mobile No. must be exactly 10 digits")
