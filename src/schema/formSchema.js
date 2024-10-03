@@ -71,8 +71,7 @@ export const LoginSchema = z.object({
 });
 
 export const RegisterSchema = z.object({
-    firstName: z.string().min(1, "FirstName is required"),
-    lastName: z.string().min(1, "LastName is required"),
+    name: z.string().min(1, "Name is required"),
     phone: z
         .string()
         .length(10, "Mobile No. must be exactly 10 digits")

@@ -18,8 +18,7 @@ const Registercomp = ({ setIsShowTabs }) => {
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
-            firstName: "",
-            lastName: "",
+            name: "",
             phone: "",
             password: "",
             getUpdates: false,
@@ -32,13 +31,13 @@ const Registercomp = ({ setIsShowTabs }) => {
 
     const onSubmit = (data) => {
         console.log("Data:", data);
-        fetchData(`/dentist/signup-dentist`,data);
+        fetchData(`/patient/patient-signup`, data);
         // reset();
     };
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            console.log("Dentist register res", res);
+            console.log("patient register res", res);
             setIsShowTabs(false);
             setIsOtpSectionOpen(true);
         }
@@ -64,40 +63,22 @@ const Registercomp = ({ setIsShowTabs }) => {
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             <div className="w-full flex flex-col gap-4 mt-4">
-                                <div className="grid grid-cols-2 gap-3">
-                                    <FormField
-                                        control={form.control}
-                                        name="firstName"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-inter text-base text-[#717171] font-normal"></FormLabel>
-                                                <FormControl>
-                                                    <div className='relative'>
-                                                        <FaUser className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
-                                                        <Input placeholder="First Name" className="placeholder:text-[#717171] pl-10 h-12 border-[#E4E6EE]" {...field} />
-                                                    </div>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="lastName"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-inter text-base text-[#717171] font-normal"></FormLabel>
-                                                <FormControl>
-                                                    <div className='relative'>
-                                                        <FaUser className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
-                                                        <Input placeholder="Last Name" className="placeholder:text-[#717171] pl-10 h-12 border-[#E4E6EE]" {...field} />
-                                                    </div>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
+                                <FormField
+                                    control={form.control}
+                                    name="name"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="font-inter text-base text-[#717171] font-normal"></FormLabel>
+                                            <FormControl>
+                                                <div className='relative'>
+                                                    <FaUser className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
+                                                    <Input placeholder="Enter Name" className="placeholder:text-[#717171] pl-10 h-12 border-[#E4E6EE]" {...field} />
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
                                 <FormField
                                     control={form.control}
                                     name="phone"
