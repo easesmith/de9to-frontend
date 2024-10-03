@@ -49,9 +49,9 @@ const Dentist1 = (props) => {
     }
 
     return (
-        <div onClick={() => handleNavigateDentistDetailPage(_id)} className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
+        <div className='border-[1px] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
             <div>
-                <div className='rounded-[6px] relative w-full'>
+                <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-[6px] relative w-full cursor-pointer'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                     <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${personalDetails?.image}`} alt="" />
                 </div>
@@ -59,7 +59,7 @@ const Dentist1 = (props) => {
             </div>
             <div>
                 <div className="flex justify-between items-start gap-3">
-                    <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{personalDetails?.prefix
+                    <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
                     } {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
                         <ReactStars size={25} count={5} value={5} edit={false} color2={'#FF8A00'} />
