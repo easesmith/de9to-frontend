@@ -13,7 +13,7 @@ const Header = () => {
 
   const handleLogin = () => {
     setIsLogin(true);
-    navigate("/login");
+    // navigate("/login");
   }
 
   const urlAndUrlName = [

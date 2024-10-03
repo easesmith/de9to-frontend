@@ -4,6 +4,7 @@ import { TableCell, TableRow } from '../ui/table'
 import AppointmentModal from './AppointmentModal'
 import invoice from '@/assets/invoice.png'
 import PayNowModal from './PayNowModal'
+import { MdOutlineFileDownload } from 'react-icons/md'
 
 const PaymentComp = ({ payment }) => {
     const [isPayNowModalOpen, setIsPayNowModalOpen] = useState(false);
@@ -19,6 +20,7 @@ const PaymentComp = ({ payment }) => {
                     <div className='flex items-center gap-2'>
                         <div className="rounded-lg px-1 text-xs text-center py-1 bg-[#717171] text-white w-10">Paid</div>
                         <img src={invoice} alt="" />
+                        <MdOutlineFileDownload className='text-2xl cursor-pointer text-[#95C22B]' />
                     </div>
                     : <button onClick={() => setIsPayNowModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex items-center gap-[6px]'>
                         <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>

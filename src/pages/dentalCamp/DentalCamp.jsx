@@ -289,7 +289,7 @@ const DentalCamp = () => {
                                 field.onChange(e);
                               }}
                             >
-                              <SelectTrigger className="w-full border-[#808080] h-[60px] px-5">
+                              <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5">
                                 <SelectValue placeholder="Select Type" />
                               </SelectTrigger>
                               <SelectContent>
@@ -361,7 +361,7 @@ const DentalCamp = () => {
                                       {field.value ? (
                                         format(field.value, "PPP")
                                       ) : (
-                                        <span className='text-lg font-normal'>Select a date</span>
+                                        <span className='text-[#838383] text-lg font-normal'>Select a date</span>
                                       )}
                                     </Button>
                                   </FormControl>
@@ -398,7 +398,7 @@ const DentalCamp = () => {
                                   field.onChange(e);
                                 }}
                               >
-                                <SelectTrigger className="w-full border-[#808080] h-[60px] px-5">
+                                <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5">
                                   <SelectValue placeholder="Select timing" />
                                 </SelectTrigger>
                                 <SelectContent>

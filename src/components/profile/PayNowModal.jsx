@@ -1,22 +1,13 @@
-import React from 'react'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle
-} from "@/components/ui/alert-dialog"
 import logo from '@/assets/logo.png'
-import { FaLocationArrow } from "react-icons/fa"
-import { IoCall } from "react-icons/io5"
+import { MdOutlineFileDownload } from 'react-icons/md'
+import { Button } from '../ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogHeader } from '../ui/dialog'
 
 const PayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen }) => {
     return (
-        <AlertDialog open={isPayNowModalOpen} onOpenChange={setIsPayNowModalOpen}>
-            <AlertDialogContent className="max-w-[680px] max-h-[95vh] overflow-y-auto w-full">
-                <AlertDialogHeader>
+        <Dialog open={isPayNowModalOpen} onOpenChange={setIsPayNowModalOpen}>
+            <DialogContent className="max-w-[680px] max-h-[95vh]  overflow-y-auto w-full">
+                <DialogHeader>
                     <div className='flex justify-between items-start'>
                         <div></div>
                         <img src={logo} className='max-w-40 w-full' alt="logo" />
@@ -27,7 +18,7 @@ const PayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen }) => {
                         <p className='text-[#717171] font-inter'>19 Sep’24</p>
                     </div>
                     {/* <AlertDialogTitle className="font-inter font-bold text-[#0D0E0E] text-2xl pt-1">Your Appointment is completed</AlertDialogTitle> */}
-                    <AlertDialogDescription>
+                    <DialogDescription>
                         <div className="grid grid-cols-2 gap-2 mt-3">
                             <div>
                                 <h3 className='font-inter text-xl font-medium text-[#1A1A1A]'>Kunal Singh</h3>
@@ -71,14 +62,15 @@ const PayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen }) => {
                                 <h4 className='text-[#717171] font-inter text-lg'>Due ₹599</h4>
                             </div>
                         </div>
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
+                    </DialogDescription>
+                </DialogHeader>
 
-                <AlertDialogFooter className="mt-5">
-                    <AlertDialogAction className="w-full" onClick={() => setIsPayNowModalOpen(false)}>Pay Now</AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
+                <div className="mt-5 flex items-center">
+                    <Button className="w-full bg-[#717171] hover:bg-[#717171]" onClick={() => setIsPayNowModalOpen(false)}>Pay Now</Button>
+                    <MdOutlineFileDownload className='text-5xl cursor-pointer text-[#95C22B]' />
+                </div>
+            </DialogContent>
+        </Dialog>
     )
 }
 
