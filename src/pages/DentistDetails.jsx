@@ -26,7 +26,7 @@ const DentistDetails = () => {
     const [dentistDetails, setDentistDetails] = useState("")
 
     const getDentistDetails = useCallback(async () => {
-        fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId ||"66d02520cd6af954e0eba864"}`);
+        fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId || "66d02520cd6af954e0eba864"}`);
     }, [fetchData])
 
     useEffect(() => {
@@ -58,9 +58,13 @@ const DentistDetails = () => {
                         <div className="p-3 pt-4">
                             <ClinicAppointment />
                             <div className="grid grid-cols-3 gap-4 mt-5">
-                                <ClinicAppointment2 />
-                                <ClinicAppointment2 />
-                                <ClinicAppointment2 />
+                                {dentistDetails?.clinic?.map((clinic) => (
+                                    <ClinicAppointment2
+                                        key={clinic._id}
+                                        clinic={clinic}
+                                        dentistId={dentistDetails?._id}
+                                    />
+                                ))}
                             </div>
                         </div>
                     </div>

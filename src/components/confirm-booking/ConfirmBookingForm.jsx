@@ -1,7 +1,7 @@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { ConfirmBookingFormSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaUser } from 'react-icons/fa';
 import { MdCall, MdEmail } from 'react-icons/md';
@@ -10,9 +10,14 @@ import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import ConfirmBookingSuccessModal from './ConfirmBookingSuccessModal';
+import usePostApiReq from '@/hooks/usePostApiReq';
+import { readCookie } from '@/utils/readCookie';
+import { format } from 'date-fns';
 
-const ConfirmBookingForm = () => {
+const ConfirmBookingForm = ({ apiData }) => {
     const navigate = useNavigate();
+    const userInfo = readCookie("userInfo");
+
     const [isConfirmBookingSuccessModalOpen, setIsConfirmBookingSuccessModalOpen] = useState(false);
 
     const form = useForm({
@@ -27,13 +32,32 @@ const ConfirmBookingForm = () => {
     });
 
     const { reset, handleSubmit, getValues } = form;
+    const { res, fetchData, isLoading } = usePostApiReq();
+    console.log("date", format(new Date(apiData.date), "EEEE"));
 
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
         // reset();
-        setIsConfirmBookingSuccessModalOpen(true);
-        navigate("/confirm-booking");
+        // setIsConfirmBookingSuccessModalOpen(true);
+        // navigate("/confirm-booking");
+        fetchData(`/patient/book-appointment`,
+            {
+                doctorsId: apiData.dentistId,
+                patientId: userInfo.userId,
+                timing: { date: apiData.date, slot: "66a0f11945c984fe180ef976", day: format(new Date(apiData.date), "EEEE") },
+                clinicId: apiData.clinic,
+                name: data.name,
+                mobile: data.mobile,
+                email: data.email,
+            });
+
     };
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("Dentist details res", res);
+        }
+    }, [res])
 
     return (
         <Form {...form}>

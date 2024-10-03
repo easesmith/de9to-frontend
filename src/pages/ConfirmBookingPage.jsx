@@ -6,22 +6,50 @@ import Layout from '@/component/Layout/Layout'
 import ConfirmBookingForm from '@/components/confirm-booking/ConfirmBookingForm'
 import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModal'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { readCookie } from '@/utils/readCookie'
+import { format } from 'date-fns'
+import { useCallback, useEffect, useState } from 'react'
 import { FaGraduationCap, FaLocationArrow, FaRegCalendarAlt, FaRegClock } from 'react-icons/fa'
 import { MdCall } from 'react-icons/md'
+import { useLocation } from 'react-router-dom'
 import ReactStars from 'react-stars'
 
 const ConfirmBookingPage = () => {
+    const { state: { data, clinicDetails } } = useLocation();
+    const { clinicPhotos, clinicName, clinicAddress, city, nearbyLandmark, state, clinicPincode } = clinicDetails || {};
+
+    const userInfo = readCookie("userInfo");
+    const { res, fetchData, isLoading } = useGetApiReq();
+    console.log("userInfo", userInfo);
+    console.log("data", data);
+    console.log("clinicDetails", clinicDetails);
+
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
-    const [selectedDate, setSelectedDate] = useState("2024-09-27");  // Initialize with default values
-    const [selectedTime, setSelectedTime] = useState("02:00 PM");  // Initialize with default values
+    const [selectedDate, setSelectedDate] = useState(data?.date);  // Initialize with default values
+    const [selectedTime, setSelectedTime] = useState(data?.time);  // Initialize with default values
 
+    const [dentistDetails, setDentistDetails] = useState("")
 
-    // Function to update the selected date and time
-    const updateDateAndTime = (date, time) => {
-        setSelectedDate(date);
-        setSelectedTime(time);
-    };
+    const getDentistDetails = useCallback(async () => {
+        fetchData(`/dentist/get-dentist-details?dentistId=${data?.dentistId || "66d02520cd6af954e0eba864"}`);
+    }, [fetchData])
+
+    useEffect(() => {
+        getDentistDetails();
+    }, [])
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("Dentist details res", res);
+            setDentistDetails(res?.data?.data);
+        }
+    }, [res])
+
+    const {personalDetails,clinic=[],educationalQualification} = dentistDetails || {};
+
+    console.log("clinic",clinic[0]);
+    
 
     return (
         <Layout>
@@ -32,12 +60,12 @@ const ConfirmBookingPage = () => {
                     <div className='flex justify-between items-start mt-5'>
                         <div className='flex items-center gap-2'>
                             <FaRegCalendarAlt className='text-[#717171]' />
-                            <span className='font-inter text-[#1A1A1A]'>On Fri Sep 25,24</span>
+                            <span className='font-inter text-[#1A1A1A]'>On {format(new Date(selectedDate), "EEE MMM dd,yy")}</span>
                         </div>
                         <div>
                             <div className='flex items-center gap-2'>
                                 <FaRegClock className='text-[#717171]' />
-                                <span className='font-inter text-[#1A1A1A]'>At 03:00PM</span>
+                                <span className='font-inter text-[#1A1A1A]'>At {selectedTime}</span>
                             </div>
                             <Button onClick={() => setIsConfirmBookingModalOpen(true)} variant="outline" className="h-7 text-[#95C22B] hover:text-[#95C22B] mt-4">Change Date & Time</Button>
                         </div>
@@ -48,13 +76,13 @@ const ConfirmBookingPage = () => {
                         <div>
                             <div className='rounded-[6px] relative w-full'>
                                 <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                                <img className='h-full w-full' src={doctorImg} alt="" />
+                                <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${personalDetails?.image}`} alt="" />
                             </div>
-                            <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
+                            <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
                         </div>
                         <div>
                             <div className="flex justify-between items-center gap-3">
-                                <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>Dr. Tanya Batra</h2>
+                                <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{`${personalDetails?.prefix} ${personalDetails?.Firstname} ${personalDetails?.lastName}`}</h2>
                                 <div>
                                     <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
                                     <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
@@ -63,11 +91,11 @@ const ConfirmBookingPage = () => {
                             <div className="flex items-center gap-2">
                                 <FaGraduationCap className='text-[#717171] text-2xl' />
                                 <div className='flex gap-2 items-center'>
-                                    <p className=' text-[#FF8A00] font-inter font-semibold'>BDS</p>
+                                    <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
                                     <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
                                     <p className='text-[#FF8A00] font-inter font-semibold'>Oral Pathology</p>
                                     <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                                    <p className='text-[#FF8A00] font-inter font-semibold'>Dr. Narang’s Dental Hub</p>
+                                    <p className='text-[#FF8A00] font-inter font-semibold'>{clinic[0]?.clinicName}</p>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +109,7 @@ const ConfirmBookingPage = () => {
                         </div>
                         <div>
                             <div className="flex justify-between items-center gap-3">
-                                <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>DentMarc Dental Clinic</h2>
+                                <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{clinicName}</h2>
                                 <div>
                                     <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
                                     <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
@@ -91,7 +119,7 @@ const ConfirmBookingPage = () => {
                                 <img src={VectorImg5} alt="" />
                                 <h5 className='text-[#717171] text-base font-semibold font-inter'>Multi-Speciality Clinic</h5>
                             </div>
-                            <p className='font-inter text-sm text-[#717171] my-2'><span className='font-bold'>Address:</span> L-31, Block L, Vinay Gulati Marg, West Patel Nagar, Patel Nagar, New Delhi, Delhi 110008</p>
+                            <p className='font-inter text-sm text-[#717171] my-2'><span className='font-bold'>Address:</span>{`${clinicAddress}, ${nearbyLandmark}, ${city}, ${state}, ${clinicPincode}`}</p>
                             <div className='flex items-center gap-4'>
                                 <Button variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                                     <MdCall className='text-[#95C22B] text-xl' />
@@ -111,14 +139,18 @@ const ConfirmBookingPage = () => {
                             setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
                             selectedDate={selectedDate}
                             selectedTime={selectedTime}
-                            updateDateAndTime={updateDateAndTime}
-                            selectedIndex={"selected1"}
+                            clinic={{ _id: data.clinic }}
+                            dentistId={data?.dentistId}
+                        // updateDateAndTime={updateDateAndTime}
+                        // selectedIndex={"selected1"}
                         />
                     }
                 </div>
                 <div className='px-4 py-6'>
                     <h2 className='font-inter text-xl font-medium mb-4'>Enter Patient Details</h2>
-                    <ConfirmBookingForm />
+                    <ConfirmBookingForm
+                    apiData={{...data}}
+                     />
                 </div>
             </div>
         </Layout>
