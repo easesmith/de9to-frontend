@@ -16,6 +16,7 @@ import Dentist1 from '@/component/allComponents/Dentist1'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import SearchListCompo from '@/components/SearchListCompo'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import FilterCompo from '@/components/FilterCompo'
 
 const OurDentist = () => {
 
@@ -35,13 +36,9 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
-      // console.log("res :",res)
       setAllDentists(res.data.data.dentists)
-      // console.log("cureentPages :",res.data.currentPage)
       setPageCount(res.data.totalPages)
       setPage(res.data.currentPage)
-      // console.log("totalPages :", res.data.totalPages)
-      // console.log("cure :", res.data.currentPage)
     }
   }, [res])
 
@@ -64,7 +61,7 @@ const OurDentist = () => {
         <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 my-12'>
           <div className=' rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>
-            <div className='flex justify-between items-center gap-3 rounded-[10px] bg-[#EEEEEE]'>
+            {/* <div className='flex justify-between items-center gap-3 rounded-[10px] bg-[#EEEEEE]'>
               <Select>
                 <SelectTrigger className="w-[250px] px-12 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
                   <SelectValue placeholder="Search by Gender" />
@@ -121,7 +118,8 @@ const OurDentist = () => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
+            <FilterCompo />
           </div>
           <div className='flex flex-col gap-[60px]'>
             <div className='flex flex-col justify-between gap-5'>
