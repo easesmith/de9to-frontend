@@ -16,11 +16,7 @@ const SearchListCompo = () => {
 
     const handleQuery = () => {
         setQuery(true)
-        // console.log(true)
     }
-
-    // console.log(query)
-    console.log(location)
 
     const { res, fetchData, isLoading } = useGetApiReq();
 
@@ -64,7 +60,6 @@ const SearchListCompo = () => {
                                     allDentist.length > 0 && allDentist.slice(0, showAllDentist? allDentist.length:3).map((e, i) => {
                                         return (
                                             <>
-                                            {}
                                             <div key={i} className='flex flex-col gap-3'>
                                                 <div className='flex gap-[10px]'>
                                                     <img src={doctorProfileImg} alt="" className='w-[60px] h-[60px] rounded-sm' />
