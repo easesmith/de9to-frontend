@@ -1,5 +1,7 @@
 import ProfileLayout from '@/component/Layout/ProfileLayout';
+import DataNotFound from '@/components/DataNotFound';
 import Appointment from '@/components/profile/Appointment';
+import Spinner from '@/components/Spinner';
 import { Button } from '@/components/ui/button';
 import {
     Select,
@@ -42,11 +44,11 @@ const Appointments = () => {
 
     const { res, fetchData, isLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
-    const [status, setStatus] = useState("Completed")
+    const [status, setStatus] = useState("upcoming")
     const [allAppointments, setAllAppointments] = useState([]);
 
     const getDentists = async () => {
-        fetchData(`/patient/get-all-appointments?patientId=${userInfo.userId}&status=${status}`);
+        fetchData(`/patient/get-all-appointments?patientId=${userInfo?.userId}&status=${status}`);
     }
 
     useEffect(() => {
@@ -56,7 +58,7 @@ const Appointments = () => {
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            // setAllAppointments(res.data.data.dentists)
+            setAllAppointments(res.data.foundAppointments)
             console.log("appointments response", res);
         }
     }, [res])
@@ -75,8 +77,9 @@ const Appointments = () => {
                         </SelectTrigger>
                         <SelectContent className="text-[#717171]">
                             <SelectItem value="all">All</SelectItem>
-                            <SelectItem value="Completed">Completed</SelectItem>
-                            <SelectItem value="Cancelled">Cancelled</SelectItem>
+                            <SelectItem value="completed">Completed</SelectItem>
+                            <SelectItem value="upcoming">Upcoming</SelectItem>
+                            <SelectItem value="active">Active</SelectItem>
                         </SelectContent>
                     </Select>
 
@@ -88,21 +91,29 @@ const Appointments = () => {
                             <TableHead className="w-[80px] uppercase">SL no</TableHead>
                             <TableHead className="w-[130px]">Date</TableHead>
                             <TableHead className="w-[190px]">Scheduled at</TableHead>
-                            <TableHead className="w-[190px]">Patient</TableHead>
-                            <TableHead className="w-[190px]">Doctor</TableHead>
+                            <TableHead className="w-[170px]">Patient</TableHead>
+                            <TableHead className="w-[210px]">Doctor</TableHead>
                             <TableHead className="w-[190px]">Clinic</TableHead>
                             <TableHead className="w-[150px]">Status</TableHead>
                             <TableHead className="w-[25px]"></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {appointments.map((appointment, i) => (
+                        {allAppointments.map((appointment, i) => (
                             <Appointment
                                 key={i}
                                 appointment={appointment}
                                 index={i}
                             />
                         ))}
+
+                        {allAppointments.length === 0 && isLoading &&
+                            <Spinner size={30} />
+                        }
+
+                        {allAppointments.length === 0 && !isLoading &&
+                            <DataNotFound name={"Appointments"} />
+                        }
                     </TableBody>
                 </Table>
             </div>

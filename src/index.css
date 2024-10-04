@@ -125,7 +125,7 @@
   margin-top: 20px;
   padding: 0;
 }
- 
+
 .pagination a {
   cursor: default;
   padding: 10px;
@@ -134,23 +134,23 @@
   color: #000;
   margin-left: 10px;
 }
- 
+
 /* .pagination li:not(.disabled) a:hover {
   background-color: #DCEEFE;
   cursor: pointer;
 } */
- 
+
 .pagination li a {
   font-weight: 600;
   font-size: 18px;
   cursor: pointer;
 }
- 
+
 .pagination li.active a {
   color: #FFFFFF;
   background: #95C22B;
 }
- 
+
 .pagination li.disabled a {
   pointer-events: none;
   color: rgb(198, 197, 202);
@@ -160,25 +160,25 @@
 }
 
 textarea::-webkit-scrollbar {
-  width: 6px; 
-  height: 6px; 
-  margin-right:10px;
+  width: 6px;
+  height: 6px;
+  margin-right: 10px;
 }
 
 textarea::-webkit-scrollbar-thumb {
-  background-color: darkgrey; 
-  border-radius: 10px; 
+  background-color: darkgrey;
+  border-radius: 10px;
 }
 
 textarea::-webkit-scrollbar-track {
-  background-color: lightgrey; 
+  background-color: lightgrey;
 }
 
-.dental-camp .swiper-pagination-bullet-active{
+.dental-camp .swiper-pagination-bullet-active {
   background-color: #95C22B !important;
 }
 
-.about-us .swiper-pagination-bullet-active{
+.about-us .swiper-pagination-bullet-active {
   background-color: #95C22B !important;
 }
 
@@ -186,8 +186,12 @@ textarea::-webkit-scrollbar-track {
   overflow-x: hidden !important;
 } */
 
-.textWhite{
+.textWhite {
   color: white !important;
+}
+
+.scrollBar::-webkit-scrollbar {
+  display: none;
 }
 
 .scroll {
@@ -200,6 +204,7 @@ textarea::-webkit-scrollbar-track {
   overflow: hidden;
   z-index: 1;
 }
+
 .m-scroll {
   display: flex;
   position: absolute;
@@ -213,26 +218,25 @@ textarea::-webkit-scrollbar-track {
   transform: scale(2);
   transition: all 1s ease;
 }
-.m-scroll > .ab {
+
+.m-scroll>.ab {
   /* display: flex; */
   animation: scrollText 10s infinite linear;
 }
 
-.m-scroll > .ab > div  {
+.m-scroll>.ab>div {
   margin: 0;
-margin-right: 150px;
+  margin-right: 150px;
   /* font-size: 25px; */
   /* color: red; */
   transition: all 2s ease;
 }
 
-.m-scroll p{
-
-}
+.m-scroll p {}
 
 .abc {
   margin: 0;
-margin-right: 150px;
+  margin-right: 150px;
   font-size: 25px;
   color: #ffffff;
   transition: all 2s ease;
@@ -240,9 +244,10 @@ margin-right: 150px;
 
 @keyframes scrollText {
   from {
-      transform: translateX(0%);
- }
+    transform: translateX(0%);
+  }
+
   to {
-      transform: translateX(-50%);
- }
+    transform: translateX(-50%);
+  }
 }

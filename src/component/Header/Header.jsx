@@ -4,16 +4,18 @@ import De9toLogo from '../../assets/de9to-logo-qc7xun2b6cqji9b2etrrmn9ecu7aif9fr
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { IoIosArrowDown } from 'react-icons/io'
+import { readCookie } from '@/utils/readCookie'
 
 const Header = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const userInfo = readCookie("userInfo");
 
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(userInfo ? true : false);
 
   const handleLogin = () => {
-    setIsLogin(true);
-    // navigate("/login");
+    // setIsLogin(true);
+    navigate("/login");
   }
 
   const urlAndUrlName = [

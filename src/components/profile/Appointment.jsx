@@ -10,18 +10,17 @@ const Appointment = ({ appointment, index }) => {
     return (
         <TableRow className="text-[#1A1A1A] font-inter">
             <TableCell>{index + 1}</TableCell>
-            <TableCell>{appointment.date}</TableCell>
-            <TableCell>{appointment.scheduledAt}</TableCell>
-            <TableCell>{appointment.patient}</TableCell>
-            <TableCell>
-                {appointment.doctor}
+            <TableCell>{appointment?.timing?.date}</TableCell>
+            <TableCell>{appointment?.timing?.slot?.startTime || "no time"}</TableCell>
+            <TableCell>{appointment?.patientId?.name}</TableCell>
+            <TableCell>{`${appointment?.dentistId?.personalDetails?.prefix} ${appointment?.dentistId?.personalDetails?.Firstname} ${appointment?.dentistId?.personalDetails?.lastName}`}
                 <FaExternalLinkAlt className='text-[#717171] inline-block ml-4' />
             </TableCell>
             <TableCell className="flex gap-2 items-center">
-                {appointment.clinic}
+                {appointment?.clinicId?.clinicName}
                 <FaLocationDot className='text-[#717171]' />
             </TableCell>
-            <TableCell className={`font-medium ${appointment.status === "Completed" ? "text-[#00CD4B]" : "text-[#FF0000]"}`}>{appointment.status}</TableCell>
+            <TableCell className={`font-medium ${appointment.status === "completed" ? "text-[#00CD4B]" :appointment.status === "cancelled"? "text-[#FF0000]":appointment.status === "upcoming"?"text-blue-400":"text-yellow-400"}`}>{appointment?.status.charAt(0).toUpperCase() + appointment?.status.slice(1).toLowerCase()}</TableCell>
             <TableCell>
                 <button onClick={() => setIsAppointmentModalOpen(true)} className='w-6 h-6 rounded-full bg-[#EEEEEEEE] flex justify-center items-center cursor-pointer'>
                     <FaArrowRight className='text-[#95C22B]' />
@@ -32,6 +31,7 @@ const Appointment = ({ appointment, index }) => {
                 <AppointmentModal
                     isAppointmentModalOpen={isAppointmentModalOpen}
                     setIsAppointmentModalOpen={setIsAppointmentModalOpen}
+                    appointment={appointment}
                 />
             }
         </TableRow>
