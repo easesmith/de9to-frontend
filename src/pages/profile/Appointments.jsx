@@ -15,6 +15,9 @@ import {
     TableHeader,
     TableRow
 } from "@/components/ui/table";
+import useGetApiReq from '@/hooks/useGetApiReq';
+import { readCookie } from '@/utils/readCookie';
+import { useEffect, useState } from 'react';
 
 
 const Appointments = () => {
@@ -37,6 +40,27 @@ const Appointments = () => {
         },
     ]
 
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const userInfo = readCookie("userInfo");
+    const [status, setStatus] = useState("Completed")
+    const [allAppointments, setAllAppointments] = useState([]);
+
+    const getDentists = async () => {
+        fetchData(`/patient/get-all-appointments?patientId=${userInfo.userId}&status=${status}`);
+    }
+
+    useEffect(() => {
+        getDentists();
+    }, [status])
+
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            // setAllAppointments(res.data.data.dentists)
+            console.log("appointments response", res);
+        }
+    }, [res])
+
     return (
         <ProfileLayout>
             <div className="bg-white rounded-lg p-5">
@@ -45,14 +69,14 @@ const Appointments = () => {
                     <Button variant="outline" className="border-[#717171] font-normal text-[#717171]">
                         Filter by date
                     </Button>
-                    <Select>
+                    <Select value={status} onValueChange={(val) => setStatus(val)}>
                         <SelectTrigger className="w-[130px] border-[#717171] text-[#717171]">
-                            <SelectValue placeholder="All status" />
+                            <SelectValue placeholder="Status" />
                         </SelectTrigger>
                         <SelectContent className="text-[#717171]">
-                            <SelectItem value="light">Light</SelectItem>
-                            <SelectItem value="dark">Dark</SelectItem>
-                            <SelectItem value="system">System</SelectItem>
+                            <SelectItem value="all">All</SelectItem>
+                            <SelectItem value="Completed">Completed</SelectItem>
+                            <SelectItem value="Cancelled">Cancelled</SelectItem>
                         </SelectContent>
                     </Select>
 

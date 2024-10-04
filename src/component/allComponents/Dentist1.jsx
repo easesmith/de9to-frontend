@@ -14,7 +14,7 @@ import { useState } from 'react';
 import ConfirmbookingModal from '@/components/confirm-booking/ConfirmbookingModal';
 import { useNavigate } from 'react-router-dom';
 
-const Dentist1 = (props) => {
+const Dentist1 = ({dentist}) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
     const daysOfWeek = [
         "Monday",
@@ -27,8 +27,8 @@ const Dentist1 = (props) => {
     ];
 
 
-    console.log("dentist", props.dentist)
-    const { personalDetails, _id, clinic } = props.dentist || {}
+    console.log("dentist", dentist)
+    const { personalDetails, _id, clinic } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
@@ -115,6 +115,8 @@ const Dentist1 = (props) => {
                 <ConfirmbookingModal
                     isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                     setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                    dentistId={_id}
+                    clinic={dentist.clinic}
                 />
             }
         </div>

@@ -22,18 +22,21 @@ const clinicSchema = z.object({
     clinic: z.string().min(1, "Please select a clinic"),
     date: z.string().min(1, "Please select a date"),
     time: z.string().min(1, "Please select a time slot"),
+    dentistId: z.string().optional(),
 });
 
-const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex }) => {
+const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex, clinic = "", dentistId }) => {
+    console.log("dentistId", dentistId);
+
     const navigate = useNavigate();
 
     const form = useForm({
         resolver: zodResolver(clinicSchema),
         defaultValues: {
-            clinic: "",
+            clinic: clinic?._id || "",
             date: selectedDate || "",
             time: selectedTime || "",
-            selectedIndex: selectedIndex || "",
+            dentistId: dentistId || "",
         },
     });
 
@@ -43,11 +46,11 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         console.log("Booking Data:", data);
         // reset();
         setIsConfirmBookingModalOpen(false); // Close modal after submission
-        navigate("/confirm-booking");
+        navigate("/confirm-booking", { state: { data, clinicDetails:clinic } });
     };
 
     const [selectedSlot, setSelectedSlot] = useState(selectedTime);
-    const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(),"yyyy-MM-dd"));
+    const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(), "yyyy-MM-dd"));
     const [selected, setSelected] = useState(selectedIndex || "selected0");
     const [startIndex, setStartIndex] = useState(0);
 
@@ -82,7 +85,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const slotTimes = {
         morning: [
             ["09:00 AM", "09:30 AM"], // Today
-            ["09:00 AM", "10:00 AM", "10:30 AM", "09:00 AM", "09:30 AM"], // Tomorrow
+            ["09:00 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM"], // Tomorrow
             [], // Day 3: No slots available
             ["09:00 AM"], // Day 4
             ["10:00 AM", "11:00 AM"], // Day 5
@@ -186,8 +189,6 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         setVisibleDays(VisibleDays)
     }, [startIndex])
 
-
-
     // Get the visible days (3 at a time)
 
     return (
@@ -198,7 +199,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             {/* Clinic Selection */}
-                            <div className="w-full">
+                            {!clinic && <div className="w-full">
                                 <FormField
                                     control={form.control}
                                     name="clinic"
@@ -222,7 +223,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                         </FormItem>
                                     )}
                                 />
-                            </div>
+                            </div>}
 
                             {/* Availability Section */}
                             <Label className="font-inter text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
