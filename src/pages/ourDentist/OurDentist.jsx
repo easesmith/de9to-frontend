@@ -42,6 +42,29 @@ const OurDentist = () => {
     }
   }, [res])
 
+  const [gender, setGender] = useState('');
+  const [feeRange, setFeeRange] = useState('');
+  const [location, setLocation] = useState('');
+
+  const handleGenderChange = (value) => {
+    setGender(value);
+  }
+  const handleFeeRangeChange = (value) => {
+    setFeeRange(value);
+  }
+  const handleLocationChange = (value) => {
+    setLocation(value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const getfilterDentist = useCallback(async () => {
+    fetchData(`/dentist/filter?page=${page}`);
+  }, [page, fetchData])
+
+
   return (
     <Layout>
       <main className='w-full relative'>
@@ -119,7 +142,7 @@ const OurDentist = () => {
                 </SelectContent>
               </Select>
             </div> */}
-            <FilterCompo />
+            <FilterCompo gender={gender} handleGenderChange={handleGenderChange} feeRange={feeRange} handleFeeRangeChange={handleFeeRangeChange} location={location} handleLocationChange={handleLocationChange} handleSubmit={handleSubmit} />
           </div>
           <div className='flex flex-col gap-[60px]'>
             <div className='flex flex-col justify-between gap-5'>
