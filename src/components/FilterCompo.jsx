@@ -1,24 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
-const FilterCompo = () => {
-    const [gender, setGender] = useState('');
-    const [feeRange, setFeeRange] = useState('');
-    const [rating, setRating] = useState('');
-    const [location, setLocation] = useState('');
+const FilterCompo = (props) => {
 
-    const handleGenderChange = (value) => setGender(value);
-    const handleFeeRangeChange = (value) => setFeeRange(value);
-    const handleRatingChange = (value) => setRating(value);
-    const handleLocationChange = (value) => setLocation(value);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(gender);
-      };
+    const {gender, feeRange, location, handleGenderChange, handleFeeRangeChange, handleLocationChange} = props
+    console.log(gender)
+    
     return (
-        <form onSubmit={handleSubmit} className='flex justify-between items-center gap-3 rounded-[10px] bg-[#EEEEEE]'>
-            <Select onChangeValue={handleGenderChange}>
+        <div className='flex justify-between items-center gap-3 rounded-[10px] bg-[#EEEEEE]'>
+            <Select onValueChange={handleGenderChange} defaultValue={gender}>
                 <SelectTrigger className="w-[250px] px-12 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
                     <SelectValue placeholder="Search by Gender" />
                 </SelectTrigger>
@@ -31,36 +21,22 @@ const FilterCompo = () => {
                 </SelectContent>
             </Select>
             <div className='border-[1.5px] border-[#717171] h-[30px]'></div>
-            <Select onChangeValue={handleFeeRangeChange}>
+            <Select onValueChange={handleFeeRangeChange} defaultValue={feeRange}>
                 <SelectTrigger className="w-[250px] px-8 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
                     <SelectValue placeholder="Search by Fee Range" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
-                        <SelectItem value="apple">Apple</SelectItem>
-                        <SelectItem value="banana">Banana</SelectItem>
-                        <SelectItem value="blueberry">Blueberry</SelectItem>
-                        <SelectItem value="grapes">Grapes</SelectItem>
-                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                        <SelectItem value="299">299 to 499</SelectItem>
+                        <SelectItem value="499">499 to 799</SelectItem>
+                        <SelectItem value="799">799 to 999</SelectItem>
+                        <SelectItem value="999">999 to 1499</SelectItem>
+                        <SelectItem value="1499">1499 to 1999</SelectItem>
                     </SelectGroup>
                 </SelectContent>
             </Select>
             <div className='border-[1.5px] border-[#717171] h-[30px]'></div>
-            <Select onChangeValue={handleRatingChange}>
-                <SelectTrigger className="w-[250px] px-12 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
-                    <SelectValue placeholder="Search by Rating" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectGroup>
-                        <SelectItem value="5">5</SelectItem>
-                        <SelectItem value="4">4</SelectItem>
-                        <SelectItem value="3">3</SelectItem>
-                        <SelectItem value="2">2</SelectItem>
-                    </SelectGroup>
-                </SelectContent>
-            </Select>
-            <div className='border-[1.5px] border-[#717171] h-[30px]'></div>
-            <Select onChangeValue={handleLocationChange}>
+            <Select onValueChange={handleLocationChange} defaultValue={location}>
                 <SelectTrigger className="w-[250px] px-12 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
                     <SelectValue placeholder="Search by Location" />
                 </SelectTrigger>
@@ -74,7 +50,7 @@ const FilterCompo = () => {
                     </SelectGroup>
                 </SelectContent>
             </Select>
-        </form>
+        </div>
     )
 }
 
