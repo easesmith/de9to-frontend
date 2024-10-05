@@ -15,14 +15,16 @@ import { Button } from './ui/button';
 import { FaLocationDot } from 'react-icons/fa6';
 
 
-const ClinicBasicDetails = () => {
+const ClinicBasicDetails = ({ clinic }) => {
     const handleMapSearch = () => {
         const latitude = 28.6466773;
         const longitude = 77.1564994;
         const mapUrl = `https://www.google.com/maps/@?api=1&map_action=map&center=${latitude},${longitude}&zoom=15`;
         window.open(mapUrl, '_blank'); // Opens Google Maps in a new tab with the coordinates
     };
-    
+
+    const { clinicPhotos,clinicName,clinicAddress,city,nearbyLandmark,state,clinicPincode,clinicRating} = clinic || {};
+
     return (
         <div className="grid grid-cols-[77%_260px] h-full gap-4">
             <div className='rounded-[5px] flex flex-col h-full gap-5'>
@@ -30,13 +32,13 @@ const ClinicBasicDetails = () => {
                 <div className='p-4 rounded-[6px] h-full flex gap-[10px] shadow-lg'>
                     <div className='rounded-[6px] relative w-[210px]'>
                         <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                        <img className='h-full w-full' src={PlusImg} alt="" />
+                        <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
                     </div>
                     <div className='pe-[25px] h-full ps-[9px] flex flex-col items-start justify-between w-[calc(100%-210px)]'>
                         <div>
                             <div className='flex items-center justify-between gap-4'>
                                 <div className='flex items-center gap-4'>
-                                    <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
+                                    <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>{clinic?.clinicName}</h4>
                                     <Button onClick={handleMapSearch} variant="outline" size="sm" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
                                         <FaLocationArrow className='text-[#95C22B]' />
                                         <span>Search on map</span>
@@ -44,7 +46,7 @@ const ClinicBasicDetails = () => {
                                 </div>
                                 <div>
                                     <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
-                                    <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                                    <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {clinicRating?.length} users</div>
                                 </div>
                             </div>
                             <div className='flex flex-col justify-start gap-2'>
@@ -54,7 +56,7 @@ const ClinicBasicDetails = () => {
                                 </div>
                                 <div className="flex gap-2 items-center my-[2px]">
                                     <FaLocationDot className='text-[#717171]' />
-                                    <p className='text-sm text-[#717171] leading-[10px]'>L-31, Block L, Vinay Gulati Marg, West Patel Nagar, Patel Nagar, New Delhi, Delhi 110008</p>
+                                    <p className='text-sm text-[#717171] leading-[10px]'>{`${clinicAddress}, ${nearbyLandmark}, ${city}, ${state}, ${clinicPincode}`}</p>
                                 </div>
                                 <p className='text-[#717171] font-inter'>Best in <span className='font-semibold text-black'>Dental Care, State-of-the-Art-Facilities</span></p>
                             </div>

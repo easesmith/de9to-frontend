@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
 import { FaChevronUp } from "react-icons/fa";
 import { Checkbox } from "@/components/ui/checkbox"
@@ -23,6 +23,7 @@ import ImgBackgroundImg from '../../assets/Group.png'
 // import { Slider } from "@/components/ui/slider"
 import ShadcnPagination from '@/components/shadcnCompo/ShadCompo';
 import ReactPagination from '@/component/allComponents/ReactPagination';
+import useGetApiReq from '@/hooks/useGetApiReq';
 
 
 const OurClinic = () => {
@@ -33,6 +34,28 @@ const OurClinic = () => {
     const handleAmount = (amount) => {
         setAmount(amount + 500)
     }
+
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const [allClinics, setAllClinics] = useState([]);
+    const [pageCount, setPageCount] = useState(1)
+    const [page, setPage] = useState(1);
+
+    const getClinics = async () => {
+        fetchData(`/patient/get-all-Clinics?page=${page}`);
+    }
+
+    useEffect(() => {
+        getClinics();
+    }, [page])
+
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            setAllClinics(res?.data?.data?.clinics);
+            setPageCount(res?.data?.data?.pagination?.totalPages);
+            console.log("clinics response", res);
+        }
+    }, [res])
 
     return (
         <Layout>
@@ -111,12 +134,14 @@ const OurClinic = () => {
                         <div className=" flex flex-col gap-[60px] w-[909px]">
                             <div className='rounded-[5px] flex flex-col gap-5'>
                                 <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p>
-                                <Clinic />
-                                <Clinic />
-                                <Clinic />
-                                <Clinic />
+                                {allClinics?.map((clinic) => (
+                                    <Clinic
+                                        key={clinic?._id}
+                                        clinic={clinic}
+                                    />
+                                ))}
                             </div>
-                            <ReactPagination pages='6' />
+                            <ReactPagination pageCount={pageCount} setPage={setPage} />
                         </div>
                     </section>
                 </div>

@@ -11,9 +11,11 @@ import { Button } from './ui/button';
 import { IoCall } from "react-icons/io5";
 import { useState } from 'react';
 import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
+import { useNavigate } from 'react-router-dom';
 
-const Clinic = () => {
+const Clinic = ({clinic}) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+    const navigate = useNavigate()
 
     const handleMapSearch = () => {
         const latitude = 28.6466773;
@@ -24,18 +26,18 @@ const Clinic = () => {
 
     return (
         <div className='p-4 rounded-[6px] flex gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
-            <div className='rounded-[6px] w-[210px] h-[210px] flex justify-center items-end relative -mt-[10px]'>
-                <img src={PlusImg} alt="" />
+            <div onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] cursor-pointer w-[210px] h-[210px] flex justify-center items-end relative -mt-[10px]'>
+                <img src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
                 <img src={VerifiedImg} alt="" className='absolute top-[8%] right-[3%]' />
             </div>
             <div className='pe-[25px] ps-[9px] flex flex-col justify-between gap-2 w-[calc(100%-210px)]'>
                 <div className='flex items-center justify-between gap-4'>
                     <div className='flex items-center gap-4'>
-                        <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>DentMarc Dental Clinic</h4>
+                        <h4 onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='text-[#1A1A1A] cursor-pointer text-2xl font-semibold font-inter'>{clinic?.clinicName}</h4>
                     </div>
                     <div className='flex flex-col gap-1'>
-                        <ReactStars className='m-0 disable-hover' size={16} count={5} value={3} color2={'#FF8A00'} edit={false} />
-                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                        <ReactStars className='m-0 disable-hover' size={16} count={5} value={Number(clinic?.avgRating)} color2={'#FF8A00'} edit={false} />
+                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {clinic?.clinicRating?.length} users</div>
                     </div>
                 </div>
                 <div className='flex flex-col justify-start gap-2'>
@@ -47,11 +49,11 @@ const Clinic = () => {
                         </div>
                         <div className='flex items-center gap-[6px] rounded-[35px] px-[10px]'>
                             <img src={DoctorBagImg} alt="" />
-                            <p className='text-[#838383] text-xs font-normal font-inter'>3 Dentists</p>
+                            <p className='text-[#838383] text-xs font-normal font-inter'>{clinic?.dentistCount} Dentists</p>
                         </div>
                         <div className='flex items-center gap-[6px] rounded-[35px] px-[10px]'>
                             <img src={RupayImg} alt="" />
-                            <p className='text-[#838383] text-xs font-normal font-inter'>₹500-1000 for consultation</p>
+                            <p className='text-[#838383] text-xs font-normal font-inter'>₹{clinic?.consultationfee} for consultation</p>
                         </div>
                     </div>
                 </div>

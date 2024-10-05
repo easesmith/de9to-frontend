@@ -3,7 +3,7 @@ import Layout from '@/component/Layout/Layout'
 import ClinicBasicDetails from '@/components/ClinicBasicDetails'
 import Dentist from '@/components/Dentist'
 import RatingsComp from '@/components/RatingsComp'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 import { FaArrowLeft } from 'react-icons/fa'
 import { Autoplay, Pagination } from 'swiper/modules'
@@ -20,9 +20,49 @@ import {
 import Review from '@/components/Review'
 import { Button } from '@/components/ui/button'
 import { TbEdit } from 'react-icons/tb'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { useParams } from 'react-router-dom'
 
 const ClinicDetails = () => {
     const swiperRef = useRef(null);
+    const params = useParams();
+    const [clinic, setClinic] = useState("");
+    const [ratings, setRatings] = useState([]);
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const { res: clinicRatingsRes, fetchData: fetchClinicRatingsData, isLoading: isClinicRatingsLoading } = useGetApiReq();
+
+    const getClinic = async () => {
+        fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
+    }
+
+    useEffect(() => {
+        getClinic();
+    }, [])
+
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            setClinic(res?.data?.foundClinic);
+            console.log("clinic details response", res);
+        }
+    }, [res])
+
+
+    const getClinicRating = async () => {
+        fetchClinicRatingsData(`/patient/clinic-rating?clinicId=${params?.clinicId}&reviewType=clinic`);
+    }
+
+    useEffect(() => {
+        getClinicRating();
+    }, [])
+
+
+    useEffect(() => {
+        if (clinicRatingsRes?.status === 200 || clinicRatingsRes?.status === 201) {
+            setRatings(clinicRatingsRes?.data?.foundRatings);
+            console.log("clinicRatingsRes response", clinicRatingsRes);
+        }
+    }, [clinicRatingsRes])
 
     return (
         <Layout>
@@ -32,7 +72,7 @@ const ClinicDetails = () => {
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
                 <div className="mb-5">
-                    <ClinicBasicDetails />
+                    <ClinicBasicDetails clinic={clinic} />
                 </div>
                 <div className="flex items-start gap-2">
                     <div className='font-inter font-medium px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Dentists</div>
@@ -61,7 +101,7 @@ const ClinicDetails = () => {
                             onSwiper={(swiper) => {
                                 swiperRef.current = swiper; // Assign the Swiper instance to the ref
                             }}
-                            // onSlideChange={() => console.log('slide change')}
+                        // onSlideChange={() => console.log('slide change')}
                         >
                             <SwiperSlide>
                                 <img className='' src={carouselImg} alt="" />
@@ -113,9 +153,11 @@ const ClinicDetails = () => {
                             </Select>
                         </div>
                         <div className='reviews flex flex-col gap-5 max-h-[420px] overflow-y-auto mb-5'>
-                            <Review />
-                            <Review />
-                            <Review />
+                            {ratings?.map((rating)=>(
+                                <Review
+                                key={rating?._id}
+                                 />
+                            ))}
                         </div>
                         <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>
