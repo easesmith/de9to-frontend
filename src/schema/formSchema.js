@@ -103,6 +103,10 @@ export const OtpSchema = z.object({
 });
 
 export const ChangePasswordSchema = z.object({
+    oldPassword: z
+        .string()
+        .min(8, "Old Password must be at least 8 characters long")
+        .regex(passwordRegex, "Old Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
     newPassword: z
         .string()
         .min(8, "New Password must be at least 8 characters long")
@@ -111,7 +115,17 @@ export const ChangePasswordSchema = z.object({
         .string()
         .min(8, "Confirm New Password must be at least 8 characters long")
         .regex(passwordRegex, "Confirm New Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+}).refine((data) => data.newPassword === data.confirmNewPassword, {
+    path: ['confirmNewPassword'],
+    message: "New password and confirm new password must match",
 });
+
+export const DeleteAccountSchema = z.object({
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
+})
 
 export const NotificationSettingSchema = z.object({
     receiveAllSms: z.boolean().optional(),

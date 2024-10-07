@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { IoIosArrowDown } from 'react-icons/io'
+import DeleteAccountModal from './DeleteAccountModal'
+import { Button } from './ui/button'
 
 const Sidebar = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate();
     const [isMasterOpen, setIsMasterOpen] = useState(false);
+    const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
 
     return (
         <section className='sticky top-0 w-[280px] h-screen overflow-y-auto overflow-x-visible'>
@@ -46,10 +49,17 @@ const Sidebar = () => {
                         <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                             Notification Settings
                         </Link>
-                        <Link to="/profile/delete-account" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
+                        <button onClick={() => setIsDeleteAccountModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
                             Delete Account
-                        </Link>
+                        </button>
                     </div>
+                }
+
+                {isDeleteAccountModalOpen &&
+                    <DeleteAccountModal
+                        isDeleteAccountModalOpen={isDeleteAccountModalOpen}
+                        setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
+                    />
                 }
             </div>
         </section>

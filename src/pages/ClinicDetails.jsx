@@ -22,12 +22,15 @@ import { Button } from '@/components/ui/button'
 import { TbEdit } from 'react-icons/tb'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import { useParams } from 'react-router-dom'
+import DataNotFound from '@/components/DataNotFound'
+import Spinner from '@/components/Spinner'
 
 const ClinicDetails = () => {
     const swiperRef = useRef(null);
     const params = useParams();
     const [clinic, setClinic] = useState("");
     const [ratings, setRatings] = useState([]);
+    const [sortRating, setSortRating] = useState("latest")
     const { res, fetchData, isLoading } = useGetApiReq();
     const { res: clinicRatingsRes, fetchData: fetchClinicRatingsData, isLoading: isClinicRatingsLoading } = useGetApiReq();
 
@@ -49,7 +52,7 @@ const ClinicDetails = () => {
 
 
     const getClinicRating = async () => {
-        fetchClinicRatingsData(`/patient/clinic-rating?clinicId=${params?.clinicId}&reviewType=clinic`);
+        fetchClinicRatingsData(`/patient/sort-reviews?clinicId=${params?.clinicId}&reviewType=clinic&sortOrder=${sortRating}`);
     }
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const ClinicDetails = () => {
 
     useEffect(() => {
         if (clinicRatingsRes?.status === 200 || clinicRatingsRes?.status === 201) {
-            setRatings(clinicRatingsRes?.data?.foundRatings);
+            setRatings(clinicRatingsRes?.data?.data?.reviews);
             console.log("clinicRatingsRes response", clinicRatingsRes);
         }
     }, [clinicRatingsRes])
@@ -140,24 +143,33 @@ const ClinicDetails = () => {
                     <div className='w-full mb-5'>
                         <RatingsComp />
                         <div className='flex justify-end my-5'>
-                            <Select defaultValue='newestReview'>
+                            <Select onValueChange={setSortRating} value={sortRating}>
                                 <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
                                     <SelectValue placeholder="" />
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
                                     <SelectGroup>
-                                        <SelectItem value="newestReview">Sort by newest review</SelectItem>
-                                        <SelectItem value="oldestReview">Sort by oldest review</SelectItem>
+                                        <SelectItem value="latest">Sort by newest review</SelectItem>
+                                        <SelectItem value="oldest">Sort by oldest review</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </div>
                         <div className='reviews flex flex-col gap-5 max-h-[420px] overflow-y-auto mb-5'>
-                            {ratings?.map((rating)=>(
+                            {ratings?.map((rating) => (
                                 <Review
-                                key={rating?._id}
-                                 />
+                                    key={rating?._id}
+                                    rating={rating}
+                                />
                             ))}
+                            
+                        {ratings?.length === 0 && isClinicRatingsLoading &&
+                            <Spinner size={30} />
+                        }
+
+                        {ratings?.length === 0 && !isClinicRatingsLoading &&
+                            <DataNotFound name={"Reviews"} />
+                        }
                         </div>
                         <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>
