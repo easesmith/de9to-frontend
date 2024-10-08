@@ -4,7 +4,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 const FilterCompo = (props) => {
 
     const { gender, rating, location, handleGenderChange, handleRatingChange, handleLocationChange } = props
-    console.log(rating)
+    // console.log(rating)
 
     return (
         <div className='flex justify-between items-center gap-3 rounded-[10px] bg-[#EEEEEE]'>

@@ -37,23 +37,24 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
-      console.log("AllDentists:", res.data.data.dentists)
+      // console.log("AllDentists:", res.data.data.dentists)
       setAllDentists(res.data.data.dentists)
       setPageCount(res.data.totalPages)
       setPage(res.data.currentPage)
     }
   }, [res])
 
-  const { res: res2, fetchData: fetchData2, isLoading:isLoading2 } = useGetApiReq();
+  const { res: res2, fetchData: fetchData2, isLoading: isLoading2 } = useGetApiReq();
 
   const [gender, setGender] = useState('');
   const [rating, setRating] = useState('');
   const [location, setLocation] = useState('');
-  const [filterDentist, setFilteDentist] = useState([])
 
   const getfilterDentist = useCallback(async () => {
-    fetchData(`/patient/filter?area=${location}&ratings=${rating}&gender=${gender}`);
-  }, [location, rating, gender])
+    if (location || rating || gender) {
+      fetchData2(`/patient/filter?area=${location}&ratings=${rating}&gender=${gender}`);
+    }
+  }, [location, rating, gender, fetchData2])
 
   useEffect(() => {
     getfilterDentist();
@@ -62,8 +63,8 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res2?.status === 200 || res2?.status === 201) {
-      console.log("ShortDentist:", res2.data.data.dentists)
-      setFilteDentist(res2.data.data.dentists)
+      // console.log("ShortDentist:", res2.data.dentists)
+      setAllDentists(res2.data.dentists)
     }
   }, [res2])
 
@@ -103,19 +104,12 @@ const OurDentist = () => {
             <div className='flex flex-col justify-between gap-5'>
               <p className='text-[#838383] text-base font-semibold font-inter'>Choose Your Dentist</p>
               {
-                allDentists.length > 0 && !isLoading && allDentists.map((e, i) => {
+                allDentists.length > 0 && !isLoading ? allDentists.map((e, i) => {
                   return (
                     <Dentist1 key={i} dentist={e} />
                   )
-                })
-              }
-
-              {
-                filterDentist.length > 0 && isLoading2 && filterDentist.map((e, i) => {
-                  return (
-                    <Dentist1 key={i} dentist={e} />
-                  )
-                })
+                }) :
+                  <DataNotFound />
               }
             </div>
             <ReactPagination pageCount={pageCount} setPage={setPage} />

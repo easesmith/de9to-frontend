@@ -27,7 +27,7 @@ const Dentist1 = ({dentist}) => {
     ];
 
 
-    console.log("dentist", dentist)
+    // console.log("dentist", dentist)
     const { personalDetails, _id, clinic } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
@@ -39,7 +39,7 @@ const Dentist1 = ({dentist}) => {
         }
     })
 
-    console.log("availabilityData", availabilityData);
+    // console.log("availabilityData", availabilityData);
 
 
     const navigate = useNavigate()
