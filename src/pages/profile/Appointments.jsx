@@ -47,12 +47,12 @@ const Appointments = () => {
     const [status, setStatus] = useState("upcoming")
     const [allAppointments, setAllAppointments] = useState([]);
 
-    const getDentists = async () => {
+    const getAppointments = async () => {
         fetchData(`/patient/get-all-appointments?patientId=${userInfo?.userId}&status=${status}`);
     }
 
     useEffect(() => {
-        getDentists();
+        getAppointments();
     }, [status])
 
 

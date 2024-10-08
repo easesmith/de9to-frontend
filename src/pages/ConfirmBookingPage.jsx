@@ -105,7 +105,7 @@ const ConfirmBookingPage = () => {
                     <div className='shadow-lg rounded-md p-3 mt-5 bg-white grid grid-cols-[30%_68%] gap-3'>
                         <div className='rounded-[6px] relative'>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='h-full w-full' src={PlusImg} alt="" />
+                            <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
                         </div>
                         <div>
                             <div className="flex justify-between items-center gap-3">
