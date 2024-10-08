@@ -3,15 +3,19 @@ import { FaLocationArrow } from "react-icons/fa"
 import { IoCall } from "react-icons/io5"
 import { Button } from "../ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog"
-import { format } from 'date-fns'
+import { format, parse } from 'date-fns'
 
-const AppointmentModal = ({ isAppointmentModalOpen, setIsAppointmentModalOpen,appointment }) => {
+const AppointmentModal = ({ isAppointmentModalOpen, setIsAppointmentModalOpen, appointment }) => {
     const handleMapSearch = () => {
         const latitude = 28.6466773;
         const longitude = 77.1564994;
         const mapUrl = `https://www.google.com/maps/@?api=1&map_action=map&center=${latitude},${longitude}&zoom=15`;
         window.open(mapUrl, '_blank'); // Opens Google Maps in a new tab with the coordinates
     };
+
+    console.log("appointment?.timing?.date", appointment?.timing?.date);
+    const parsedDate = parse(appointment?.timing?.date, "dd-MM-yyyy", new Date());
+    const formattedDate = format(parsedDate, "EEE dd, yyyy");
 
     return (
         <Dialog open={isAppointmentModalOpen} onOpenChange={setIsAppointmentModalOpen}>
@@ -38,10 +42,10 @@ const AppointmentModal = ({ isAppointmentModalOpen, setIsAppointmentModalOpen,ap
                         </div>
                         <div className="border-l border-[#717171]">
                             <p className="p-2 border-b border-[#717171] text-[#1A1A1A] font-inter">{`${appointment?.dentistId?.personalDetails?.prefix} ${appointment?.dentistId?.personalDetails?.Firstname}`}</p>
-                            <p className="p-2 border-b border-[#717171] text-[#1A1A1A] font-inter">{format(new Date(appointment?.timing?.date),"EEE dd, yyy")} | {appointment?.timing?.slot?.startTime || "no time"}</p>
+                            <p className="p-2 border-b border-[#717171] text-[#1A1A1A] font-inter">{formattedDate} | {appointment?.timing?.slot?.startTime || "no time"}</p>
                             <p className="p-2 border-b border-[#717171] text-[#1A1A1A] font-inter">{appointment?.patientId?.name}</p>
                             <p className="p-2 border-b border-[#717171] text-[#1A1A1A] font-inter">
-                            {appointment?.clinicId?.clinicName}
+                                {appointment?.clinicId?.clinicName}
                                 <div className="flex gap-2 mt-1">
                                     <button onClick={handleMapSearch} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex items-center gap-[6px]'>
                                         <FaLocationArrow className='text-[#95C22B] text-xs' />

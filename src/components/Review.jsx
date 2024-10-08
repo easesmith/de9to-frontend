@@ -4,7 +4,6 @@ import ReactStars from 'react-stars'
 
 const Review = ({ rating }) => {
     const nameArray = rating?.patient?.name?.split(" ") || [];
-    console.log("nameArray", nameArray);
 
     return (
         <div>

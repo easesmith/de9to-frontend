@@ -30,9 +30,11 @@ const ClinicDetails = () => {
     const params = useParams();
     const [clinic, setClinic] = useState("");
     const [ratings, setRatings] = useState([]);
+    const [dentists, setDentists] = useState([]);
     const [sortRating, setSortRating] = useState("latest")
     const { res, fetchData, isLoading } = useGetApiReq();
     const { res: clinicRatingsRes, fetchData: fetchClinicRatingsData, isLoading: isClinicRatingsLoading } = useGetApiReq();
+    const { res: clinicDentistsRes, fetchData: fetchClinicDentistsData, isLoading: isClinicDentistsLoading } = useGetApiReq();
 
     const getClinic = async () => {
         fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
@@ -46,7 +48,7 @@ const ClinicDetails = () => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             setClinic(res?.data?.foundClinic);
-            console.log("clinic details response", res);
+            // console.log("clinic details response", res);
         }
     }, [res])
 
@@ -63,9 +65,25 @@ const ClinicDetails = () => {
     useEffect(() => {
         if (clinicRatingsRes?.status === 200 || clinicRatingsRes?.status === 201) {
             setRatings(clinicRatingsRes?.data?.data?.reviews);
-            console.log("clinicRatingsRes response", clinicRatingsRes);
+            // console.log("clinicRatingsRes response", clinicRatingsRes);
         }
     }, [clinicRatingsRes])
+
+    const getClinicDentists = async () => {
+        fetchClinicDentistsData(`/patient/get-clinic-dentists?clinicId=${params?.clinicId}`);
+    }
+
+    useEffect(() => {
+        getClinicDentists();
+    }, [])
+
+
+    useEffect(() => {
+        if (clinicDentistsRes?.status === 200 || clinicDentistsRes?.status === 201) {
+            setDentists(clinicDentistsRes?.data?.data?.doctors);
+            console.log("clinicDentistsRes response", clinicDentistsRes);
+        }
+    }, [clinicDentistsRes])
 
     return (
         <Layout>
@@ -82,9 +100,20 @@ const ClinicDetails = () => {
                     <div className="bg-white shadow w-full rounded">
                         <p className='p-3 font-inter font-medium text-[#717171]'>Book Your Appointment</p>
                         <div className="p-3 pt-4 flex flex-col gap-4">
-                            <Dentist />
-                            <Dentist />
-                            <Dentist />
+                            {dentists?.map((dentist) => (
+                                <Dentist
+                                    key={dentist?._id}
+                                    dentist={dentist}
+                                />
+                            ))}
+
+                            {dentists?.length === 0 && isClinicDentistsLoading &&
+                                <Spinner size={30} />
+                            }
+
+                            {dentists?.length === 0 && !isClinicDentistsLoading &&
+                                <DataNotFound name={"Dentists"} />
+                            }
                         </div>
                     </div>
                 </div>
@@ -162,14 +191,14 @@ const ClinicDetails = () => {
                                     rating={rating}
                                 />
                             ))}
-                            
-                        {ratings?.length === 0 && isClinicRatingsLoading &&
-                            <Spinner size={30} />
-                        }
 
-                        {ratings?.length === 0 && !isClinicRatingsLoading &&
-                            <DataNotFound name={"Reviews"} />
-                        }
+                            {ratings?.length === 0 && isClinicRatingsLoading &&
+                                <Spinner size={30} />
+                            }
+
+                            {ratings?.length === 0 && !isClinicRatingsLoading &&
+                                <DataNotFound name={"Reviews"} />
+                            }
                         </div>
                         <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>

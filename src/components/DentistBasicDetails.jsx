@@ -52,7 +52,7 @@ const DentistBasicDetails = ({details}) => {
                                 <li className='text-sm text-[#717171] leading-[10px]'><b>Approach:</b> Focused on patient comfort and long-term oral health</li>
                             </ul>
                         </div>
-                        <Badge className="rounded-md text-[#95C22B] text-sm font-semibold border-[#95C22B] mt-8" variant="outline">{details?.educationalQualification?.yearsOfExperience} + years Experience</Badge>
+                        <Badge className="rounded-md text-[#95C22B] text-sm font-semibold border-[#95C22B] mt-8" variant="outline">4+ years Experience</Badge>
 
                         {/* <div>
                         </div> */}

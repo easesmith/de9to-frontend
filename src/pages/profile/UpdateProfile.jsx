@@ -25,13 +25,18 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { updatePreview } from '@/utils/updatePreview';
+import usePatchApiReq from '@/hooks/usePatchApiReq';
+import { readCookie } from '@/utils/readCookie';
 
 const UpdateProfile = () => {
     const [isMobileEdit, setIsMobileEdit] = useState(false);
+    const { res, fetchData, isLoading } = usePatchApiReq();
+    const userInfo = readCookie("userInfo");
 
     const form = useForm({
         resolver: zodResolver(ProfileSchema),
         defaultValues: {
+            name: "",
             profileImg: "",
             profileImgPreview: "",
             mobile: "1234567890",
@@ -61,10 +66,25 @@ const UpdateProfile = () => {
         updatePreview(profileImg, "profileImgPreview", setValue);
     }, [form, profileImg, setValue]);
 
+
     const onSubmit = (data) => {
         console.log("Data:", data);
-        // reset();
+        const formData = new FormData();
+        formData.append("name", data.name)
+        formData.append("pincode", data.pincode)
+        formData.append("city", data.city)
+        formData.append("state", data.state)
+        formData.append("address", "")
+        formData.append("area", "")
+        formData.append("patientId", userInfo?.userId)
+        fetchData(`/dentist/update-patient`, formData);
     };
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("patient profile res", res);
+        }
+    }, [res])
 
     return (
         <ProfileLayout>
