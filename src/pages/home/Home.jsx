@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import Layout from '@/component/Layout/Layout'
 import TreatementCompo from '@/components/TreatementCompo'
 import Card, { DentalTeamCard } from '@/component/Card/Card'
@@ -26,13 +26,34 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModal'
+import useGetApiReq from '@/hooks/useGetApiReq'
 
 const Home = () => {
 
   const [active, setActive] = useState(1)
   const swiperRef3 = useRef(null);
   const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
+  const [testimonials, setTestimonials] = useState([])
 
+  const { res, fetchData } = useGetApiReq()
+
+
+  const getTestimonialData = useCallback(async () => {
+    fetchData(`/patient/get-testimonials?testimonials=${testimonials}`)
+  })
+
+  useEffect(() => {
+    getTestimonialData()
+  }, [fetch])
+
+  useEffect(() => {
+    if (res?.status === 200 || res?.status === 201) {
+      console.log(res)
+      setTestimonials(res.data.testimonials)
+    }
+  }, [res])
+
+  console.log(testimonials)
 
 
   const handleActive = (number) => {
@@ -51,7 +72,7 @@ const Home = () => {
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
                 <div className=' flex gap-5'>
                   <div className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
-                    <button  onClick={() => setIsConfirmBookingModalOpen(true)} className=' text-[#FFFFFF] text-lg font-semibold font-poppins '>Book an appointment</button>
+                    <button onClick={() => setIsConfirmBookingModalOpen(true)} className=' text-[#FFFFFF] text-lg font-semibold font-poppins '>Book an appointment</button>
                     <MdOutlineArrowOutward color='#FFFFFF' fontSize={24} />
                   </div>
                   <div className='flex justify-center items-center gap-1 border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
@@ -60,10 +81,10 @@ const Home = () => {
                   </div>
                 </div>
                 {isConfirmBookingModalOpen &&
-                    <ConfirmBookingModal
-                        isConfirmBookingModalOpen={isConfirmBookingModalOpen}
-                        setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
-                    />
+                  <ConfirmBookingModal
+                    isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+                    setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                  />
                 }
               </div>
               <div className=''>
@@ -248,57 +269,27 @@ const Home = () => {
                 }}
                 className="mySwiper flex justify-center dental-camp w-[600px] h-[350px] gap-5"
               >
-                <SwiperSlide>
-                  <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom5 p-10'>
-                    <p className=' text-[#636571] text-2xl text-center font-light 
-                    italic font-poppins'>Lorem ipsum dolor sit amet, consectetuer
-                      adipiscing elit. Aenean commodo ligula eget
-                      dolor. Aenean massa.</p>
-                    <div className="profile flex justify-center items-start gap-6">
-                      <div className="profile-picture">
-                        <img src={ProfileImg1} />
-                      </div>
-                      <div>
-                        <h4 className=' text-[#595959] text-2xl font-bold font-inter'>Jonathan Vallem</h4>
-                        <p className=" text-[#595959] text-base font-normal font-inter">New york, USA</p>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom4 p-10'>
-                    <p className=' text-[#636571] text-2xl text-center font-light 
-                    italic font-poppins'>Lorem ipsum dolor sit amet, consectetuer
-                      adipiscing elit. Aenean commodo ligula eget
-                      dolor. Aenean massa.</p>
-                    <div className="profile flex justify-center items-start gap-6">
-                      <div className="profile-picture">
-                        <img src={ProfileImg1} />
-                      </div>
-                      <div>
-                        <h4 className=' text-[#595959] text-2xl font-bold font-inter'>Jonathan Vallem</h4>
-                        <p className=" text-[#595959] text-base font-normal font-inter">New york, USA</p>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom4 p-10'>
-                    <p className=' text-[#636571] text-2xl text-center font-light 
-                    italic font-poppins'>Lorem ipsum dolor sit amet, consectetuer
-                      adipiscing elit. Aenean commodo ligula eget
-                      dolor. Aenean massa.</p>
-                    <div className="profile flex justify-center items-start gap-6">
-                      <div className="profile-picture">
-                        <img src={ProfileImg1} />
-                      </div>
-                      <div>
-                        <h4 className=' text-[#595959] text-2xl font-bold font-inter'>Jonathan Vallem</h4>
-                        <p className=" text-[#595959] text-base font-normal font-inter">New york, USA</p>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                {testimonials.length > 0 && testimonials.map((e, i) => {
+                  return (
+                    <>
+                      <SwiperSlide>
+                        <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom5 p-10'>
+                          <p className=' text-[#636571] text-2xl text-center font-light 
+                    italic font-poppins'>{e.comment}</p>
+                          <div className="profile flex justify-center items-start gap-6">
+                            <div className="profile-picture">
+                              <img src={e.image} />
+                            </div>
+                            <div>
+                              <h4 className=' text-[#595959] text-2xl font-bold font-inter'>{e.name}</h4>
+                              <p className=" text-[#595959] text-base font-normal font-inter">New york, USA</p>
+                            </div>
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    </>
+                  )
+                })}
               </Swiper>
             </div>
             <div className=' flex gap-3 pt-20'>
@@ -306,30 +297,30 @@ const Home = () => {
               <BsArrowRight onClick={() => swiperRef3.current?.slideNext()} fontSize={30} className=' cursor-pointer hover:text-[#95C22B]' />
             </div>
             <div className=' absolute z-10 left-[12%] mt-48'>
-            <div className=' relative flex justify-center items-center'>
-              <img src={ProfileImg1} alt="" className=' absolute z-10 left-[0%] bottom-[25%]' />
-              <div className='relative z-0 w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
-                <img src={ProfileImg1} alt="" className=' absolute z-10 left-[25%] bottom-[18%]' />
-                <img src={ProfileImg1} alt="" className=' absolute z-10 left-[18%] top-[25%]' />
-                <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
-                  <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
+              <div className=' relative flex justify-center items-center'>
+                <img src={ProfileImg1} alt="" className=' absolute z-10 left-[0%] bottom-[25%]' />
+                <div className='relative z-0 w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
+                  <img src={ProfileImg1} alt="" className=' absolute z-10 left-[25%] bottom-[18%]' />
+                  <img src={ProfileImg1} alt="" className=' absolute z-10 left-[18%] top-[25%]' />
+                  <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
+                    <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className=' absolute right-[12%] mt-48'>
-            <div className=' relative flex justify-center items-center'>
-              <img src={ProfileImg1} alt="" className=' absolute z-10 right-[3%] top-[18%]' />
-              <img src={ProfileImg1} alt="" className=' absolute z-10 right-[3%] bottom-[18%]' />
-              <div className='relative w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
-                <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
-                  <img src={ProfileImg1} alt="" className=' absolute right-[16%] top-[42%]' />
-                  <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
+            <div className=' absolute right-[12%] mt-48'>
+              <div className=' relative flex justify-center items-center'>
+                <img src={ProfileImg1} alt="" className=' absolute z-10 right-[3%] top-[18%]' />
+                <img src={ProfileImg1} alt="" className=' absolute z-10 right-[3%] bottom-[18%]' />
+                <div className='relative w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
+                  <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
+                    <img src={ProfileImg1} alt="" className=' absolute right-[16%] top-[42%]' />
+                    <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </section>
 
