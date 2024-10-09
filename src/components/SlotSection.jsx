@@ -7,17 +7,18 @@ const SlotSection = ({ title, slots, selectedSlot, handleSlotClick, dayDate }) =
             <img src={icon} alt={`${title} Icon`} />
             <h4 className="font-inter text-[#1A1A1A]">{title}</h4>
         </div>
-        {slots.length > 0 ? (
+        {slots?.length > 0 ? (
             <div className="grid grid-cols-[repeat(5,1fr)] gap-2">
                 {slots.map((slot, slotIndex) => (
                     <Button
                         type="button"
                         key={slotIndex}
                         variant="secondary"
-                        className={`border-2 ${selectedSlot === slot ? 'bg-[#95C22B] hover:bg-[#95C22B] text-white' : ''}`}
-                        onClick={() => handleSlotClick(slot, dayDate)}
+                        className={`border-2 ${selectedSlot === slot?.slotId?.startTime ? 'bg-[#95C22B] hover:bg-[#95C22B] text-white' : ''}`}
+                        onClick={() => handleSlotClick(slot?.slotId?.startTime, dayDate,slot?.slotId?._id)}
+                        disabled={slot?.slotId?.isBooked}
                     >
-                        {slot}
+                        {slot?.slotId?.startTime}
                     </Button>
                 ))}
             </div>

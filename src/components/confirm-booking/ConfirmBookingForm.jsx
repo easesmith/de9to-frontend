@@ -38,24 +38,28 @@ const ConfirmBookingForm = ({ apiData }) => {
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
         // reset();
-        // setIsConfirmBookingSuccessModalOpen(true);
         // navigate("/confirm-booking");
         fetchData(`/patient/book-appointment`,
             {
-                doctorsId: apiData.dentistId,
+                doctorsId: apiData?.dentistId,
                 patientId: userInfo.userId,
-                timing: { date: apiData.date, slot: "66a0f11945c984fe180ef976", day: format(new Date(apiData.date), "EEEE") },
-                clinicId: apiData.clinic,
-                name: data.name,
+                slotId: apiData?.slotId,
+                clinicId: apiData?.clinic,
+                fullName: data.name,
                 mobile: data.mobile,
                 email: data.email,
+                timing: {
+                    date: apiData.date,
+                    day: format(new Date(apiData.date), "EEEE")
+                }
             });
-
-    };
+            
+        };
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            console.log("Dentist details res", res);
+            console.log("booking res", res);
+            setIsConfirmBookingSuccessModalOpen(true);
         }
     }, [res])
 

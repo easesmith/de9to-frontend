@@ -1,10 +1,12 @@
 import Layout from '@/component/Layout/Layout'
 import ClinicAppointment from '@/components/ClinicAppointment'
 import ClinicAppointment2 from '@/components/ClinicAppointment2'
+import DataNotFound from '@/components/DataNotFound'
 import DentistBasicDetails from '@/components/DentistBasicDetails'
 import RatingsComp from '@/components/RatingsComp'
 import Review from '@/components/Review'
 import SingleEducation from '@/components/SingleEducation'
+import Spinner from '@/components/Spinner'
 import { Button } from '@/components/ui/button'
 import {
     Select,
@@ -23,7 +25,10 @@ import { useParams } from 'react-router-dom'
 const DentistDetails = () => {
     const params = useParams();
     const { res, fetchData, isLoading } = useGetApiReq();
+    const { res: dentistRatingsRes, fetchData: fetchDentistRatingsData, isLoading: isDentistRatingsLoading } = useGetApiReq();
     const [dentistDetails, setDentistDetails] = useState("")
+    const [ratings, setRatings] = useState([]);
+    const [sortRating, setSortRating] = useState("latest")
 
     const getDentistDetails = useCallback(async () => {
         fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId || "66d02520cd6af954e0eba864"}`);
@@ -39,6 +44,23 @@ const DentistDetails = () => {
             setDentistDetails(res?.data?.data);
         }
     }, [res])
+
+
+    const getDentistRating = async () => {
+        fetchDentistRatingsData(`/patient/get-dentist-reviews?dentistId=${params?.dentistId}&sort=${sortRating}`);
+    }
+
+    useEffect(() => {
+        getDentistRating();
+    }, [])
+
+
+    useEffect(() => {
+        if (dentistRatingsRes?.status === 200 || dentistRatingsRes?.status === 201) {
+            setRatings(dentistRatingsRes?.data?.data?.reviews);
+            console.log("dentistRatingsRes response", dentistRatingsRes);
+        }
+    }, [dentistRatingsRes])
 
     return (
         <Layout>
@@ -56,13 +78,23 @@ const DentistDetails = () => {
                     <div className="bg-white shadow w-full rounded">
                         <p className='p-3 font-inter font-medium text-[#717171]'>Book Your Appointment</p>
                         <div className="p-3 pt-4">
-                            <ClinicAppointment />
+                            {dentistDetails?.clinic?.map((clinic) => (
+                                clinic?.defaultClinic &&
+                                <ClinicAppointment
+                                    key={clinic._id}
+                                    clinic={clinic}
+                                    dentistId={dentistDetails?._id}
+                                    dentistDetails={dentistDetails}
+                                />
+                            ))}
                             <div className="grid grid-cols-3 gap-4 mt-5">
                                 {dentistDetails?.clinic?.map((clinic) => (
+                                    !clinic?.defaultClinic &&
                                     <ClinicAppointment2
                                         key={clinic._id}
                                         clinic={clinic}
                                         dentistId={dentistDetails?._id}
+                                        dentistDetails={dentistDetails}
                                     />
                                 ))}
                             </div>
@@ -93,22 +125,33 @@ const DentistDetails = () => {
                     <div className='w-full mb-5'>
                         <RatingsComp />
                         <div className='flex justify-end my-5'>
-                            <Select defaultValue='newestReview'>
+                            <Select onValueChange={setSortRating} value={sortRating}>
                                 <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
                                     <SelectValue placeholder="" />
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
                                     <SelectGroup>
-                                        <SelectItem value="newestReview">Sort by newest review</SelectItem>
-                                        <SelectItem value="oldestReview">Sort by oldest review</SelectItem>
+                                        <SelectItem value="latest">Sort by newest review</SelectItem>
+                                        <SelectItem value="oldest">Sort by oldest review</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
                         </div>
                         <div className='reviews flex flex-col gap-5 max-h-[420px] overflow-y-auto mb-5'>
-                            <Review />
-                            <Review />
-                            <Review />
+                            {ratings?.map((rating) => (
+                                <Review
+                                    key={rating?._id}
+                                    rating={rating}
+                                />
+                            ))}
+
+                            {ratings?.length === 0 && isDentistRatingsLoading &&
+                                <Spinner size={30} />
+                            }
+
+                            {ratings?.length === 0 && !isDentistRatingsLoading &&
+                                <DataNotFound name={"Reviews"} />
+                            }
                         </div>
                         <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>

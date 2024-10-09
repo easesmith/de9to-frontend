@@ -1,5 +1,7 @@
 import ProfileLayout from '@/component/Layout/ProfileLayout';
+import DataNotFound from '@/components/DataNotFound';
 import Feedback from '@/components/profile/Feedback';
+import Spinner from '@/components/Spinner';
 import { Button } from '@/components/ui/button';
 import {
     Table,
@@ -8,6 +10,9 @@ import {
     TableHeader,
     TableRow
 } from "@/components/ui/table";
+import useGetApiReq from '@/hooks/useGetApiReq';
+import { readCookie } from '@/utils/readCookie';
+import { useEffect, useState } from 'react';
 
 const MyFeedback = () => {
     const feedbacks = [
@@ -24,6 +29,28 @@ const MyFeedback = () => {
             feedback: "Working at Sam.AI has been an incredible journey so far. The technology we're building is truly cutting-edge, and being a part of a team that's revolutionizing how people achieve their goals is immensely fulfilling.",
         },
     ]
+
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const userInfo = readCookie("userInfo");
+    const [allReviews, setAllReviews] = useState([]);
+    console.log("userInfo", userInfo);
+
+
+    const getAppointments = async () => {
+        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}`);
+    }
+
+    useEffect(() => {
+        getAppointments();
+    }, [])
+
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            setAllReviews(res.data.data);
+            console.log("reviews response", res);
+        }
+    }, [res])
 
     return (
         <ProfileLayout>
@@ -44,7 +71,7 @@ const MyFeedback = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {feedbacks.map((feedback, i) => (
+                        {allReviews.map((feedback, i) => (
                             <Feedback
                                 key={i}
                                 feedback={feedback}
@@ -52,6 +79,14 @@ const MyFeedback = () => {
                         ))}
                     </TableBody>
                 </Table>
+
+                {allReviews?.length === 0 && isLoading &&
+                    <Spinner size={30} />
+                }
+
+                {allReviews?.length === 0 && !isLoading &&
+                    <DataNotFound name={"Reviews"} />
+                }
             </div>
         </ProfileLayout>
     )

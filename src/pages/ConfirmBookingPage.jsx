@@ -16,7 +16,7 @@ import { useLocation } from 'react-router-dom'
 import ReactStars from 'react-stars'
 
 const ConfirmBookingPage = () => {
-    const { state: { data, clinicDetails } } = useLocation();
+    const { state: { data, clinicDetails, slotId, timing, startIndex } } = useLocation();
     const { clinicPhotos, clinicName, clinicAddress, city, nearbyLandmark, state, clinicPincode } = clinicDetails || {};
 
     const userInfo = readCookie("userInfo");
@@ -24,10 +24,17 @@ const ConfirmBookingPage = () => {
     console.log("userInfo", userInfo);
     console.log("data", data);
     console.log("clinicDetails", clinicDetails);
+    console.log("slotId", slotId);
 
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(data?.date);  // Initialize with default values
     const [selectedTime, setSelectedTime] = useState(data?.time);  // Initialize with default values
+
+    useEffect(() => {
+        setSelectedDate(data?.date);
+        setSelectedTime(data?.time);
+    }, [data])
+
 
     const [dentistDetails, setDentistDetails] = useState("")
 
@@ -46,10 +53,10 @@ const ConfirmBookingPage = () => {
         }
     }, [res])
 
-    const {personalDetails,clinic=[],educationalQualification} = dentistDetails || {};
+    const { personalDetails, clinic = [], educationalQualification } = dentistDetails || {};
 
-    console.log("clinic",clinic[0]);
-    
+    console.log("clinic", clinic[0]);
+
 
     return (
         <Layout>
@@ -141,16 +148,17 @@ const ConfirmBookingPage = () => {
                             selectedTime={selectedTime}
                             clinic={{ _id: data.clinic }}
                             dentistId={data?.dentistId}
+                            timing={timing}
+                            selectedIndex={startIndex}
                         // updateDateAndTime={updateDateAndTime}
-                        // selectedIndex={"selected1"}
                         />
                     }
                 </div>
                 <div className='px-4 py-6'>
                     <h2 className='font-inter text-xl font-medium mb-4'>Enter Patient Details</h2>
                     <ConfirmBookingForm
-                    apiData={{...data}}
-                     />
+                        apiData={{ ...data, slotId }}
+                    />
                 </div>
             </div>
         </Layout>

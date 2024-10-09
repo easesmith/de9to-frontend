@@ -25,8 +25,7 @@ const clinicSchema = z.object({
     dentistId: z.string().optional(),
 });
 
-const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex, clinic = "", dentistId }) => {
-    console.log("dentistId", dentistId);
+const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex, clinic = "", dentistId, timing }) => {
 
     const navigate = useNavigate();
 
@@ -39,6 +38,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             dentistId: dentistId || "",
         },
     });
+    console.log("clinic:", clinic);
 
     const { reset, handleSubmit } = form;
 
@@ -46,37 +46,44 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         console.log("Booking Data:", data);
         // reset();
         setIsConfirmBookingModalOpen(false); // Close modal after submission
-        navigate("/confirm-booking", { state: { data, clinicDetails:clinic } });
+        navigate("/confirm-booking", { state: { data, clinicDetails: clinic, slotId, timing, startIndex } });
     };
 
     const [selectedSlot, setSelectedSlot] = useState(selectedTime);
+    const [slotId, setSlotId] = useState("");
     const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(), "yyyy-MM-dd"));
     const [selected, setSelected] = useState(selectedIndex || "selected0");
-    const [startIndex, setStartIndex] = useState(0);
+    const [startIndex, setStartIndex] = useState(selectedIndex);
+    console.log("selectedDate", selectedDay);
+    console.log("selectedSlot", selectedSlot);
 
     // Generate dates dynamically
-    const getDaysFromToday = (days, slotTimes) => {
+    const getDaysFromToday = (days) => {
         return Array.from({ length: days }, (_, i) => {
             const date = addDays(new Date(), i);
+            const day = format(date, "EEEE");
             const formattedDate = format(date, "yyyy-MM-dd");
             const displayDate = i === 0 ? "Today" : i === 1 ? "Tomorrow" : format(date, "EEE, dd MMM");
 
-            const availableSlots = {
-                morning: slotTimes.morning[i] || [],
-                afternoon: slotTimes.afternoon[i] || [],
-                evening: slotTimes.evening[i] || [],
-                night: slotTimes.night[i] || []
-            };
+            // const availableSlots = {
+            //     morning: slotTimes.morning[i] || [],
+            //     afternoon: slotTimes.afternoon[i] || [],
+            //     evening: slotTimes.evening[i] || [],
+            //     night: slotTimes.night[i] || []
+            // };
 
-            const hasSlots = Object.values(availableSlots).some(slots => slots.length > 0);
+            const availableSlots = timing.filter((item) => item.day.toLowerCase() === day.toLowerCase());
+            // console.log("availableSlots", availableSlots);
+
+
+            const hasSlots = timing.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots.length > 0);
 
             return {
                 name: displayDate,
                 date: formattedDate,
+                day: day,
                 slotsAvailable: hasSlots,
-                slots: availableSlots,
-                message: hasSlots ? null : "No slots available.",
-                nextSlotButton: !hasSlots // true if no slots available, to show the button
+                slots: availableSlots[0] || "",
             };
         });
     };
@@ -122,15 +129,16 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     };
 
     // Generate the days with slot times
-    const days = getDaysFromToday(7, slotTimes);
+    const days = getDaysFromToday(7);
 
     // Output the result
     console.log(days);
     // Generate the next 7 days starting from today
 
     // Handle slot selection
-    const handleSlotClick = (slot, date) => {
+    const handleSlotClick = (slot, date, slotId) => {
         setSelectedSlot(slot);
+        setSlotId(slotId);
         setSelectedDay(date);
         form.setValue("time", slot);
         form.setValue("date", date);
@@ -139,6 +147,16 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const handleDaySelection = (index) => {
         setSelected(`selected${index}`);
         setSelectedSlot("");
+        // setStartIndex(index);
+        const selectedDate = days[index].date;
+        setSelectedDay(selectedDate);
+        form.setValue("date", selectedDate);
+    };
+
+    const handleDaySelection2 = (index) => {
+        setSelected(`selected${index}`);
+        setSelectedSlot("");
+        setStartIndex(index);
         const selectedDate = days[index].date;
         setSelectedDay(selectedDate);
         form.setValue("date", selectedDate);
@@ -148,7 +166,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         const currentIndex = days.findIndex(day => day.date === currentDate);
         for (let i = currentIndex + 1; i < days.length; i++) {
             if (days[i].slotsAvailable) {
-                return days[i].name; // Return the display name of the next available date
+                return { name: days[i].name, index: i }; // Return the display name of the next available date
             }
         }
         return null; // No next available date found
@@ -173,13 +191,13 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     // Handle next and previous navigation
     const handleNext = () => {
         if (startIndex + 3 < days.length) {
-            setStartIndex(startIndex + 1);
+            setStartIndex(startIndex + 3);
         }
     };
 
     const handlePrev = () => {
         if (startIndex > 0) {
-            setStartIndex(startIndex - 1);
+            setStartIndex(startIndex - 3);
         }
     };
 
@@ -187,6 +205,9 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     useEffect(() => {
         const VisibleDays = days.slice(startIndex, startIndex + 3);
         setVisibleDays(VisibleDays)
+        setSelected(`selected${startIndex}`)
+        const selectedDate = days[startIndex].date;
+        setSelectedDay(selectedDate);
     }, [startIndex])
 
     // Get the visible days (3 at a time)
@@ -199,7 +220,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             {/* Clinic Selection */}
-                            {!clinic && <div className="w-full">
+                            {clinic && clinic.length > 0 && <div className="w-full">
                                 <FormField
                                     control={form.control}
                                     name="clinic"
@@ -211,10 +232,11 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                     <SelectTrigger className="w-full border bg-[#F9FFEA] border-[#95C22B]">
                                                         <SelectValue placeholder="Select clinic" />
                                                     </SelectTrigger>
-                                                    <SelectContent className="border border-[#95C22B] rounded-lg py-[10px] px-5">
+                                                    <SelectContent className="border border-[#95C22B] rounded-lg py-[10px]">
                                                         <SelectGroup>
-                                                            <SelectItem value="DentalMarc Dental Clinic">DentalMarc Dental Clinic (2 kms away)</SelectItem>
-                                                            <SelectItem value="Another Clinic">Another Clinic (3 kms away)</SelectItem>
+                                                            {clinic.map((item)=>(
+                                                                <SelectItem key={item?._id} value={item?._id}>{item?.clinicName}</SelectItem>
+                                                            ))}
                                                         </SelectGroup>
                                                     </SelectContent>
                                                 </Select>
@@ -228,37 +250,39 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                             {/* Availability Section */}
                             <Label className="font-inter text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
 
-                            <div className="grid w-full gap-4 grid-cols-[10%_1fr_1fr_1fr_10%]">
+                            <div className="grid w-full gap-4 grid-cols-[10%_1fr_10%]">
                                 <button
                                     type="button"
-                                    className="flex justify-center items-center"
+                                    className="flex justify-center items-center disabled:text-gray-300"
                                     onClick={handlePrev}
                                     disabled={startIndex === 0}
                                 >
                                     <IoIosArrowBack className="border w-14 h-14 p-4 rounded-full" />
                                 </button>
-                                {visibleDays.map((day, index) => {
-                                    // Count available slots across all times of the day
-                                    const totalAvailableSlots = Object.values(day.slots).reduce((acc, slots) => acc + slots.length, 0);
+                                <div className="grid w-full gap-4 grid-cols-[1fr_1fr_1fr]">
+                                    {visibleDays.map((day, index) => {
+                                        // Count available slots across all times of the day
+                                        const totalAvailableSlots = day?.slots && day?.slots?.allSlots.length;
 
-                                    return (
-                                        <button
-                                            type="button"
-                                            key={index + startIndex}
-                                            onClick={() => handleDaySelection(index + startIndex)}
-                                            className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
-                                        >
-                                            <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
-                                            <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
-                                                {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "No slots available"}
-                                            </p>
-                                        </button>
-                                    );
-                                })}
+                                        return (
+                                            <button
+                                                type="button"
+                                                key={index + startIndex}
+                                                onClick={() => handleDaySelection(index + startIndex)}
+                                                className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
+                                            >
+                                                <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
+                                                <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
+                                                    {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "No slots available"}
+                                                </p>
+                                            </button>
+                                        );
+                                    })}
 
+                                </div>
                                 <button
                                     type="button"
-                                    className="flex justify-center items-center"
+                                    className="flex justify-center items-center disabled:text-gray-300"
                                     onClick={handleNext}
                                     disabled={startIndex + 3 >= days.length}
                                 >
@@ -268,18 +292,19 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
 
                             {/* Slot Selection */}
                             <div className="mt-3 w-full">
-                                {days.map((day, dayIndex) => (
+                                {days.map((item, dayIndex) => (
                                     <div key={dayIndex}>
-                                        {day.slotsAvailable ? (
+                                        {item.slotsAvailable ? (
+                                            // ['Morning', 'Afternoon', 'Evening', 'Night']
                                             <div className={`grid grid-cols-1 gap-3 ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
-                                                {['Morning', 'Afternoon', 'Evening', 'Night'].map((timeOfDay) => (
+                                                {['Slots'].map((timeOfDay) => (
                                                     <SlotSection
                                                         key={timeOfDay}
                                                         title={timeOfDay}
-                                                        slots={day.slots[timeOfDay.toLowerCase()]}
+                                                        slots={item?.slots?.allSlots}
                                                         selectedSlot={selectedSlot}
                                                         handleSlotClick={handleSlotClick}
-                                                        dayDate={day.date}
+                                                        dayDate={item.date}
                                                     />
                                                 ))}
                                                 <Button type="submit" className="bg-[#95C22B] w-full">
@@ -293,10 +318,10 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                 <Button
                                                     type="button"
                                                     className="bg-[#95C22B] w-full"
-                                                    onClick={() => handleDaySelection(dayIndex + 1)}
-                                                    disabled={!findNextAvailableDate(day.date)}
+                                                    onClick={() => handleDaySelection2(dayIndex + findNextAvailableDate(item.date).index)}
+                                                    disabled={!findNextAvailableDate(item.date)}
                                                 >
-                                                    Next availability on {findNextAvailableDate(day.date)} {/* Dynamic date */}
+                                                    Next availability on {findNextAvailableDate(item.date)?.name} {/* Dynamic date */}
                                                 </Button>
                                             </div>
                                         )}
