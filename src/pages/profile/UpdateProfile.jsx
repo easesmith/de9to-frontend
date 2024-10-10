@@ -27,10 +27,13 @@ import { cn } from "@/lib/utils";
 import { updatePreview } from '@/utils/updatePreview';
 import usePatchApiReq from '@/hooks/usePatchApiReq';
 import { readCookie } from '@/utils/readCookie';
+import toast from 'react-hot-toast';
+import useGetApiReq from '@/hooks/useGetApiReq';
 
 const UpdateProfile = () => {
     const [isMobileEdit, setIsMobileEdit] = useState(false);
     const { res, fetchData, isLoading } = usePatchApiReq();
+    const { res: profileRes, fetchData: fetchProfileData, isLoading: isProfileLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
 
     const form = useForm({
@@ -39,24 +42,23 @@ const UpdateProfile = () => {
             name: "",
             profileImg: "",
             profileImgPreview: "",
-            mobile: "1234567890",
+            mobile: "",
             email: "",
             gender: "",
             dateOfBirth: "",
-            bloodGroup: "",
-            timezone: "",
-            streetName: "",
-            locality: "",
+            address: "",
+            area: "",
             city: "",
             state: "",
             country: "",
             pincode: "",
-            alternateMobileNumber: "",
-            language: "",
         },
     });
 
+    
+    
     const { reset, handleSubmit, getValues, watch, register, setValue } = form;
+    console.log("getValues",getValues());
 
     const profileImgRef = register("profileImg");
 
@@ -70,21 +72,58 @@ const UpdateProfile = () => {
     const onSubmit = (data) => {
         console.log("Data:", data);
         const formData = new FormData();
+
+        formData.append("profileImage", data.profileImg)
         formData.append("name", data.name)
+        formData.append("email", data.email)
         formData.append("pincode", data.pincode)
         formData.append("city", data.city)
         formData.append("state", data.state)
-        formData.append("address", "")
-        formData.append("area", "")
+        formData.append("gender", data.gender)
+        formData.append("mobile", data.mobile)
+        formData.append("address", data.address)
+        formData.append("area", data.area)
+        formData.append("dob", data.dateOfBirth)
+        formData.append("country", data.country)
         formData.append("patientId", userInfo?.userId)
-        fetchData(`/dentist/update-patient`, formData);
+        fetchData(`/patient/update-patient`, formData);
     };
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             console.log("patient profile res", res);
+            toast.success("Patient profile updated successfully");
         }
     }, [res])
+
+    const getPatientProfile = () => {
+        fetchProfileData(`/patient/get-patient-details?patientId=${userInfo?.userId}`);
+    }
+
+    useEffect(() => {
+        getPatientProfile();
+    }, [])
+
+    useEffect(() => {
+        if (profileRes?.status === 200 || profileRes?.status === 201) {
+            console.log("patient profile get res", profileRes);
+            const { foundPatient } = profileRes?.data;
+
+            setValue("name", foundPatient.name);
+            // setValue("profileImg", foundPatient.profileImage);
+            setValue("profileImgPreview", `${import.meta.env.VITE_IMAGE_URL}/${foundPatient.profileImage}`);
+            setValue("mobile", foundPatient.phone);
+            setValue("email", foundPatient.email);
+            setValue("gender", foundPatient.gender);
+            setValue("dateOfBirth", new Date(foundPatient.dob));
+            setValue("address", foundPatient.address);
+            setValue("area", foundPatient.area);
+            setValue("city", foundPatient.city);
+            setValue("state", foundPatient.state);
+            setValue("country", foundPatient.country);
+            setValue("pincode", foundPatient.pincode);
+        }
+    }, [profileRes])
 
     return (
         <ProfileLayout>
@@ -141,7 +180,51 @@ const UpdateProfile = () => {
                                             )}
                                         />
                                     </div>
-                                    <div className=""></div>
+                                    <div className="">
+                                        <FormField
+                                            control={form.control}
+                                            name="dateOfBirth"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Date of Birth</FormLabel>
+                                                    <FormControl>
+                                                        <Popover>
+                                                            <PopoverTrigger asChild>
+                                                                <FormControl>
+                                                                    <Button
+                                                                        variant={"outline"}
+                                                                        className={cn(
+                                                                            "w-full flex gap-2 justify-start text-[#717171]",
+                                                                            !field.value && "text-muted-foreground"
+                                                                        )}
+                                                                    >
+                                                                        <FaCalendar className='text-[#717171]' />
+                                                                        {field.value ? (
+                                                                            format(field.value, "PPP")
+                                                                        ) : (
+                                                                            <span>Pick a date</span>
+                                                                        )}
+                                                                    </Button>
+                                                                </FormControl>
+                                                            </PopoverTrigger>
+                                                            <PopoverContent className="w-auto p-0" align="start">
+                                                                <Calendar
+                                                                    mode="single"
+                                                                    selected={field.value}
+                                                                    onSelect={field.onChange}
+                                                                    disabled={(date) =>
+                                                                        date > new Date() || date < new Date("1900-01-01")
+                                                                    }
+                                                                    initialFocus
+                                                                />
+                                                            </PopoverContent>
+                                                        </Popover>
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
                                 </div>
 
                                 <div className="grid grid-cols-3 w-full gap-5">
@@ -218,7 +301,7 @@ const UpdateProfile = () => {
                                 </div>
 
                                 <div className="grid grid-cols-3 w-full gap-5">
-                                    <div className="">
+                                    {/* <div className="">
                                         <FormField
                                             control={form.control}
                                             name="dateOfBirth"
@@ -262,8 +345,8 @@ const UpdateProfile = () => {
                                                 </FormItem>
                                             )}
                                         />
-                                    </div>
-                                    <div className="">
+                                    </div> */}
+                                    {/* <div className="">
                                         <FormField
                                             control={form.control}
                                             name="bloodGroup"
@@ -291,8 +374,8 @@ const UpdateProfile = () => {
                                                 </FormItem>
                                             )}
                                         />
-                                    </div>
-                                    <div className="">
+                                    </div> */}
+                                    {/* <div className="">
                                         <FormField
                                             control={form.control}
                                             name="timezone"
@@ -313,19 +396,19 @@ const UpdateProfile = () => {
                                                 </FormItem>
                                             )}
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
 
-                                <h2 className='text-xl font-inter font-medium text-[#0D0E0E] mt-10'>Address</h2>
+                                <h2 className='text-xl font-inter font-medium text-[#0D0E0E] mt-5'>Address</h2>
 
                                 <div className="grid grid-cols-3 w-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
-                                            name="streetName"
+                                            name="address"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">House No./ Street Name/ Area</FormLabel>
+                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Address</FormLabel>
                                                     <FormControl>
                                                         <Input placeholder="Enter Details" className="placeholder:text-[#717171] h-12 border-[#E4E6EE]" {...field} />
                                                     </FormControl>
@@ -337,10 +420,10 @@ const UpdateProfile = () => {
                                     <div className="">
                                         <FormField
                                             control={form.control}
-                                            name="locality"
+                                            name="area"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Colony / Street / Locality</FormLabel>
+                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Area</FormLabel>
                                                     <FormControl>
                                                         <Input placeholder="Enter Details" className="placeholder:text-[#717171] h-12 border-[#E4E6EE]" {...field} />
                                                     </FormControl>
@@ -423,9 +506,9 @@ const UpdateProfile = () => {
                                     </div>
                                 </div>
 
-                                <h2 className='text-xl font-inter font-medium text-[#0D0E0E] mt-10'>Other Information</h2>
+                                {/* <h2 className='text-xl font-inter font-medium text-[#0D0E0E] mt-10'>Other Information</h2> */}
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                {/* <div className="grid grid-cols-3 w-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
@@ -467,12 +550,12 @@ const UpdateProfile = () => {
                                             )}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                <div className="grid grid-cols-3 w-full gap-5 mt-4">
                                     <div></div>
                                     <div></div>
-                                    <Button type="submit" className="bg-[#95C22B] mt-4 flex justify-center w-full h-12">
+                                    <Button type="submit" className="bg-[#95C22B] flex justify-center w-full h-12">
                                         Save changes
                                     </Button>
                                 </div>

@@ -7,6 +7,7 @@ import BackdropLoader from './components/backdrop-loader/BackdropLoader'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleErrorModal } from './store/slices/errorSlice'
 import { Toaster } from 'react-hot-toast'
+import ProtectedRoute from './components/ProtectedRoute'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -70,14 +71,16 @@ const App = () => {
           <Route path='/confirm-booking' element={<ConfirmBookingPage />} />
           <Route path='/payment' element={<PaymentPage />} />
 
-          <Route path='/profile/medical-records' element={<MedicalRecords />} />
-          <Route path='/profile/appointments' element={<Appointments />} />
-          <Route path='/profile/my-feedback' element={<MyFeedback />} />
-          <Route path='/profile/payment' element={<Payment />} />
-          <Route path='/profile/update-profile' element={<UpdateProfile />} />
-          <Route path='/profile/change-password' element={<ChangePassword />} />
-          <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
-          <Route path='/profile/delete-account' element={<DeleteAccount />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/profile/medical-records' element={<MedicalRecords />} />
+            <Route path='/profile/appointments' element={<Appointments />} />
+            <Route path='/profile/my-feedback' element={<MyFeedback />} />
+            <Route path='/profile/payment' element={<Payment />} />
+            <Route path='/profile/update-profile' element={<UpdateProfile />} />
+            <Route path='/profile/change-password' element={<ChangePassword />} />
+            <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
+            <Route path='/profile/delete-account' element={<DeleteAccount />} />
+          </Route>
         </Routes>
       </Suspense>
       <Toaster />

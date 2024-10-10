@@ -143,19 +143,18 @@ export const ProfileSchema = z.object({
     name: z.string().min(1, "Name is required"),  // Name is required
     mobile: z.string()
         .min(1, "Mobile number is required")
-        .min(10, "Mobile number must be at least 10 digits")
-        .max(15, "Mobile number can't exceed 15 digits"),  // Mobile is required and validated
+        .max(10, "Mobile number must be digits"),
     email: z.string().email().optional(),  // Optional email with valid format
     gender: z.string().optional(),  // Optional gender field
     dateOfBirth: z.date().optional(),  // Optional date of birth as string, could use date type
-    bloodGroup: z.string().optional(),  // Optional blood group with validation
-    timezone: z.string().optional(),  // Optional timezone
-    streetName: z.string().optional(),  // Optional street name
-    locality: z.string().optional(),  // Optional locality
+    // bloodGroup: z.string().optional(),  // Optional blood group with validation
+    // timezone: z.string().optional(),  // Optional timezone
+    address: z.string().optional(),  // Optional street name
+    area: z.string().optional(),  // Optional locality
     city: z.string().optional(),  // Optional city
     state: z.string().optional(),  // Optional state
     country: z.string().optional(),  // Optional country
     pincode: z.string().optional(),  // Optional pincode
-    alternateMobileNumber: z.string().optional(),  // Optional alternate mobile number
-    language: z.string().optional()  // Optional language
+    // alternateMobileNumber: z.string().optional(),  // Optional alternate mobile number
+    // language: z.string().optional()  // Optional language
 });

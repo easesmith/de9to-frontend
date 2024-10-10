@@ -4,10 +4,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { IoIosArrowDown } from 'react-icons/io'
 import DeleteAccountModal from './DeleteAccountModal'
 import { Button } from './ui/button'
+import { readCookie } from '@/utils/readCookie'
 
 const Sidebar = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate();
+    const userInfo = readCookie("userInfo");
+    console.log("userInfo",userInfo);
+    
     const [isMasterOpen, setIsMasterOpen] = useState(false);
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
 
@@ -19,7 +23,7 @@ const Sidebar = () => {
                     <AvatarImage src="https://github.com/shadcn.png" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <p className='font-inter font-medium text-[#0F172A]'>User 8766543</p>
+                <p className='font-inter font-medium text-[#0F172A]'>{userInfo?.name}</p>
             </div>
             <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
                 <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>

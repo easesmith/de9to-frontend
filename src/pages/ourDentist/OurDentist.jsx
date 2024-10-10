@@ -63,7 +63,7 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res2?.status === 200 || res2?.status === 201) {
-      // console.log("ShortDentist:", res2.data.dentists)
+      console.log("ShortDentist:", res)
       setAllDentists(res2.data.dentists)
     }
   }, [res2])

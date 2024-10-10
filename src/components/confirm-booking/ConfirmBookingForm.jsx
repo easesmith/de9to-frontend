@@ -49,7 +49,7 @@ const ConfirmBookingForm = ({ apiData }) => {
                 mobile: data.mobile,
                 email: data.email,
                 timing: {
-                    date: apiData.date,
+                    date: format(new Date(apiData.date), "dd-MM-yyy"),
                     day: format(new Date(apiData.date), "EEEE")
                 }
             });

@@ -41,7 +41,7 @@ const DentistDetails = () => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             console.log("Dentist details res", res);
-            setDentistDetails(res?.data?.data);
+            setDentistDetails(res?.data?.data?.dentist);
         }
     }, [res])
 
@@ -61,6 +61,7 @@ const DentistDetails = () => {
             console.log("dentistRatingsRes response", dentistRatingsRes);
         }
     }, [dentistRatingsRes])
+
 
     return (
         <Layout>

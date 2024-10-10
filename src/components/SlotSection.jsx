@@ -2,13 +2,13 @@ import { Button } from "./ui/button";
 import icon from "@/assets/Frame (5).png";
 
 const SlotSection = ({ title, slots, selectedSlot, handleSlotClick, dayDate }) => (
-    <div className="grid grid-cols-[120px_1fr] gap-3">
-        <div className="flex items-center gap-2">
+    <div className="grid w-full gap-3">
+        {/* <div className="flex items-center gap-2">
             <img src={icon} alt={`${title} Icon`} />
             <h4 className="font-inter text-[#1A1A1A]">{title}</h4>
-        </div>
+        </div> */}
         {slots?.length > 0 ? (
-            <div className="grid grid-cols-[repeat(5,1fr)] gap-2">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] w-full gap-2">
                 {slots.map((slot, slotIndex) => (
                     <Button
                         type="button"

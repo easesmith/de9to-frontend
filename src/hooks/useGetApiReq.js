@@ -7,6 +7,7 @@ import { handleLoading } from "@/store/slices/loadingSlice";
 const useGetApiReq = () => {
     const [res, setRes] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const dispatch = useDispatch();
 
@@ -19,6 +20,7 @@ const useGetApiReq = () => {
                 setRes(response);
             }
         } catch (error) {
+            setError(error);
             await dispatch(handleErrorModal({ isOpen: true, message: error.response?.data?.message || "An error occurred.", isLogoutBtn: true }));
         } finally {
             setIsLoading(false);
@@ -26,7 +28,7 @@ const useGetApiReq = () => {
         }
     };
 
-    return { res, isLoading, fetchData };
+    return { res, isLoading, fetchData,error };
 
 
 };

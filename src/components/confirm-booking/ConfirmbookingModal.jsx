@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import SlotSection from "../SlotSection";
+import useGetApiReq from "@/hooks/useGetApiReq";
 
 const clinicSchema = z.object({
     clinic: z.string().min(1, "Please select a clinic"),
@@ -51,6 +52,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
 
     const [selectedSlot, setSelectedSlot] = useState(selectedTime);
     const [slotId, setSlotId] = useState("");
+    const [slots, setSlots] = useState([]);
     const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(), "yyyy-MM-dd"));
     const [selected, setSelected] = useState(selectedIndex || "selected0");
     const [startIndex, setStartIndex] = useState(selectedIndex);
@@ -72,11 +74,11 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             //     night: slotTimes.night[i] || []
             // };
 
-            const availableSlots = timing.filter((item) => item.day.toLowerCase() === day.toLowerCase());
+            const availableSlots = timing?.filter((item) => item?.day.toLowerCase() === day?.toLowerCase());
             // console.log("availableSlots", availableSlots);
 
 
-            const hasSlots = timing.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots.length > 0);
+            const hasSlots = timing?.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots.length > 0);
 
             return {
                 name: displayDate,
@@ -211,6 +213,32 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     }, [startIndex])
 
     // Get the visible days (3 at a time)
+    const { res: slotsRes, fetchData: fetchSlotsData, isLoading: isSlotsLoading,error } = useGetApiReq();
+
+    console.log("data",format(new Date(selectedDay), "EEEE"));
+    
+    const getSlots = async () => {
+        fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${clinic?._id}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE")}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);
+    }
+
+    useEffect(() => {
+        getSlots();
+    }, [selectedDay])
+
+
+    useEffect(() => {
+        if (slotsRes?.status === 200 || slotsRes?.status === 201) {
+            setSlots(slotsRes?.data?.data?.availableSlots);
+            console.log("slotsRes response", slotsRes);
+        }
+    }, [slotsRes])
+
+    useEffect(() => {
+        if (error) {
+            console.log("slotsRes error", error);
+            setSlots([]);
+        }
+    }, [error])
 
     return (
         <Dialog open={isConfirmBookingModalOpen} onOpenChange={setIsConfirmBookingModalOpen}>
@@ -234,7 +262,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                     </SelectTrigger>
                                                     <SelectContent className="border border-[#95C22B] rounded-lg py-[10px]">
                                                         <SelectGroup>
-                                                            {clinic.map((item)=>(
+                                                            {clinic.map((item) => (
                                                                 <SelectItem key={item?._id} value={item?._id}>{item?.clinicName}</SelectItem>
                                                             ))}
                                                         </SelectGroup>
@@ -262,7 +290,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                 <div className="grid w-full gap-4 grid-cols-[1fr_1fr_1fr]">
                                     {visibleDays.map((day, index) => {
                                         // Count available slots across all times of the day
-                                        const totalAvailableSlots = day?.slots && day?.slots?.allSlots.length;
+                                        const totalAvailableSlots = day.date === selectedDay && slots.length;
 
                                         return (
                                             <button
@@ -273,7 +301,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                             >
                                                 <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
                                                 <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
-                                                    {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "No slots available"}
+                                                    {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "Click to check"}
                                                 </p>
                                             </button>
                                         );
@@ -297,16 +325,15 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                         {item.slotsAvailable ? (
                                             // ['Morning', 'Afternoon', 'Evening', 'Night']
                                             <div className={`grid grid-cols-1 gap-3 ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
-                                                {['Slots'].map((timeOfDay) => (
+                                                {/* {slots.map((slot) => ( */}
                                                     <SlotSection
-                                                        key={timeOfDay}
-                                                        title={timeOfDay}
-                                                        slots={item?.slots?.allSlots}
+                                                        title={"Slots"}
+                                                        slots={slots}
                                                         selectedSlot={selectedSlot}
                                                         handleSlotClick={handleSlotClick}
                                                         dayDate={item.date}
                                                     />
-                                                ))}
+                                                {/* ))} */}
                                                 <Button type="submit" className="bg-[#95C22B] w-full">
                                                     Confirm Booking
                                                 </Button>

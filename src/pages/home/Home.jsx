@@ -72,7 +72,7 @@ const Home = () => {
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
                 <div className=' flex gap-5'>
                   <div className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
-                    <button onClick={() => setIsConfirmBookingModalOpen(true)} className=' text-[#FFFFFF] text-lg font-semibold font-poppins '>Book an appointment</button>
+                    <button onClick={() => setIsConfirmBookingModalOpen(false)} className=' text-[#FFFFFF] text-lg font-semibold font-poppins '>Book an appointment</button>
                     <MdOutlineArrowOutward color='#FFFFFF' fontSize={24} />
                   </div>
                   <div className='flex justify-center items-center gap-1 border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
