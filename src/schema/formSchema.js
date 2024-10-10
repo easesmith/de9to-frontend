@@ -143,7 +143,7 @@ export const ProfileSchema = z.object({
     name: z.string().min(1, "Name is required"),  // Name is required
     mobile: z.string()
         .min(1, "Mobile number is required")
-        .max(10, "Mobile number must be digits"),
+        .max(10, "Mobile number must be 10 digits"),
     email: z.string().email().optional(),  // Optional email with valid format
     gender: z.string().optional(),  // Optional gender field
     dateOfBirth: z.date().optional(),  // Optional date of birth as string, could use date type
