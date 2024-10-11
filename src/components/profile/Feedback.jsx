@@ -8,8 +8,8 @@ import { format } from 'date-fns';
 const Feedback = ({ feedback }) => {
     return (
         <TableRow className="text-[#1A1A1A] font-inter">
-            <TableCell>{format(new Date(feedback?.createdAt),"dd/MM/yyy")}</TableCell>
-            <TableCell>{feedback?.clinic?"":`${feedback?.dentist?.personalDetails?.prefix} ${feedback?.dentist?.personalDetails?.Firstname}`}</TableCell>
+            <TableCell>{format(new Date(feedback?.createdAt), "dd/MM/yyy")}</TableCell>
+            <TableCell>{feedback?.clinic ? feedback?.clinic?.clinicName : `${feedback?.dentist?.personalDetails?.prefix} ${feedback?.dentist?.personalDetails?.Firstname}`}</TableCell>
             <TableCell>
                 <ReactStars
                     count={5}

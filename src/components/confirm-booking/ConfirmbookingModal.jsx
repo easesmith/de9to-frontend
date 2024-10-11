@@ -41,7 +41,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     });
     console.log("clinic:", clinic);
 
-    const { reset, handleSubmit } = form;
+    const { reset, handleSubmit, getValues } = form;
 
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
@@ -213,17 +213,19 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     }, [startIndex])
 
     // Get the visible days (3 at a time)
-    const { res: slotsRes, fetchData: fetchSlotsData, isLoading: isSlotsLoading,error } = useGetApiReq();
+    const { res: slotsRes, fetchData: fetchSlotsData, isLoading: isSlotsLoading, error } = useGetApiReq();
 
-    console.log("data",format(new Date(selectedDay), "EEEE"));
-    
+    console.log("data", format(new Date(selectedDay), "EEEE"));
+
     const getSlots = async () => {
-        fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${clinic?._id}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE")}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);
+        fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${getValues("clinic")}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE")}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);
     }
 
     useEffect(() => {
-        getSlots();
-    }, [selectedDay])
+        if (getValues("clinic")) {
+            getSlots();
+        }
+    }, [selectedDay, getValues("clinic")])
 
 
     useEffect(() => {
@@ -276,85 +278,88 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                             </div>}
 
                             {/* Availability Section */}
-                            <Label className="font-inter text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
+                            {getValues("clinic") &&
+                                <>
+                                    <Label className="font-inter text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
 
-                            <div className="grid w-full gap-4 grid-cols-[10%_1fr_10%]">
-                                <button
-                                    type="button"
-                                    className="flex justify-center items-center disabled:text-gray-300"
-                                    onClick={handlePrev}
-                                    disabled={startIndex === 0}
-                                >
-                                    <IoIosArrowBack className="border w-14 h-14 p-4 rounded-full" />
-                                </button>
-                                <div className="grid w-full gap-4 grid-cols-[1fr_1fr_1fr]">
-                                    {visibleDays.map((day, index) => {
-                                        // Count available slots across all times of the day
-                                        const totalAvailableSlots = day.date === selectedDay && slots.length;
+                                    <div className="grid w-full gap-4 grid-cols-[10%_1fr_10%]">
+                                        <button
+                                            type="button"
+                                            className="flex justify-center items-center disabled:text-gray-300"
+                                            onClick={handlePrev}
+                                            disabled={startIndex === 0}
+                                        >
+                                            <IoIosArrowBack className="border w-14 h-14 p-4 rounded-full" />
+                                        </button>
+                                        <div className="grid w-full gap-4 grid-cols-[1fr_1fr_1fr]">
+                                            {visibleDays.map((day, index) => {
+                                                // Count available slots across all times of the day
+                                                const totalAvailableSlots = day.date === selectedDay && slots.length;
 
-                                        return (
-                                            <button
-                                                type="button"
-                                                key={index + startIndex}
-                                                onClick={() => handleDaySelection(index + startIndex)}
-                                                className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
-                                            >
-                                                <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
-                                                <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
-                                                    {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "Click to check"}
-                                                </p>
-                                            </button>
-                                        );
-                                    })}
+                                                return (
+                                                    <button
+                                                        type="button"
+                                                        key={index + startIndex}
+                                                        onClick={() => handleDaySelection(index + startIndex)}
+                                                        className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
+                                                    >
+                                                        <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
+                                                        <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
+                                                            {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "Click to check"}
+                                                        </p>
+                                                    </button>
+                                                );
+                                            })}
 
-                                </div>
-                                <button
-                                    type="button"
-                                    className="flex justify-center items-center disabled:text-gray-300"
-                                    onClick={handleNext}
-                                    disabled={startIndex + 3 >= days.length}
-                                >
-                                    <IoIosArrowForward className="border w-14 h-14 p-4 rounded-full" />
-                                </button>
-                            </div>
-
-                            {/* Slot Selection */}
-                            <div className="mt-3 w-full">
-                                {days.map((item, dayIndex) => (
-                                    <div key={dayIndex}>
-                                        {item.slotsAvailable ? (
-                                            // ['Morning', 'Afternoon', 'Evening', 'Night']
-                                            <div className={`grid grid-cols-1 gap-3 ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
-                                                {/* {slots.map((slot) => ( */}
-                                                    <SlotSection
-                                                        title={"Slots"}
-                                                        slots={slots}
-                                                        selectedSlot={selectedSlot}
-                                                        handleSlotClick={handleSlotClick}
-                                                        dayDate={item.date}
-                                                    />
-                                                {/* ))} */}
-                                                <Button type="submit" className="bg-[#95C22B] w-full">
-                                                    Confirm Booking
-                                                </Button>
-                                            </div>
-                                        ) : (
-                                            <div className={`flex flex-col gap-2 items-center w-full ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
-                                                <img src={noSlot} alt="No slots available" />
-                                                <p className="font-inter text-[#1A1A1A]">Sorry, no slots available today</p>
-                                                <Button
-                                                    type="button"
-                                                    className="bg-[#95C22B] w-full"
-                                                    onClick={() => handleDaySelection2(dayIndex + findNextAvailableDate(item.date).index)}
-                                                    disabled={!findNextAvailableDate(item.date)}
-                                                >
-                                                    Next availability on {findNextAvailableDate(item.date)?.name} {/* Dynamic date */}
-                                                </Button>
-                                            </div>
-                                        )}
+                                        </div>
+                                        <button
+                                            type="button"
+                                            className="flex justify-center items-center disabled:text-gray-300"
+                                            onClick={handleNext}
+                                            disabled={startIndex + 3 >= days.length}
+                                        >
+                                            <IoIosArrowForward className="border w-14 h-14 p-4 rounded-full" />
+                                        </button>
                                     </div>
-                                ))}
-                            </div>
+
+                                    {/* Slot Selection */}
+                                    <div className="mt-3 w-full">
+                                        {days.map((item, dayIndex) => (
+                                            <div key={dayIndex}>
+                                                {item.slotsAvailable ? (
+                                                    // ['Morning', 'Afternoon', 'Evening', 'Night']
+                                                    <div className={`grid grid-cols-1 gap-3 ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
+                                                        {/* {slots.map((slot) => ( */}
+                                                        <SlotSection
+                                                            title={"Slots"}
+                                                            slots={slots}
+                                                            selectedSlot={selectedSlot}
+                                                            handleSlotClick={handleSlotClick}
+                                                            dayDate={item.date}
+                                                        />
+                                                        {/* ))} */}
+                                                        <Button type="submit" className="bg-[#95C22B] w-full">
+                                                            Confirm Booking
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <div className={`flex flex-col gap-2 items-center w-full ${selected === `selected${dayIndex}` ? '' : 'hidden'}`}>
+                                                        <img src={noSlot} alt="No slots available" />
+                                                        <p className="font-inter text-[#1A1A1A]">Sorry, no slots available today</p>
+                                                        <Button
+                                                            type="button"
+                                                            className="bg-[#95C22B] w-full"
+                                                            onClick={() => handleDaySelection2(dayIndex + findNextAvailableDate(item.date).index)}
+                                                            disabled={!findNextAvailableDate(item.date)}
+                                                        >
+                                                            Next availability on {findNextAvailableDate(item.date)?.name} {/* Dynamic date */}
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>}
 
 
                             {/* Submit Button */}

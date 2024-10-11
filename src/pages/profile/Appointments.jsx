@@ -20,39 +20,32 @@ import {
 import useGetApiReq from '@/hooks/useGetApiReq';
 import { readCookie } from '@/utils/readCookie';
 import { useEffect, useState } from 'react';
-
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover"
+import { Calendar } from '@/components/ui/calendar';
+import { format } from 'date-fns';
 
 const Appointments = () => {
-    const appointments = [
-        {
-            date: "23/08/2024",
-            scheduledAt: "10:30 AM",
-            patient: "Myself",
-            doctor: "Dr Anusha P",
-            clinic: "Health marc Clinic",
-            status: "Completed"
-        },
-        {
-            date: "23/08/2024",
-            scheduledAt: "10:30 AM",
-            patient: "Soumya",
-            doctor: "Dr Radheram",
-            clinic: "Health marc Clinic",
-            status: "Cancelled"
-        },
-    ]
-
     const { res, fetchData, isLoading } = useGetApiReq();
+    const { res: appointmentRes, fetchData: fetchAppointmentData, isLoading: isAppointmentLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
-    const [status, setStatus] = useState("upcoming")
+    const [status, setStatus] = useState("upcoming");
     const [allAppointments, setAllAppointments] = useState([]);
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [date, setDate] = useState();
 
     const getAppointments = async () => {
         fetchData(`/patient/get-all-appointments?patientId=${userInfo?.userId}&status=${status}`);
     }
 
+    console.log("date", date);
+
+
     useEffect(() => {
-        getAppointments();
+        !date && getAppointments();
     }, [status])
 
 
@@ -63,14 +56,43 @@ const Appointments = () => {
         }
     }, [res])
 
+    const filterAppointments = async () => {
+        fetchAppointmentData(`/patient/filter-appointment-by-date?patientId=${userInfo?.userId}&date=${format(new Date(date), "dd-MM-yyy")}&status=${status}`);
+    }
+
+    useEffect(() => {
+        setIsCalendarOpen(false);
+        date && filterAppointments();
+    }, [date, status])
+
+
+    useEffect(() => {
+        if (appointmentRes?.status === 200 || appointmentRes?.status === 201) {
+            console.log("filter appointments response", appointmentRes);
+            setAllAppointments(appointmentRes?.data?.data?.appointments);
+        }
+    }, [appointmentRes])
+
     return (
         <ProfileLayout>
             <div className="bg-white rounded-lg p-5">
                 <h1 className='font-inter text-2xl font-medium text-[#00214B]'>List of Appointments</h1>
                 <div className="flex gap-4 items-center mt-5">
-                    <Button variant="outline" className="border-[#717171] font-normal text-[#717171]">
-                        Filter by date
-                    </Button>
+                    <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+                        <PopoverTrigger asChild>
+                            <Button variant="outline" className="border-[#717171] font-normal text-[#717171]">
+                                Filter by date
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                            <Calendar
+                                mode="single"
+                                selected={date}
+                                onSelect={setDate}
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
                     <Select value={status} onValueChange={(val) => setStatus(val)}>
                         <SelectTrigger className="w-[130px] border-[#717171] text-[#717171]">
                             <SelectValue placeholder="Status" />
@@ -99,7 +121,7 @@ const Appointments = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {allAppointments.map((appointment, i) => (
+                        {allAppointments?.map((appointment, i) => (
                             <Appointment
                                 key={i}
                                 appointment={appointment}
@@ -107,15 +129,15 @@ const Appointments = () => {
                             />
                         ))}
 
-                        {allAppointments.length === 0 && isLoading &&
-                            <Spinner size={30} />
-                        }
-
-                        {allAppointments.length === 0 && !isLoading &&
-                            <DataNotFound name={"Appointments"} />
-                        }
                     </TableBody>
                 </Table>
+                {allAppointments?.length === 0 && isLoading &&
+                    <Spinner size={30} />
+                }
+
+                {allAppointments?.length === 0 && !isLoading &&
+                    <DataNotFound name={"Appointments"} />
+                }
             </div>
         </ProfileLayout>
     )

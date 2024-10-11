@@ -31,10 +31,12 @@ const ClinicDetails = () => {
     const [clinic, setClinic] = useState("");
     const [ratings, setRatings] = useState([]);
     const [dentists, setDentists] = useState([]);
-    const [sortRating, setSortRating] = useState("latest")
+    const [sortRating, setSortRating] = useState("newest")
     const { res, fetchData, isLoading } = useGetApiReq();
     const { res: clinicRatingsRes, fetchData: fetchClinicRatingsData, isLoading: isClinicRatingsLoading } = useGetApiReq();
     const { res: clinicDentistsRes, fetchData: fetchClinicDentistsData, isLoading: isClinicDentistsLoading } = useGetApiReq();
+    const { res: allRatingsRes, fetchData: fetchAllRatingsData, isLoading: isAllRatingsLoading } = useGetApiReq();
+    const [allRating, setAllRating] = useState({});
 
     const getClinic = async () => {
         fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
@@ -59,13 +61,13 @@ const ClinicDetails = () => {
 
     useEffect(() => {
         getClinicRating();
-    }, [])
+    }, [sortRating])
 
 
     useEffect(() => {
         if (clinicRatingsRes?.status === 200 || clinicRatingsRes?.status === 201) {
             setRatings(clinicRatingsRes?.data?.data?.reviews);
-            // console.log("clinicRatingsRes response", clinicRatingsRes);
+            console.log("clinicRatingsRes response", clinicRatingsRes?.data?.data?.reviews);
         }
     }, [clinicRatingsRes])
 
@@ -84,6 +86,22 @@ const ClinicDetails = () => {
             console.log("clinicDentistsRes response", clinicDentistsRes);
         }
     }, [clinicDentistsRes])
+
+    const getAllRating = async () => {
+        fetchAllRatingsData(`/patient/get-grouped-ratings?clinicId=${params?.clinicId}&reviewType=clinic`);
+    }
+
+    useEffect(() => {
+        getAllRating();
+    }, [])
+
+
+    useEffect(() => {
+        if (allRatingsRes?.status === 200 || allRatingsRes?.status === 201) {
+            setAllRating(allRatingsRes?.data);
+            console.log("allRatingsRes response", allRatingsRes);
+        }
+    }, [allRatingsRes])
 
     return (
         <Layout>
@@ -170,7 +188,7 @@ const ClinicDetails = () => {
                 <div className="flex items-start gap-2 mt-10">
                     <div className='font-inter font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
                     <div className='w-full mb-5'>
-                        <RatingsComp />
+                        <RatingsComp allRating={allRating} />
                         <div className='flex justify-end my-5'>
                             <Select onValueChange={setSortRating} value={sortRating}>
                                 <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
@@ -178,7 +196,7 @@ const ClinicDetails = () => {
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
                                     <SelectGroup>
-                                        <SelectItem value="latest">Sort by newest review</SelectItem>
+                                        <SelectItem value="newest">Sort by newest review</SelectItem>
                                         <SelectItem value="oldest">Sort by oldest review</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>

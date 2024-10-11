@@ -26,9 +26,11 @@ const DentistDetails = () => {
     const params = useParams();
     const { res, fetchData, isLoading } = useGetApiReq();
     const { res: dentistRatingsRes, fetchData: fetchDentistRatingsData, isLoading: isDentistRatingsLoading } = useGetApiReq();
+    const { res: allRatingsRes, fetchData: fetchAllRatingsData, isLoading: isAllRatingsLoading } = useGetApiReq();
     const [dentistDetails, setDentistDetails] = useState("")
     const [ratings, setRatings] = useState([]);
-    const [sortRating, setSortRating] = useState("latest")
+    const [allRating, setAllRating] = useState({});
+    const [sortRating, setSortRating] = useState("newest")
 
     const getDentistDetails = useCallback(async () => {
         fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId || "66d02520cd6af954e0eba864"}`);
@@ -52,15 +54,31 @@ const DentistDetails = () => {
 
     useEffect(() => {
         getDentistRating();
-    }, [])
+    }, [sortRating])
 
 
     useEffect(() => {
         if (dentistRatingsRes?.status === 200 || dentistRatingsRes?.status === 201) {
-            setRatings(dentistRatingsRes?.data?.data?.reviews);
+            setRatings(dentistRatingsRes?.data?.data);
             console.log("dentistRatingsRes response", dentistRatingsRes);
         }
     }, [dentistRatingsRes])
+
+    const getAllRating = async () => {
+        fetchAllRatingsData(`/patient/get-grouped-ratings?dentistId=${params?.dentistId}&reviewType=dentist`);
+    }
+
+    useEffect(() => {
+        getAllRating();
+    }, [])
+
+
+    useEffect(() => {
+        if (allRatingsRes?.status === 200 || allRatingsRes?.status === 201) {
+            setAllRating(allRatingsRes?.data);
+            console.log("allRatingsRes response", allRatingsRes);
+        }
+    }, [allRatingsRes])
 
 
     return (
@@ -124,7 +142,7 @@ const DentistDetails = () => {
                 <div className="flex items-start gap-2 mt-10">
                     <div className='font-inter font-medium text-[#717171] w-28 text-right px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
                     <div className='w-full mb-5'>
-                        <RatingsComp />
+                        <RatingsComp allRating={allRating} />
                         <div className='flex justify-end my-5'>
                             <Select onValueChange={setSortRating} value={sortRating}>
                                 <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
@@ -132,7 +150,7 @@ const DentistDetails = () => {
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
                                     <SelectGroup>
-                                        <SelectItem value="latest">Sort by newest review</SelectItem>
+                                        <SelectItem value="newest">Sort by newest review</SelectItem>
                                         <SelectItem value="oldest">Sort by oldest review</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>

@@ -17,15 +17,7 @@ const ErrorModal = ({ message }) => {
     const user = readCookie("user");
 
     const handleLogout = async () => {
-        if (user) {
-            if (user?.abc === "client") {
-                fetchData("/client/logout");
-            } else if (user?.abc === "partner") {
-                fetchData("/partner/logout");
-            } else if (user?.abc === "admin") {
-                fetchData("/admin/logout");
-            }
-        }
+        fetchData("/client/logout");
     }
 
     useEffect(() => {
@@ -49,7 +41,7 @@ const ErrorModal = ({ message }) => {
                     <p>{message}</p>
                     <div className="flex items-center justify-end gap-2">
                         <Button onClick={() => dispatch(handleErrorModal({ isOpen: false, message: "" }))} type="submit">Ok</Button>
-                        {isLogoutBtn && <Button onClick={handleLogout} type="submit">Logout</Button>}
+                        {/* {isLogoutBtn && <Button onClick={handleLogout} type="submit">Logout</Button>} */}
                     </div>
                 </div>
             </DialogContent>
