@@ -50,8 +50,8 @@ const Header = () => {
   ]
 
   return (
-    <header>
-      <nav className='h-[73px]  px-20 flex justify-between items-center sticky top-0'>
+    <header className='sticky top-0 bg-white z-20'>
+      <nav className='h-[73px]  px-20 flex justify-between items-center'>
         {!pathname.includes("/profile") &&
           <Link to={'/'}>
             <div className="logo">

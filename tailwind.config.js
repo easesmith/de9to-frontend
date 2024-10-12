@@ -73,7 +73,7 @@ export default {
 				custom9: '0px 4px 4px 2px rgba(0, 0, 0, 0.07)'
 			},
 			animation: {
-				scroll: 'scroll 5s linear infinite ',
+				scroll: 'scroll 10s linear infinite ',
 				"caret-blink": "caret-blink 1.25s ease-out infinite",
 			},
 			keyframes: {

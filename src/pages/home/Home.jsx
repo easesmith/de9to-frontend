@@ -18,7 +18,7 @@ import { IoMdArrowForward } from "react-icons/io";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { useState } from 'react'
 import SearchListCompo from '@/components/SearchListCompo'
-import { Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css';
@@ -41,6 +41,14 @@ const Home = () => {
   const getTestimonialData = useCallback(async () => {
     fetchData(`/patient/get-testimonials?testimonials=${testimonials}`)
   })
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev === 3 ? 1 : prev + 1));
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     getTestimonialData()
@@ -106,7 +114,7 @@ const Home = () => {
           </div>
         </section>
         <section className='overflow-hidden bg-[#F6F6F6]'>
-          <div className="w-[100vw] flex justify-between items-center gap-20 animate-scroll py-3">
+          <div className="w-[100vw] flex justify-between items-center gap-8 animate-scroll py-3">
             <span className="text-[#5A5A5A] text-2xl font-semibold font-poppins">Pay via De9to App an get Flat 20% Discount</span>
             <span className="text-[#5A5A5A] text-2xl font-semibold font-poppins">Pay via De9to App an get Flat 20% Discount</span>
           </div>
@@ -172,7 +180,7 @@ const Home = () => {
                     }
                   </div>
                   <div className='py-[10px] flex flex-col justify-center'>
-                    <h4 className=' text-[#000000] text-2xl font-medium font-poppins'>Lorem Ipsum</h4>
+                    <h4 className=' text-[rgb(0,0,0)] text-2xl font-medium font-poppins'>Lorem Ipsum</h4>
                     {active == 2 &&
                       <p className='max-w-[430px] text-[#737373] text-base font-light font-poppins'>Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium</p>
                     }
@@ -259,11 +267,15 @@ const Home = () => {
                 pagination={{
                   clickable: true,
                 }}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
                 navigation={{
                   nextEl: '.swiper-button-next',
                   prevEl: '.swiper-button-prev',
                 }}
-                modules={[Pagination, Navigation]}
+                modules={[Pagination, Navigation, Autoplay]}
                 onSwiper={(swiper) => {
                   swiperRef3.current = swiper;
                 }}

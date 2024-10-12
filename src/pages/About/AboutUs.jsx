@@ -14,7 +14,7 @@ import TeamMemberThree from '../../assets/mohit-1.png.png'
 import HappyDentistImg from '../../assets/happy-dentists-with-patient 1.png'
 import { MangementInfo, OurTeamMember, PrevLink } from '@/component/MiniCompo/MiniCompo'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/pagination';
 // import './styles.css';
@@ -157,7 +157,11 @@ const AboutUs = () => {
                         pagination={{
                             clickable: true,
                         }}
-                        modules={[Pagination]}
+                        modules={[Pagination, Autoplay]}
+                        autoplay={{
+                            delay: 2000,
+                            disableOnInteraction: false,
+                        }}
                         className="mySwiper about-us h-[290px] w-[900px]"
                     >
                         <SwiperSlide>

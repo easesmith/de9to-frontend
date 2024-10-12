@@ -1,13 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
-import PreventingImg from '../../assets/noun-toothache-6895920 3.png'
-import GumDiseaseImg from '../../assets/noun-tooth-7037140 1.png'
-import OverallImg from '../../assets/noun-tooth-7037172 1.png'
-import BoostingImg from '../../assets/noun-tooth-7037163 1.png'
-import OurCollaboratorImg1 from '../../assets/image 151.png'
-import OurCollaboratorImg2 from '../../assets/image 153.png'
-import OurCollaboratorImg3 from '../../assets/image 155.png'
-import OurCollaboratorImg4 from '../../assets/image 157.png'
+import { useEffect, useRef, useState } from 'react'
+import RequestDentalImg from '../../assets/codifyformatter__1_-removebg-preview 1.png'
 import ProfessionalImg1 from '../../assets/Ellipse 3.png'
 import ProfessionalImg2 from '../../assets/Ellipse 4.png'
 import ProfessionalImg3 from '../../assets/Ellipse 5.png'
@@ -15,60 +8,60 @@ import ProfessionalImg4 from '../../assets/Ellipse 6.png'
 import ProfessionalImg5 from '../../assets/Ellipse 7.png'
 import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
-import RequestDentalImg from '../../assets/codifyformatter__1_-removebg-preview 1.png'
-import DestistSignupImg from '../../assets/Frame.png'
 import DentalConsultationImg from '../../assets/Frame (1).png'
 import DestistCampsImg from '../../assets/Frame (2).png'
 import PinCodersCoveredImg from '../../assets/Frame (3).png'
 import HealthWebinarImg from '../../assets/Frame (4).png'
 import DentalCampImg1 from '../../assets/Frame 1171283211.png'
 import DentalCampImg2 from '../../assets/Frame 1171283212.png'
+import DestistSignupImg from '../../assets/Frame.png'
 import DentalCampImg3 from '../../assets/image 150.png'
+import OurCollaboratorImg1 from '../../assets/image 151.png'
+import OurCollaboratorImg2 from '../../assets/image 153.png'
+import OurCollaboratorImg3 from '../../assets/image 155.png'
+import OurCollaboratorImg4 from '../../assets/image 157.png'
+import GumDiseaseImg from '../../assets/noun-tooth-7037140 1.png'
+import BoostingImg from '../../assets/noun-tooth-7037163 1.png'
+import OverallImg from '../../assets/noun-tooth-7037172 1.png'
+import PreventingImg from '../../assets/noun-toothache-6895920 3.png'
 
 
-import NGOImg1 from '../../assets/image.png'
-import ProfileImg from '../../assets/Profile picture.png'
-import { HiArrowLongRight } from "react-icons/hi2";
+import { MangementInfo } from '@/component/MiniCompo/MiniCompo'
+import ChoosePlanCompo from '@/components/ChoosePlanCompo'
 import { Button } from '@/components/ui/button'
-import { GoArrowLeft } from "react-icons/go";
-import { GoArrowRight } from "react-icons/go";
-import ReactStars from 'react-stars'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { requestDentalCampSchema } from '@/schema/formSchema'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { MangementInfo } from '@/component/MiniCompo/MiniCompo'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay, Mousewheel, Keyboard } from 'swiper/modules';
-import { FaLocationDot } from 'react-icons/fa6'
-import { MdAccessTimeFilled } from "react-icons/md";
-import { MdCalendarMonth } from "react-icons/md";
-import BackgroundImg from '../../assets/Subtract.png'
+import { requestDentalCampSchema } from '@/schema/formSchema'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { IoIosCheckmarkCircle } from "react-icons/io";
-import { FaCircleXmark } from "react-icons/fa6";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import ChoosePlanCompo from '@/components/ChoosePlanCompo'
-import WhyDentalCampsCarousel from '@/components/SwiperCompo'
+import { FaLocationDot } from 'react-icons/fa6'
+import { GoArrowLeft, GoArrowRight } from "react-icons/go"
+import { HiArrowLongRight } from "react-icons/hi2"
+import { MdAccessTimeFilled, MdCalendarMonth } from "react-icons/md"
+import ReactStars from 'react-stars'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Img1 from '../../assets/Frame 1171277952.png'
+import NGOImg1 from '../../assets/image.png'
+import ProfileImg from '../../assets/Profile picture.png'
+import BackgroundImg from '../../assets/Subtract.png'
 
-import { Calendar } from "@/components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { format } from 'date-fns'
-import { generateTimeOptions } from '@/utils/generateTimeOptions'
+} from "@/components/ui/popover"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import usePostApiReq from '@/hooks/usePostApiReq'
+import { cn } from "@/lib/utils"
+import { generateTimeOptions } from '@/utils/generateTimeOptions'
+import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 
 
@@ -551,9 +544,13 @@ const DentalCamp = () => {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
               }}
-              modules={[Pagination, Navigation]}
+              modules={[Pagination, Navigation, Autoplay]}
               onSwiper={(swiper) => {
                 swiperRef1.current = swiper;
+              }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
               }}
               className='h-[430px]'
             >
@@ -601,10 +598,10 @@ const DentalCamp = () => {
               <h4 className='text-[#1A1A1A] text-[40px] font-extrabold font-inter'>Why Dental Camps are Important</h4>
             </div>
           </div>
-          <div className='flex gap-12 items-center overflow-hidden'>
+          <div className='flex gap-12 items-center overflow-hidden overflow-y-visible'>
             {data.map((e, i) => {
               return (
-                <div key={i} className=' animate-scroll rounded-2xl bg-[#FFFFFF] flex flex-col items-center gap-5 py-3 px-2 min-w-[180px] h-[170px] shadow-lg cursor-pointer '>
+                <div key={i} className='animate-scroll rounded-2xl bg-[#FFFFFF] flex flex-col items-center gap-5 py-3 px-2 my-2 min-w-[180px] h-[170px] shadow-lg cursor-pointer '>
                   <img src={e.image} alt="" className='w-[64px] h-[36px]' />
                   <p className={`text-[#1A1A1A] text-center text-sm font-normal font-inter`}>{e.description}</p>
                 </div>
@@ -634,6 +631,10 @@ const DentalCamp = () => {
                   }}
                   onSwiper={(swiper) => {
                     swiperRef2.current = swiper;
+                  }}
+                  autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
                   }}
                   onSlideChange={() => console.log('slide change')}
                 >
@@ -721,9 +722,13 @@ const DentalCamp = () => {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   }}
-                  modules={[Pagination, Navigation]}
+                  modules={[Pagination, Navigation, Autoplay]}
                   onSwiper={(swiper) => {
                     swiperRef3.current = swiper;
+                  }}
+                  autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
                   }}
                   className="mySwiper h-[450px] dental-camp"
                 >
