@@ -112,7 +112,8 @@ const OurDentist = () => {
                   <DataNotFound />
               }
             </div>
-            <ReactPagination pageCount={pageCount} setPage={setPage} />
+            {allDentists.length > 0 &&
+            <ReactPagination pageCount={pageCount} setPage={setPage} />}
           </div>
         </section>
       </main>
