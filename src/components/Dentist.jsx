@@ -8,6 +8,8 @@ import { Button } from './ui/button';
 import { FiArrowUpRight } from 'react-icons/fi';
 import { useState } from 'react';
 import ConfirmbookingModal from './confirm-booking/ConfirmbookingModal';
+import { calculateAverageRating } from '@/utils/getAverageRating';
+import { format } from 'date-fns';
 
 const Dentist = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -28,12 +30,16 @@ const Dentist = ({ dentist }) => {
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
-    const availabilityData = clinic[0]?.weeklyHoliday?.map((item) => {
+    const availabilityData = dentist?.dentistAvailableTiming?.map((item) => {
         if (daysOfWeek.some(day => day.toLowerCase() === item.day.toLowerCase())) {
             const dayAbbreviation = item.day.substring(0, 3);
             return dayAbbreviation.charAt(0).toUpperCase() + dayAbbreviation.slice(1);
         }
     })
+    const today = format(new Date(), "EEEE");
+    const availabilityTime = dentist?.dentistAvailableTiming?.find((item) => item.day === today)
+
+    const averageRating = calculateAverageRating(dentist?.dentistRatings);
 
     return (
         <div className='border-2 border-[#5B5B5B] border-l-8 border-l-[#95C22B] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
@@ -49,8 +55,8 @@ const Dentist = ({ dentist }) => {
                     <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{personalDetails?.prefix
                     } {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
-                        <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
-                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                        <ReactStars edit={false} size={25} count={5} value={averageRating} color2={'#FF8A00'} />
+                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {dentist?.dentistRatings?.length} users</div>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
@@ -72,7 +78,7 @@ const Dentist = ({ dentist }) => {
                     <FaClock className='text-[#717171] text-xl' />
                     <div className='flex gap-2 items-center'>
                         <p className=' text-[#717171] font-inter font-normal'>Timings: </p>
-                        <p className='text-[#717171] font-inter font-semibold'>10:45AM- 4:00PM</p>
+                        <p className='text-[#717171] font-inter font-semibold'>{availabilityTime?.slot[0]?.startTime} - {availabilityTime?.slot[0]?.endTime}</p>
                     </div>
                 </div>
                 <p className='text-[#717171] font-inter font-normal text-sm mt-1'>Dr Tanya Batra completed his graduation from Dr MGR Medical University Chennai in the year 2006 and internship in the year 2007</p>

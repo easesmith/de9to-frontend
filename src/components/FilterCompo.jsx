@@ -37,7 +37,7 @@ const FilterCompo = (props) => {
             <div className='border-[1.5px] border-[#717171] h-[30px]'></div>
             <Select value={location} onValueChange={handleLocationChange}>
                 <SelectTrigger className="w-[250px] px-12 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
-                    <SelectValue placeholder="Search by Location" />
+                    <SelectValue placeholder="Search by Locality" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
