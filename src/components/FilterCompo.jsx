@@ -22,7 +22,7 @@ const FilterCompo = (props) => {
             <div className='border-[1.5px] border-[#717171] h-[30px]'></div>
             <Select value={rating} onValueChange={handleRatingChange}>
                 <SelectTrigger className="w-[250px] px-8 border-none text-[#1A1A1A] bg-[#EEEEEE] text-sm font-medium font-inter">
-                    <SelectValue placeholder="Search by Fee Range" />
+                    <SelectValue placeholder="Search by Rating" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
