@@ -36,9 +36,13 @@ const OurClinic = () => {
     }
 
     const { res, fetchData, isLoading } = useGetApiReq();
+    const { res:filterClinicRes, fetchData:fetchFilterClinicData, isLoading:isFilterClinicLoading } = useGetApiReq();
+
     const [allClinics, setAllClinics] = useState([]);
     const [pageCount, setPageCount] = useState(1)
     const [page, setPage] = useState(1);
+    const [rating, setRating] = useState("");
+    const [location, setLocation] = useState("");
 
     const getClinics = async () => {
         fetchData(`/patient/get-all-Clinics?page=${page}`);
@@ -56,6 +60,23 @@ const OurClinic = () => {
             console.log("clinics response", res);
         }
     }, [res])
+
+    const filterClinics = async () => {
+        fetchFilterClinicData(`/patient/get-all-Clinics?page=${page}`);
+    }
+
+    useEffect(() => {
+        // filterClinics();
+    }, [page])
+
+
+    useEffect(() => {
+        if (filterClinicRes?.status === 200 || filterClinicRes?.status === 201) {
+            // setAllClinics(res?.data?.data?.clinics);
+            // setPageCount(res?.data?.data?.pagination?.totalPages);
+            console.log("filterClinicRes response", filterClinicRes);
+        }
+    }, [filterClinicRes])
 
     return (
         <Layout>

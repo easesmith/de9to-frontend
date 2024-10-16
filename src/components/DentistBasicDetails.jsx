@@ -3,11 +3,13 @@ import PlusImg from '@/assets/medical-doctor-logo-for-sale 1.png';
 import VerifiedImg from '@/assets/verified 1.png';
 import testVideo from '@/assets/videos/test.mp4';
 import { Badge } from "@/components/ui/badge";
+import { calculateAverageRating } from '@/utils/getAverageRating';
 import { FaGraduationCap, FaPlay } from 'react-icons/fa';
 import ReactPlayer from 'react-player';
 import ReactStars from 'react-stars';
 
-const DentistBasicDetails = ({details}) => {
+const DentistBasicDetails = ({ details }) => {
+    const averageRating = details && calculateAverageRating(details?.dentistRatings);
 
     return (
         <div className="grid grid-cols-[75%_300px] gap-4">
@@ -31,7 +33,7 @@ const DentistBasicDetails = ({details}) => {
                                 </Button> */}
                             </div>
                             <div>
-                                <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
+                                <ReactStars edit={false} size={25} count={5} value={averageRating} color2={'#FF8A00'} />
                                 <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
                             </div>
                         </div>

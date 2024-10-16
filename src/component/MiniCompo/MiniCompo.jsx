@@ -202,12 +202,12 @@ const AllProfileCard = () => {
       <h5 className='text-[rgb(0,0,0)] text-xs text-center italic font-bold font-inter'>Our professionals</h5>
       <div className=' flex items-center relative w-[130px]'>
         <img src={ProfessionalImg1} alt="" className='absolute  z-0 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg2} alt="" className='absolute left-[15px] z-10 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg3} alt="" className='absolute left-[30px] z-20 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg4} alt="" className='absolute left-[45px] z-30 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg5} alt="" className='absolute left-[60px] z-40 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg6} alt="" className='absolute left-[75px] z-50 w-[26.5px] h-[26.5px]' />
-        <img src={ProfessionalImg7} alt="" className='absolute left-[90px] z-60 w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg2} alt="" className='absolute left-[15px] z-[1] w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg3} alt="" className='absolute left-[30px] z-[2] w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg4} alt="" className='absolute left-[45px] z-[3] w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg5} alt="" className='absolute left-[60px] z-[4] w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg6} alt="" className='absolute left-[75px] z-[5] w-[26.5px] h-[26.5px]' />
+        <img src={ProfessionalImg7} alt="" className='absolute left-[90px] z-[6] w-[26.5px] h-[26.5px]' />
         <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[105px] z-70 w-[26.5px] h-[26.5px]'>
           <p className='text-[#FFFFFF] text-sm font-normal font-poppins'>30+</p>
         </div>

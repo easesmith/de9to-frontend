@@ -12,8 +12,9 @@ import { IoCall } from "react-icons/io5";
 import { useState } from 'react';
 import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
 import { useNavigate } from 'react-router-dom';
+import { calculateAverageRating } from '@/utils/getAverageRating';
 
-const Clinic = ({clinic}) => {
+const Clinic = ({ clinic }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
     const navigate = useNavigate()
 
@@ -23,6 +24,10 @@ const Clinic = ({clinic}) => {
         const mapUrl = `https://www.google.com/maps/@?api=1&map_action=map&center=${latitude},${longitude}&zoom=15`;
         window.open(mapUrl, '_blank'); // Opens Google Maps in a new tab with the coordinates
     };
+
+    const averageRating = calculateAverageRating(clinic?.clinicRating);
+    console.log("averageRating", averageRating);
+
 
     return (
         <div className='p-4 rounded-[6px] flex gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
@@ -36,7 +41,7 @@ const Clinic = ({clinic}) => {
                         <h4 onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='text-[#1A1A1A] cursor-pointer text-2xl font-semibold font-inter'>{clinic?.clinicName}</h4>
                     </div>
                     <div className='flex flex-col gap-1'>
-                        <ReactStars className='m-0 disable-hover' size={16} count={5} value={Number(clinic?.avgRating)} color2={'#FF8A00'} edit={false} />
+                        <ReactStars className='m-0 disable-hover' size={16} count={5} value={averageRating} color2={'#FF8A00'} edit={false} />
                         <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {clinic?.clinicRating?.length} users</div>
                     </div>
                 </div>
@@ -70,8 +75,8 @@ const Clinic = ({clinic}) => {
                     </div>
                     <div className='flex items-center gap-2'>
                         <p className='text-[#838383] text-sm font-normal font-poppins'><span className='line-through'>₹500</span> <span className='font-semibold'>FREE</span> via <span className='font-semibold'>de<span className='text-[#95C22B]'>9</span>to</span></p>
-                        <button onClick={() => setIsConfirmBookingModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] bg-[#95C22B] py-[6px] px-2 flex justify-center items-center gap-[6px]'>
-                            <span className='text-[#FFFFFF] text-xs font-semibold font-inter'>Book for consultation</span>
+                        <button onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] border-[1px] border-[#95C22B] bg-[#95C22B] py-[6px] px-2 flex justify-center items-center gap-[6px]'>
+                            <span className='text-[#FFFFFF] text-xs font-semibold font-inter'>View</span>
                             <MdOutlineArrowOutward className='text-[#FFFFFF] text-xs' />
                         </button>
                     </div>
