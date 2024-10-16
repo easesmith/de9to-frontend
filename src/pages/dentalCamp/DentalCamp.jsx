@@ -196,7 +196,7 @@ const DentalCamp = () => {
     resolver: zodResolver(requestDentalCampSchema),
     defaultValues: {
       organiserName: "",
-      campType: "",
+      designation: "",
       emailId: "",
       contactNumber: "",
       campPerferredDate: "",
@@ -215,11 +215,11 @@ const DentalCamp = () => {
         name: data.organiserName,
         email: data.emailId,
         phone: data.contactNumber,
-        position: "",
+        position: data.designation,
         place: data.location,
         time: data.campTiming,
         address: "",
-        date: data.campPerferredDate
+        date: data.campPerferredDate,
       });
 
   }
@@ -230,7 +230,7 @@ const DentalCamp = () => {
       toast.success(res?.data?.message)
       reset({
         organiserName: "",
-        campType: "",
+        designation: "",
         emailId: "",
         contactNumber: "",
         campPerferredDate: "",
@@ -271,28 +271,14 @@ const DentalCamp = () => {
                     />
                     <FormField
                       control={form.control}
-                      name="campType"
+                      name="designation "
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Choose Camp Type <span className='text-[red]'>*</span></FormLabel>
+                          <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Designation  <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
-                            <Select
-                              {...field}
-                              onValueChange={(e) => {
-                                field.onChange(e);
-                              }}
-                            >
-                              <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5">
-                                <SelectValue placeholder="Select Type" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectGroup>
-                                  <SelectItem value="camp1">Camp1</SelectItem>
-                                  <SelectItem value="camp2">Camp2</SelectItem>
-                                  <SelectItem value="camp3">Camp3</SelectItem>
-                                </SelectGroup>
-                              </SelectContent>
-                            </Select>
+                            <Input placeholder="Enter designation" {...field}
+                              className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

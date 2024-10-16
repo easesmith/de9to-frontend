@@ -13,6 +13,7 @@ import { FiArrowUpRight } from 'react-icons/fi';
 import { useState } from 'react';
 import ConfirmbookingModal from '@/components/confirm-booking/ConfirmbookingModal';
 import { useNavigate } from 'react-router-dom';
+import { calculateAverageRating } from '@/utils/getAverageRating';
 
 const Dentist1 = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -28,7 +29,7 @@ const Dentist1 = ({ dentist }) => {
 
 
     console.log("dentist", dentist)
-    const { personalDetails, _id, clinic } = dentist || {}
+    const { personalDetails, _id, clinic, dentistRatings } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
@@ -41,6 +42,8 @@ const Dentist1 = ({ dentist }) => {
 
     // console.log("availabilityData", availabilityData);
 
+    const averageRating = calculateAverageRating(dentistRatings);
+    console.log("averageRating", averageRating);
 
     const navigate = useNavigate()
 
@@ -62,8 +65,8 @@ const Dentist1 = ({ dentist }) => {
                     <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
                     } {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
-                        <ReactStars size={25} count={5} value={5} edit={false} color2={'#FF8A00'} />
-                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by 2 users</div>
+                        <ReactStars size={25} count={5} value={averageRating} edit={false} color2={'#FF8A00'} />
+                        <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {dentistRatings?.length} users</div>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">

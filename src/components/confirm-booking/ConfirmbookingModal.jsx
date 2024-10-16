@@ -18,6 +18,8 @@ import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import SlotSection from "../SlotSection";
 import useGetApiReq from "@/hooks/useGetApiReq";
+import { readCookie } from "@/utils/readCookie";
+import toast from "react-hot-toast";
 
 const clinicSchema = z.object({
     clinic: z.string().min(1, "Please select a clinic"),
@@ -46,6 +48,12 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const onSubmit = (data) => {
         console.log("Booking Data:", data);
         // reset();
+        const userInfo = readCookie("userInfo");
+        if (!userInfo || !userInfo?.userId) {
+            toast.error("Please login first")
+            navigate("/")
+            return;
+        }
         setIsConfirmBookingModalOpen(false); // Close modal after submission
         navigate("/confirm-booking", { state: { data, clinicDetails: clinic, slotId, timing, startIndex } });
     };

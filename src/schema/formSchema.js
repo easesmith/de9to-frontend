@@ -17,7 +17,7 @@ export const contactFormSchema = z.object({
 
 export const requestDentalCampSchema = z.object({
     organiserName: z.string().min(1, "Organiser Name is required"),
-    campType: z.string().min(1, "Camp Type is required"),
+    designation : z.string().min(1, "Designation  is required"),
     emailId: z.string().email("Invalid email address"),
     contactNumber: z
         .string()
