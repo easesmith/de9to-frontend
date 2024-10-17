@@ -38,9 +38,9 @@ const Home = () => {
   const { res, fetchData } = useGetApiReq()
 
 
-  const getTestimonialData = useCallback(async () => {
-    fetchData(`/patient/get-testimonials?testimonials=${testimonials}`)
-  })
+  const getTestimonialData = async () => {
+    fetchData(`/patient/get-testimonials`)
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,7 +52,7 @@ const Home = () => {
 
   useEffect(() => {
     getTestimonialData()
-  }, [fetch])
+  }, [])
 
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {

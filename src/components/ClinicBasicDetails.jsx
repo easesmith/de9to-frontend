@@ -13,6 +13,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Button } from './ui/button';
 import { FaLocationDot } from 'react-icons/fa6';
+import { calculateAverageRating } from '@/utils/getAverageRating';
 
 
 const ClinicBasicDetails = ({ clinic }) => {
@@ -24,6 +25,7 @@ const ClinicBasicDetails = ({ clinic }) => {
     };
 
     const { clinicPhotos,clinicName,clinicAddress,city,nearbyLandmark,state,clinicPincode,clinicRating} = clinic || {};
+    const averageRating = clinicRating && calculateAverageRating(clinicRating);
 
     return (
         <div className="grid grid-cols-[77%_260px] h-full gap-4">
@@ -45,7 +47,7 @@ const ClinicBasicDetails = ({ clinic }) => {
                                     </Button>
                                 </div>
                                 <div>
-                                    <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
+                                    <ReactStars edit={false} size={25} count={5} value={averageRating} color2={'#FF8A00'} />
                                     <div className='text-[#000000] text-[10px] text-right font-normal font-inter'>Rated by {clinicRating?.length} users</div>
                                 </div>
                             </div>
