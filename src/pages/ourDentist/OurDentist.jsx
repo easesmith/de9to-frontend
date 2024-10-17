@@ -109,7 +109,7 @@ const OurDentist = () => {
                     <Dentist1 key={i} dentist={e} />
                   )
                 }) :
-                  <DataNotFound />
+                <DataNotFound name='Dentist' />
               }
             </div>
             {allDentists.length > 0 &&
