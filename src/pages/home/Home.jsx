@@ -79,11 +79,11 @@ const Home = () => {
                 <h4 className="text-[#000000] text-[32px] font-normal italic font-poppins mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
                 <div className=' flex gap-5'>
-                  <div className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
+                  <div className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 hover:bg-[#98c52f] cursor-pointer'>
                     <button onClick={() => setIsConfirmBookingModalOpen(false)} className=' text-[#FFFFFF] text-lg font-semibold font-poppins '>Book an appointment</button>
                     <MdOutlineArrowOutward color='#FFFFFF' fontSize={24} />
                   </div>
-                  <div className='flex justify-center items-center gap-1 border-[1px] border-[#95C22B] rounded-lg px-5 py-4'>
+                  <div className='flex justify-center items-center gap-1 border-[1px] border-[#95C22B] rounded-lg px-5 py-4 hover:bg-[#FFFFFF] cursor-pointer'>
                     <button className=' text-[#95C22B] text-lg font-semibold font-poppins'>Know more</button>
                     <MdOutlineArrowOutward color='#95C22B' fontSize={24} />
                   </div>
@@ -289,7 +289,7 @@ const Home = () => {
             </div>
             <div className='max-w-[550px] flex flex-col items-center'>
               <h2 className="text-[#313131] text-[32px] text-center font-semibold font-poppins leading-[48px] mb-8">Don’t wait <span className='text-[#FFFFFF]'>and make an appointment today</span></h2>
-              <button className='bg-[#FFFFFF] text-[#95C22B] text-xl font-semibold font-poppins rounded-2xl px-5 py-3'>Book Appointment</button>
+              <button className='bg-[#FFFFFF] text-[#95C22B] text-xl font-semibold font-poppins rounded-2xl px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
             </div>
           </div>
         </section>

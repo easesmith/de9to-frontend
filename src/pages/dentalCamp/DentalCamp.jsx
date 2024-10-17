@@ -427,12 +427,12 @@ const DentalCamp = () => {
               <div className='flex relative'>
                 <img src={ProfessionalImg1} alt="" className='absolute  z-0' />
                 <img src={ProfessionalImg2} alt="" className='absolute left-5 z-10' />
-                <img src={ProfessionalImg3} alt="" className='absolute left-10 z-20' />
-                <img src={ProfessionalImg4} alt="" className='absolute left-[60px] z-30' />
-                <img src={ProfessionalImg5} alt="" className='absolute left-20 z-40' />
-                <img src={ProfessionalImg6} alt="" className='absolute left-[100px] z-50' />
-                <img src={ProfessionalImg7} alt="" className='absolute left-[120px] z-60' />
-                <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[140px] z-70 w-[37px] h-[37px]'>
+                <img src={ProfessionalImg3} alt="" className='absolute left-10 z-[11]' />
+                <img src={ProfessionalImg4} alt="" className='absolute left-[60px] z-[12]' />
+                <img src={ProfessionalImg5} alt="" className='absolute left-20 z-[13]' />
+                <img src={ProfessionalImg6} alt="" className='absolute left-[100px] z-[14]' />
+                <img src={ProfessionalImg7} alt="" className='absolute left-[120px] z-[15]' />
+                <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[140px] z-[16] w-[37px] h-[37px]'>
                   <p className='text-[#FFFFFF] text-sm font-normal font-poppins'>30+</p>
                 </div>
               </div>
@@ -622,7 +622,7 @@ const DentalCamp = () => {
                     delay: 2000,
                     disableOnInteraction: false,
                   }}
-                  onSlideChange={() => console.log('slide change')}
+                  // onSlideChange={() => console.log('slide change')}
                 >
                   <SwiperSlide>
                     <p className='text-[#FFFFFF] text-2xl font-bold font-inter mb-16'>I joined De9to with the aim of promoting oral health awareness, benefiting from their free registration. My experience has been excellent, resulting in revenue exceeding 2.5 lac</p>

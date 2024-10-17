@@ -65,7 +65,7 @@ const DentalTeamCard = () => {
                                         <h3 className="text-[#2D2D32] text-2xl font-medium font-poppins">{item.name}</h3>
                                         <p className="text-[#474747] text-base font-normal font-poppins">{item.experience}</p>
                                         <p className="text-[#474747] text-base font-normal font-poppins">{item.location}</p>
-                                        <button className="text-[#95C22B] text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10">View Profile</button>
+                                        <button className="text-[#95C22B] text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10 hover:text-[#FFFFFF] hover:bg-[#95C22B]">View Profile</button>
                                     </div>
                                 </div>
                             )
