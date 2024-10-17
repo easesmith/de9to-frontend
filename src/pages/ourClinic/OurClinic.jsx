@@ -62,7 +62,7 @@ const OurClinic = () => {
     }, [res])
 
     const filterClinics = async () => {
-        fetchFilterClinicData(`/patient/get-all-Clinics?page=${page}`);
+        fetchFilterClinicData(`/patient/filter-clinic?page=${page}`);
     }
 
     useEffect(() => {

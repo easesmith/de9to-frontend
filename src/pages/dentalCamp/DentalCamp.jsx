@@ -218,7 +218,6 @@ const DentalCamp = () => {
         position: data.designation,
         place: data.location,
         time: data.campTiming,
-        address: "",
         date: data.campPerferredDate,
       });
 

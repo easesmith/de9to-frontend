@@ -24,7 +24,7 @@ const SearchListCompo = () => {
 
     const getSearchQuery = useCallback(async () => {
         fetchData(`/patient/search?searchText=${searchQuery}&location=${location}`);
-    }, [])
+    }, [searchQuery, location])
 
     const handleGetSerachQuery = () => {
         getSearchQuery()
