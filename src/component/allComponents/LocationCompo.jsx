@@ -31,9 +31,8 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
                     <SelectValue placeholder="location" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="delhi">Delhi</SelectItem>
-                    <SelectItem value="lucknow">Lucknow</SelectItem>
-                    <SelectItem value="maharashta">Maharashta</SelectItem>
+                    <SelectItem value="Najabgarh">Najabgarh</SelectItem>
+                    <SelectItem value="Ramlila Maidan">Ramlila Maidan</SelectItem>
                 </SelectContent>
             </Select>
             <div className=' '>

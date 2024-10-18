@@ -37,6 +37,9 @@ const ClinicDetails = () => {
     const { res: clinicDentistsRes, fetchData: fetchClinicDentistsData, isLoading: isClinicDentistsLoading } = useGetApiReq();
     const { res: allRatingsRes, fetchData: fetchAllRatingsData, isLoading: isAllRatingsLoading } = useGetApiReq();
     const [allRating, setAllRating] = useState({});
+    const [allPhotos, setAllPhotos] = useState([]);
+
+
 
     const getClinic = async () => {
         fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
@@ -46,11 +49,18 @@ const ClinicDetails = () => {
         getClinic();
     }, [])
 
+    useEffect(() => {
+        if (clinic?.clinicPhotos) {
+            const { cabinetPics = [], opdArea = [] } = clinic.clinicPhotos;
+            setAllPhotos([...cabinetPics, ...opdArea]);
+        }
+    }, [clinic])
+
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             setClinic(res?.data?.foundClinic);
-            // console.log("clinic details response", res);
+            console.log("clinic details response", res);
         }
     }, [res])
 
@@ -144,6 +154,7 @@ const ClinicDetails = () => {
                             loop={true}
                             modules={[Pagination, Autoplay]}
                             slidesPerView={3}
+                            spaceBetween={30}
                             // navigation={{
                             //     nextEl: '.swiper-button-next',
                             //     prevEl: '.swiper-button-prev',
@@ -153,21 +164,11 @@ const ClinicDetails = () => {
                             }}
                         // onSlideChange={() => console.log('slide change')}
                         >
-                            <SwiperSlide>
-                                <img className='' src={carouselImg} alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img className='' src={carouselImg} alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img className='' src={carouselImg} alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img className='' src={carouselImg} alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img className='' src={carouselImg} alt="" />
-                            </SwiperSlide>
+                            {allPhotos?.map((item, i) => (
+                                <SwiperSlide key={i}>
+                                    <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                         <div
                             className="custom-swiper-button custom-swiper-button-prev"
@@ -182,6 +183,9 @@ const ClinicDetails = () => {
                             <BsArrowRight className='text-2xl' />
                         </div>
 
+<div className="grid grid-cols-3 gap-5">
+<img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+</div>
                     </div>
                 </div>
 
