@@ -720,24 +720,23 @@ const DentalCamp = () => {
                   }}
                   className="mySwiper h-[450px] dental-camp"
                 >
-                  <SwiperSlide>
-                    {/* <img src={NGOImg1} alt="" className='cursor-pointer' /> */}
-                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} controls={true} width="100%" height="366px" className='rounded-3xl'/>
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
-                  <SwiperSlide>
-                    <img src={NGOImg1} alt="" className='cursor-pointer' />
+                  <SwiperSlide className='rounded-2xl overflow-hidden'>
+                    <ReactPlayer url="https://www.youtube.com/embed/mOFoh9FUR8w?si=4dveYjVDszEuxwQL" playing={true} onPlay={false} controls={true} width="100%" height="366px" className='rounded-3xl'/>
                   </SwiperSlide>
                 </Swiper>
               </div>
