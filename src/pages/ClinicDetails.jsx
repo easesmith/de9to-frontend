@@ -184,7 +184,7 @@ const ClinicDetails = () => {
                         </div>
 
 <div className="grid grid-cols-3 gap-5">
-<img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+{/* <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" /> */}
 </div>
                     </div>
                 </div>
