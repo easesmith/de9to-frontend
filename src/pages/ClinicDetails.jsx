@@ -49,9 +49,9 @@ const ClinicDetails = () => {
         getClinic();
     }, [])
 
+    const { cabinetPics = [], opdArea = [], certificateWall, consultationTable, frontFascia, receptionCounter, waitingArea } = clinic?.clinicPhotos || {};
     useEffect(() => {
         if (clinic?.clinicPhotos) {
-            const { cabinetPics = [], opdArea = [] } = clinic.clinicPhotos;
             setAllPhotos([...cabinetPics, ...opdArea]);
         }
     }, [clinic])
@@ -148,44 +148,49 @@ const ClinicDetails = () => {
 
                 <div className="flex items-start gap-2 mt-10">
                     <div className='font-inter font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Gallery</div>
+                    <div>
+                        <div className="w-[65%] mx-auto relative">
+                            <Swiper
+                                loop={true}
+                                modules={[Pagination, Autoplay]}
+                                slidesPerView={3}
+                                spaceBetween={30}
+                                // navigation={{
+                                //     nextEl: '.swiper-button-next',
+                                //     prevEl: '.swiper-button-prev',
+                                // }}
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper; // Assign the Swiper instance to the ref
+                                }}
+                            // onSlideChange={() => console.log('slide change')}
+                            >
+                                {allPhotos?.map((item, i) => (
+                                    <SwiperSlide key={i}>
+                                        <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <div
+                                className="custom-swiper-button custom-swiper-button-prev"
+                                onClick={() => swiperRef.current?.slidePrev()} // Navigate to the previous slide
+                            >
+                                <BsArrowLeft className='text-2xl' />
+                            </div>
+                            <div
+                                className="custom-swiper-button custom-swiper-button-next"
+                                onClick={() => swiperRef.current?.slideNext()} // Navigate to the next slide
+                            >
+                                <BsArrowRight className='text-2xl' />
+                            </div>
 
-                    <div className="w-[65%] mx-auto relative">
-                        <Swiper
-                            loop={true}
-                            modules={[Pagination, Autoplay]}
-                            slidesPerView={3}
-                            spaceBetween={30}
-                            // navigation={{
-                            //     nextEl: '.swiper-button-next',
-                            //     prevEl: '.swiper-button-prev',
-                            // }}
-                            onSwiper={(swiper) => {
-                                swiperRef.current = swiper; // Assign the Swiper instance to the ref
-                            }}
-                        // onSlideChange={() => console.log('slide change')}
-                        >
-                            {allPhotos?.map((item, i) => (
-                                <SwiperSlide key={i}>
-                                    <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                        <div
-                            className="custom-swiper-button custom-swiper-button-prev"
-                            onClick={() => swiperRef.current?.slidePrev()} // Navigate to the previous slide
-                        >
-                            <BsArrowLeft className='text-2xl' />
                         </div>
-                        <div
-                            className="custom-swiper-button custom-swiper-button-next"
-                            onClick={() => swiperRef.current?.slideNext()} // Navigate to the next slide
-                        >
-                            <BsArrowRight className='text-2xl' />
+                        <div className="grid grid-cols-5 gap-5 mt-10">
+                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
+                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
+                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
+                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${receptionCounter}`} alt="" />
+                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${waitingArea}`} alt="" />
                         </div>
-
-<div className="grid grid-cols-3 gap-5">
-{/* <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" /> */}
-</div>
                     </div>
                 </div>
 
