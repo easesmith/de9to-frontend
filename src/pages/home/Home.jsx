@@ -61,7 +61,7 @@ const Home = () => {
     }
   }, [res])
 
-  console.log(testimonials)
+  console.log("testimonials:", testimonials)
 
 
   const handleActive = (number) => {
@@ -236,7 +236,7 @@ const Home = () => {
                     italic font-poppins'>{e.comment}</p>
                           <div className="profile flex justify-center items-start gap-6">
                             <div className="profile-picture">
-                              <img src={e.image} />
+                              <img src={`${import.meta.env.VITE_IMAGE_URL}/${e.image}`} className='w-12 h-12 rounded-full' />
                             </div>
                             <div>
                               <h4 className=' text-[#595959] text-2xl font-bold font-inter'>{e.name}</h4>
