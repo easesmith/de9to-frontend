@@ -5,15 +5,17 @@ import { IoIosArrowDown } from 'react-icons/io'
 import DeleteAccountModal from './DeleteAccountModal'
 import { Button } from './ui/button'
 import { readCookie } from '@/utils/readCookie'
+import LogoutModal from './LogoutModal'
 
 const Sidebar = () => {
     const { pathname } = useLocation()
     const navigate = useNavigate();
     const userInfo = readCookie("userInfo");
-    console.log("userInfo",userInfo);
-    
+    console.log("userInfo", userInfo);
+
     const [isMasterOpen, setIsMasterOpen] = useState(false);
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+    const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
 
     return (
         <section className='sticky top-0 w-[280px] h-screen overflow-y-auto overflow-x-visible'>
@@ -59,10 +61,21 @@ const Sidebar = () => {
                     </div>
                 }
 
+                <button onClick={() => setIsLogOutModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}>
+                    Log out
+                </button>
+
                 {isDeleteAccountModalOpen &&
                     <DeleteAccountModal
                         isDeleteAccountModalOpen={isDeleteAccountModalOpen}
                         setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
+                    />
+                }
+
+                {isLogOutModalOpen &&
+                    <LogoutModal
+                    isLogOutModalOpen={isLogOutModalOpen}
+                    setIsLogOutModalOpen={setIsLogOutModalOpen}
                     />
                 }
             </div>

@@ -34,7 +34,7 @@ const LoginSignupWelcome2 = ({ selected, setSelected }) => {
                                 <LoginComp setIsShowTabs={setIsShowTabs} />
                             </TabsContent>
                             <TabsContent value="register">
-                                <Registercomp setIsShowTabs={setIsShowTabs} />
+                                <Registercomp setSelected={setSelected} setIsShowTabs={setIsShowTabs} />
                             </TabsContent>
                         </Tabs>
                     </div>

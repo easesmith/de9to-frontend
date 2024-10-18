@@ -5,11 +5,25 @@ import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { IoIosArrowDown } from 'react-icons/io'
 import { readCookie } from '@/utils/readCookie'
+import { MdMenu } from 'react-icons/md'
+import { FaSearch } from 'react-icons/fa'
+import { IoSearchSharp } from 'react-icons/io5'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import logo from '@/assets/logo.png'
 
 const Header = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const userInfo = readCookie("userInfo");
+  console.log("userInfo", userInfo);
+
 
   const [isLogin, setIsLogin] = useState(userInfo ? true : false);
 
@@ -52,13 +66,44 @@ const Header = () => {
   return (
     <header className='sticky top-0 bg-white z-30'>
       <nav className='h-[73px]  px-20 flex justify-between items-center'>
-        {!pathname.includes("/profile") &&
-          <Link to={'/'}>
-            <div className="logo">
-              <img src={De9toLogo} alt="" />
-            </div>
-          </Link>}
-        <ul className='flex items-center gap-5'>
+        <div className='flex gap-2 items-center'>
+          <Sheet>
+            <SheetTrigger>
+              <MdMenu className='min-[970px]:hidden text-3xl' />
+            </SheetTrigger>
+            <SheetContent className="w-[400px] sm:w-full" side="left">
+              <SheetHeader>
+                <SheetTitle></SheetTitle>
+                <SheetDescription>
+                  <div className='flex justify-center'>
+                    <img src={logo} alt="" />
+                  </div>
+                  <ul className='flex flex-col items-center gap-10 mt-10'>
+                    {urlAndUrlName.map((e, i) => {
+                      return (
+                        <div key={i} >
+                          <NavLink
+                            to={e.url}
+                            className={({ isActive }) => isActive ? 'text-[#95C22B] text-sm text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]' : 'text-[#212121] text-sm text-center font-extrabold font-inter'}
+                          >
+                            {e.urlName}
+                          </NavLink>
+                        </div>
+                      )
+                    })}
+                  </ul>
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+          {!pathname.includes("/profile") &&
+            <Link to={'/'}>
+              <div className="logo">
+                <img src={De9toLogo} alt="" />
+              </div>
+            </Link>}
+        </div>
+        <ul className='flex items-center gap-5 max-[970px]:hidden'>
           {urlAndUrlName.map((e, i) => {
             return (
               <div key={i} >
@@ -72,7 +117,9 @@ const Header = () => {
             )
           })}
         </ul>
-        <div>
+
+        <div className='flex gap-4 items-center'>
+          <IoSearchSharp className='text-[#95C22B] min-[970px]:hidden text-2xl' />
           {!isLogin ?
             <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
             :
