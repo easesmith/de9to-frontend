@@ -208,8 +208,8 @@ const AllProfileCard = () => {
         <img src={ProfessionalImg5} alt="" className='absolute left-[60px] z-[4] w-[26.5px] h-[26.5px]' />
         <img src={ProfessionalImg6} alt="" className='absolute left-[75px] z-[5] w-[26.5px] h-[26.5px]' />
         <img src={ProfessionalImg7} alt="" className='absolute left-[90px] z-[6] w-[26.5px] h-[26.5px]' />
-        <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[105px] z-70 w-[26.5px] h-[26.5px]'>
-          <p className='text-[#FFFFFF] text-sm font-normal font-poppins'>30+</p>
+        <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[105px] z-[7] w-[28.5px] h-[27.5px]'>
+          <p className='text-[#FFFFFF] text-xs text-center font-normal font-poppins'>30+</p>
         </div>
       </div>
     </div>
