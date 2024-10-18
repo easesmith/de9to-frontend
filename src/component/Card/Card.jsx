@@ -8,6 +8,8 @@ import Image1 from '@/assets/user-cover-1.png'
 import BlogData from '@/data/Blog/blogData.json'
 import usePostApiReq from '@/hooks/usePostApiReq'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import Spinner from '@/components/Spinner'
+import DataNotFound from '@/components/DataNotFound'
 // import Image2 from '@/assets/user-cover-1 (1).png'
 // import Image3 from '@/assets/360_F_295518052_aO5d9CqRhPnjlNDTRDjKLZHNftqfsxzI 1.png'
 
@@ -95,6 +97,14 @@ const DentalTeamCard = () => {
                             )
                         })
                     }
+
+{featuredDentist?.length === 0 && isLoading &&
+                    <Spinner size={30} />
+                }
+
+                {featuredDentist?.length === 0 && !isLoading &&
+                    <DataNotFound name={"Dentists"} />
+                }
                 </div>
             </div>
         </section>
