@@ -209,6 +209,8 @@ const DentalCamp = () => {
   const { res, fetchData, isLoading } = usePostApiReq();
   const { reset, handleSubmit } = form
 
+  console.log("getvalues",form.getValues());
+  
   const onSubmit = (data) => {
     console.log(data)
     fetchData(`/patient/submit-dental-camp-form`,
@@ -219,7 +221,6 @@ const DentalCamp = () => {
         position: data.designation,
         place: data.location,
         time: data.campTiming,
-        address: "",
         date: data.campPerferredDate,
       });
 
@@ -272,7 +273,7 @@ const DentalCamp = () => {
                     />
                     <FormField
                       control={form.control}
-                      name="designation "
+                      name="designation"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-[] text-xl font-medium font-inter mb-4">Designation  <span className='text-[red]'>*</span></FormLabel>

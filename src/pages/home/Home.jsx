@@ -230,8 +230,7 @@ const Home = () => {
               >
                 {testimonials.length > 0 && testimonials.map((e, i) => {
                   return (
-                    <>
-                      <SwiperSlide>
+                      <SwiperSlide key={i}>
                         <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom5 p-10'>
                           <p className=' text-[#636571] text-2xl text-center font-light 
                     italic font-poppins'>{e.comment}</p>
@@ -246,7 +245,6 @@ const Home = () => {
                           </div>
                         </div>
                       </SwiperSlide>
-                    </>
                   )
                 })}
               </Swiper>

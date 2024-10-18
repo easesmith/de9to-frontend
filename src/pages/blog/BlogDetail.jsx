@@ -45,7 +45,7 @@ const BlogDetail = () => {
     <Layout>
       <main className='w-full max-w-[1240px] mx-auto flex flex-col gap-4'>
         <PrevLink page="Blogs Details" />
-        <section className=' flex items-start justify-between'>
+        <section className=' flex items-start justify-between gap-6'>
           <div className='w-2/3 flex flex-col gap-4'>
             <div className=' flex flex-col gap-5'>
               <div>

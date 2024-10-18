@@ -11,15 +11,15 @@ import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
 import CategoryData from '@/data/Blog/categoryData.json'
 
-const ButtonLocation = ({ location }) => {
+const ButtonLocation = ({ location, setLocation, name }) => {
   const [isSelectLocation, setSelectLocation] = useState(false);
 
 
   const handleSelectLocation = () => {
-    setSelectLocation(!isSelectLocation);
+    setLocation(name);
   };
   return (
-    <button onClick={handleSelectLocation} className={`${isSelectLocation ? 'bg-[#95C22B] text-[#F8F8F8]' : 'bg-[#FFFFFF] text-[#1A1A1A]'} text-sm font-normal font-inter rounded-[30px] py-[6px] px-[14px] `}>{location}</button>
+    <button onClick={handleSelectLocation} className={`${location === name ? 'bg-[#95C22B] text-[#F8F8F8]' : 'bg-[#FFFFFF] text-[#1A1A1A]'} text-sm font-normal font-inter rounded-[30px] py-[6px] px-[14px] `}>{name}</button>
   )
 }
 
@@ -76,14 +76,14 @@ const PrevLink = ({ page }) => {
 // const handleSelectCategory = (number) => {
 //   setIsCategorySelect(number)
 // }
-const CategoryBtn = ({isCategorySelected, setIsCategorySelected, handleSelectCategoryed}) => {
+const CategoryBtn = ({ isCategorySelected, setIsCategorySelected, handleSelectCategoryed }) => {
 
 
   return (
     <>
-      {CategoryData.map((e, i)=>{
+      {CategoryData.map((e, i) => {
         return (
-          <Button key={i} variant='category' size='lg' className={`${isCategorySelected === e.category ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={()=>handleSelectCategoryed(e.category)}>{e.category}</Button>
+          <Button key={i} variant='category' size='lg' className={`${isCategorySelected === e.category ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={() => handleSelectCategoryed(e.category)}>{e.category}</Button>
         )
       })}
     </>
