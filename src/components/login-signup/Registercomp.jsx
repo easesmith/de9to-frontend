@@ -11,7 +11,7 @@ import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
 import usePostApiReq from '@/hooks/usePostApiReq';
 
-const Registercomp = ({ setIsShowTabs }) => {
+const Registercomp = ({ setIsShowTabs,setSelected }) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
     const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(false);
 
@@ -31,13 +31,14 @@ const Registercomp = ({ setIsShowTabs }) => {
 
     const onSubmit = (data) => {
         console.log("Data:", data);
-        fetchData(`/patient/patient-signup`, data);
+        fetchData(`/patient/get-otp`, { phone: data.phone });
+        // fetchData(`/patient/patient-signup`, data);
         // reset();
     };
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            console.log("patient register res", res);
+            console.log("otp res", res);
             setIsShowTabs(false);
             setIsOtpSectionOpen(true);
         }
@@ -50,6 +51,9 @@ const Registercomp = ({ setIsShowTabs }) => {
                     phone={getValues("phone")}
                     setIsOtpSectionOpen={setIsOtpSectionOpen}
                     setIsShowTabs={setIsShowTabs}
+                    login={false}
+                    apiData={getValues()}
+                    setSelected={setSelected}
                 />
                 : <div>
                     <h1 className='text-[#1A1A1A] font-inter text-2xl font-semibold mt-8'>Join De9to</h1>

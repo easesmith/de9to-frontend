@@ -11,9 +11,12 @@ import { BiSolidPencil } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { OtpSchema } from '@/schema/formSchema';
+import usePostApiReq from '@/hooks/usePostApiReq';
+import { useNavigate } from 'react-router-dom';
 
-const OtpComp = ({ phone, setIsOtpSectionOpen, setIsShowTabs }) => {
+const OtpComp = ({ phone, setIsOtpSectionOpen, setSelected = () => { }, setIsShowTabs, login = true, apiData }) => {
     const [timeLeft, setTimeLeft] = useState(60);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (timeLeft > 0) {
@@ -38,13 +41,34 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setIsShowTabs }) => {
             otp: "",
         },
     });
-
+    const { res, fetchData, isLoading } = usePostApiReq();
     const { reset, handleSubmit, getValues, watch } = form;
+
 
     const onSubmit = (data) => {
         console.log("Data:", data);
+        if (login) {
+            fetchData(`/patient/patient-login`, { loginInput: apiData.emailOrPhone, password: apiData.password, otp: data.otp });
+        }
+        else {
+            fetchData(`/patient/patient-signup`, { ...apiData, otp: data.otp });
+        }
         // reset();
     };
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("patient register res", res);
+            setIsShowTabs(false);
+            setIsOtpSectionOpen(true);
+            if (login) {
+                navigate("/")
+            }
+            else {
+                setSelected("login")
+            }
+        }
+    }, [res])
 
     return (
         <div className='flex flex-col justify-center items-center h-[77vh]'>
@@ -79,12 +103,6 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setIsShowTabs }) => {
                                             <InputOTPGroup>
                                                 <InputOTPSlot index={3} />
                                             </InputOTPGroup>
-                                            <InputOTPGroup>
-                                                <InputOTPSlot index={4} />
-                                            </InputOTPGroup>
-                                            <InputOTPGroup>
-                                                <InputOTPSlot index={5} />
-                                            </InputOTPGroup>
                                         </InputOTP>
                                     </FormControl>
                                     <FormMessage />
@@ -101,7 +119,7 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setIsShowTabs }) => {
                         </div>
 
                         <Button type="submit" className="bg-[#95C22B] mt-6 flex justify-between w-full h-12">
-                            <span>Login to my Account</span>
+                            <span>{login ? "Login to my Account" : "Register Account"}</span>
                             <FaArrowRight className='text-white' />
                         </Button>
                     </form>

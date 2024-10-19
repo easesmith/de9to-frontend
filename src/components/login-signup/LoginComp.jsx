@@ -39,7 +39,12 @@ const LoginComp = ({ setIsShowTabs }) => {
 
   const onSubmit = (data) => {
     console.log("Data:", data);
-    fetchData(`/patient/patient-login`, { loginInput: data.emailOrPhone, password: data.password });
+    if (isLoginwithOtp) {
+      fetchData(`/patient/get-otp`, { phone: data.emailOrPhone });
+    }
+    else {
+      fetchData(`/patient/patient-login`, { loginInput: data.emailOrPhone, password: data.password });
+    }
     // reset();
   };
 
@@ -51,7 +56,7 @@ const LoginComp = ({ setIsShowTabs }) => {
         setIsShowTabs(false);
         setIsOtpSectionOpen(true);
       }
-      else{
+      else {
         navigate("/")
       }
     }
@@ -64,6 +69,7 @@ const LoginComp = ({ setIsShowTabs }) => {
           phone={getValues("emailOrPhone")}
           setIsOtpSectionOpen={setIsOtpSectionOpen}
           setIsShowTabs={setIsShowTabs}
+          apiData={getValues()}
         />
         : <div>
           <h1 className='text-[#1A1A1A] font-inter text-2xl font-semibold text-center mt-8'>Welcome Back</h1>
