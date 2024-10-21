@@ -126,7 +126,7 @@ const Home = () => {
             <div className='w-[550px] max-md:w-[400px] max-[450px]:w-[300px] rounded-[40px]'>
               <div className=' relative'>
                 <img src={Image} alt="" className='w-[550px] bg-[#F8F8F8] rounded-[40px]' />
-                <div className=' absolute z-10 top-[2%] right-[2%] border-[16px] border-[#EBEBEB] rounded-full max-w-[150px] max-h-[150px] w-full h-full max-md:w-[175px] max-md:h-[175px] max-[450px]:w-[130px] max-[450px]:h-[130px] '>
+                <div className=' absolute top-[2%] right-[2%] border-[16px] border-[#EBEBEB] rounded-full max-w-[150px] max-h-[150px] w-full h-full max-md:w-[175px] max-md:h-[175px] max-[450px]:w-[130px] max-[450px]:h-[130px] '>
                   <img src={CheckMarkImg} alt="" />
                 </div>
               </div>

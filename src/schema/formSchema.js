@@ -17,7 +17,7 @@ export const contactFormSchema = z.object({
 
 export const requestDentalCampSchema = z.object({
     organiserName: z.string().min(1, "Organiser Name is required"),
-    designation : z.string().min(1, "Designation  is required"),
+    designation: z.string().min(1, "Designation  is required"),
     emailId: z.string().email("Invalid email address"),
     contactNumber: z
         .string()
@@ -157,4 +157,15 @@ export const ProfileSchema = z.object({
     pincode: z.string().optional(),  // Optional pincode
     // alternateMobileNumber: z.string().optional(),  // Optional alternate mobile number
     // language: z.string().optional()  // Optional language
+});
+
+export const AddFeedbackSchema = z.object({
+    rating: z
+        .number()
+        .min(1, { message: "Rating must be at least 1 star" })
+        .max(5, { message: "Rating cannot exceed 5 stars" }),
+    desc: z
+        .string()
+        .min(10, { message: "Feedback must be at least 10 characters long" })
+        .max(500, { message: "Feedback cannot exceed 500 characters" }),
 });

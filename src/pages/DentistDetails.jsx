@@ -1,4 +1,5 @@
 import Layout from '@/component/Layout/Layout'
+import AddFeedbackModal from '@/components/AddFeedbackModal'
 import ClinicAppointment from '@/components/ClinicAppointment'
 import ClinicAppointment2 from '@/components/ClinicAppointment2'
 import DataNotFound from '@/components/DataNotFound'
@@ -31,6 +32,7 @@ const DentistDetails = () => {
     const [ratings, setRatings] = useState([]);
     const [allRating, setAllRating] = useState({});
     const [sortRating, setSortRating] = useState("newest")
+    const [isAddFeedbackModalOpen, setIsAddFeedbackModalOpen] = useState(false);
 
     const getDentistDetails = useCallback(async () => {
         fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId || "66d02520cd6af954e0eba864"}`);
@@ -172,12 +174,18 @@ const DentistDetails = () => {
                                 <DataNotFound name={"Reviews"} />
                             }
                         </div>
-                        <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
+                        <Button onClick={() => setIsAddFeedbackModalOpen(true)} className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>
                             <TbEdit className='text-2xl' />
                         </Button>
                     </div>
                 </div>
+                {isAddFeedbackModalOpen &&
+                    <AddFeedbackModal
+                        isAddFeedbackModalOpen={isAddFeedbackModalOpen}
+                        setIsAddFeedbackModalOpen={setIsAddFeedbackModalOpen}
+                    />
+                }
             </section>
         </Layout>
     )

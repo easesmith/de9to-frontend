@@ -41,7 +41,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             dentistId: dentistId || "",
         },
     });
-    console.log("clinic:", clinic);
+    console.log("timing:", timing);
 
     const { reset, handleSubmit, getValues } = form;
 
@@ -64,8 +64,8 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     const [selectedDay, setSelectedDay] = useState(selectedDate || format(new Date(), "yyyy-MM-dd"));
     const [selected, setSelected] = useState(selectedIndex || "selected0");
     const [startIndex, setStartIndex] = useState(selectedIndex);
-    console.log("selectedDate", selectedDay);
-    console.log("selectedSlot", selectedSlot);
+    // console.log("selectedDate", selectedDay);
+    // console.log("selectedSlot", selectedSlot);
 
     // Generate dates dynamically
     const getDaysFromToday = (days) => {
@@ -86,7 +86,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             // console.log("availableSlots", availableSlots);
 
 
-            const hasSlots = timing?.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots.length > 0);
+            const hasSlots = timing?.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots?.length > 0);
 
             return {
                 name: displayDate,

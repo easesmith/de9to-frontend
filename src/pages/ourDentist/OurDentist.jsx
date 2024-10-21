@@ -149,7 +149,7 @@ const OurDentist = () => {
             </div>
           )}
         </div> */}
-        <div className="h-screen flex items-center justify-center">
+        {/* <div className="h-screen flex items-center justify-center">
           <button
             onClick={() => setIsModalOpen(true)}
             className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
@@ -167,7 +167,7 @@ const OurDentist = () => {
               Close Modal
             </button>
           </Modal>
-        </div>
+        </div> */}
         <section className='flex items-center justify-end  pr-20'>
           <div className='flex flex-col gap-[18px] w-[483px]'>
             <h1 className='text-[#0D0E0E] text-[60px] font-bold font-inter leading-[72px]'>Expert Care,<br /> Right Next Door</h1>
@@ -180,7 +180,7 @@ const OurDentist = () => {
           </div>
         </section>
         <img src={ImgBackgroundImg} alt="background-img" className='absolute -top-[4%] right-0 -z-10' />
-        <SearchListCompo open={ayush} close={()=>setAyush(false)} />
+        <SearchListCompo />
         <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 my-12'>
           <div className=' rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>

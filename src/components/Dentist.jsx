@@ -10,6 +10,7 @@ import { useState } from 'react';
 import ConfirmbookingModal from './confirm-booking/ConfirmbookingModal';
 import { calculateAverageRating } from '@/utils/getAverageRating';
 import { format } from 'date-fns';
+import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
 
 const Dentist = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -106,9 +107,13 @@ const Dentist = ({ dentist }) => {
             </div>
 
             {isConfirmBookingModalOpen &&
-                <ConfirmbookingModal
+                <ConfirmBookingModal
                     isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                     setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+                    clinic={clinic}
+                    dentistId={dentist?._id}
+                    timing={dentist?.dentistAvailableTiming}
+                    selectedIndex={0}
                 />
             }
         </div>

@@ -24,6 +24,7 @@ import useGetApiReq from '@/hooks/useGetApiReq'
 import { useParams } from 'react-router-dom'
 import DataNotFound from '@/components/DataNotFound'
 import Spinner from '@/components/Spinner'
+import AddFeedbackModal from '@/components/AddFeedbackModal'
 
 const ClinicDetails = () => {
     const swiperRef = useRef(null);
@@ -38,7 +39,7 @@ const ClinicDetails = () => {
     const { res: allRatingsRes, fetchData: fetchAllRatingsData, isLoading: isAllRatingsLoading } = useGetApiReq();
     const [allRating, setAllRating] = useState({});
     const [allPhotos, setAllPhotos] = useState([]);
-
+    const [isAddFeedbackModalOpen, setIsAddFeedbackModalOpen] = useState(false);
 
 
     const getClinic = async () => {
@@ -227,12 +228,18 @@ const ClinicDetails = () => {
                                 <DataNotFound name={"Reviews"} />
                             }
                         </div>
-                        <Button className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
+                        <Button onClick={() => setIsAddFeedbackModalOpen(true)} className="bg-[#95C22B] hover:bg-[#9dd41d] flex gap-2 items-center rounded-3xl px-16">
                             <span>Write a Review</span>
                             <TbEdit className='text-2xl' />
                         </Button>
                     </div>
                 </div>
+                {isAddFeedbackModalOpen &&
+                    <AddFeedbackModal
+                        isAddFeedbackModalOpen={isAddFeedbackModalOpen}
+                        setIsAddFeedbackModalOpen={setIsAddFeedbackModalOpen}
+                    />
+                }
             </section>
         </Layout>
     )
