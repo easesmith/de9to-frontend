@@ -65,7 +65,7 @@ const Header = () => {
 
   return (
     <header className='sticky top-0 bg-white z-30'>
-      <nav className='h-[73px]  px-20 flex justify-between items-center'>
+      <nav className='h-[73px]  px-20 max-[900px]:px-4 flex justify-between items-center'>
         <div className='flex gap-2 items-center'>
           <Sheet>
             <SheetTrigger>
