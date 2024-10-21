@@ -12,10 +12,16 @@ import {
 import {
     Table,
     TableBody,
+    TableCell,
     TableHead,
     TableHeader,
     TableRow
 } from "@/components/ui/table";
+import { FaLocationDot } from "react-icons/fa6";
+import { FiExternalLink } from 'react-icons/fi';
+import { MdOutlineFileDownload } from 'react-icons/md';
+import invoice from '@/assets/invoice.png'
+import { useState } from 'react';
 
 const Payment = () => {
     const payments = [
@@ -32,6 +38,8 @@ const Payment = () => {
             status: "Paid"
         },
     ]
+
+    const [isPayNowModalOpen, setIsPayNowModalOpen] = useState(false);
 
     return (
         <ProfileLayout>
@@ -54,7 +62,7 @@ const Payment = () => {
 
                 </div>
 
-                <Table className="mt-4">
+                <Table className="mt-4 max-md:hidden">
                     <TableHeader className="bg-[#F6F6F6]">
                         <TableRow className="uppercase">
                             <TableHead className="w-[130px]">Date</TableHead>
@@ -73,6 +81,58 @@ const Payment = () => {
                         ))}
                     </TableBody>
                 </Table>
+                <div className='max-md:flex hidden mt-4 gap-3 justify-center flex-wrap'>
+                    {payments.map((payment, i) => (
+                        <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] w-[154px] flex flex-col items-center gap-5'>
+                            <div className='flex gap-3 justify-start items-center w-full -mb-2'>
+                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                                <p className='text-[#1A1A1A] text-xs font-normal font-inter'>{payment.date}</p>
+                            </div>
+                            <div className='flex flex-col justify-center gap-1 w-full'>
+                                <div className='flex flex-col justify-start items-start'>
+                                    <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                    <div className='w-full flex justify-start items-center gap-3'>
+                                        <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{payment.clinicOrDoctor} </h5>
+                                        <FiExternalLink className='text-[#717171]' />
+                                    </div>
+                                </div>
+                                <div className='w-full flex flex-col justify-start items-start'>
+                                    <p className='text-[#717171] text-[10px] font-medium font-inter'>Clinics</p>
+                                    <div className='w-full flex justify-between items-center'>
+                                        <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>Health marc Clinic</h5>
+                                        <FaLocationDot className='text-[#717171]' />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='flex gap-3 justify-start items-center w-full'>
+                                <p className='text-[#1A1A1A] text-base font-normal font-inter'>₹{payment.amount}</p>
+                                <p className={`${payment.status === "Paid" ? "text-[#00CD4B]" : "text-[#FF0000]"} text-sm font-normal font-inter`}>{payment.status}</p>
+                            </div>
+                            {payment.status === "Paid" ?
+                                <div className='flex flex-col items-center gap-2'>
+                                    <button className='rounded-[6px] bg-[#717171] h-8 px-2 flex justify-center items-center gap-[6px] w-[130px]'>
+                                        <span className='text-[#FFFFFF] text-xs font-medium font-inter'>Paid</span>
+                                    </button>
+                                    <button className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px] w-[130px]'>
+                                        <img src={invoice} alt="" className='w-[14px] h-[14px]' />
+                                        <span className='text-[#95C22B] text-xs font-medium font-inter'>Invoice</span>
+                                    </button>
+                                </div>
+                                : <button className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px] w-[130px]'>
+                                    <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>
+                                </button>}
+                            {/* <button className='rounded-lg border-[1px] border-[#95C22B] hover:bg-[#95C22B] text-[#95C22B] hover:text-[#FFFFFF] h-8 px-2 py-2 w-32 flex justify-center items-center'>
+                            <span className='text-[10px] font-bold font-inter'>Pay Now</span>
+                        </button> */}
+                        </div>
+                    ))}
+                    {isPayNowModalOpen &&
+                        <PayNowModal
+                            isPayNowModalOpen={isPayNowModalOpen}
+                            setIsPayNowModalOpen={setIsPayNowModalOpen}
+                        />
+                    }
+                </div>
             </div>
         </ProfileLayout>
     )

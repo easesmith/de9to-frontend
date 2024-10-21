@@ -10,30 +10,49 @@ const PaymentComp = ({ payment }) => {
     const [isPayNowModalOpen, setIsPayNowModalOpen] = useState(false);
 
     return (
-        <TableRow className="text-[#1A1A1A] font-inter">
-            <TableCell>{payment.date}</TableCell>
-            <TableCell>{payment.clinicOrDoctor}</TableCell>
-            <TableCell>{payment.amount}</TableCell>
-            <TableCell className={`font-medium ${payment.status === "Paid" ? "text-[#00CD4B]" : "text-[#FF0000]"}`}>{payment.status}</TableCell>
-            <TableCell>
-                {payment.status === "Paid" ?
-                    <div className='flex items-center gap-2'>
-                        <div className="rounded-lg px-1 text-xs text-center py-1 bg-[#717171] text-white w-10">Paid</div>
-                        <img src={invoice} alt="" />
-                        <MdOutlineFileDownload className='text-2xl cursor-pointer text-[#95C22B]' />
-                    </div>
-                    : <button onClick={() => setIsPayNowModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex items-center gap-[6px]'>
-                        <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>
-                    </button>}
-            </TableCell>
+        <>
+            <TableRow className="text-[#1A1A1A] font-inter">
+                <TableCell className=''>{payment.date}</TableCell>
+                <TableCell>{payment.clinicOrDoctor}</TableCell>
+                <TableCell>{payment.amount}</TableCell>
+                <TableCell className={`font-medium ${payment.status === "Paid" ? "text-[#00CD4B]" : "text-[#FF0000]"}`}>{payment.status}</TableCell>
+                <TableCell className=''>
+                    {payment.status === "Paid" ?
+                        <div className='flex items-center gap-2'>
+                            <div className="rounded-lg px-1 text-xs text-center py-1 bg-[#717171] text-white w-10">Paid</div>
+                            <img src={invoice} alt="" />
+                            <MdOutlineFileDownload className='text-2xl cursor-pointer text-[#95C22B]' />
+                        </div>
+                        : <button onClick={() => setIsPayNowModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex items-center gap-[6px]'>
+                            <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>
+                        </button>}
+                </TableCell>
 
-            {isPayNowModalOpen &&
-                <PayNowModal
-                    isPayNowModalOpen={isPayNowModalOpen}
-                    setIsPayNowModalOpen={setIsPayNowModalOpen}
-                />
-            }
-        </TableRow>
+                {isPayNowModalOpen &&
+                    <PayNowModal
+                        isPayNowModalOpen={isPayNowModalOpen}
+                        setIsPayNowModalOpen={setIsPayNowModalOpen}
+                    />
+                }
+            </TableRow>
+            {/* <TableRow className="text-[#1A1A1A] font-inter">
+                <TableCell>{payment.date}</TableCell>
+                <TableCell>{payment.clinicOrDoctor}</TableCell>
+                <TableCell>{payment.amount}</TableCell>
+                <TableCell className={`font-medium ${payment.status === "Paid" ? "text-[#00CD4B]" : "text-[#FF0000]"}`}>{payment.status}</TableCell>
+                <TableCell className=''>
+                    {payment.status === "Paid" ?
+                        <div className='flex items-center gap-2'>
+                            <div className="rounded-lg px-1 text-xs text-center py-1 bg-[#717171] text-white w-10">Paid</div>
+                            <img src={invoice} alt="" />
+                            <MdOutlineFileDownload className='text-2xl cursor-pointer text-[#95C22B]' />
+                        </div>
+                        : <button onClick={() => setIsPayNowModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex items-center gap-[6px]'>
+                            <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>
+                        </button>}
+                </TableCell>
+            </TableRow> */}
+        </>
     )
 }
 

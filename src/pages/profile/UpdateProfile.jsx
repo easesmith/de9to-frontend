@@ -141,7 +141,7 @@ const UpdateProfile = () => {
                                             render={({ field }) => (
                                                 <FormItem>
                                                     <div className='flex gap-3 items-center'>
-                                                        <div className='w-[100px] h-[100px] rounded-full flex justify-center items-center overflow-hidden bg-white'>
+                                                        <div className='w-[100px]  h-[100px] rounded-full flex justify-center items-center overflow-hidden bg-white'>
                                                             {watch("profileImgPreview") ?
                                                                 <img src={watch("profileImgPreview")} alt="profileImg" />
                                                                 : <FaUser className='text-6xl text-[#717171]' />
