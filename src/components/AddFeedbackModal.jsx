@@ -24,6 +24,7 @@ const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen })
     const onSubmit = (data) => {
         console.log("Data:", data);
     };
+    
     return (
         <Dialog open={isAddFeedbackModalOpen} onOpenChange={setIsAddFeedbackModalOpen}>
             <DialogContent className="max-w-[450px] w-full">

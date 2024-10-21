@@ -17,10 +17,31 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
+import { z } from 'zod'
 // import './styles.css';
 
 
 const AboutUs = () => {
+    const form = useForm({
+        resolver: zodResolver(z.object({
+
+            feedback: z.string().min(1, "Feedback is required")
+        })),
+        defaultValues: {
+            feedback: "",
+        },
+    });
+
+    const { reset, handleSubmit, getValues, watch } = form;
+
+    const onSubmit = (data) => {
+        console.log("Data:", data);
+    };
     return (
         <Layout>
             <main className=' max-w-[1240px] mx-auto flex flex-col gap-[60px] mb-12 mt-4'>
@@ -211,6 +232,36 @@ const AboutUs = () => {
                         <OurTeamMember img={TeamMemberThree} name="Mohit kapoor" profile="Co-Founder and CFO" />
                     </div>
                 </section>
+                <div className='p-5 bg-[#95C22B] rounded-lg'>
+                    <h2 className='font-inter font-semibold text-2xl text-[#FFFFFFE5]'>Feedback to the CEO</h2>
+                    <p className="font-inter text-white">Your every words matter. Please share your feedback to improve the overall experience of <span className='font-bold'>De9to</span></p>
+                    <Form {...form}>
+                        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-2 w-full'>
+                            {/* Clinic Selection */}
+                            <div className="w-full">
+                                <FormField
+                                    control={form.control}
+                                    name="feedback"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel className="font-inter text-base text-[#1A1A1A] font-normal"></FormLabel>
+                                            <FormControl>
+                                                <div className='relative h-[100px] w-full flex gap-2 items-center bg-white p-5 rounded-lg'>
+                                                    <Textarea placeholder="Write your message" className="placeholder:text-[#717171] focus-visible:outline-0 focus-visible:ring-ring focus-visible:ring-offset-0 ring-0 border-none p-0 h-full rounded-none resize-none" {...field} />
+                                                    <Button type="submit" className="bg-[#95C22B] flex max-w-[200px] justify-center w-full h-14 text-lg">
+                                                        Share Feedback
+                                                    </Button>
+                                                </div>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                        </form>
+                    </Form>
+                </div>
             </main>
         </Layout>
     )

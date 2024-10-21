@@ -1,9 +1,12 @@
-import { FaArrowRight, FaTrash } from 'react-icons/fa';
+import { FaArrowRight, FaEdit, FaRegEdit, FaTrash } from 'react-icons/fa';
 import { TableCell, TableRow } from '../ui/table';
 import AppointmentModal from './AppointmentModal';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import ReactStars from 'react-stars';
 import { format } from 'date-fns';
+import { FaPencil } from 'react-icons/fa6';
+import { Pencil } from 'lucide-react';
+import { BiPencil, BiSolidPencil } from 'react-icons/bi';
 
 const Feedback = ({ feedback }) => {
     return (
@@ -21,7 +24,7 @@ const Feedback = ({ feedback }) => {
             </TableCell>
             <TableCell className="text-[#0D0C22]">{feedback?.patientRemarks}</TableCell>
             <TableCell className="flex items-center gap-3">
-                <BsThreeDotsVertical className='text-2xl cursor-pointer' />
+                <BiSolidPencil className='text-2xl cursor-pointer' />
                 <FaTrash className='text-xl cursor-pointer text-[#FF0000]' />
             </TableCell>
         </TableRow>
