@@ -19,16 +19,16 @@ const NotificationSettingCheckbox = ({ control, name, title, desc }) => {
                                 id={name}
                             />
 
-                            <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-2 max-sm:gap-1'>
                                 <label
                                     htmlFor={name}
-                                    className="text-[#1A1A1A] font-medium leading-none peer-disabled:cursor-not-allowed text-base peer-disabled:opacity-70"
+                                    className="text-[#1A1A1A] max-sm:text-xs font-medium leading-none peer-disabled:cursor-not-allowed text-base peer-disabled:opacity-70"
                                 >
                                     {title}
                                 </label>
                                 <label
                                     htmlFor={name}
-                                    className="text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed text-sm peer-disabled:opacity-70"
+                                    className="text-[#717171] max-sm:text-[10px] font-medium leading-none peer-disabled:cursor-not-allowed text-sm peer-disabled:opacity-70"
                                 >
                                     {desc}
                                 </label>

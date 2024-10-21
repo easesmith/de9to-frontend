@@ -18,7 +18,7 @@ const Sidebar = () => {
     const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
 
     return (
-        <section className='sticky top-0 w-[280px] h-screen overflow-y-auto overflow-x-visible'>
+        <section className='sticky top-0 w-[280px] h-screen overflow-y-auto overflow-x-visible max-lg:hidden'>
             <h2 className='text-xl font-inter text-[#1A1A1A] font-medium mt-10 mb-8 px-3'>Your De9to Space</h2>
             <div className='flex items-center gap-1 px-3'>
                 <Avatar>

@@ -50,7 +50,7 @@ const ChangePassword = () => {
         <ProfileLayout>
             <div className='w-full h-full flex justify-center items-center'>
                 <div className="max-w-md rounded-lg w-full bg-white p-5">
-                    <h1 className='text-2xl font-inter font-semibold text-[#1A1A1A] text-center'>Create Your New Password</h1>
+                    <h1 className='text-2xl max-sm:text-xl font-inter font-semibold text-[#1A1A1A] text-center'>Create Your New Password</h1>
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full mt-5'>
                             <div className="w-full flex flex-col gap-4 mt-4">
@@ -107,7 +107,7 @@ const ChangePassword = () => {
                                 />
                             </div>
 
-                            <Button type="submit" className="bg-[#95C22B] mt-4 text-base flex justify-center w-full h-12">
+                            <Button type="submit" className="bg-[#95C22B] mt-4 text-base max-sm:text-lg flex justify-center w-full h-12">
                                 Update Now
                             </Button>
                         </form>

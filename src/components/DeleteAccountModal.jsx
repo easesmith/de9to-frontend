@@ -55,16 +55,16 @@ const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalO
 
     return (
         <AlertDialog open={isDeleteAccountModalOpen} onOpenChange={setIsDeleteAccountModalOpen}>
-            <AlertDialogContent className="max-w-md w-full">
+            <AlertDialogContent className="max-w-md max-sm:w-[320px] w-full rounded-lg">
                 <Form {...form}>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                         {/* Clinic Selection */}
 
                         <AlertDialogHeader>
-                            <AlertDialogTitle className="font-inter font-semibold text-[#1A1A1A] text-center text-2xl">Delete Your Account</AlertDialogTitle>
+                            <AlertDialogTitle className="font-inter font-semibold text-[#1A1A1A] text-center text-2xl max-sm:text-xl">Delete Your Account</AlertDialogTitle>
                             <AlertDialogDescription></AlertDialogDescription>
-                            <p className='font-inter text-lg text-[#1A1A1A] mt-5'>Are you sure? This will permanently delete your <span className='font-semibold'>De9to</span> account.</p>
-                            <p className='font-inter mt-1 text-[#1A1A1A]'>Once the deletion process begins, you won't be able to reactivate your account or retrieve any data or information.</p>
+                            <p className='font-inter text-lg max-sm:text-base text-[#1A1A1A] mt-5'>Are you sure? This will permanently delete your <span className='font-semibold'>De9to</span> account.</p>
+                            <p className='font-inter text-lg max-sm:text-base mt-1 text-[#1A1A1A]'>Once the deletion process begins, you won't be able to reactivate your account or retrieve any data or information.</p>
                         </AlertDialogHeader>
                         <div className="w-full">
                             <FormField
@@ -85,9 +85,9 @@ const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalO
                                 )}
                             />
                         </div>
-                        <div className='grid grid-cols-[60%_40%] w-full gap-3 mt-5'>
-                            <Button onClick={handleCancel}>No, Cancel</Button>
-                            <Button type="submit" variant="outline" className="text-[#FF0000] border-[#FF0000] hover:text-[#FF0000]">Delete My Account</Button>
+                        <div className='grid grid-cols-[60%_40%] w-full gap-3 mt-5 max-sm:grid-cols-[100%]'>
+                            <Button className='max-sm:text-base' onClick={handleCancel}>No, Cancel</Button>
+                            <Button type="submit" variant="outline" className="text-[#FF0000] border-[#FF0000] hover:text-[#FF0000] max-sm:text-base">Delete My Account</Button>
                         </div>
                     </form>
                 </Form>

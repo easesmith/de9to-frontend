@@ -35,8 +35,8 @@ const NotificationsSettings = () => {
     return (
         <ProfileLayout>
             <div className='w-full flex items-start justify-center mt-5'>
-                <div className="max-w-3xl rounded-lg w-full bg-white p-5">
-                    <h1 className='text-2xl font-inter font-semibold text-[#1A1A1A]'>SMS Settings</h1>
+                <div className="max-w-3xl rounded-lg w-full bg-white p-4">
+                    <h1 className='text-2xl max-sm:text-xl font-inter font-semibold text-[#1A1A1A]'>SMS Settings</h1>
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             <div className="w-full flex flex-col gap-3 mt-5">
@@ -104,9 +104,9 @@ const NotificationsSettings = () => {
                                 />
 
 
-                                <h2 className='text-2xl font-inter font-semibold text-[#1A1A1A] mt-10'>Whatsapp Settings</h2>
+                                <h2 className='text-2xl max-sm:text-xl font-inter font-semibold text-[#1A1A1A] mt-10'>Whatsapp Settings</h2>
                                 <div className="flex items-center gap-2 mt-3">
-                                    <h3 className='font-inter text-[#1A1A1A] text-base font-medium'>You are currently receiving all communications on +916291842324</h3>
+                                    <h3 className='font-inter max-sm:text-xs text-[#1A1A1A] text-base font-medium'>You are currently receiving all communications on +916291842324</h3>
                                     <button className='rounded-[6px] border-[1px] border-[#95C22B] h-7 px-2 flex items-center gap-[6px]'>
                                         <span className='text-[#95C22B] text-xs font-medium font-inter'>Change</span>
                                     </button>
@@ -129,7 +129,7 @@ const NotificationsSettings = () => {
 
                                                     <label
                                                         htmlFor="updatesViaWhatsapp"
-                                                        className="text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed text-sm peer-disabled:opacity-70"
+                                                        className="text-[#717171] max-sm:text-[10px] font-medium leading-none peer-disabled:cursor-not-allowed text-sm peer-disabled:opacity-70"
                                                     >
                                                         I want to receive important notifications and updates via WhatsApp
                                                     </label>
@@ -141,7 +141,7 @@ const NotificationsSettings = () => {
                                 />
 
 
-                                <h2 className='text-2xl font-inter font-semibold text-[#1A1A1A] mt-10'>Unsubscribe ALL</h2>
+                                <h2 className='text-2xl max-sm:text-xl font-inter font-semibold text-[#1A1A1A] mt-10'>Unsubscribe ALL</h2>
                                 <FormField
                                     control={form.control}
                                     name="notificationFromDento"
@@ -159,7 +159,7 @@ const NotificationsSettings = () => {
 
                                                     <label
                                                         htmlFor="notificationFromDento"
-                                                        className="text-[#1A1A1A] font-medium text-base"
+                                                        className="text-[#1A1A1A] max-sm:text-xs font-medium text-base"
                                                     >
                                                         I don’t want  to receive any notification from De9to
                                                     </label>
