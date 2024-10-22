@@ -19,6 +19,8 @@ import { FaFacebook } from "react-icons/fa6";
 import { RiTwitterXLine } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
 import { PrevLink } from '@/component/MiniCompo/MiniCompo'
+import BlogData from '@/data/Blog/blogData.json'
+import Image from '../../assets/dentist-doing-check-up-patient 1.png'
 
 const BlogDetail = () => {
 
@@ -43,26 +45,26 @@ const BlogDetail = () => {
   }
   return (
     <Layout>
-      <main className='w-full max-w-[1240px] mx-auto flex flex-col gap-4'>
+      <main className='w-full max-w-[1240px] mx-auto flex flex-col gap-4 px-4'>
         <PrevLink page="Blogs Details" />
-        <section className=' flex items-start justify-between gap-6'>
-          <div className='w-2/3 flex flex-col gap-4'>
+        <section className=' flex items-start justify-between max-[900px]:flex-col gap-6'>
+          <div className='w-2/3 flex flex-col gap-4 max-[900px]:w-full'>
             <div className=' flex flex-col gap-5'>
-              <div>
-                <img src={TeethCheckImg} alt="" />
+              <div className='w-full'>
+                <img src={TeethCheckImg} className='w-full' alt="" />
               </div>
               <div className='flex flex-col items-start gap-2 py-[10px]'>
-                <h2 className='text-[#313131] text-[28px] font-medium font-poppins'>Shield Your Smile: How Dental Sealants Block Cavities</h2>
+                <h2 className='text-[#313131] text-[28px] max-[500px]:text-lg font-medium font-poppins'>Shield Your Smile: How Dental Sealants Block Cavities</h2>
                 <div className='flex justify-start items-center gap-3'>
                   <div className='flex items-center gap-1'>
                     <FaRegCalendar className='text-[#717171]' />
-                    <p className='text-[#535353] text-[15px] font-medium font-poppins'>June 28, 2024</p>
+                    <p className='text-[#535353] text-[15px] max-[500px]:text-xs font-medium font-poppins'>June 28, 2024</p>
                   </div>
                   <div className='border-[1px] border-[#535353] h-[14px]'></div>
                   <div className='flex items-center gap-2'>
-                    <p className='text-[#535353] text-[15px] font-medium font-poppins'>by Dr. Nehal Tambe</p>
+                    <p className='text-[#535353] text-[15px] max-[500px]:text-xs font-medium font-poppins'>by Dr. Nehal Tambe</p>
                     <Link className='flex items-center gap-1'>
-                      <span className='text-[#717171] text-sm italic font-normal font-poppins'>View Profile</span>
+                      <span className='text-[#717171] text-sm max-[500px]:text-xs italic font-normal font-poppins'>View Profile</span>
                       <GoArrowUpRight className='text-[#717171]' />
                     </Link>
                   </div>
@@ -137,7 +139,7 @@ const BlogDetail = () => {
                 <div className='flex flex-col gap-4 rounded-md'>
                   <div className='flex flex-col gap-2'>
                     <h3 className='text-[#272B41] text-2xl font-medium font-inter'>Leave a Reply</h3>
-                    <p className='text-[#5B5B5B] text-base font-normal font-inter'>Your email address will not be published. Required fields are marked *</p>
+                    <p className='text-[#5B5B5B] text-base max-[500px]:text-sm font-normal font-inter'>Your email address will not be published. Required fields are marked *</p>
                   </div>
                   <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                     <div className='grid grid-cols-2 gap-5 w-full'>
@@ -186,26 +188,58 @@ const BlogDetail = () => {
                         )}
                       />
                     </div>
-                    <Button variant='comment' size='sm'>Post Comment</Button>
+                    <Button variant='comment' size='sm' className="max-[500px]:text-base">Post Comment</Button>
                   </form>
                 </div>
               </Form>
             </div>
           </div>
-          <div className='flex flex-col items-center gap-4 w-1/3'>
+          <div className='flex flex-col gap-4 w-1/3 max-[900px]:w-full'>
             <div className=''>
-              <h3 className="text-[#717171] text-2xl font-medium font-inter mb-5">Popular Blogs</h3>
-              <Card hidden={'hidden'} />
+              <h3 className="text-[#717171] text-2xl max-[500px]:text-base font-medium font-inter px-4 mb-5">Popular Blogs</h3>
+              <div className='grid max-[900px]:grid-cols-3 max-[700px]:grid-cols-2 w-full gap-8 max-[500px]:gap-3 px-4 mb-4'>
+                {BlogData.map((e, i) => {
+                  return (
+                    <>
+                      {i < 3 &&
+                        <Link to={`/blog/${i + 1}`} key={i} className={`rounded-2xl max-[500px]:rounded-none w-full relative shadow-custom5 cursor-pointer`}>
+                          <img src={Image} alt=""
+                            className='rounded-2xl max-[500px]:rounded-none max-[500px]:h-40 max-[900px]:h-60 h-72 w-full' />
+                          <div className=' px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
+                            <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
+                            <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
+                          </div>
+                        </Link>}
+                    </>
+                  )
+                })}
+              </div>
             </div>
-            <div className='h-[104px] w-[400px] rounded-2xl py-5 shadow-custom5'>
+            <div className='h-[104px] max-[700px]:hidden rounded-2xl py-5 shadow-custom5'>
               <h3 className='text-[#313131] text-2xl font-medium font-inter py-1 px-4'>Comments</h3>
               <p className='text-[#535353] text-sm font-normal font-inter px-4'>No comments to be shown.</p>
             </div>
           </div>
         </section>
         <section className='pb-12'>
-          <h3 className="text-[#717171] text-2xl font-medium font-inter mb-5">Recent Blogs</h3>
-          <Card />
+          <h3 className="text-[#717171] text-2xl max-[500px]:text-base px-4 font-medium font-inter mb-5">Recent Blogs</h3>
+          <div className='grid max-[900px]:grid-cols-3 max-[700px]:grid-cols-2 w-full gap-8 max-[500px]:gap-3 px-4 mb-4'>
+            {BlogData.map((e, i) => {
+              return (
+                <>
+                  {i < 3 &&
+                    <Link to={`/blog/${i + 1}`} key={i} className={`rounded-2xl max-[500px]:rounded-none w-full relative shadow-custom5 cursor-pointer`}>
+                      <img src={Image} alt=""
+                        className='rounded-2xl max-[500px]:rounded-none max-[500px]:h-40 max-[900px]:h-60 h-72 w-full' />
+                      <div className=' px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
+                        <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
+                        <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
+                      </div>
+                    </Link>}
+                </>
+              )
+            })}
+          </div>
         </section>
       </main>
     </Layout>

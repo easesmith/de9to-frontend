@@ -16,7 +16,7 @@ const RatingsComp = ({ allRating }) => {
 
 
     return (
-        <div className='border-2 border-[#95C22B] rounded-lg bg-[#95C22B1A] px-10 py-6 w-full grid grid-cols-[24%_74%] gap-3'>
+        <div className='border-2 border-[#95C22B] rounded-lg bg-[#95C22B1A] px-10 max-[500px]:px-4 py-6 w-full grid grid-cols-[24%_74%] max-[900px]:grid-cols-[30%_68%] max-[700px]:grid-cols-1 gap-3'>
             <div>
                 <p className='text-sm font-inter font-medium text-[#0D0C22]'>Patient Reviews</p>
                 <h2 className='font-inter font-bold text-4xl mt-1'>{parseFloat(averageRating?.toFixed(1))}</h2>

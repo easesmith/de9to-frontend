@@ -124,8 +124,8 @@ const ClinicDetails = () => {
                 <div className="mb-5">
                     <ClinicBasicDetails clinic={clinic} />
                 </div>
-                <div className="flex items-start gap-2">
-                    <div className='font-inter font-medium px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Dentists</div>
+                <div className="flex max-[900px]:flex-col items-start gap-2">
+                    <div className='font-inter max-[900px]:border-none max-[900px]:px-0 font-medium px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Dentists</div>
                     <div className="bg-white shadow w-full rounded">
                         <p className='p-3 font-inter font-medium text-[#717171]'>Book Your Appointment</p>
                         <div className="p-3 pt-4 flex flex-col gap-4">
@@ -147,10 +147,10 @@ const ClinicDetails = () => {
                     </div>
                 </div>
 
-                <div className="flex items-start gap-2 mt-10">
-                    <div className='font-inter font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Gallery</div>
+                <div className="flex max-[900px]:flex-col items-start gap-2 mt-10">
+                    <div className='font-inter  font-medium text-[#717171] max-[900px]:border-none max-[900px]:px-0 px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Gallery</div>
                     <div>
-                        <div className="w-[65%] mx-auto relative">
+                        <div className="w-[65%] hidden mx-auto relative">
                             <Swiper
                                 loop={true}
                                 modules={[Pagination, Autoplay]}
@@ -185,7 +185,7 @@ const ClinicDetails = () => {
                             </div>
 
                         </div>
-                        <div className="grid grid-cols-5 gap-5 mt-10">
+                        <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2  gap-5 mt-10">
                             <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
                             <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
                             <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
@@ -195,13 +195,13 @@ const ClinicDetails = () => {
                     </div>
                 </div>
 
-                <div className="flex items-start gap-2 mt-10">
-                    <div className='font-inter font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
+                <div className="flex max-[900px]:flex-col items-start gap-2 mt-10">
+                    <div className='font-inter max-[900px]:border-none max-[900px]:px-0 font-medium text-[#717171] px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
                     <div className='w-full mb-5'>
                         <RatingsComp allRating={allRating} />
                         <div className='flex justify-end my-5'>
                             <Select onValueChange={setSortRating} value={sortRating}>
-                                <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
+                                <SelectTrigger className="w-1/5 max-[700px]:w-1/3 max-[500px]:w-1/2 border-[1px] border-[#95C22B] rounded-xl">
                                     <SelectValue placeholder="" />
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">

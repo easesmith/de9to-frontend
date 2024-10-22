@@ -8,8 +8,8 @@ const SingleEducation = ({ degree, year }) => {
                 <FaGraduationCap className='text-[#95C22B] text-2xl' />
             </div>
             <div>
-                <h3 className='text-lg font-inter font-semibold text-[#1A1A1A]'>{degree}</h3>
-                <p className='text-sm font-inter font-semibold text-[#1A1A1A]'>{year}</p>
+                <h3 className='text-lg max-[500px]:text-sm font-inter font-semibold text-[#1A1A1A]'>{degree}</h3>
+                <p className='text-sm max-[500px]:text-xs font-inter font-semibold text-[#1A1A1A]'>{year}</p>
             </div>
         </div>
     )
