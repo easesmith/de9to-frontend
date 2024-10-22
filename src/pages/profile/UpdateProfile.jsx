@@ -133,7 +133,7 @@ const UpdateProfile = () => {
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full mt-5'>
                             <div className='flex flex-col gap-5 w-full h-full'>
-                                <div className="grid grid-cols-3 w-full h-full gap-5">
+                                <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-sm:grid-cols-1 w-full h-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
@@ -180,54 +180,9 @@ const UpdateProfile = () => {
                                             )}
                                         />
                                     </div>
-                                    <div className="">
-                                        <FormField
-                                            control={form.control}
-                                            name="dateOfBirth"
-                                            render={({ field }) => (
-                                                <FormItem>
-                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Date of Birth</FormLabel>
-                                                    <FormControl>
-                                                        <Popover>
-                                                            <PopoverTrigger asChild>
-                                                                <FormControl>
-                                                                    <Button
-                                                                        variant={"outline"}
-                                                                        className={cn(
-                                                                            "w-full flex gap-2 justify-start text-[#717171]",
-                                                                            !field.value && "text-muted-foreground"
-                                                                        )}
-                                                                    >
-                                                                        <FaCalendar className='text-[#717171]' />
-                                                                        {field.value ? (
-                                                                            format(field.value, "PPP")
-                                                                        ) : (
-                                                                            <span>Pick a date</span>
-                                                                        )}
-                                                                    </Button>
-                                                                </FormControl>
-                                                            </PopoverTrigger>
-                                                            <PopoverContent className="w-auto p-0" align="start">
-                                                                <Calendar
-                                                                    mode="single"
-                                                                    selected={field.value}
-                                                                    onSelect={field.onChange}
-                                                                    disabled={(date) =>
-                                                                        date > new Date() || date < new Date("1900-01-01")
-                                                                    }
-                                                                    initialFocus
-                                                                />
-                                                            </PopoverContent>
-                                                        </Popover>
-                                                    </FormControl>
-                                                    <FormMessage />
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-sm:grid-cols-1 w-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
@@ -243,7 +198,7 @@ const UpdateProfile = () => {
                                                     <FormControl>
                                                         <div className='relative'>
                                                             <MdCall className={`absolute z-10 left-3 top-1/2 -translate-y-1/2 ${isMobileEdit ? "text-[#717171]" : "text-white"}`} />
-                                                            <Input disabled={!isMobileEdit} type="number" placeholder="Enter Your Mobile Number" className="placeholder:text-[#717171] disabled:text-white text-black disabled:bg-[#717171B2] pl-10 h-12 border-[#E4E6EE]" {...field} />
+                                                            <Input disabled={!isMobileEdit} type="number" placeholder="Enter Your Mobile Number" className="placeholder:text-[#FFFFFF] disabled:text-white text-black disabled:bg-[#717171B2] pl-10 h-12 border-[#E4E6EE]" {...field} />
                                                         </div>
                                                     </FormControl>
                                                     <FormMessage />
@@ -298,9 +253,54 @@ const UpdateProfile = () => {
                                             )}
                                         />
                                     </div>
+                                    <div className="">
+                                        <FormField
+                                            control={form.control}
+                                            name="dateOfBirth"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel className="font-inter text-base text-[#717171] font-normal">Date of Birth</FormLabel>
+                                                    <FormControl>
+                                                        <Popover>
+                                                            <PopoverTrigger asChild>
+                                                                <FormControl>
+                                                                    <Button
+                                                                        variant={"outline"}
+                                                                        className={cn(
+                                                                            "w-full h-12 flex gap-2 justify-start text-[#717171]",
+                                                                            !field.value && "text-muted-foreground"
+                                                                        )}
+                                                                    >
+                                                                        <FaCalendar className='text-[#717171]' />
+                                                                        {field.value ? (
+                                                                            format(field.value, "PPP")
+                                                                        ) : (
+                                                                            <span>Pick a date</span>
+                                                                        )}
+                                                                    </Button>
+                                                                </FormControl>
+                                                            </PopoverTrigger>
+                                                            <PopoverContent className="w-auto p-0" align="start">
+                                                                <Calendar
+                                                                    mode="single"
+                                                                    selected={field.value}
+                                                                    onSelect={field.onChange}
+                                                                    disabled={(date) =>
+                                                                        date > new Date() || date < new Date("1900-01-01")
+                                                                    }
+                                                                    initialFocus
+                                                                />
+                                                            </PopoverContent>
+                                                        </Popover>
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                {/* <div className="grid grid-cols-3 w-full gap-5"> */}
                                     {/* <div className="">
                                         <FormField
                                             control={form.control}
@@ -397,11 +397,11 @@ const UpdateProfile = () => {
                                             )}
                                         />
                                     </div> */}
-                                </div>
+                                {/* </div> */}
 
                                 <h2 className='text-xl font-inter font-medium text-[#0D0E0E] mt-5'>Address</h2>
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-sm:grid-cols-1 w-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
@@ -451,7 +451,7 @@ const UpdateProfile = () => {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-3 w-full gap-5">
+                                <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-sm:grid-cols-1 w-full gap-5">
                                     <div className="">
                                         <FormField
                                             control={form.control}
@@ -552,9 +552,9 @@ const UpdateProfile = () => {
                                     </div>
                                 </div> */}
 
-                                <div className="grid grid-cols-3 w-full gap-5 mt-4">
+                                <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-sm:grid-cols-1 w-full gap-5 mt-4">
                                     <div></div>
-                                    <div></div>
+                                    <div className='max-[900px]:hidden'></div>
                                     <Button type="submit" className="bg-[#95C22B] flex justify-center w-full h-12">
                                         Save changes
                                     </Button>
