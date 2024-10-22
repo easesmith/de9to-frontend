@@ -8,13 +8,13 @@ import ProfessionalImg4 from '../../assets/Ellipse 6.png'
 import ProfessionalImg5 from '../../assets/Ellipse 7.png'
 import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
-import DentalConsultationImg from '../../assets/Frame (1).png'
-import DestistCampsImg from '../../assets/Frame (2).png'
-import PinCodersCoveredImg from '../../assets/Frame (3).png'
-import HealthWebinarImg from '../../assets/Frame (4).png'
+import DentalConsultationImg from '../../assets/checklist 1.png'
+import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
+import PinCodersCoveredImg from '../../assets/maps.png'
+import HealthWebinarImg from '../../assets/image 158.png'
 import DentalCampImg1 from '../../assets/Frame 1171283211.png'
 import DentalCampImg2 from '../../assets/Frame 1171283212.png'
-import DestistSignupImg from '../../assets/Frame.png'
+import DestistSignupImg from '../../assets/dentist 1.png'
 import DentalCampImg3 from '../../assets/image 150.png'
 import OurCollaboratorImg1 from '../../assets/image 151.png'
 import OurCollaboratorImg2 from '../../assets/image 153.png'
@@ -73,7 +73,7 @@ const DentalCamp = () => {
   const swiperRef2 = useRef(null);
   const swiperRef3 = useRef(null);
 
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(3);
 
   const handleSelectPlan = (planIndex) => {
     setSelectedPlan(planIndex);

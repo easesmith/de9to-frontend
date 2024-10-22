@@ -73,38 +73,38 @@ const DentalTeamCard = () => {
     return (
         <section>
             <div className='bg-[#FFFFFF] px-5 py-16'>
-                <h5 className="text-[#95C22B] text-xl text-center font-normal italic font-poppins mb-3">Our Specialised Doctors</h5>
-                <h2 className="text-[#252B42] text-[32px] text-center font-semibold font-poppins mb-8">Meet Our Highly Skilled Dental Team</h2>
-                <div className=' bg-[#FFFFFF] flex justify-center items-center gap-10 flex-wrap'>
+                <h5 className="text-[#95C22B] text-xl max-[500px]:text-base text-center font-normal italic font-poppins mb-3">Our Specialised Doctors</h5>
+                <h2 className="text-[#252B42] text-[32px] max-[500px]:text-xl text-center font-semibold font-poppins mb-8">Meet Our Highly Skilled Dental Team</h2>
+                <div className=' bg-[#FFFFFF] flex items-center overflow-x-auto gap-10 pb-5'>
                     {
                         featuredDentist.map((item, index) => {
                             const { personalDetails, _id, clinic, dentistRatings } = item || {}
                             return (
-                                <div key={index} className='w-[360px]  cursor-pointer shadow-custom9 rounded-2xl'>
+                                <div key={index} className='w-[360px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
                                         <img
                                             src={Image1}
-                                            alt="" className=' h-[300px] rounded-2xl' />
+                                            alt="" className=' rounded-2xl' />
                                     </figure>
-                                    <div className='w-[360px] flex flex-col p-6'>
-                                        <h3 className="text-[#2D2D32] text-2xl font-medium font-poppins">{personalDetails?.prefix
+                                    <div className='w-[360px] max-[500px]:w-[250px] flex flex-col p-6'>
+                                        <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix
                                         } {personalDetails?.Firstname} {personalDetails?.lastName}</h3>
-                                        <p className="text-[#474747] text-base font-normal font-poppins">{item.experience}</p>
-                                        <p className="text-[#474747] text-base font-normal font-poppins">{item.location}</p>
-                                        <button onClick={() => navigate(`/our-dentist/${_id}`)} className="text-[#95C22B] text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10">View Profile</button>
+                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.experience}</p>
+                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.location}</p>
+                                        <button onClick={() => navigate(`/our-dentist/${_id}`)} className="text-[#95C22B] max-[500px]:text-base text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10">View Profile</button>
                                     </div>
                                 </div>
                             )
                         })
                     }
 
-{featuredDentist?.length === 0 && isLoading &&
-                    <Spinner size={30} />
-                }
+                    {featuredDentist?.length === 0 && isLoading &&
+                        <Spinner size={30} />
+                    }
 
-                {featuredDentist?.length === 0 && !isLoading &&
-                    <DataNotFound name={"Dentists"} />
-                }
+                    {featuredDentist?.length === 0 && !isLoading &&
+                        <DataNotFound name={"Dentists"} />
+                    }
                 </div>
             </div>
         </section>

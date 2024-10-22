@@ -191,7 +191,7 @@ const UpdateProfile = () => {
                                                 <FormItem>
                                                     <div className="flex justify-between items-center w-full">
                                                         <FormLabel className="font-inter text-base text-[#717171] font-normal">Mobile<span className='text-red-500'>*</span></FormLabel>
-                                                        <button type='button' onClick={() => setIsMobileEdit(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-7 px-2 flex items-center gap-[6px]'>
+                                                        <button type='button' onClick={() => setIsMobileEdit(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-6 px-2 flex items-center gap-[6px]'>
                                                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Edit</span>
                                                         </button>
                                                     </div>
@@ -214,9 +214,9 @@ const UpdateProfile = () => {
                                                 <FormItem>
                                                     <div className="flex justify-between items-center w-full">
                                                         <FormLabel className="font-inter text-base text-[#717171] font-normal">Email</FormLabel>
-                                                        <button type='button' onClick={() => setIsMobileEdit(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-7 px-2 flex items-center gap-[6px]'>
+                                                        {/* <button type='button' onClick={() => setIsMobileEdit(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-7 px-2 flex items-center gap-[6px]'>
                                                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Add</span>
-                                                        </button>
+                                                        </button> */}
                                                     </div>
                                                     <FormControl>
                                                         <div className='relative'>

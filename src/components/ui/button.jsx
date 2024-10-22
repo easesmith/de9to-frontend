@@ -22,7 +22,7 @@ const buttonVariants = cva(
         paginationActive:"bg-[#95C22B] text-[#FFFFFF] shadow-custom6",
         submit:"bg-[#95C22B] text-xl hover:bg-[#9bc833] text-[#FFFFFF] font-bold font-openSans",
         comment:"bg-[#95C22B] text-lg hover:bg-[#9bc833] text-[#FFFFFF] font-medium font-inter",
-        log:"bg-[#95C22B] hover:bg-[#9bc833] text-xs text-[#FFFFFF] font-bold font-inter",
+        log:"bg-[#95C22B] hover:bg-[#9bc833] text-base text-[#FFFFFF] font-bold font-inter w-[120px]",
         moreBlog:"hover:bg-[#FFFFFF] border-[1px] border-[#95C22B] text-sm text-[#1A1A1A] font-normal font-inter",
         category:"border-[1px] border-[#212121] text-sm text-[#1A1A1A] font-light font-inter"
       },
@@ -31,7 +31,7 @@ const buttonVariants = cva(
         sm: "rounded-md py-3 px-6",
         lg: " rounded-lg py-2 px-3",
         icon: "h-10 w-10",
-        log:"rounded-lg py-[10px] px-5"
+        log:"rounded-md h-10 px-5"
       },
     },
     defaultVariants: {

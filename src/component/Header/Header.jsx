@@ -78,7 +78,7 @@ const Header = () => {
                   <div className='flex justify-center'>
                     <img src={logo} alt="" />
                   </div>
-                  <ul className='flex flex-col items-center gap-10 mt-10'>
+                  <ul className='flex flex-col items-center gap-8 mt-9'>
                     {urlAndUrlName.map((e, i) => {
                       return (
                         <div key={i} >
@@ -91,6 +91,7 @@ const Header = () => {
                         </div>
                       )
                     })}
+                    <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
                   </ul>
                 </SheetDescription>
               </SheetHeader>

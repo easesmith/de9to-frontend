@@ -166,7 +166,7 @@ const Contact = () => {
                         <FormLabel className="text-xl max-[768px]:text-base font-medium font-inter mb-4">Dental Issue <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Textarea placeholder="Write your dental issue..." {...field} id="message-2"
-                            className="max-h-[109px] max-[768px]:text-base min-h-[109px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            className="max-h-[109px] resize-none max-[768px]:text-base min-h-[109px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                           />
                         </FormControl>
                         <FormMessage />

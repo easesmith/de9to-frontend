@@ -65,10 +65,10 @@ const MedicalRecords = () => {
                         <TableHeader className="bg-[#F6F6F6]">
                             <TableRow className="uppercase">
                                 <TableHead className="w-[130px]">Date</TableHead>
-                                <TableHead className="w-[110px] px-0">For whom</TableHead>
-                                <TableHead className="w-[200px] px-0">Dentist</TableHead>
-                                <TableHead className="w-[200px] px-0">Clinics</TableHead>
-                                <TableHead className="w-[200px] px-0">medical concerns</TableHead>
+                                <TableHead className="w-[110px]">For whom</TableHead>
+                                <TableHead className="w-[250px]">Dentist</TableHead>
+                                <TableHead className="w-[200px]">Clinics</TableHead>
+                                <TableHead className="w-[200px]">medical concerns</TableHead>
                                 <TableHead></TableHead>
                             </TableRow>
                         </TableHeader>
