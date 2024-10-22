@@ -65,7 +65,7 @@ const PayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen }) => {
 
     return (
         <Dialog open={isPayNowModalOpen} onOpenChange={setIsPayNowModalOpen}>
-            <DialogContent className="max-w-[680px] max-md:max-w-[320px] w-full">
+            <DialogContent className="max-w-[680px] max-md:max-w-[600px] max-sm:max-w-[480px] max-[525px]:max-w-[380px] w-full rounded-lg">
                 <div className='max-h-[75vh] w-full overflow-y-auto scrollBar'>
                     <DialogHeader>
                         <div className='flex justify-between items-start'>

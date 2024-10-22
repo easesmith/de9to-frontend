@@ -13,6 +13,10 @@ import {
 import useGetApiReq from '@/hooks/useGetApiReq';
 import { readCookie } from '@/utils/readCookie';
 import { useEffect, useState } from 'react';
+import { FiExternalLink } from 'react-icons/fi';
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+import ReactStars from 'react-stars';
 
 const MyFeedback = () => {
     const feedbacks = [
@@ -60,7 +64,7 @@ const MyFeedback = () => {
                     Filter by date
                 </Button>
 
-                <Table className="mt-4">
+                <Table className="mt-4 max-[425px]:hidden">
                     <TableHeader className="bg-[#F6F6F6]">
                         <TableRow className="uppercase">
                             <TableHead className="w-[130px]">Date</TableHead>
@@ -79,6 +83,119 @@ const MyFeedback = () => {
                         ))}
                     </TableBody>
                 </Table>
+
+                <div className='mt-4 max-[425px]:flex flex-wrap gap-3 justify-between hidden w-full'>
+                    {/* {allReviews.map((feedback, i) => ( */}
+                    <div className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[136px] w-[47.8%] flex flex-col items-center gap-2'>
+                        <div className='flex gap-3 justify-start items-center w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                            <p className='text-[#1A1A1A] text-xs font-normal font-inter'>23/08/2024</p>
+                        </div>
+                        <div className='flex flex-col justify-center gap-1 w-full'>
+                            <div className='flex flex-col justify-start items-start'>
+                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                <div className='w-full flex justify-start items-center gap-3'>
+                                    <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>Dr Radheram </h5>
+                                    <FiExternalLink className='text-[#717171]' />
+                                </div>
+                            </div>
+                        </div>
+                        <ReactStars count={5} value={4} color2='#FF8A00' size={20} className='my-1'/>
+                        <div className='flex flex-col justify-start items-start w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Feedback</p>
+                            <p className='text-[#0D0C22] text-[10px] font-normal font-inter'>Working at Sam.AI has been an incredible journey so far....</p>
+                        </div>
+                        <div className='flex items-center gap-2 w-full'>
+                            <button className='rounded-[6px] border-[1px] w-full border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px]'>
+                                <MdEdit className='text-[#95C22B]' />
+                                <span className='text-[#95C22B] text-[10px] font-medium font-inter'>Edit</span>
+                            </button>
+                            <MdDelete className='text-[#FF0000] text-4xl' />
+                        </div>
+                    </div>
+                    <div className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[136px] w-[47.8%] flex flex-col items-center gap-2'>
+                        <div className='flex gap-3 justify-start items-center w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                            <p className='text-[#1A1A1A] text-xs font-normal font-inter'>23/08/2024</p>
+                        </div>
+                        <div className='flex flex-col justify-center gap-1 w-full'>
+                            <div className='flex flex-col justify-start items-start'>
+                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                <div className='w-full flex justify-start items-center gap-3'>
+                                    <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>Dr Radheram </h5>
+                                    <FiExternalLink className='text-[#717171]' />
+                                </div>
+                            </div>
+                        </div>
+                        <ReactStars count={5} value={4} color2='#FF8A00' size={20} className='my-1'/>
+                        <div className='flex flex-col justify-start items-start w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Feedback</p>
+                            <p className='text-[#0D0C22] text-[10px] font-normal font-inter'>Working at Sam.AI has been an incredible journey so far....</p>
+                        </div>
+                        <div className='flex items-center gap-2 w-full'>
+                            <button className='rounded-[6px] border-[1px] w-full border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px]'>
+                                <MdEdit className='text-[#95C22B]' />
+                                <span className='text-[#95C22B] text-[10px] font-medium font-inter'>Edit</span>
+                            </button>
+                            <MdDelete className='text-[#FF0000] text-4xl' />
+                        </div>
+                    </div>
+                    <div className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[136px] w-[47.8%] flex flex-col items-center gap-2'>
+                        <div className='flex gap-3 justify-start items-center w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                            <p className='text-[#1A1A1A] text-xs font-normal font-inter'>23/08/2024</p>
+                        </div>
+                        <div className='flex flex-col justify-center gap-1 w-full'>
+                            <div className='flex flex-col justify-start items-start'>
+                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                <div className='w-full flex justify-start items-center gap-3'>
+                                    <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>Dr Radheram </h5>
+                                    <FiExternalLink className='text-[#717171]' />
+                                </div>
+                            </div>
+                        </div>
+                        <ReactStars count={5} value={4} color2='#FF8A00' size={20} className='my-1'/>
+                        <div className='flex flex-col justify-start items-start w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Feedback</p>
+                            <p className='text-[#0D0C22] text-[10px] font-normal font-inter'>Working at Sam.AI has been an incredible journey so far....</p>
+                        </div>
+                        <div className='flex items-center gap-2 w-full'>
+                            <button className='rounded-[6px] border-[1px] w-full border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px]'>
+                                <MdEdit className='text-[#95C22B]' />
+                                <span className='text-[#95C22B] text-[10px] font-medium font-inter'>Edit</span>
+                            </button>
+                            <MdDelete className='text-[#FF0000] text-4xl' />
+                        </div>
+                    </div>
+                    <div className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[136px] w-[47.8%] flex flex-col items-center gap-2'>
+                        <div className='flex gap-3 justify-start items-center w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                            <p className='text-[#1A1A1A] text-xs font-normal font-inter'>23/08/2024</p>
+                        </div>
+                        <div className='flex flex-col justify-center gap-1 w-full'>
+                            <div className='flex flex-col justify-start items-start'>
+                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                <div className='w-full flex justify-start items-center gap-3'>
+                                    <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>Dr Radheram </h5>
+                                    <FiExternalLink className='text-[#717171]' />
+                                </div>
+                            </div>
+                        </div>
+                        <ReactStars count={5} value={4} color2='#FF8A00' size={20} className='my-1'/>
+                        <div className='flex flex-col justify-start items-start w-full'>
+                            <p className='text-[#717171] text-[10px] font-medium font-inter'>Feedback</p>
+                            <p className='text-[#0D0C22] text-[10px] font-normal font-inter'>Working at Sam.AI has been an incredible journey so far....</p>
+                        </div>
+                        <div className='flex items-center gap-2 w-full'>
+                            <button className='rounded-[6px] border-[1px] w-full border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px]'>
+                                <MdEdit className='text-[#95C22B]' />
+                                <span className='text-[#95C22B] text-[10px] font-medium font-inter'>Edit</span>
+                            </button>
+                            <MdDelete className='text-[#FF0000] text-4xl' />
+                        </div>
+                    </div>
+                    {/* ))} */}
+                </div>
 
                 {allReviews?.length === 0 && isLoading &&
                     <Spinner size={30} />

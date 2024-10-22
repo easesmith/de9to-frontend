@@ -22,6 +22,7 @@ import { FiExternalLink } from 'react-icons/fi';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import invoice from '@/assets/invoice.png'
 import { useState } from 'react';
+import PayNowModal from '@/components/profile/PayNowModal';
 
 const Payment = () => {
     const payments = [
@@ -62,7 +63,7 @@ const Payment = () => {
 
                 </div>
 
-                <Table className="mt-4 max-md:hidden">
+                <Table className="mt-4 max-[425px]:hidden">
                     <TableHeader className="bg-[#F6F6F6]">
                         <TableRow className="uppercase">
                             <TableHead className="w-[130px]">Date</TableHead>
@@ -81,7 +82,7 @@ const Payment = () => {
                         ))}
                     </TableBody>
                 </Table>
-                <div className='max-md:flex hidden mt-4 gap-3 justify-center flex-wrap'>
+                <div className='max-[425px]:flex hidden mt-4 gap-3 justify-between flex-wrap'>
                     {payments.map((payment, i) => (
                         <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] w-[154px] flex flex-col items-center gap-5'>
                             <div className='flex gap-3 justify-start items-center w-full -mb-2'>
