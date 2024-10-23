@@ -44,18 +44,18 @@ const AboutUs = () => {
     };
     return (
         <Layout>
-            <main className=' max-w-[1240px] mx-auto flex flex-col gap-[60px] mb-12 mt-4'>
+            <main className=' max-w-[1240px] mx-auto flex flex-col gap-12 max-[425px]:gap-5 mb-12 mt-4'>
                 <PrevLink page='About us' />
-                <section className=''>
-                    <div className="min-h-[365px] rounded-3xl flex justify-center items-center">
-                        <div className='w-[400px]'>
-                            <h1 className='text-[#95C22B] text-[64px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
-                            <p className='text-[#717171] text-xl font-normal font-poppins'>Dedicated Dental Care You Can Trust</p>
+                <section className='w-full'>
+                    <div className="rounded-3xl flex max-md:flex-wrap justify-center items-center w-full px-5">
+                        <div className='w-[400px] max-md:w-full max-md:text-center'>
+                            <h1 className='text-[#95C22B] text-[64px] max-lg:text-4xl max-[425px]:text-[23px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
+                            <p className='text-[#717171] text-xl font-normal font-poppins max-[425px]:text-sm'>Dedicated Dental Care You Can Trust</p>
                         </div>
-                        <img src={HappyDentistImg} alt="happy-dentist-mg" />
+                        <img src={HappyDentistImg} alt="happy-dentist-mg" className='w-[530px] h-[365px] max-[425px]:w-[360px] max-[425px]:h-[203px]' />
                     </div>
-                    <div className="rounded-xl bg-[#95C22B]">
-                        <div className='min-h-[228px] flex justify-between items-center gap-9 px-10 text-[#FFFFFF]'>
+                    <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">
+                        <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#FFFFFF] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
                             <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
                             <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
                             <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
@@ -63,118 +63,47 @@ const AboutUs = () => {
                             <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
                         </div>
                     </div>
-                </section>
-                <section className='flex justify-between items-center gap-6 h-[388px] w-full'>
-                    <div className="w-2/3 flex flex-col gap-4">
-                        <h3 className='text-[#717171] text-3xl font-semibold font-inter'>Our Journey</h3>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>De9to – Your Oral Health Partner</p>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>India faces a dental health crisis—cavities, oral cancers, and limited access to care affect millions. At De9to, we’re on a mission to change that. Founded in 2020, we’re shifting the focus from treatment to prevention, making regular dental check-ups easy and accessible.</p>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>Our platform connects you with certified dentists for hassle-free appointments and free consultations. We also lead awareness campaigns through dental camps and social media.</p>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>Join De9to and let’s make healthier smiles a reality for everyone in India.</p>
+                    <div className="bg-[#95C22B] w-full hidden max-md:block py-5">
+                        <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-5 max-[425px]:mb-[10px]'>
+                            <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
+                            <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
+                            <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
+                        </div>
+                        <div className='grid grid-cols-2 justify-items-center text-[#FFFFFF] w-[450px] max-sm:w-[350px] max-[425px]:w-[250px] mx-auto'>
+                            <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
+                            <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
+                        </div>
                     </div>
-                    <div className="">
-                        <img src={OurJourneyImg} alt="" />
+                </section>
+                <section className='flex max-md:flex-wrap justify-between items-center gap-5 w-full px-5'>
+                    <div className="w-2/3 max-md:w-full flex flex-col gap-3">
+                        <h3 className='text-[#717171] text-3xl font-semibold font-inter max-sm:text-2xl'>Our Journey</h3>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>De9to – Your Oral Health Partner</p>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>India faces a dental health crisis—cavities, oral cancers, and limited access to care affect millions. At De9to, we’re on a mission to change that. Founded in 2020, we’re shifting the focus from treatment to prevention, making regular dental check-ups easy and accessible.</p>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>Our platform connects you with certified dentists for hassle-free appointments and free consultations. We also lead awareness campaigns through dental camps and social media.</p>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>Join De9to and let’s make healthier smiles a reality for everyone in India.</p>
+                    </div>
+                    <div className="max-md:w-full flex justify-center">
+                        <img src={OurJourneyImg} alt="" className='' />
                     </div>
                 </section>
-                <section className='flex justify-start items-center gap-6 min-h-[384px] w-full'>
-                    <div className="">
+                <section className='flex max-md:flex-wrap justify-start items-center gap-6 min-h-[384px] w-full px-5'>
+                    <div className="max-md:w-full flex justify-center">
                         <img src={OurMissionImg} alt="" />
                     </div>
-                    <div className=" w-2/3 flex flex-col gap-4">
-                        <h3 className='text-[#717171] text-3xl font-semibold font-inter'>Our Mission & Vision</h3>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>At De9to, our vision is to revolutionize dental care in India by shifting the focus from treatment to prevention. We align with the WHO's mission to prioritize regular dental check-ups, and we aim to be the leading platform that connects patients with trusted dentists, making preventive dentistry accessible to all.</p>
-                        <p className='text-[#5C5C5C] text-2xl font-normal font-inter'>Our mission at De9to is to make quality dental care accessible and affordable for everyone. By 2025, we aim to onboard over 5,000 dental clinics and serve more than 100,000 patients, ensuring that everyone has access to the best in oral health.</p>
+                    <div className=" w-2/3 max-md:w-full flex flex-col gap-3">
+                        <h3 className='text-[#717171] text-3xl font-semibold font-inter max-sm:text-2xl'>Our Mission & Vision</h3>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>At De9to, our vision is to revolutionize dental care in India by shifting the focus from treatment to prevention. We align with the WHO's mission to prioritize regular dental check-ups, and we aim to be the leading platform that connects patients with trusted dentists, making preventive dentistry accessible to all.</p>
+                        <p className='text-[#5C5C5C] text-2xl max-xl:text-xl max-lg:text-base font-normal font-inter'>Our mission at De9to is to make quality dental care accessible and affordable for everyone. By 2025, we aim to onboard over 5,000 dental clinics and serve more than 100,000 patients, ensuring that everyone has access to the best in oral health.</p>
                     </div>
                 </section>
-                {/* <section>
-                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Values</h3>
-                    <p className='text-[#5C5C5C] text-2xl font-normal font-inter mb-10'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
-                    <div className="cards flex flex-col gap-10">
-                        <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2 w-full'>
-                            <img src={CardImg} alt="" />
-                            <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                            </div>
-                        </div>
-                        <div className='w-full grid grid-cols-3 gap-10'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='w-full grid grid-cols-3 gap-10'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='w-full grid grid-cols-3 gap-10'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] p-5 rounded-[14px] shadow-custom2'>
-                                <img src={CardImg} alt="" />
-                                <div className=' flex flex-col gap-1 py-[5px] px-5'>
-                                    <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
-                                    <p className='text-[#717171] text-sm text-center font-medium font-inter'>Your trust is our top priority. We are ISO/IEC 27001:2013 and ISO 9001:2015 certified, ensuring that your data is secure and never shared without consent.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
 
-                <section>
-                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Values</h3>
-                    <p className='text-[#5C5C5C] text-2xl font-normal font-inter mb-10'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
+                <section className='px-5'>
+                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4 max-sm:text-2xl'>Our Values</h3>
+                    <p className='text-[#5C5C5C] text-2xl font-normal font-inter mb-10 max-lg:text-xl max-md:text-base'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
                     <Swiper
                         loop={true}
-                        slidesPerView={3}
+                        slidesPerView={1}
                         spaceBetween={30}
                         pagination={{
                             clickable: true,
@@ -184,10 +113,10 @@ const AboutUs = () => {
                             delay: 2000,
                             disableOnInteraction: false,
                         }}
-                        className="mySwiper about-us"
+                        className="mySwiper about-us max-w-[940px] h-[380px]"
                     >
-                        <SwiperSlide className='m-2'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                        <SwiperSlide>
+                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -195,8 +124,8 @@ const AboutUs = () => {
                                 </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className='m-2'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                        <SwiperSlide>
+                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -204,8 +133,8 @@ const AboutUs = () => {
                                 </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className='m-2'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                        <SwiperSlide>
+                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -213,8 +142,8 @@ const AboutUs = () => {
                                 </div>
                             </div>
                         </SwiperSlide>
-                        <SwiperSlide className='m-2'>
-                            <div className=' flex flex-col items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                        <SwiperSlide>
+                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -224,43 +153,44 @@ const AboutUs = () => {
                         </SwiperSlide>
                     </Swiper>
                 </section>
-                <section className='h-[455px]'>
-                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4'>Our Team</h3>
-                    <div className='flex justify-between items-center gap-10'>
+                <section className='px-5'>
+                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4 max-sm:text-2xl'>Our Team</h3>
+                    <div className='flex justify-between items-center gap-10 max-sm:gap-5 max-sm:flex-wrap max-lg:justify-center w-full'>
                         <OurTeamMember img={TeamMemberOne} name="Dr. Gajendra Yadav" profile="Director and COO" />
                         <OurTeamMember img={TeamMemberTwo} name="Yash Bansal" profile="Founder and CEO" />
                         <OurTeamMember img={TeamMemberThree} name="Mohit kapoor" profile="Co-Founder and CFO" />
                     </div>
                 </section>
-                <div className='p-5 bg-[#95C22B] rounded-lg'>
-                    <h2 className='font-inter font-semibold text-2xl text-[#FFFFFFE5]'>Feedback to the CEO</h2>
-                    <p className="font-inter text-white">Your every words matter. Please share your feedback to improve the overall experience of <span className='font-bold'>De9to</span></p>
-                    <Form {...form}>
-                        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-2 w-full'>
-                            {/* Clinic Selection */}
-                            <div className="w-full">
-                                <FormField
-                                    control={form.control}
-                                    name="feedback"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel className="font-inter text-base text-[#1A1A1A] font-normal"></FormLabel>
-                                            <FormControl>
-                                                <div className='relative h-[100px] w-full flex gap-2 items-center bg-white p-5 rounded-lg'>
-                                                    <Textarea placeholder="Write your message" className="placeholder:text-[#717171] focus-visible:outline-0 focus-visible:ring-ring focus-visible:ring-offset-0 ring-0 border-none p-0 h-full rounded-none resize-none" {...field} />
-                                                    <Button type="submit" className="bg-[#95C22B] flex max-w-[200px] justify-center w-full h-14 text-lg">
-                                                        Share Feedback
-                                                    </Button>
-                                                </div>
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-
-                        </form>
-                    </Form>
+                <div>
+                    <div className='p-5 bg-[#95C22B] rounded-lg max-sm:rounded-none '>
+                        <h2 className='font-inter font-semibold text-2xl max-sm:text-xl max-sm:text-center max-sm:mb-3 text-[#FFFFFFE5]'>Feedback to the CEO</h2>
+                        <p className="font-inter text-white max-sm:text-sm font-normal">Your every words matter. Please share your feedback to improve the overall experience of <span className='font-bold'>De9to</span></p>
+                        <Form {...form}>
+                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-2 w-full'>
+                                {/* Clinic Selection */}
+                                <div className="w-full">
+                                    <FormField
+                                        control={form.control}
+                                        name="feedback"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel className="font-inter text-base text-[#1A1A1A] font-normal"></FormLabel>
+                                                <FormControl>
+                                                    <div className='relative w-full flex max-sm:flex-col gap-2 items-center bg-white p-5 rounded-lg'>
+                                                        <Textarea placeholder="Write your message" className="placeholder:text-[#717171] max-sm:text-base focus-visible:outline-0 focus-visible:ring-ring focus-visible:ring-offset-0 ring-0 border-none p-0 h-full rounded-none resize-none" {...field} />
+                                                        <Button type="submit" className="bg-[#95C22B] flex w-[200px] justify-center h-14 text-xl rounded-[10px] max-sm:w-full max-sm:text-base max-sm:h-12">
+                                                            Share Feedback
+                                                        </Button>
+                                                    </div>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </form>
+                        </Form>
+                    </div>
                 </div>
             </main>
         </Layout>

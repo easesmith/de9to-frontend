@@ -36,22 +36,31 @@ const FilterName = ({ name }) => {
 const MangementInfo = ({ img, number, title }) => {
   return (
     <div className='w-fit flex flex-col items-center justify-center'>
-      <img src={img} alt="destistSignup-img" className=' h-[90px]' />
-      <p className=' text-[40px] text-center font-bold font-inter'>{number}</p>
-      <p className=' text-[19px] text-center font-bold font-inter'>{title}</p>
+      <img src={img} alt="destistSignup-img" className='h-[90px] max-lg:w-16 max-lg:h-16 max-sm:w-12 max-sm:h-12 max-[425px]:w-5 max-[425px]:h-5' />
+      <p className=' text-[40px] text-center font-bold font-inter max-lg:text-[27px] max-sm:text-xl max-[425px]:text-sm'>{number}</p>
+      <p className=' text-[19px] text-center font-bold font-inter max-lg:text-sm max-sm:text-xs max-[425px]:text-[10px] max-[425px]:font-medium'>{title}</p>
     </div>
   )
 }
 
 const OurTeamMember = ({ img, name, profile }) => {
   return (
-    <div className='w-[403px] h-[400px] flex justify-center relative'>
-      <img src={img} alt="" className='rounded-b-[10px]' />
-      <div className=' absolute bottom-2'>
-        <h3 className='text-[#FFFFFF] text-[26px] text-center font-bold font-inter'>{name}</h3>
-        <p className='text-[#FFFFFF] text-[15px] text-center font-normal font-inter'>{profile}</p>
+    <>
+      <div className='flex justify-center relative max-[425px]:hidden'>
+        <img src={img} alt="" className='rounded-b-[10px]' />
+        <div className=' absolute bottom-2'>
+          <h3 className='text-[#FFFFFF] text-[26px] text-center font-bold font-inter max-lg:text-[22px] max-md:text-lg'>{name}</h3>
+          <p className='text-[#FFFFFF] text-[15px] text-center font-normal font-inter max-lg:text-sm max-md:text-xs'>{profile}</p>
+        </div>
       </div>
-    </div>
+      <div className='justify-start items-center gap-3 hidden max-[425px]:flex w-full'>
+        <img src={img} alt="" className='rounded-[10px] w-[118px] h-[125px]' />
+        <div className=''>
+          <h3 className='text-[#000000] text-base text-start font-bold font-inter'>{name}</h3>
+          <p className='text-[#000000] text-xs font-normal font-inter'>{profile}</p>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -64,7 +73,7 @@ const PrevLink = ({ page }) => {
   };
 
   return (
-    <div onClick={handleBackClick} className='flex items-center gap-4 h-[18px] cursor-pointer'>
+    <div onClick={handleBackClick} className='flex items-center gap-3 h-[18px] cursor-pointer px-5'>
       <FaArrowLeft className='text-[#717171]' />
       <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>{page}</span>
     </div>

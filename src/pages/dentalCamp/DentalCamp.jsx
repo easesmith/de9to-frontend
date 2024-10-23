@@ -673,17 +673,17 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1240px] mx-auto my-36'>
+        <section className='max-w-[1240px] mx-auto my-36 px-5'>
           <div className="relative w-full ">
             <div className="">
               <div className='w-full flex justify-between items-center mb-12'>
                 <div className='flex flex-col gap-[15px]'>
-                  <p className='text-[#95C22B] text-xl font-bold font-inter'>Our  Best Practices</p>
-                  <h2 className='text-[#000A2D] w-[900px] text-[40px] font-bold font-inter '>
+                  <p className='text-[#95C22B] text-xl font-bold font-inter max-sm:text-center max-sm:text-sm'>Our  Best Practices</p>
+                  <h2 className='text-[#000A2D] max-w-[900px] text-[40px] font-bold font-inter max-md:text-[30px] max-sm:text-xl max-sm:text-center'>
                     Our Dental Camp Organized In Association With Sharp NGO
                   </h2>
                 </div>
-                <div className='flex items-center gap-5'>
+                <div className='flex items-center gap-5 max-sm:hidden'>
                   <div
                     className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
                     onClick={() => swiperRef3.current?.slidePrev()} // Navigate to the previous slide
@@ -700,7 +700,7 @@ const DentalCamp = () => {
               </div>
               <div className='flex justify-between items-center gap-8'>
                 <Swiper
-                  slidesPerView={2}
+                  slidesPerView={1}
                   spaceBetween={30}
                   loop={true}
                   pagination={{
@@ -743,16 +743,16 @@ const DentalCamp = () => {
             </div>
           </div>
         </section>
-        <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto my-36">
+        <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto my-28 px-5">
           <div className='flex flex-col items-center'>
-            <span className='text-[#000000] text-xl text-center italic font-bold font-inter'>Our Contributors</span>
-            <h3 className='text-[#000000] text-[40px] text-center font-bold font-inter '>Our Collaborators</h3>
+            <span className='text-[#95C22B] text-xl text-center italic font-bold font-inter max-md:text-base max-sm:text-sm'>Our Contributors</span>
+            <h3 className='text-[#000000] text-[40px] text-center font-bold font-inter max-md:text-[30px] max-sm:text-xl'>Our Collaborators</h3>
           </div>
-          <div className='flex gap-[115px]'>
-            <img src={OurCollaboratorImg1} alt="" />
-            <img src={OurCollaboratorImg2} alt="" />
-            <img src={OurCollaboratorImg3} alt="" />
-            <img src={OurCollaboratorImg4} alt="" />
+          <div className='flex max-w-[1000px] max-sm:max-w-[450px] gap-5 justify-between w-full'>
+            <img src={OurCollaboratorImg1} alt="" className='max-md:w-[130px] max-md:h-[130px] max-sm:w-[60px] max-sm:h-[60px] max-[425px]:w-[60px] max-[425px]:h-[60px]' />
+            <img src={OurCollaboratorImg2} alt="" className='max-md:w-[130px] max-md:h-[130px] max-sm:w-[60px] max-sm:h-[60px] max-[425px]:w-[60px] max-[425px]:h-[60px]' />
+            <img src={OurCollaboratorImg3} alt="" className='max-md:w-[130px] max-md:h-[130px] max-sm:w-[60px] max-sm:h-[60px] max-[425px]:w-[60px] max-[425px]:h-[60px]' />
+            <img src={OurCollaboratorImg4} alt="" className='max-md:w-[130px] max-md:h-[130px] max-sm:w-[60px] max-sm:h-[60px] max-[425px]:w-[60px] max-[425px]:h-[60px]' />
           </div>
         </section>
       </main>
