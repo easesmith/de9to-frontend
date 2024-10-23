@@ -119,7 +119,7 @@ const Payment = () => {
                                         <span className='text-[#95C22B] text-xs font-medium font-inter'>Invoice</span>
                                     </button>
                                 </div>
-                                : <button className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px] w-[130px]'>
+                                : <button onClick={() => setIsPayNowModalOpen(true)} className='rounded-[6px] border-[1px] border-[#95C22B] h-8 px-2 flex justify-center items-center gap-[6px] w-[130px]'>
                                     <span className='text-[#95C22B] text-xs font-medium font-inter'>Pay Now</span>
                                 </button>}
                             {/* <button className='rounded-lg border-[1px] border-[#95C22B] hover:bg-[#95C22B] text-[#95C22B] hover:text-[#FFFFFF] h-8 px-2 py-2 w-32 flex justify-center items-center'>

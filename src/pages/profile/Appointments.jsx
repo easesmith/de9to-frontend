@@ -29,6 +29,8 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { FiExternalLink } from 'react-icons/fi';
 import { FaLocationDot } from 'react-icons/fa6';
+import { FaArrowRight } from 'react-icons/fa';
+import AppointmentModal from '@/components/profile/AppointmentModal';
 
 const Appointments = () => {
     const { res, fetchData, isLoading } = useGetApiReq();
@@ -38,6 +40,7 @@ const Appointments = () => {
     const [allAppointments, setAllAppointments] = useState([]);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [date, setDate] = useState();
+    const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
 
     const getAppointments = async () => {
         fetchData(`/patient/get-all-appointments?patientId=${userInfo?.userId}&status=${status}`);
@@ -78,11 +81,11 @@ const Appointments = () => {
     return (
         <ProfileLayout>
             <div className="bg-white rounded-lg p-5">
-                <h1 className='font-inter text-2xl font-medium text-[#00214B]'>List of Appointments</h1>
+                <h1 className='font-inter text-2xl font-medium text-[#00214B] max-[425px]:text-xl'>List of Appointments</h1>
                 <div className="flex gap-4 items-center mt-5">
                     <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
                         <PopoverTrigger asChild>
-                            <Button variant="outline" className="border-[#717171] font-normal text-[#717171]">
+                            <Button variant="outline" className="border-[#717171] font-normal text-[#717171] ">
                                 Filter by date
                             </Button>
                         </PopoverTrigger>
@@ -135,41 +138,51 @@ const Appointments = () => {
                 </Table>
                 <div className='max-[425px]:flex hidden mt-4 gap-3 justify-between flex-wrap w-full'>
                     {allAppointments?.map((appointment, i) => (
-                        <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[136px] w-[47.8%] flex flex-col items-center gap-5'>
-                            <div className='flex gap-3 justify-start items-center w-full -mb-3'>
-                                <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
-                                <p className='text-[#1A1A1A] text-xs font-normal font-inter'>{appointment.date}</p>
-                            </div>
-                            <div className='flex gap-3 justify-start items-center w-full -mt-[6px] -mb-3'>
-                                <p className='text-[#717171] text-[8px] font-medium font-inter'>Scheduled at</p>
-                                <p className='text-[#1A1A1A] text-[10px] font-normal font-inter'>{appointment?.timing?.slot?.startTime || "no time"}</p>
-                            </div>
-                            <div className='flex flex-col justify-start items-start w-full -mb-3'>
-                                <p className='text-[#1A1A1A] text-[12px] font-medium font-inter'>{appointment?.patientId?.name}</p>
-                            </div>
-                            <div className='flex flex-col justify-center gap-2 w-full'>
-                                <div className='flex flex-col justify-start items-start'>
-                                    <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
-                                    <div className='w-full flex justify-start items-center gap-3'>
-                                        <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{`${appointment?.dentistId?.personalDetails?.prefix} ${appointment?.dentistId?.personalDetails?.Firstname} ${appointment?.dentistId?.personalDetails?.lastName}`}</h5>
-                                        <FiExternalLink className='text-[#717171]' />
+                        <>
+                            <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[133px] w-[47.8%] flex flex-col items-center gap-5'>
+                                <div className='flex gap-3 justify-start items-center w-full -mb-3'>
+                                    <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
+                                    <p className='text-[#1A1A1A] text-xs font-normal font-inter'>{appointment?.timing?.date}</p>
+                                </div>
+                                <div className='flex gap-3 justify-start items-center w-full -mt-[6px] -mb-3'>
+                                    <p className='text-[#717171] text-[8px] font-medium font-inter'>Scheduled at</p>
+                                    <p className='text-[#1A1A1A] text-[10px] font-normal font-inter'>{appointment?.timing?.slot?.startTime || "no time"}</p>
+                                </div>
+                                <div className='flex flex-col justify-start items-start w-full -mb-3'>
+                                    <p className='text-[#1A1A1A] text-[12px] font-medium font-inter'>{appointment?.patientId?.name}</p>
+                                </div>
+                                <div className='flex flex-col justify-center gap-2 w-full'>
+                                    <div className='flex flex-col justify-start items-start'>
+                                        <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
+                                        <div className='w-full flex justify-start items-center gap-3'>
+                                            <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{`${appointment?.dentistId?.personalDetails?.prefix} ${appointment?.dentistId?.personalDetails?.Firstname} ${appointment?.dentistId?.personalDetails?.lastName}`}</h5>
+                                            <FiExternalLink className='text-[#717171]' />
+                                        </div>
+                                    </div>
+                                    <div className='w-full flex flex-col justify-start items-start'>
+                                        <p className='text-[#717171] text-[10px] font-medium font-inter'>Clinics</p>
+                                        <div className='w-full flex justify-between items-center'>
+                                            <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{appointment?.clinicId?.clinicName}</h5>
+                                            <FaLocationDot className='text-[#717171]' />
+                                        </div>
                                     </div>
                                 </div>
-                                <div className='w-full flex flex-col justify-start items-start'>
-                                    <p className='text-[#717171] text-[10px] font-medium font-inter'>Clinics</p>
-                                    <div className='w-full flex justify-between items-center'>
-                                        <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{appointment?.clinicId?.clinicName}</h5>
-                                        <FaLocationDot className='text-[#717171]' />
+                                <div className={`font-medium ${appointment.status === "completed" ? "text-[#00CD4B]" : appointment.status === "cancelled" ? "text-[#FF0000]" : appointment.status === "upcoming" ? "text-blue-400" : "text-yellow-400"}`}>{appointment?.status.charAt(0).toUpperCase() + appointment?.status.slice(1).toLowerCase()}</div>
+                                <button onClick={() => setIsAppointmentModalOpen(true)} className='rounded-lg border-[1px] border-[#95C22B] text-[#95C22B] hover:bg-[#95C22B] hover:text-[#FFFFFF] h-8 px-2 flex justify-center items-center gap-[6px] w-full'>
+                                    <span className='text-[10px] font-semibold font-poppins'>Check Details</span>
+                                    <div className='w-4 h-4 rounded-full bg-[#EEEEEEEE] flex justify-center items-center cursor-pointer'>
+                                        <FaArrowRight className='text-[#95C22B] text-[10px]' />
                                     </div>
-                                </div>
+                                </button>
                             </div>
-                            <button className='rounded-lg border-[1px] border-[#95C22B] text-[#95C22B] hover:bg-[#95C22B] hover:text-[#FFFFFF] h-8 px-2 flex justify-center items-center gap-[6px] w-full'>
-                                <span className='text-[10px] font-semibold font-poppins'>Check Details</span>
-                                <FaLocationDot className='text-[#95C22B]' />
-                            </button>
-                            <div className={`font-medium ${appointment.status === "completed" ? "text-[#00CD4B]" : appointment.status === "cancelled" ? "text-[#FF0000]" : appointment.status === "upcoming" ? "text-blue-400" : "text-yellow-400"}`}>{appointment?.status.charAt(0).toUpperCase() + appointment?.status.slice(1).toLowerCase()}</div>
-
-                        </div>
+                            {isAppointmentModalOpen &&
+                                <AppointmentModal
+                                    isAppointmentModalOpen={isAppointmentModalOpen}
+                                    setIsAppointmentModalOpen={setIsAppointmentModalOpen}
+                                    appointment={appointment}
+                                />
+                            }
+                        </>
                     ))}
                 </div>
                 {allAppointments?.length === 0 && isLoading &&

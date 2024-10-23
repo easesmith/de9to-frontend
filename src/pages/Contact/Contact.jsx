@@ -68,13 +68,13 @@ const Contact = () => {
 
   return (
     <Layout>
-      <main className='max-w-[1240px] p-4 mx-auto flex flex-col gap-10 mt-4 mb-2'>
+      <main className='max-w-[1240px] p-4 mx-auto flex flex-col gap-10 max-sm:gap-5 mt-4 mb-2'>
         <PrevLink page='Contact Us' />
         <section className='flex flex-col justify-center items-center'>
-          <h1 className='text-[#95C22B] text-5xl text-center font-bold font-inter opacity-90 mb-2 max-[768px]:text-2xl'>Get in touch</h1>
-          <p className='text-[#717171] text-lg text-center font-medium font-inter opacity-70 max-[768px]:text-xs'>We're Here to Help Your Smile</p>
-          <div className=' max-w-[1130px] flex justify-between items-start gap-5 shadow-custom rounded-[20px] p-5 my-10'>
-            <div className='w-1/2 max-[768px]:w-full border-[1px] border-[#212121] px-5 pt-5 pb-10 rounded-[10px]'>
+          <h1 className='text-[#95C22B] text-5xl text-center font-bold font-inter opacity-90 mb-2 max-lg:text-2xl'>Get in touch</h1>
+          <p className='text-[#717171] text-lg text-center font-medium font-inter opacity-70 max-lg:text-xs'>We're Here to Help Your Smile</p>
+          <div className=' max-w-[1130px] flex justify-between items-start gap-5 shadow-custom rounded-[20px] p-5 max-lg:px-3 my-10 h-full'>
+            <div className='w-1/2 max-[768px]:w-full border-[1px] border-[#212121] px-4 pt-5 pb-10 rounded-[10px] max-lg:px-3'>
               <Form {...form}>
                 <p className='text-[#A4A4A4] text-xl font-normal font-inter mb-5 max-[768px]:text-sm'>Have questions or need assistance? Reach out to us for support, appointments, or any dental care inquiries</p>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[18px]">
@@ -93,7 +93,7 @@ const Contact = () => {
                       </FormItem>
                     )}
                   />
-                  <div className='grid grid-cols-2 gap-[30px] w-full'>
+                  <div className='grid grid-cols-2 gap-[24px] w-full max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[18px]'>
                     <FormField
                       control={form.control}
                       name="contactNumber"
@@ -177,8 +177,8 @@ const Contact = () => {
                 </form>
               </Form>
             </div>
-            <div className='w-1/2 h-full max-[768px]:hidden'>
-              <img src={DoctorImg} alt="" className='' />
+            <div className='w-1/2 max-[768px]:hidden h-full'>
+              <img src={DoctorImg} alt="" className='h-[832px] max-lg:h-[952px] max-[897px]:h-[980px]' />
             </div>
           </div>
         </section>
