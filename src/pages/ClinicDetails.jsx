@@ -25,6 +25,14 @@ import { useParams } from 'react-router-dom'
 import DataNotFound from '@/components/DataNotFound'
 import Spinner from '@/components/Spinner'
 import AddFeedbackModal from '@/components/AddFeedbackModal'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+
 
 const ClinicDetails = () => {
     const swiperRef = useRef(null);
@@ -126,7 +134,7 @@ const ClinicDetails = () => {
                 </div>
                 <div className="flex max-[900px]:flex-col items-start gap-2">
                     <div className='font-inter max-[900px]:border-none max-[900px]:px-0 font-medium px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Dentists</div>
-                    <div className="bg-white shadow w-full rounded">
+                    <div className="bg-white shadow max-[700px]:shadow-none w-full rounded">
                         <p className='p-3 font-inter font-medium text-[#717171]'>Book Your Appointment</p>
                         <div className="p-3 pt-4 flex flex-col gap-4">
                             {dentists?.map((dentist) => (
@@ -150,12 +158,44 @@ const ClinicDetails = () => {
                 <div className="flex max-[900px]:flex-col items-start gap-2 mt-10">
                     <div className='font-inter  font-medium text-[#717171] max-[900px]:border-none max-[900px]:px-0 px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Gallery</div>
                     <div>
-                        <div className="w-[65%] hidden mx-auto relative">
-                            <Swiper
+                        <Carousel
+                            opts={{
+                                align: "start",
+                                loop: true,
+                            }}
+                            className="w-[70%] mx-auto px-4 mb-10"
+                        >
+                            <CarouselContent>
+                                {allPhotos?.map((item, i) => (
+                                    <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
+                                        <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                    </CarouselItem>
+                                ))}
+                                {/* {Array.from({ length: 5 }).map((_, index) => (
+                                    <div className="p-1">
+                                        <Card>
+                                            <CardContent className="flex aspect-square items-center justify-center p-6">
+                                                <span className="text-3xl font-semibold">{index + 1}</span>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                ))} */}
+                            </CarouselContent>
+                            <CarouselPrevious />
+                            <CarouselNext />
+                        </Carousel>
+                        <div className="w-[65%] max-[500px]:w-[70%] mx-auto relative max-[500px]:px-2">
+                            {/* <Swiper
                                 loop={true}
                                 modules={[Pagination, Autoplay]}
                                 slidesPerView={3}
-                                spaceBetween={30}
+                                spaceBetween={20}
+                                // breakpoints={{
+                                //     500: {
+                                //         slidesPerView: 1,
+                                //     },
+                                // }}
+
                                 // navigation={{
                                 //     nextEl: '.swiper-button-next',
                                 //     prevEl: '.swiper-button-prev',
@@ -167,30 +207,30 @@ const ClinicDetails = () => {
                             >
                                 {allPhotos?.map((item, i) => (
                                     <SwiperSlide key={i}>
-                                        <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                        <img className='h-40 max-[700px]:h-20 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
                                     </SwiperSlide>
                                 ))}
-                            </Swiper>
-                            <div
-                                className="custom-swiper-button custom-swiper-button-prev"
+                            </Swiper> */}
+                            {/* <div
+                                className="custom-swiper-button custom-swiper-button-prev max-[700px]:h-8 max-[700px]:w-8 max-[500px]:hidden"
                                 onClick={() => swiperRef.current?.slidePrev()} // Navigate to the previous slide
                             >
-                                <BsArrowLeft className='text-2xl' />
+                                <BsArrowLeft className='text-2xl max-[700px]:text-lg' />
                             </div>
                             <div
-                                className="custom-swiper-button custom-swiper-button-next"
+                                className="custom-swiper-button custom-swiper-button-next max-[700px]:h-8 max-[700px]:w-8 max-[500px]:hidden"
                                 onClick={() => swiperRef.current?.slideNext()} // Navigate to the next slide
                             >
-                                <BsArrowRight className='text-2xl' />
-                            </div>
+                                <BsArrowRight className='text-2xl max-[700px]:text-lg' />
+                            </div> */}
 
                         </div>
-                        <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2  gap-5 mt-10">
-                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
-                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
-                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
-                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${receptionCounter}`} alt="" />
-                            <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${waitingArea}`} alt="" />
+                        <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2 max-[400px]:grid-cols-1  gap-5 mt-10">
+                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${receptionCounter}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${waitingArea}`} alt="" />
                         </div>
                     </div>
                 </div>

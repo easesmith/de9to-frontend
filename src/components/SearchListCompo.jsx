@@ -7,8 +7,11 @@ import useGetApiReq from '@/hooks/useGetApiReq'
 import DataNotFound from './DataNotFound'
 import { calculateAverageRating } from '@/utils/getAverageRating'
 import { useNavigate } from 'react-router-dom'
+import { IoSearchSharp } from 'react-icons/io5'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 
-const SearchListCompo = ({ open, close }) => {
+const SearchListCompo = ({ setAllData }) => {
     const [isShadow, setIsShadow] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [location, setLocation] = useState('')
@@ -42,9 +45,11 @@ const SearchListCompo = ({ open, close }) => {
         if (res?.status === 200 || res?.status === 201) {
             setIsShadow(true)
             if (res?.data?.status === true) {
-                console.log("res :", res)
-                setAllClinic(res?.data?.foundClinics)
-                setAllDentist(res?.data?.foundDentists)
+                console.log("search res :", res)
+                const { foundClinics, foundDentists } = res?.data || {}
+                setAllClinic(foundClinics)
+                setAllDentist(foundDentists)
+                // setAllData([...foundClinics, ...foundDentists])
                 // setQuery(true)
             } else {
                 console.log("res :", res)
@@ -72,11 +77,25 @@ const SearchListCompo = ({ open, close }) => {
     // if (!open) return null;
 
     return (
-        <section className={`max-w-[1240px] w-full mx-auto ${isShadow ? 'shadow-custom7' : ''}`}>
+        <section className={`max-w-[1240px] w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
             <LocationCompo searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleQuery={handleQuery} handleGetSerachQuery={handleGetSerachQuery} location={location} isShadow={isShadow} setIsShadow={setIsShadow} setShowDentistAndClinic={setShowDentistAndClinic} setLocation={setLocation} />
+            <div className='min-[700px]:hidden mt-4 flex items-center gap-2'>
+                <div className='relative w-full'>
+                    <IoSearchSharp className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
+                    <Input
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search doctors, clinic etc."
+                        className="placeholder:text-[#717171] w-full pl-10 h-12 border-[#E4E6EE]"
+                    />
+                </div>
+                <Button className="h-12" onClick={handleGetSerachQuery}>
+                    <IoSearchSharp size={20} />
+                </Button>
+            </div>
             <>
                 {isShadow &&
-                    <div className='modal fixed inset-0 bg-black/50 flex justify-center items-center z-30'>
+                    <div className='modal max-[700px]:hidden fixed inset-0 bg-black/50 flex justify-center items-center z-30'>
                         <div className={`flex flex-col py-8 px-10 gap-8 max-w-[1240px] w-full mx-auto absolute  bg-white ${isShadow ? 'shadow-custom7 rounded-b-2xl' : 'hidden'}`}>
                             <div className='flex justify-center gap-10'>
                                 <button onClick={() => setShowDentistAndClinic('All')} className={`${showDentistAndClinic === "All" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>All</button>

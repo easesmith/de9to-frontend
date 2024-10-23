@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, location, isShadow, setLocation, setIsShadow, setShowDentistAndClinic }) => {
 
     return (
-        <div className={` bg-[#FFFFFF] flex justify-center items-center gap-5 ${isShadow ? 'rounded-b-none border-t-0 border-s-0 border-e-0' : ''} rounded-2xl p-8 border-[1px] border-[#D9D9D9]`}>
+        <div className={` bg-[#FFFFFF] flex max-[700px]:hidden justify-center items-center gap-5 ${isShadow ? 'rounded-b-none border-t-0 border-s-0 border-e-0' : ''} rounded-2xl p-8 border-[1px] border-[#D9D9D9]`}>
             <div className="relative w-[500px]">
                 <Input
                     type="search"
@@ -23,7 +23,7 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
                     className="text-[#000000] text-base font-medium font-poppins rounded-2xl placeholder:text-[#000000] px-10 py-8"
                 />
                 {searchQuery &&
-                    <HiMiniXMark onClick={() =>{setIsShadow(false) , setShowDentistAndClinic(''),setSearchQuery("")}} className='absolute text-lg right-5 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer' />
+                    <HiMiniXMark onClick={() => { setIsShadow(false), setShowDentistAndClinic(''), setSearchQuery("") }} className='absolute text-lg right-5 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer' />
                 }
             </div>
             <Select value={location} onValueChange={setLocation}>

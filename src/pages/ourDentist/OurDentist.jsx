@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
-import { AllProfileCard } from '@/component/MiniCompo/MiniCompo'
+import ButtonLocation, { AllProfileCard, FilterName } from '@/component/MiniCompo/MiniCompo'
 import DoctorImg from '../../assets/codifyformatter__2_-removebg-preview 1.png'
 import ImgBackgroundImg from '../../assets/Group.png'
 
@@ -18,6 +18,14 @@ import SearchListCompo from '@/components/SearchListCompo'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import FilterCompo from '@/components/FilterCompo'
 import DataNotFound from '@/components/DataNotFound'
+import { FaFilter } from 'react-icons/fa'
+import { Input } from '@/components/ui/input'
+import { IoSearchSharp } from 'react-icons/io5'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
+import ReactStars from 'react-stars'
+import { FaXmark } from 'react-icons/fa6'
+import { Button } from '@/components/ui/button'
 
 const Modal = ({ isOpen, onClose, children }) => {
   // Close the modal if the user clicks outside of it
@@ -49,6 +57,7 @@ const OurDentist = () => {
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
   const [allDentists, setAllDentists] = useState([])
+  const [selectedRating, setSelectedRating] = useState(null);
 
   const getDentists = useCallback(async () => {
     fetchData(`/dentist/get-dentists?page=${page}`);
@@ -73,6 +82,17 @@ const OurDentist = () => {
   const [gender, setGender] = useState('');
   const [rating, setRating] = useState('');
   const [location, setLocation] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const handleResize = () => {
+    setIsFilterOpen(window.innerWidth > 700 && false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const getfilterDentist = useCallback(async () => {
     if (location || rating || gender) {
@@ -123,52 +143,8 @@ const OurDentist = () => {
 
   return (
     <Layout>
-      <main className='w-full relative'>
-        {/* <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
-          <button
-            onClick={()=> setIsOpen(true)}
-            className="cursor-pointer rounded bg-black px-4 py-2 text-white active:bg-slate-400"
-          >
-            OPEN MODAL
-          </button>
-          {isOpen && (
-            <div onClick={()=> setIsOpen(false)}
-              className="fixed inset-0 flex items-center justify-center bg-slate-700/30">
-              <div className="max-w-[calc(100vw-3rem)] w-[24rem] rounded-md bg-white p-6 text-black shadow-xl transition">
-                <h3 className="text-lg font-bold">Modal opened!</h3>
-                <p className="py-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a
-                  metus ac nulla consequat aliquet id quis turpis. Suspendisse
-                  potenti. Etiam sollicitudin vel turpis nec posuere.
-                </p>
-                <button onClick={()=> setIsOpen(false)}
-                  className="mt-4 cursor-pointer rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-                  Close Modal
-                </button>
-              </div>
-            </div>
-          )}
-        </div> */}
-        {/* <div className="h-screen flex items-center justify-center">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-          >
-            Open Modal
-          </button>
-
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-            <h2 className="text-lg font-bold">Modal Content</h2>
-            <p className="mt-2">This is the content inside the modal.</p>
-            <button
-              onClick={()=>setIsModalOpen(false)}
-              className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
-            >
-              Close Modal
-            </button>
-          </Modal>
-        </div> */}
-        <section className='flex items-center justify-end  pr-20'>
+      {!isFilterOpen ? <main className='w-full relative px-4'>
+        <section className='flex items-center justify-end max-[900px]:hidden pr-20'>
           <div className='flex flex-col gap-[18px] w-[483px]'>
             <h1 className='text-[#0D0E0E] text-[60px] font-bold font-inter leading-[72px]'>Expert Care,<br /> Right Next Door</h1>
             <p className='text-[#787878] text-base italic font-bold font-inter'>Where you get the list of certified doctors with years of
@@ -179,12 +155,24 @@ const OurDentist = () => {
             <img src={DoctorImg} alt="doctor-img" />
           </div>
         </section>
-        <img src={ImgBackgroundImg} alt="background-img" className='absolute -top-[4%] right-0 -z-10' />
-        <SearchListCompo />
-        <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 my-12'>
-          <div className=' rounded-[5px] flex flex-col gap-3'>
+        <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
+        {/* <div className='mt-5 max-[700px]:hidden'> */}
+          <SearchListCompo setAllData={setAllDentists} />
+        {/* </div> */}
+
+        {/* <div className='mt-5 min-[700px]:hidden'>
+          <div className='relative'>
+            <IoSearchSharp className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
+            <Input placeholder="Search doctors, clinic etc." className="placeholder:text-[#717171] pl-10 h-12 border-[#E4E6EE]" />
+          </div>
+        </div> */}
+        <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 max-[700px]:gap-5 my-6'>
+          <div className='max-[700px]:hidden rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>
             <FilterCompo gender={gender} handleGenderChange={handleGenderChange} rating={rating} handleRatingChange={handleRatingChange} location={location} handleLocationChange={handleLocationChange} />
+          </div>
+          <div className="flex justify-end min-[700px]:hidden">
+            <FaFilter onClick={() => setIsFilterOpen(true)} className='text-xl text-[#95C22B]' />
           </div>
           <div className='flex flex-col gap-[60px]'>
             <div className='flex flex-col justify-between gap-5'>
@@ -203,7 +191,85 @@ const OurDentist = () => {
           </div>
         </section>
       </main>
-    </Layout>
+        : <section className='px-4 py-8'>
+          <div className='shadow-[0px_0px_10px_rgba(0,0,0,0.1)] px-3 py-6 bg-white rounded'>
+            <div className="flex justify-between gap-3 items-center">
+              <h2 className='text-[#838383] text-xl font-semibold font-inter'>Advance Filter</h2>
+              <FaXmark onClick={() => setIsFilterOpen(false)} className='text-xl text-[#95C22B]' />
+            </div>
+            <div className=''>
+              <FilterName name="Rating" />
+              <div>
+                <div className="flex items-center gap-2 py-[10px]">
+                  <Checkbox
+                    id="rating-5"
+                    checked={selectedRating === 5}
+                    onCheckedChange={() => handleRatingChange(5)}
+                  />
+                  <Label className="flex items-center gap-2">
+                    <ReactStars count={5} edit={false} size={18} color2={'#FF8A00'} value={5} />
+                    <p className='text-[#1A1A1A] text-sm font-normal font-inter'>5.0</p>
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2 py-[10px]">
+                  <Checkbox
+                    id="rating-4"
+                    checked={selectedRating === 4}
+                    onCheckedChange={() => handleRatingChange(4)}
+                  />
+                  <Label className="flex items-center gap-2">
+                    <ReactStars count={5} edit={false} size={18} color2={'#FF8A00'} value={4} />
+                    <p className='text-[#1A1A1A] text-sm font-normal font-inter'>4.0 & up</p>
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2 py-[10px]">
+                  <Checkbox
+                    id="rating-3"
+                    checked={selectedRating === 3}
+                    onCheckedChange={() => handleRatingChange(3)}
+                  />
+                  <Label className="flex items-center gap-2">
+                    <ReactStars count={5} edit={false} size={18} color2={'#FF8A00'} value={3} />
+                    <p className='text-[#1A1A1A] text-sm font-normal font-inter'>3.0 & up</p>
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2 py-[10px]">
+                  <Checkbox
+                    id="rating-2"
+                    checked={selectedRating === 2}
+                    onCheckedChange={() => handleRatingChange(2)}
+                  />
+                  <Label className="flex items-center gap-2">
+                    <ReactStars count={5} edit={false} size={18} color2={'#FF8A00'} value={2} />
+                    <p className='text-[#1A1A1A] text-sm font-normal font-inter'>2.0 & up</p>
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2 py-[10px]">
+                  <Checkbox
+                    id="rating-1"
+                    checked={selectedRating === 1}
+                    onCheckedChange={() => handleRatingChange(1)}
+                  />
+                  <Label className="flex items-center gap-2">
+                    <ReactStars count={5} edit={false} size={18} color2={'#FF8A00'} value={1} />
+                    <p className='text-[#1A1A1A] text-sm font-normal font-inter'>1.0 & up</p>
+                  </Label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <FilterName name="Location" />
+              <div className='flex flex-wrap items-center gap-[10px]'>
+                <ButtonLocation setLocation={setLocation} location={location} name="Najabgarh" />
+                <ButtonLocation setLocation={setLocation} location={location} name="Ramlila Maidan" />
+              </div>
+            </div>
+            <Button className="bg-[#95C22B] mt-4 flex justify-center w-full h-10">
+              Apply Filters
+            </Button>
+          </div>
+        </section>}
+    </Layout >
   )
 }
 

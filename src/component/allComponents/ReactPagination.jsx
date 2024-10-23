@@ -12,7 +12,7 @@ const ReactPagination = ({pageCount, setPage}) => {
                     nextLabel={'→'}
                     pageCount={pageCount}
                     onPageChange={(e) => setPage(e.selected + 1)}
-                    containerClassName={'flex items-center justify-center gap-6 min-w-[420px] list-none'}
+                    containerClassName={'flex items-center justify-center gap-6 list-none'}
                     pageClassName={'flex justify-center items-center w-11 h-11 rounded-lg shadow-custom6 text-[#274760] font-inter'}
                     pageLinkClassName={'flex justify-center items-center w-full h-full rounded-lg  '}
                     activeClassName={'bg-[#95C22B] text-[#FFFFFF]'}
