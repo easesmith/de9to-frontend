@@ -17,6 +17,38 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import logo from '@/assets/logo.png'
+import {
+  Cloud,
+  CreditCard,
+  Github,
+  Keyboard,
+  LifeBuoy,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Plus,
+  PlusCircle,
+  Settings,
+  User,
+  UserPlus,
+  Users,
+} from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import DeleteAccountModal from '@/components/DeleteAccountModal'
+import LogoutModal from '@/components/LogoutModal'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -26,6 +58,9 @@ const Header = () => {
 
 
   const [isLogin, setIsLogin] = useState(userInfo ? true : false);
+  const [isMasterOpen, setIsMasterOpen] = useState(false);
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+  const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
 
   const handleLogin = () => {
     // setIsLogin(true);
@@ -124,13 +159,82 @@ const Header = () => {
           {!isLogin ?
             <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
             :
-            <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <IoIosArrowDown className='text-xl text-[#717171]' />
-            </button>
+            <>
+              <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <IoIosArrowDown className='text-xl text-[#717171]' />
+              </button>
+              <DropdownMenu>
+                  <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
+                    <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <IoIosArrowDown className='text-xl text-[#717171]' />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[100vw]">
+                    <DropdownMenuGroup>
+                      <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
+                        <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          Medical Records
+                        </Link>
+                        <Link to="/profile/appointments" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("appointments") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          Appointments
+                        </Link>
+                        <Link to="/profile/my-feedback" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("my-feedback") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          My Feedback
+                        </Link>
+                        <Link to="/profile/payment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("payment") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          Payment
+                        </Link>
+                        <Link to="/profile/update-profile" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          Update Profile
+                        </Link>
+                        <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
+                          <span className='font-inter text-[#1A1A1A] font-medium text-xl'>Masters</span>
+                          <IoIosArrowDown className={`text-xl text-[#717171] duration-300 ${isMasterOpen && "rotate-180 transition-transform duration-300"}`} />
+                        </button>
+                        {isMasterOpen &&
+                          <div className='flex flex-col gap-2'>
+                            <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                              Change Password
+                            </Link>
+                            <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                              Notification Settings
+                            </Link>
+                            <Link to="/profile/delete-account" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
+                              Delete Account
+                            </Link>
+                          </div>
+                        }
+
+                        <button onClick={() => setIsLogOutModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}>
+                          Log out
+                        </button>
+
+                        {isDeleteAccountModalOpen &&
+                          <DeleteAccountModal
+                            isDeleteAccountModalOpen={isDeleteAccountModalOpen}
+                            setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
+                          />
+                        }
+
+                        {isLogOutModalOpen &&
+                          <LogoutModal
+                            isLogOutModalOpen={isLogOutModalOpen}
+                            setIsLogOutModalOpen={setIsLogOutModalOpen}
+                          />
+                        }
+                      </div>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+              </DropdownMenu>
+            </>
           }
         </div>
       </nav>
