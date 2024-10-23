@@ -28,15 +28,15 @@ const ClinicBasicDetails = ({ clinic }) => {
     const averageRating = clinicRating && calculateAverageRating(clinicRating);
 
     return (
-        <div className="grid grid-cols-[77%_260px] h-full gap-4">
+        <div className="grid grid-cols-[77%_260px] max-[960px]:grid-cols-1 max-[700px]:grid-cols-1 h-full gap-4">
             <div className='rounded-[5px] flex flex-col h-full gap-5'>
                 {/* <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p> */}
-                <div className='p-4 rounded-[6px] h-full flex gap-[10px] shadow-lg'>
-                    <div className='rounded-[6px] relative w-[210px]'>
+                <div className='p-4 rounded-[6px] h-full flex max-[700px]:flex-col gap-[10px] shadow-lg'>
+                    <div className='rounded-[6px] relative w-[210px] max-[500px]:w-full max-[900px]:w-[50%]'>
                         <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                         <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
                     </div>
-                    <div className='pe-[25px] h-full ps-[9px] flex flex-col items-start justify-between w-[calc(100%-210px)]'>
+                    <div className='pe-[25px] h-full ps-[9px] max-[500px]:px-0 flex flex-col items-start justify-between max-[900px]:w-full w-[calc(100%-210px)]'>
                         <div>
                             <div className='flex items-center justify-between gap-4'>
                                 <div className='flex items-center gap-4'>
@@ -73,7 +73,7 @@ const ClinicBasicDetails = ({ clinic }) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='max-[960px]:hidden'>
                 <Swiper
                     loop={true}
                     modules={[Pagination, Autoplay]}

@@ -43,7 +43,7 @@ const Dentist = ({ dentist }) => {
     const averageRating = calculateAverageRating(dentist?.dentistRatings);
 
     return (
-        <div className='border-2 border-[#5B5B5B] border-l-8 border-l-[#95C22B] rounded-md p-3 grid grid-cols-[24%_74%] gap-5'>
+        <div className='border-2 border-[#5B5B5B] border-l-8 border-l-[#95C22B] rounded-md p-3 grid grid-cols-[24%_74%] max-[900px]:grid-cols-1 gap-5'>
             <div>
                 <div className='rounded-[6px] relative w-full'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />

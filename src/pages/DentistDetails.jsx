@@ -95,7 +95,7 @@ const DentistDetails = () => {
                 </div>
 
                 <div className="flex items-start gap-2">
-                    <div className='font-inter font-medium px-4 py-2 border-r-[3px] w-28 text-right text-[#717171] border-r-[#95C22B]'>Clinics</div>
+                    <div className='font-inter max-[900px]:hidden font-medium px-4 py-2 border-r-[3px] w-28 text-right text-[#717171] border-r-[#95C22B]'>Clinics</div>
                     <div className="bg-white shadow w-full rounded">
                         <p className='p-3 font-inter font-medium text-[#717171]'>Book Your Appointment</p>
                         <div className="p-3 pt-4">
@@ -108,7 +108,16 @@ const DentistDetails = () => {
                                     dentistDetails={dentistDetails}
                                 />
                             ))}
-                            <div className="grid grid-cols-3 gap-4 mt-5">
+                            <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-[560px]:grid-cols-1 gap-4 mt-5">
+                                {dentistDetails?.clinic?.map((clinic) => (
+                                    !clinic?.defaultClinic &&
+                                    <ClinicAppointment2
+                                        key={clinic._id}
+                                        clinic={clinic}
+                                        dentistId={dentistDetails?._id}
+                                        dentistDetails={dentistDetails}
+                                    />
+                                ))}
                                 {dentistDetails?.clinic?.map((clinic) => (
                                     !clinic?.defaultClinic &&
                                     <ClinicAppointment2
@@ -123,8 +132,8 @@ const DentistDetails = () => {
                     </div>
                 </div>
 
-                <div className="flex items-start gap-2 mt-10">
-                    <div className='font-inter font-medium px-4 py-2 border-r-[3px] text-[#717171] w-28 text-right border-r-[#95C22B]'>Educations</div>
+                <div className="flex max-[900px]:flex-col items-start gap-2 mt-10">
+                    <div className='font-inter max-[900px]:border-none font-medium max-[900px]:px-0 px-4 py-2 border-r-[3px] text-[#717171] w-28 max-[900px]:text-left text-right border-r-[#95C22B]'>Educations</div>
                     <div className="flex flex-col gap-10 w-full">
                         <SingleEducation
                             degree="Bachelor of Dental Surgery (BDS) - TMS University"
@@ -142,12 +151,12 @@ const DentistDetails = () => {
                 </div>
 
                 <div className="flex items-start gap-2 mt-10">
-                    <div className='font-inter font-medium text-[#717171] w-28 text-right px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
+                    <div className='font-inter font-medium max-[900px]:hidden text-[#717171] w-28 text-right px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
                     <div className='w-full mb-5'>
                         <RatingsComp allRating={allRating} />
                         <div className='flex justify-end my-5'>
                             <Select onValueChange={setSortRating} value={sortRating}>
-                                <SelectTrigger className="w-1/5 border-[1px] border-[#95C22B] rounded-xl">
+                                <SelectTrigger className="w-1/5 max-[700px]:w-1/3 max-[500px]:w-1/2 border-[1px] border-[#95C22B] rounded-xl">
                                     <SelectValue placeholder="" />
                                 </SelectTrigger>
                                 <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">

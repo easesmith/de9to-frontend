@@ -206,8 +206,8 @@ const Home = () => {
           </div>
         </section> */}
 
-        {/* <section>
-          <div className=' flex  flex-col justify-center items-center gap-8 pt-16 pb-40 max-w-[1240px] px-5 mx-auto'>
+        <section>
+          <div className=' flex  flex-col justify-center items-center gap-8 pt-16 max-[900px]:pb-5 pb-40 max-w-[1240px] px-5 mx-auto'>
             <h2 className="max-w-[350px] text-[#000000] text-[32px] max-[500px]:text-xl text-center font-semibold font-poppins">The Honest <span className='text-[#95C22B]'>Review</span> From Our Client</h2>
             <p className='max-w-[425px] text-[#3F3F3F] text-xl max-[500px]:text-base text-center font-normal font-poppins'>See what our patients are saying about their experiences at our clinic.</p>
             <div className='flex justify-center items-center z-20'>
@@ -230,7 +230,7 @@ const Home = () => {
                 onSwiper={(swiper) => {
                   swiperRef3.current = swiper;
                 }}
-                className="mySwiper flex justify-center dental-camp max-w-[600px] w-full gap-5"
+                className="mySwiper flex justify-center dental-camp max-w-[600px] max-[620px]:max-w-[320px] w-full gap-5"
               >
                 {testimonials.length > 0 && testimonials.map((e, i) => {
                   return (
@@ -253,7 +253,7 @@ const Home = () => {
                 })}
               </Swiper>
             </div>
-            <div className=' flex gap-3 pt-20'>
+            <div className=' flex gap-3 pt-20 max-[900px]:pt-5'>
               <BsArrowLeft onClick={() => swiperRef3.current?.slidePrev()} fontSize={30} className=' cursor-pointer text-[#909090] hover:text-[#95C22B]' />
               <BsArrowRight onClick={() => swiperRef3.current?.slideNext()} fontSize={30} className=' cursor-pointer text-[#909090] hover:text-[#95C22B]' />
             </div>
@@ -282,7 +282,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </section> */}
+        </section>
         <div className='max-[500px]:px-4'>
           <section className=' bg-[#95C22B] flex justify-center items-center rounded-3xl max-[500px]:rounded-lg'>
             <div className=' flex items-start px-5 pt-16 max-md:pb-16 max-[500px]:py-5'>
@@ -296,12 +296,12 @@ const Home = () => {
             </div>
           </section>
         </div>
-        {/* <section>
-          <h2 className="text-[#313131] text-[32px] text-center font-semibold font-poppins pt-[70px]">Read top <span className='text-[#95C22B]'>articles</span> from experts</h2>
-          <div className=' flex justify-center items-center gap-10 flex-wrap my-10'>
+        <section>
+          <h2 className="text-[#313131] text-[32px] max-[500px]:text-xl text-center font-semibold font-poppins pt-[70px]">Read top <span className='text-[#95C22B]'>articles</span> from experts</h2>
+          <div className='my-10'>
             <Card hidden='hidden' />
           </div>
-        </section> */}
+        </section>
       </main>
     </Layout>
   )

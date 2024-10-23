@@ -92,7 +92,7 @@ const CategoryBtn = ({ isCategorySelected, setIsCategorySelected, handleSelectCa
     <>
       {CategoryData.map((e, i) => {
         return (
-          <Button key={i} variant='category' size='lg' className={`${isCategorySelected === e.category ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'}`} onClick={() => handleSelectCategoryed(e.category)}>{e.category}</Button>
+          <Button key={i} variant='category' size='lg' className={`${isCategorySelected === e.category ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#212121]'} max-[500px]:text-xs max-[500px]:py-[5px] max-[700px]:px-2`} onClick={() => handleSelectCategoryed(e.category)}>{e.category}</Button>
         )
       })}
     </>

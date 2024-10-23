@@ -26,24 +26,24 @@ const Card = ({ hidden, isCategorySelected, setIsCategorySelected, handleSelectC
     // console.log(ab)
     return (
         <div className='flex flex-col items-center'>
-            <div className='flex items-center flex-wrap gap-5 mb-4'>
+            <div className='grid grid-cols-3 max-[900px]:grid-cols-2 max-w-[1200px] mx-auto gap-8 max-[500px]:gap-3 px-4 mb-4'>
                 {BlogData.map((e, i) => {
                     return (
                         <>
                             {i < number &&
-                                <Link to={`/blog/${i + 1}`} key={i} className={`rounded-2xl w-[400px] relative shadow-custom5 cursor-pointer`}>
+                                <Link to={`/blog/${i + 1}`} key={i} className={`rounded-2xl max-[500px]:h-60 max-[500px]:rounded-none relative shadow-custom5 cursor-pointer`}>
                                     <img src={Image} alt=""
-                                        className='w-fit rounded-2xl' />
-                                    <div className=' absolute px-3 py-5 bottom-0 rounded-b-2xl bg-[#FFFFFF]'>
-                                        <h4 className='text-[#313131] text-2xl font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
-                                        <p className='text-[#535353] text-[15px] font-medium font-poppins'>{e.description}</p>
+                                        className='rounded-2xl  max-[500px]:rounded-none' />
+                                    <div className=' absolute px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
+                                        <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
+                                        <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
                                     </div>
                                 </Link>}
                         </>
                     )
                 })}
             </div>
-            <Button onClick={handleShowData} variant='moreBlog' className={`flex justify-center items-center gap-[10px] w-fit ${hidden}`} size='sm'>Show more Blogs<BsChevronDoubleDown className='text-[#95C22B]' /></Button>
+            <Button onClick={handleShowData} variant='moreBlog' className={`flex justify-center max-[500px]:text-xs items-center gap-[10px] w-fit ${hidden}`} size='sm'>Show more Blogs<BsChevronDoubleDown className='text-[#95C22B]' /></Button>
         </div>
     )
 }
@@ -75,7 +75,7 @@ const DentalTeamCard = () => {
             <div className='bg-[#FFFFFF] px-5 py-16'>
                 <h5 className="text-[#95C22B] text-xl max-[500px]:text-base text-center font-normal italic font-poppins mb-3">Our Specialised Doctors</h5>
                 <h2 className="text-[#252B42] text-[32px] max-[500px]:text-xl text-center font-semibold font-poppins mb-8">Meet Our Highly Skilled Dental Team</h2>
-                <div className=' bg-[#FFFFFF] flex items-center overflow-x-auto gap-10 pb-5'>
+                <div className='scrollBar max-w-[1170px] mx-auto bg-[#FFFFFF] flex items-center overflow-x-auto gap-10 pb-5'>
                     {
                         featuredDentist.map((item, index) => {
                             const { personalDetails, _id, clinic, dentistRatings } = item || {}
@@ -84,7 +84,7 @@ const DentalTeamCard = () => {
                                     <figure>
                                         <img
                                             src={Image1}
-                                            alt="" className=' rounded-2xl' />
+                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none' />
                                     </figure>
                                     <div className='w-[360px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix

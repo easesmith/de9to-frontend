@@ -15,12 +15,12 @@ const Footer = () => {
               <img src={De9toLogo} alt="" />
             </div>
           </Link>
-        <ul className='flex justify-between max-[830px]:gap-y-2 flex-wrap items-center gap-10 list-none ml-0'>
-          <Link to={'/about'} className='text-[#000000] text-lg font-medium font-poppins'><>About Us</></Link>
-          <Link to={'/our-dentist'} className='text-[#000000] text-lg font-medium font-poppins'><>Our Dentist</></Link>
-          <Link to={'/dental-camp'} className='text-[#000000] text-lg font-medium font-poppins'><>Denatl Camps</></Link>
-          <Link to={'/blog'} className='text-[#000000] text-lg font-medium font-poppins'><>Press & Blog</></Link>
-          <Link to={'/contact'} className='text-[#000000] text-lg font-medium font-poppins'><>Contact Us</></Link>
+        <ul className='flex justify-between max-[830px]:gap-y-2 flex-wrap items-center max-[700px]:text-sm gap-10 list-none ml-0'>
+          <Link to={'/about'} className='text-[#000000] text-lg font-medium max-[700px]:text-sm font-poppins'><>About Us</></Link>
+          <Link to={'/our-dentist'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Our Dentist</></Link>
+          <Link to={'/dental-camp'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Denatl Camps</></Link>
+          <Link to={'/blog'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Press & Blog</></Link>
+          <Link to={'/contact'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Contact Us</></Link>
         </ul>
         <ul className='flex justify-between items-center max-[427px]:hidden gap-10 list-none ml-0'>
           <li className='text-[#95C22B] text-xl max-[427px]:text-sm font-medium font-poppins'><Link><FiFacebook /></Link></li>

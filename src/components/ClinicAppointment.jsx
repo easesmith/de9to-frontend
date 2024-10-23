@@ -20,8 +20,8 @@ const ClinicAppointment = ({ clinic, dentistId, dentistDetails }) => {
     return (
         <div className='w-full'>
             <div className="grid grid-cols-[8px_1fr] gap-1">
-                <div className="border-l-8 border-[#95C22B] h-full rounded-full w-2"></div>
-                <div className='border-2 border-l-transparent border-[#5B5B5B] rounded-tr-md rounded-br-md px-4 grid grid-cols-2 py-2'>
+                <div className="border-l-8 max-[500px]:border-l-4 border-[#95C22B] h-full rounded-full w-2"></div>
+                <div className='border-2 max-[500px]:border border-l-transparent border-[#5B5B5B] rounded-tr-md rounded-br-md px-4 grid grid-cols-2 max-[700px]:grid-cols-1 py-2'>
                     <img className='w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinicLogo}`} alt="" />
                     <div>
                         <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
@@ -29,7 +29,7 @@ const ClinicAppointment = ({ clinic, dentistId, dentistDetails }) => {
                             <h2 className='font-inter font-semibold text-[#1A1A1A]'>{clinicName}</h2>
                             <Button onClick={handleMapSearch} variant="outline" className="flex gap-2 text-[#717171] border-[#717171] hover:text-[#939292]">
                                 <FaLocationArrow className='text-[#717171]' />
-                                <span>Search on map</span>
+                                <span className='max-[500px]:hidden'>Search on map</span>
                             </Button>
                         </div>
                         <p className='font-inter text-sm text-[#717171] my-2'><span className='font-bold'>Fee:</span> ₹{consultationfee}</p>
