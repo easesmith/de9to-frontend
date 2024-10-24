@@ -11,7 +11,7 @@ import { IoSearchSharp } from 'react-icons/io5'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 
-const SearchListCompo = ({ setAllData }) => {
+const SearchListCompo = ({ setAllData,setAllClinics }) => {
     const [isShadow, setIsShadow] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [location, setLocation] = useState('')
@@ -49,13 +49,16 @@ const SearchListCompo = ({ setAllData }) => {
                 const { foundClinics, foundDentists } = res?.data || {}
                 setAllClinic(foundClinics)
                 setAllDentist(foundDentists)
-                // setAllData([...foundClinics, ...foundDentists])
+                setAllData(foundDentists);
+                setAllClinics(foundClinics);
                 // setQuery(true)
             } else {
                 console.log("res :", res)
                 console.log(res?.data?.message)
                 setAllClinic([])
                 setAllDentist([])
+                setAllData([]);
+                setAllClinics([]);
             }
         }
     }, [res])

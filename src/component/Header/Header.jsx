@@ -155,7 +155,7 @@ const Header = () => {
         </ul>
 
         <div className='flex gap-4 items-center'>
-          <IoSearchSharp className='text-[#95C22B] min-[970px]:hidden text-2xl' />
+          <IoSearchSharp onClick={()=>navigate("/our-dentist")} className='text-[#95C22B] min-[970px]:hidden text-2xl' />
           {!isLogin ?
             <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
             :

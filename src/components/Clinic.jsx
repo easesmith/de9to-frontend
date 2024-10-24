@@ -30,15 +30,15 @@ const Clinic = ({ clinic }) => {
 
 
     return (
-        <div className='p-4 rounded-[6px] flex gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
-            <div onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] cursor-pointer w-[210px] h-[210px] flex justify-center items-end relative -mt-[10px]'>
+        <div className='p-4 rounded-[6px] flex max-[500px]:flex-col gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
+            <div onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] cursor-pointer w-[210px] max-[600px]:w-[350px] h-[210px] max-[500px]:w-full max-[500px]:h-full flex justify-center items-end relative -mt-[10px]'>
                 <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
                 <img src={VerifiedImg} alt="" className='absolute top-[8%] right-[3%]' />
             </div>
-            <div className='pe-[25px] ps-[9px] flex flex-col justify-between gap-2 w-[calc(100%-210px)]'>
-                <div className='flex items-center justify-between gap-4'>
+            <div className='pe-[25px] ps-[9px] flex flex-col justify-between gap-2 max-[600px]:w-full w-[calc(100%-210px)]'>
+                <div className='flex items-center justify-between max-[650px]:flex-col max-[650px]:items-start gap-4'>
                     <div className='flex items-center gap-4'>
-                        <h4 onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='text-[#1A1A1A] cursor-pointer text-2xl font-semibold font-inter'>{clinic?.clinicName}</h4>
+                        <h4 onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='text-[#1A1A1A] cursor-pointer text-2xl max-[500px]:text-base font-semibold font-inter'>{clinic?.clinicName}</h4>
                     </div>
                     <div className='flex flex-col gap-1'>
                         <ReactStars className='m-0 disable-hover' size={16} count={5} value={averageRating} color2={'#FF8A00'} edit={false} />
@@ -46,7 +46,7 @@ const Clinic = ({ clinic }) => {
                     </div>
                 </div>
                 <div className='flex flex-col justify-start gap-2'>
-                    <h5 className='text-[#FF8A00] text-base font-semibold font-inter'>Multi-Speciality Clinic</h5>
+                    <h5 className='text-[#FF8A00] text-base max-[500px]:text-sm font-semibold font-inter'>Multi-Speciality Clinic</h5>
                     <div className='flex flex-col gap-2'>
                         <div className='flex items-center gap-[6px] rounded-[35px] px-[10px]'>
                             <img src={VectorImg} alt="" />
@@ -62,7 +62,7 @@ const Clinic = ({ clinic }) => {
                         </div>
                     </div>
                 </div>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center max-[768px]:flex-col gap-4 max-[768px]:items-start'>
                     <div className='flex gap-2'>
                         <button onClick={handleMapSearch} className='rounded-[6px] border-[1px] border-[#95C22B] py-[6px] px-2 flex items-center gap-[6px]'>
                             <FaLocationArrow className='text-[#95C22B] text-xs' />
@@ -73,7 +73,7 @@ const Clinic = ({ clinic }) => {
                             <span className='text-[#95C22B] text-xs font-medium font-inter'>Call now</span>
                         </button>
                     </div>
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center max-[768px]:justify-between max-[768px]:w-full gap-2'>
                         <p className='text-[#838383] text-sm font-normal font-poppins'><span className='line-through'>₹500</span> <span className='font-semibold'>FREE</span> via <span className='font-semibold'>de<span className='text-[#95C22B]'>9</span>to</span></p>
                         <button onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] border-[1px] border-[#95C22B] bg-[#95C22B] py-[6px] px-2 flex justify-center items-center gap-[6px]'>
                             <span className='text-[#FFFFFF] text-xs font-semibold font-inter'>View</span>
