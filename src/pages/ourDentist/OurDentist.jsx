@@ -203,7 +203,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-5"
-                    checked={selectedRating === 5}
+                    checked={rating === 5}
                     onCheckedChange={() => handleRatingChange(5)}
                   />
                   <Label className="flex items-center gap-2">
@@ -214,7 +214,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-4"
-                    checked={selectedRating === 4}
+                    checked={rating === 4}
                     onCheckedChange={() => handleRatingChange(4)}
                   />
                   <Label className="flex items-center gap-2">
@@ -225,7 +225,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-3"
-                    checked={selectedRating === 3}
+                    checked={rating === 3}
                     onCheckedChange={() => handleRatingChange(3)}
                   />
                   <Label className="flex items-center gap-2">
@@ -236,7 +236,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-2"
-                    checked={selectedRating === 2}
+                    checked={rating === 2}
                     onCheckedChange={() => handleRatingChange(2)}
                   />
                   <Label className="flex items-center gap-2">
@@ -247,7 +247,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-1"
-                    checked={selectedRating === 1}
+                    checked={rating === 1}
                     onCheckedChange={() => handleRatingChange(1)}
                   />
                   <Label className="flex items-center gap-2">

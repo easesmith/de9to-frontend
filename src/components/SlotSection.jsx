@@ -14,7 +14,7 @@ const SlotSection = ({ title, slots, selectedSlot, handleSlotClick, dayDate }) =
                         type="button"
                         key={slotIndex}
                         variant="secondary"
-                        className={`border-2 ${selectedSlot === slot?.slotId?.startTime ? 'bg-[#95C22B] hover:bg-[#95C22B] text-white' : ''}`}
+                        className={`border-2 ${selectedSlot === slot?.slotId?.startTime ? 'bg-[#95C22B] hover:bg-[#95C22B] text-white' : ''} text-xs sm:text-base`}
                         onClick={() => handleSlotClick(slot?.slotId?.startTime, dayDate,slot?.slotId?._id)}
                         disabled={slot?.slotId?.isBooked}
                     >

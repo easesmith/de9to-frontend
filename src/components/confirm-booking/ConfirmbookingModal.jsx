@@ -253,8 +253,8 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     return (
         <Dialog open={isConfirmBookingModalOpen} onOpenChange={setIsConfirmBookingModalOpen}>
             <DialogContent className="max-w-[700px] max-h-[90vh] overflow-y-auto w-full">
-                <DialogHeader>
-                    <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-2xl">Confirm Your Booking</DialogTitle>
+                <DialogHeader className="text-left">
+                    <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-base sm:text-2xl ">Confirm Your Booking</DialogTitle>
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             {/* Clinic Selection */}
@@ -264,7 +264,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                     name="clinic"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel className="font-inter text-base">Select Clinic</FormLabel>
+                                            <FormLabel className="font-inter text-sm sm:text-base text-left sm:text-left">Select Clinic</FormLabel>
                                             <FormControl>
                                                 <Select value={field.value} onValueChange={field.onChange}>
                                                     <SelectTrigger className="w-full border bg-[#F9FFEA] border-[#95C22B]">
@@ -288,7 +288,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                             {/* Availability Section */}
                             {getValues("clinic") &&
                                 <>
-                                    <Label className="font-inter text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
+                                    <Label className="font-inter text-sm sm:text-base border-b pb-2 border-b-[#71717154] w-full">Select Availability</Label>
 
                                     <div className="grid w-full gap-4 grid-cols-[10%_1fr_10%]">
                                         <button
@@ -297,7 +297,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                             onClick={handlePrev}
                                             disabled={startIndex === 0}
                                         >
-                                            <IoIosArrowBack className="border w-14 h-14 p-4 rounded-full" />
+                                            <IoIosArrowBack className="border w-14 h-14 p-2 sm:p-4 rounded-full" />
                                         </button>
                                         <div className="grid w-full gap-4 grid-cols-[1fr_1fr_1fr]">
                                             {visibleDays.map((day, index) => {
@@ -311,8 +311,8 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                         onClick={() => handleDaySelection(index + startIndex)}
                                                         className={`${selectedDay === day.date ? "border-b-2 border-[#95C22B]" : "border-b-2 border-transparent"}`}
                                                     >
-                                                        <p className="font-inter font-medium text-center text-[#1A1A1A]">{day.name}</p>
-                                                        <p className={`font-inter font-medium text-sm text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
+                                                        <p className="font-inter sm:text-base text-xs font-medium text-center text-[#1A1A1A]">{day.name}</p>
+                                                        <p className={`font-inter sm:text-sm text-xs font-medium text-center ${totalAvailableSlots > 0 ? "text-[#95C22B]" : "text-[#717171]"}`}>
                                                             {totalAvailableSlots > 0 ? `${totalAvailableSlots} Slots Available` : "Click to check"}
                                                         </p>
                                                     </button>
@@ -326,7 +326,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                             onClick={handleNext}
                                             disabled={startIndex + 3 >= days.length}
                                         >
-                                            <IoIosArrowForward className="border w-14 h-14 p-4 rounded-full" />
+                                            <IoIosArrowForward className="border w-14 h-14 p-2 sm:p-4 rounded-full" />
                                         </button>
                                     </div>
 

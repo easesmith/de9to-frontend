@@ -43,7 +43,7 @@ const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalO
 
     return (
         <AlertDialog open={isDeleteAccountModalOpen} onOpenChange={setIsDeleteAccountModalOpen}>
-            <AlertDialogContent className="max-w-md max-sm:w-[320px] w-full rounded-lg">
+            <AlertDialogContent className="max-w-md w-full rounded-lg">
                 <div className='flex flex-col items-start gap-4 w-full'>
                     {/* Clinic Selection */}
 

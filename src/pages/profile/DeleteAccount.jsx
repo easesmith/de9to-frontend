@@ -44,7 +44,7 @@ const DeleteAccount = () => {
                         <Form {...form}>
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-10 w-full'>
                                 {/* Clinic Selection */}
-                                <div className="w-full grid grid-cols-[70%_20%] gap-20">
+                                <div className="w-full grid grid-cols-[70%_20%] max-[768px]:grid-cols-[60%_30%] max-[768px]:gap-10 max-[500px]:grid-cols-1 gap-20">
                                     <FormField
                                         control={form.control}
                                         name="password"

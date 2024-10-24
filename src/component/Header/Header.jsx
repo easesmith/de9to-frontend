@@ -80,10 +80,10 @@ const Header = () => {
       url: '/our-dentist',
       urlName: 'Our dentist'
     },
-    {
-      url: '/our-clinic',
-      urlName: 'Our clinics'
-    },
+    // {
+    //   url: '/our-clinic',
+    //   urlName: 'Our clinics'
+    // },
     {
       url: '/blog',
       urlName: 'Blogs'

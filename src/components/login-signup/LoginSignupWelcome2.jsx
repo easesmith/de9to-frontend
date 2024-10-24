@@ -11,11 +11,11 @@ const LoginSignupWelcome2 = ({ selected, setSelected }) => {
     const [isShowTabs, setIsShowTabs] = useState(true);
 
     return (
-        <div className='p-5'>
+        <div className='p-5 w-full'>
             <div className='flex flex-col justify-between h-full'>
                 <div>
-                    <button onClick={() => navigate("/")} className='flex items-center text-[#717171]'>
-                        <MdArrowBackIos className='text-2xl' />
+                    <button onClick={() => navigate("/")} className='flex max-[500px]:text-sm items-center text-[#717171]'>
+                        <MdArrowBackIos className='text-2xl max-[500px]:text-xl' />
                         Return Home
                     </button>
                     <div className="max-w-lg mx-auto h-full">
@@ -39,7 +39,7 @@ const LoginSignupWelcome2 = ({ selected, setSelected }) => {
                         </Tabs>
                     </div>
                 </div>
-                <div className="flex justify-between items-center gap-3 px-5">
+                <div className="hidden sm:flex justify-between items-center gap-3 px-5 mt-5">
                     <p className='text-xs text-[#717171] font-inter'>Copyright 2021 - 2022 FoxHub Inc. All rights Reserved</p>
                     <button className='text-xs text-[#717171] font-inter flex items-center gap-1'>
                         <img src={iIcon} alt="" />

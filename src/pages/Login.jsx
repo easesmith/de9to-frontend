@@ -24,26 +24,24 @@ const Login = () => {
 
 
     return (
-        <div className={`grid ${selected === "login" ? "grid-cols-[30%_70%]" : "grid-cols-[70%_30%]"} h-screen`}>
-            {selected === "login" ?
-                <LoginSignupWelcome />
-                : <LoginSignupWelcome2
-                    selected={selected}
-                    setSelected={setSelected}
-                />
-            }
-
-            {selected === "register" ?
-                <div className='sticky top-0 right-0 h-[97vh]'>
+        <div className={`grid ${selected === "login" ? "md:grid-cols-[30%_70%]" : "md:grid-cols-[70%_30%]"} grid-cols-1 h-screen`}>
+            {selected === "login" ? (
+                <div className='sticky top-0 right-0 h-[97vh] hidden md:block'>
                     <LoginSignupWelcome />
                 </div>
-                :
-                <LoginSignupWelcome2
-                    selected={selected}
-                    setSelected={setSelected}
-                />
-            }
+            ) : (
+                <LoginSignupWelcome2 selected={selected} setSelected={setSelected} />
+            )}
+
+            {selected === "register" ? (
+                <div className='sticky top-0 right-0 h-[97vh] hidden md:block'>
+                    <LoginSignupWelcome />
+                </div>
+            ) : (
+                <LoginSignupWelcome2 selected={selected} setSelected={setSelected} />
+            )}
         </div>
+
     )
 }
 

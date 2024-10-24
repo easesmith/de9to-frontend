@@ -11,9 +11,9 @@ import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
 import usePostApiReq from '@/hooks/usePostApiReq';
 
-const Registercomp = ({ setIsShowTabs,setSelected }) => {
+const Registercomp = ({ setIsShowTabs, setSelected }) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
-    const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(false);
+    const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(true);
 
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
@@ -54,14 +54,15 @@ const Registercomp = ({ setIsShowTabs,setSelected }) => {
                     login={false}
                     apiData={getValues()}
                     setSelected={setSelected}
+                    getOtp={onSubmit}
                 />
                 : <div>
-                    <h1 className='text-[#1A1A1A] font-inter text-2xl font-semibold mt-8'>Join De9to</h1>
+                    <h1 className='text-[#1A1A1A] font-inter text-2xl max-[500px]:text-xl font-semibold mt-8'>Join De9to</h1>
                     <div className="flex justify-between items-center">
-                        <p className='font-inter text-[#717171] font-normal mt-1 uppercase'>Your problems, our solutions</p>
+                        <p className='font-inter text-[#717171] font-normal max-[500px]:text-xs mt-1 max-[500px]:break-all uppercase'>Your problems, our solutions</p>
                         <div>
-                            <p className='text-xs text-[#717171] font-inter leading-[8px]'>Are You a Dentist?</p>
-                            <button className='text-xs text-[#1A1A1A] font-semibold font-inter'>REGISTER HERE</button>
+                            <p className='text-xs text-[#717171] font-inter max-[500px]:text-xs max-[500px]:leading-3 leading-[8px]'>Are You a Dentist?</p>
+                            <button className='text-xs text-[#1A1A1A] max-[500px]:text-xs max-[500px]:leading-3 font-semibold font-inter'>REGISTER HERE</button>
                         </div>
                     </div>
                     <Form {...form}>
@@ -90,7 +91,7 @@ const Registercomp = ({ setIsShowTabs,setSelected }) => {
                                         <FormItem>
                                             <FormLabel className="font-inter text-base text-[#717171] font-normal"></FormLabel>
                                             <FormControl>
-                                                <div className='gap-3 items-center grid grid-cols-[10%_88%]'>
+                                                <div className='gap-3 items-center grid md:grid-cols-[10%_88%] grid-cols-[15%_83%]'>
                                                     <div className="border rounded-md p-3">+91</div>
                                                     <div className='relative'>
                                                         <MdCall className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
@@ -137,7 +138,7 @@ const Registercomp = ({ setIsShowTabs,setSelected }) => {
 
                                                     <label
                                                         htmlFor="getUpdates"
-                                                        className="text-sm text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                                        className="text-sm max-[500px]:text-xs text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                                     >
                                                         Receive relevant offers & promos from De9to
                                                     </label>

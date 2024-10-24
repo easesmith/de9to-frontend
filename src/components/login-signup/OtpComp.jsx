@@ -14,7 +14,7 @@ import { OtpSchema } from '@/schema/formSchema';
 import usePostApiReq from '@/hooks/usePostApiReq';
 import { useNavigate } from 'react-router-dom';
 
-const OtpComp = ({ phone, setIsOtpSectionOpen, setSelected = () => { }, setIsShowTabs, login = true, apiData }) => {
+const OtpComp = ({ phone, getOtp, setIsOtpSectionOpen, setSelected = () => { }, setIsShowTabs, login = true, apiData }) => {
     const [timeLeft, setTimeLeft] = useState(60);
     const navigate = useNavigate();
 
@@ -27,6 +27,12 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setSelected = () => { }, setIsSho
 
     const handleResendOtp = () => {
         setTimeLeft(60);
+        if (login) {
+            getOtp({ emailOrPhone: phone })
+        }
+        else {
+            getOtp({ phone })
+        }
     };
 
     const handleOpenClose = () => {
@@ -72,9 +78,9 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setSelected = () => { }, setIsSho
 
     return (
         <div className='flex flex-col justify-center items-center h-[77vh]'>
-            <div className='shadow-[0px_0px_20px_#0000001F] p-4 rounded-md w-[70%]'>
-                <h2 className='text-[#1A1A1A] text-2xl font-inter font-semibold'>Enter OTP</h2>
-                <p className='font-inter mt-10'>Enter the OTP sent to <b>{phone}</b></p>
+            <div className='shadow-[0px_0px_20px_#0000001F] p-4 rounded-md w-full sm:w-[70%]'>
+                <h2 className='text-[#1A1A1A] text-2xl max-[500px]:text-base font-inter font-semibold'>Enter OTP</h2>
+                <p className='font-inter mt-10 max-[500px]:mt-5'>Enter the OTP sent to <b>{phone}</b></p>
 
                 <Form {...form}>
                     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
@@ -111,8 +117,10 @@ const OtpComp = ({ phone, setIsOtpSectionOpen, setSelected = () => { }, setIsSho
                         />
 
                         <div className="flex justify-between mt-5 w-full">
-                            <div className='font-inter text-sm text-[#717171]'>Next OTP after {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')} secs</div>
-                            <button type='button' onClick={handleOpenClose} className='font-inter text-sm text-[#717171] flex items-center gap-1'>
+                            {timeLeft === 0 ?
+                                <button className='font-inter max-[500px]:text-xs text-sm text-[#717171]' onClick={handleResendOtp}>Resend Otp</button>
+                                : <div className='font-inter max-[500px]:text-xs text-sm text-[#717171]'>Next OTP after {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')} secs</div>}
+                            <button type='button' onClick={handleOpenClose} className='font-inter max-[500px]:text-xs text-sm text-[#717171] flex items-center gap-1'>
                                 <BiSolidPencil />
                                 Edit Number
                             </button>
