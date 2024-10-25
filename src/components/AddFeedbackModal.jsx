@@ -71,7 +71,7 @@ const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, d
                                         <FormItem>
                                             <FormLabel className="font-inter text-sm text-[#1A1A1A] font-normal"></FormLabel>
                                             <FormControl>
-                                                <div className="flex w-[80%] mx-auto justify-between items-center gap-3">
+                                                <div className="flex w-[90%] sm:w-[80%] mx-auto justify-between items-center gap-3">
                                                     <ReactStars onChange={field.onChange} size={35} count={5} value={field.value} color2={'#FF8A00'} />
                                                     <p className='text-[#717171] font-inter font-normal'>{field.value}/5 stars</p>
                                                 </div>

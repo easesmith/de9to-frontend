@@ -18,7 +18,7 @@ const ConfirmBookingForm = ({ apiData }) => {
     const navigate = useNavigate();
     const userInfo = readCookie("userInfo");
 
-    const [isConfirmBookingSuccessModalOpen, setIsConfirmBookingSuccessModalOpen] = useState(true);
+    const [isConfirmBookingSuccessModalOpen, setIsConfirmBookingSuccessModalOpen] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(ConfirmBookingFormSchema),

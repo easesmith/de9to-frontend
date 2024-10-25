@@ -11,7 +11,7 @@ import { IoSearchSharp } from 'react-icons/io5'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 
-const SearchListCompo = ({ setAllData,setAllClinics }) => {
+const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) => {
     const [isShadow, setIsShadow] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
     const [location, setLocation] = useState('')
@@ -24,6 +24,9 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
     const handleQuery = () => {
         setQuery(true)
     }
+
+    console.log("showDentistAndClinic", showDentistAndClinic);
+
 
     const navigate = useNavigate()
 
@@ -80,7 +83,7 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
     // if (!open) return null;
 
     return (
-        <section className={`max-w-[1240px] w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
+        <section className={`max-w-[1240px] relative w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
             <LocationCompo searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleQuery={handleQuery} handleGetSerachQuery={handleGetSerachQuery} location={location} isShadow={isShadow} setIsShadow={setIsShadow} setShowDentistAndClinic={setShowDentistAndClinic} setLocation={setLocation} />
             <div className='min-[700px]:hidden mt-4 flex items-center gap-2'>
                 <div className='relative w-full'>
@@ -98,91 +101,16 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
             </div>
             <>
                 {isShadow &&
-                    <div className='modal max-[700px]:hidden fixed inset-0 bg-black/50 flex justify-center items-center z-30'>
-                        <div className={`flex flex-col py-8 px-10 gap-8 max-w-[1240px] w-full mx-auto absolute  bg-white ${isShadow ? 'shadow-custom7 rounded-b-2xl' : 'hidden'}`}>
-                            <div className='flex justify-center gap-10'>
-                                <button onClick={() => setShowDentistAndClinic('All')} className={`${showDentistAndClinic === "All" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>All</button>
-                                <button onClick={() => setShowDentistAndClinic('doctor')} className={`${showDentistAndClinic === "doctor" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Doctor</button>
-                                <button onClick={() => setShowDentistAndClinic('clinic')} className={`${showDentistAndClinic === "clinic" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Clinics</button>
-                            </div>
-                            <div className='flex flex-col gap-5'>
-                                {showDentistAndClinic === 'All' &&
-                                    <div>
-                                        <div className='flex flex-col justify-between gap-12'>
-                                            {allDentist.length > 0 &&
-                                                <div className='flex justify-between items-center'>
-                                                    <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>Doctors</p>
-                                                    <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allDentist.length} results</p>
-                                                </div>
-                                            }
-                                            <div className='flex flex-col gap-5'>
-                                                {
-                                                    allDentist.length > 0 && allDentist.slice(0, showAllDentist ? allDentist.length : 3).map((e, i) => {
-                                                        const averageRating = calculateAverageRating(e?.dentistRatings);
-                                                        return (
-                                                            <div key={i} className='flex flex-col gap-3'>
-                                                                <div className='flex gap-[10px]'>
-                                                                    <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.personalDetails?.image}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
-                                                                    <div className='flex flex-col items-start gap-4'>
-                                                                        <div className='flex items-center gap-9 -mt-1'>
-                                                                            <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
-                                                                            <ReactStars count={5} value={averageRating} edit={false} color2='#FF8A00' />
-                                                                        </div>
-                                                                        <div className='flex gap-2'>
-                                                                            <FaGraduationCap className='text-[#717171] text-2xl' />
-                                                                            <h4 className='text-[#FF8A00] text-base font-semibold font-inter flex items-center gap-2'>BDS <div className='border border-[#FF8A00] h-3'></div> {e?.clinic[0]?.clinicName} {e?.clinic[1]?.clinicName && <div className='border border-[#FF8A00] h-3'></div>}{e?.clinic[1]?.clinicName}</h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>Multi-Speciality Clinic</span></h6>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            <div className='flex justify-center items-center'>
-                                                <p onClick={() => setShowAllDentist(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allDentist.length > 3 && `${showAllDentist ? '' : 'See All'}`}</p>
-                                            </div>
-                                        </div>
-                                        <div className='w-full border border-[#D9D9D9]'></div>
-                                        <div className='flex flex-col justify-between gap-12'>
-                                            {allClinic.length > 0 &&
-                                                <div className='flex justify-between items-center'>
-                                                    <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>Clinics</p>
-                                                    <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allClinic.length} results</p>
-                                                </div>
-                                            }
-                                            <div className='flex flex-col gap-5'>
-                                                {
-                                                    allClinic.length > 0 && allClinic.slice(0, showAllClinic ? allClinic.length : 3).map((e, i) => {
-                                                        const averageRating = calculateAverageRating(e?.clinicRating);
-                                                        return (
-                                                            <div key={i} className='flex flex-col gap-3'>
-                                                                <div className='flex gap-[10px]'>
-                                                                    <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.clinicLogo}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
-                                                                    <div className='flex flex-col items-start gap-4'>
-                                                                        <div className='flex items-center gap-9 -mt-1'>
-                                                                            <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.clinicName}</h4>
-                                                                            <ReactStars count={5} value={averageRating} edit={false} color2='#FF8A00' />
-                                                                        </div>
-                                                                        <div className='flex gap-2'>
-                                                                            <h4 className='text-[#FF8A00] text-base font-semibold font-inter'>Multi-Speciality Clinic</h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>2 years experience</span></h6>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            <div className='flex justify-center items-center'>
-                                                <p onClick={() => setShowAllClinic(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allClinic.length > 3 && `${showAllClinic ? '' : 'See All'}`}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                {showDentistAndClinic === 'doctor' &&
+                    // <div className='modal max-[700px]:hidden fixed inset-0 bg-black/50 flex justify-center items-center z-30'>
+                    <div className={`flex max-[700px]:hidden flex-col py-8 px-10 gap-8 max-w-[1240px] w-full  z-30 mx-auto absolute  bg-white ${isShadow ? 'shadow-custom7 rounded-b-2xl' : 'hidden'}`}>
+                        <div className='flex justify-center gap-10'>
+                            <button onClick={() => setShowDentistAndClinic('All')} className={`${showDentistAndClinic === "All" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>All</button>
+                            <button onClick={() => setShowDentistAndClinic('doctor')} className={`${showDentistAndClinic === "doctor" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Doctor</button>
+                            <button onClick={() => setShowDentistAndClinic('clinic')} className={`${showDentistAndClinic === "clinic" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Clinics</button>
+                        </div>
+                        <div className='flex flex-col gap-5'>
+                            {showDentistAndClinic === 'All' &&
+                                <div>
                                     <div className='flex flex-col justify-between gap-12'>
                                         {allDentist.length > 0 &&
                                             <div className='flex justify-between items-center'>
@@ -192,26 +120,25 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
                                         }
                                         <div className='flex flex-col gap-5'>
                                             {
-                                                allDentist.length === 0 ? <DataNotFound name='Docters' /> : allDentist.slice(0, showAllDentist ? allDentist.length : 3).map((e, i) => {
+                                                allDentist.length > 0 && allDentist.slice(0, showAllDentist ? allDentist.length : 3).map((e, i) => {
+                                                    const averageRating = calculateAverageRating(e?.dentistRatings);
                                                     return (
-                                                        <>
-                                                            <div key={i} className='flex flex-col gap-3'>
-                                                                <div className='flex gap-[10px]'>
-                                                                    <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={doctorProfileImg} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
-                                                                    <div className='flex flex-col items-start gap-4'>
-                                                                        <div className='flex items-center gap-9 -mt-1'>
-                                                                            <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
-                                                                            <ReactStars count={5} value={4} edit={false} color2='#FF8A00' />
-                                                                        </div>
-                                                                        <div className='flex gap-2'>
-                                                                            <FaGraduationCap className='text-[#717171] text-2xl' />
-                                                                            <h4 className='text-[#FF8A00] text-base font-semibold font-inter flex items-center gap-2'>BDS <div className='border border-[#FF8A00] h-3'></div> Oral Pathology <div className='border border-[#FF8A00] h-3'></div> Dr. Narang’s Dental Hub</h4>
-                                                                        </div>
+                                                        <div key={i} className='flex flex-col gap-3'>
+                                                            <div className='flex gap-[10px]'>
+                                                                <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.personalDetails?.image}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                <div className='flex flex-col items-start gap-4'>
+                                                                    <div className='flex items-center gap-9 -mt-1'>
+                                                                        <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
+                                                                        <ReactStars count={5} value={averageRating} edit={false} color2='#FF8A00' />
+                                                                    </div>
+                                                                    <div className='flex gap-2'>
+                                                                        <FaGraduationCap className='text-[#717171] text-2xl' />
+                                                                        <h4 className='text-[#FF8A00] text-base font-semibold font-inter flex items-center gap-2'>BDS <div className='border border-[#FF8A00] h-3'></div> {e?.clinic[0]?.clinicName} {e?.clinic[1]?.clinicName && <div className='border border-[#FF8A00] h-3'></div>}{e?.clinic[1]?.clinicName}</h4>
                                                                     </div>
                                                                 </div>
-                                                                <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>Multi-Speciality Clinic</span></h6>
                                                             </div>
-                                                        </>
+                                                            <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>Multi-Speciality Clinic</span></h6>
+                                                        </div>
                                                     )
                                                 })
                                             }
@@ -220,8 +147,7 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
                                             <p onClick={() => setShowAllDentist(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allDentist.length > 3 && `${showAllDentist ? '' : 'See All'}`}</p>
                                         </div>
                                     </div>
-                                }
-                                {showDentistAndClinic === 'clinic' &&
+                                    <div className='w-full border border-[#D9D9D9]'></div>
                                     <div className='flex flex-col justify-between gap-12'>
                                         {allClinic.length > 0 &&
                                             <div className='flex justify-between items-center'>
@@ -231,15 +157,16 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
                                         }
                                         <div className='flex flex-col gap-5'>
                                             {
-                                                allClinic.length === 0 ? <DataNotFound name='Clinics' /> : allClinic.slice(0, showAllClinic ? allClinic.length : 3).map((e, i) => {
+                                                allClinic.length > 0 && allClinic.slice(0, showAllClinic ? allClinic.length : 3).map((e, i) => {
+                                                    const averageRating = calculateAverageRating(e?.clinicRating);
                                                     return (
                                                         <div key={i} className='flex flex-col gap-3'>
                                                             <div className='flex gap-[10px]'>
-                                                                <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={doctorProfileImg} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.clinicLogo}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
                                                                 <div className='flex flex-col items-start gap-4'>
                                                                     <div className='flex items-center gap-9 -mt-1'>
                                                                         <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.clinicName}</h4>
-                                                                        <ReactStars count={5} value={4} edit={false} color2='#FF8A00' />
+                                                                        <ReactStars count={5} value={averageRating} edit={false} color2='#FF8A00' />
                                                                     </div>
                                                                     <div className='flex gap-2'>
                                                                         <h4 className='text-[#FF8A00] text-base font-semibold font-inter'>Multi-Speciality Clinic</h4>
@@ -256,10 +183,86 @@ const SearchListCompo = ({ setAllData,setAllClinics }) => {
                                             <p onClick={() => setShowAllClinic(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allClinic.length > 3 && `${showAllClinic ? '' : 'See All'}`}</p>
                                         </div>
                                     </div>
-                                }
-                            </div>
+                                </div>
+                            }
+                            {showDentistAndClinic === 'doctor' &&
+                                <div className='flex flex-col justify-between gap-12'>
+                                    {allDentist.length > 0 &&
+                                        <div className='flex justify-between items-center'>
+                                            <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>Doctors</p>
+                                            <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allDentist.length} results</p>
+                                        </div>
+                                    }
+                                    <div className='flex flex-col gap-5'>
+                                        {
+                                            allDentist.length === 0 ? <DataNotFound name='Docters' /> : allDentist.slice(0, showAllDentist ? allDentist.length : 3).map((e, i) => {
+                                                return (
+                                                    <>
+                                                        <div key={i} className='flex flex-col gap-3'>
+                                                            <div className='flex gap-[10px]'>
+                                                                <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={doctorProfileImg} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                <div className='flex flex-col items-start gap-4'>
+                                                                    <div className='flex items-center gap-9 -mt-1'>
+                                                                        <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
+                                                                        <ReactStars count={5} value={4} edit={false} color2='#FF8A00' />
+                                                                    </div>
+                                                                    <div className='flex gap-2'>
+                                                                        <FaGraduationCap className='text-[#717171] text-2xl' />
+                                                                        <h4 className='text-[#FF8A00] text-base font-semibold font-inter flex items-center gap-2'>BDS <div className='border border-[#FF8A00] h-3'></div> Oral Pathology <div className='border border-[#FF8A00] h-3'></div> Dr. Narang’s Dental Hub</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>Multi-Speciality Clinic</span></h6>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className='flex justify-center items-center'>
+                                        <p onClick={() => setShowAllDentist(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allDentist.length > 3 && `${showAllDentist ? '' : 'See All'}`}</p>
+                                    </div>
+                                </div>
+                            }
+                            {showDentistAndClinic === 'clinic' &&
+                                <div className='flex flex-col justify-between gap-12'>
+                                    {allClinic.length > 0 &&
+                                        <div className='flex justify-between items-center'>
+                                            <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>Clinics</p>
+                                            <p className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allClinic.length} results</p>
+                                        </div>
+                                    }
+                                    <div className='flex flex-col gap-5'>
+                                        {
+                                            allClinic.length === 0 ? <DataNotFound name='Clinics' /> : allClinic.slice(0, showAllClinic ? allClinic.length : 3).map((e, i) => {
+                                                return (
+                                                    <div key={i} className='flex flex-col gap-3'>
+                                                        <div className='flex gap-[10px]'>
+                                                            <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={doctorProfileImg} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                            <div className='flex flex-col items-start gap-4'>
+                                                                <div className='flex items-center gap-9 -mt-1'>
+                                                                    <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.clinicName}</h4>
+                                                                    <ReactStars count={5} value={4} edit={false} color2='#FF8A00' />
+                                                                </div>
+                                                                <div className='flex gap-2'>
+                                                                    <h4 className='text-[#FF8A00] text-base font-semibold font-inter'>Multi-Speciality Clinic</h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h6 className='text-[#3F3F3F] text-sm font-normal font-inter'>Searched keywords: <span className='text-[#95C22B] font-semibold'>2 years experience</span></h6>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className='flex justify-center items-center'>
+                                        <p onClick={() => setShowAllClinic(true)} className='text-[#3F3F3F] text-lg font-medium font-poppins'>{allClinic.length > 3 && `${showAllClinic ? '' : 'See All'}`}</p>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
+                    // </div>
                 }
             </>
         </section>

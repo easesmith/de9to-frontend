@@ -126,7 +126,7 @@ const Header = () => {
                         </div>
                       )
                     })}
-                    <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
+                    {!userInfo?.userId && <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>}
                   </ul>
                 </SheetDescription>
               </SheetHeader>
