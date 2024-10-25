@@ -248,26 +248,26 @@ const DentalCamp = () => {
     <Layout>
       <main className=' relative'>
         <div className='bg-[#F6F6F6] w-full px-5 max-med:rounded-lg'>
-          <section className="flex items-end gap-[30px] py-7 max-w-[1200px] mx-auto">
+          <section className="flex items-end gap-2 py-7 max-w-[1200px] mx-auto max-large:items-center">
             <div className="left-side w-1/2 flex flex-col gap-10 max-med:w-full max-med:gap-0">
-              <div className="upper flex flex-col items-start gap-[15px]">
+              <div className="upper flex flex-col items-start gap-[15px] max-large:gap-1">
                 <span className='text-[#95C22B] text-xl italic font-bold font-inter max-med:hidden'>Request</span>
-                <h2 className='text-[#000A2D] text-5xl font-bold font-inter max-med:hidden'>Request A Dental Camp</h2>
-                <p className='text-[#606060] text-xl font-semibold font-roboto max-med:hidden'>Feel free to drop a message related to your requirement.Our team will get back to you soon. </p>
+                <h2 className='text-[#000A2D] text-5xl font-bold font-inter max-large:text-3xl max-med:hidden'>Request A Dental Camp</h2>
+                <p className='text-[#606060] text-xl font-semibold font-roboto max-large:text-base max-med:hidden'>Feel free to drop a message related to your requirement.Our team will get back to you soon. </p>
               </div>
               <div className="lower">
                 <Form {...form}>
-                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[18px] max-med:gap-3">
-                    <div className='grid grid-cols-2 gap-[30px] w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-med:gap-3'>
+                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[18px] max-[950px]:gap-3">
+                    <div className='grid grid-cols-2 gap-6 w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="organiserName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className=" text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Organiser's Name <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className=" text-xl font-medium font-inter mb-4 max-[950px]:text-base max-small:text-sm">Organiser's Name <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter Organiser's Name" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg"
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -282,7 +282,7 @@ const DentalCamp = () => {
                             <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Designation  <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter designation" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg"
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -290,7 +290,7 @@ const DentalCamp = () => {
                         )}
                       />
                     </div>
-                    <div className='grid grid-cols-2 gap-[30px] w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-med:gap-3'>
+                    <div className='grid grid-cols-2 gap-6 w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="emailId"
@@ -299,7 +299,7 @@ const DentalCamp = () => {
                             <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Email Id <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter email id" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg"
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -314,7 +314,7 @@ const DentalCamp = () => {
                             <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Contact Number <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter contact number" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg"
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -322,13 +322,13 @@ const DentalCamp = () => {
                         )}
                       />
                     </div>
-                    <div className='grid grid-cols-2 gap-[30px] w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-med:gap-3'>
+                    <div className='grid grid-cols-2 gap-[23px] w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="campPerferredDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-xl font-medium font-inter mb-4 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
                             <div className='relative'>
                               <FormControl>
                                 <Popover>
@@ -382,7 +382,7 @@ const DentalCamp = () => {
                                     field.onChange(e);
                                   }}
                                 >
-                                  <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5 max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg">
+                                  <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">
                                     <SelectValue placeholder="Select timing" />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -412,7 +412,7 @@ const DentalCamp = () => {
                           <div className='relative'>
                             <FormControl>
                               <Input placeholder="Enter your location" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383] max-med:px-3 max-med:text-sm max-med:h-[46px] max-med:rounded-lg"
+                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FaLocationDot className='text-[#838383] text-xl absolute top-[35%] right-[3%]' />
@@ -442,11 +442,11 @@ const DentalCamp = () => {
                   </div>
                 </div>
               </div>
-              <img src={RequestDentalImg} alt="" className='-mb-20 relative z-10' />
+              <img src={RequestDentalImg} alt="" className='-mb-20 relative z-10 max-large:h-[700px] max-large:w-[350px]' />
             </div>
           </section>
         </div>
-        <img src={BackgroundImg} alt="" className='min-w-[685px] absolute top-[0%] right-[0%] -z-0 max-med:hidden' />
+        <img src={BackgroundImg} alt="" className='min-w-[685px] absolute top-[0%] right-[0%] -z-0 max-large:hidden' />
 
         {/* <section className="min-h-[228px] flex justify-between items-end gap-9 px-[125px] text-[#808080] bg-[#FFFFFF] relative z-10 pt-20 mb-6">
           <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
@@ -454,7 +454,7 @@ const DentalCamp = () => {
           <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
           <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
           <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-        </section> */}
+        </section>*/} 
         <div className="rounded-xl w-full max-md:hidden max-lg:rounded-none">
           <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#808080] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
             <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
@@ -465,12 +465,12 @@ const DentalCamp = () => {
           </div>
         </div>
         <div className="w-full hidden max-md:block py-5">
-          <div className='grid grid-cols-3 justify-items-center text-[#808080] w-full mb-5 max-[425px]:mb-[10px]'>
+          <div className='grid grid-cols-3 justify-items-center text-[#808080] w-full mb-5 max-small:mb-[10px]'>
             <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
             <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
             <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
           </div>
-          <div className='grid grid-cols-2 justify-items-center text-[#808080] w-[450px] max-sm:w-[350px] max-[425px]:w-[250px] mx-auto'>
+          <div className='grid grid-cols-2 justify-items-center text-[#808080] w-[450px] max-sm:w-[350px] max-small:w-[250px] mx-auto'>
             <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
             <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
           </div>
@@ -607,21 +607,6 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        {/* <section className='max-w-[1240px] mx-auto my-36 max-med:my-16'>
-          <div className='flex justify-between mb-12'>
-            <div className='flex flex-col items-start gap-2'>
-              <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
-              <h4 className='text-[#1A1A1A] text-[40px] font-extrabold font-inter'>Pick a Plan that is right for You</h4>
-              <p className='text-[#606060] text-xl font-semibold font-roboto'>Elevating Oral Health Awareness</p>
-            </div>
-          </div>
-          <div className="min-h-screen flex items-end justify-center gap-9">
-            <ChoosePlanCompo title='BASIC' amount='1000' isSelected={selectedPlan === 1} onSelect={() => handleSelectPlan(1)} />
-            <ChoosePlanCompo title='PROFESSIONAL' amount='3000' isSelected={selectedPlan === 3} onSelect={() => handleSelectPlan(3)} />
-            <ChoosePlanCompo title='ADVANCED' amount='2000' isSelected={selectedPlan === 2} onSelect={() => handleSelectPlan(2)} />
-          </div>
-        </section> */}
-
         <section className='max-w-[1240px] mx-auto my-36 max-med:my-16 w-full px-4'>
           <div className='flex justify-between mb-12 w-full'>
             <div className='flex flex-col items-start gap-2 max-med:items-center w-full'>
@@ -649,11 +634,11 @@ const DentalCamp = () => {
                 768: {
                   slidesPerView: 2,
                 },
-                1124: {
+                1154: {
                   slidesPerView: 3,
                 },
               }}
-              className=''
+              className='w-full'
             >
               <div className="min-h-screen flex items-end justify-center gap-9 w-full">
                 <SwiperSlide>
@@ -689,15 +674,15 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='w-full max-w-[1240px] mx-auto  px-5'>
+        <section className='w-full max-w-[1240px] mx-auto px-3'>
           <div className='bg-[#95C22B] rounded-3xl flex items-start justify-center gap-20 h-full max-large:gap-8 max-med:flex-col max-med:gap-5 px-5 py-14 max-med:py-6'>
             <div className='w-[327px] h-[234px] flex flex-col max-med:h-fit max-med:w-full'>
-              <p className='text-[#FFFFFF] text-base font-semibold font-inter max-med:text-sm mb-2'>TESTIMONIALs</p>
+              <p className='text-[#FFFFFF] text-base font-semibold font-inter max-med:text-sm mb-2'>TESTIMONIALS</p>
               <h3 className='text-[#FFFFFF] text-4xl font-bold font-inter leading-[48px] max-large:text-3xl max-med:text-xl w-[85%] max-large:w-full'>The Honest Review From Our Dentists</h3>
               <p className='text-[#FFFFFF] text-base font-medium font-inter max-large:text-sm w-[85%]'>See what our dentists are saying about their experiences of our service</p>
             </div>
             <div className=' h-[320px] w-1 max-med:h-1 max-med:w-full bg-[#FFFFFF]'></div>
-            <div className='max-w-[500px] w-full max-large:w-[430px]'>
+            <div className='max-w-[500px] w-full max-large:max-w-[430px]'>
               <div className='flex justify-between items-end gap-4'>
                 <Swiper
                   loop={true}
