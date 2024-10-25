@@ -13,7 +13,7 @@ import usePostApiReq from '@/hooks/usePostApiReq';
 
 const Registercomp = ({ setIsShowTabs, setSelected }) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
-    const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(true);
+    const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
