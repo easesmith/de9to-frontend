@@ -89,6 +89,7 @@ export default {
 			screens: {
 				'small': '426px',
 				'med': '769px',
+				'[950px]': '950px',
 				'large': '1024px',
 			},
 		}
