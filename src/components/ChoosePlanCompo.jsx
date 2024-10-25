@@ -11,7 +11,7 @@ const ChoosePlanCompo = ({ title, amount, isSelected, onSelect }) => {
     // }
 
     return (
-        <div  className={`w-[365px] cursor-pointer mx-auto border-[2.8px] flex flex-col gap-7 border-[#95C22B] rounded-lg p-8 ${isSelected ? 'bg-[#95C22B] ' : 'bg-[#FFFFFF]'}`}>
+        <div  className={`max-w-[365px] w-full cursor-pointer mx-auto border-[2.8px] flex flex-col gap-7 border-[#95C22B] rounded-lg p-8 max-small:p-2 ${isSelected ? 'bg-[#95C22B] ' : 'bg-[#FFFFFF]'}`}>
             <div className='flex flex-col items-start gap-4'>
                 {isSelected && <button className={`bg-[#FFFFFF] text-[#1A1A1A] text-sm font-normal font-roboto py-1 px-3 rounded-sm`}>Popular</button>}
                 <div className="bg-[#F1F1F1] rounded-md text-center py-[6px] px-3">
@@ -53,7 +53,7 @@ const ChoosePlanCompo = ({ title, amount, isSelected, onSelect }) => {
                 </div>
                 <div className='flex items-center justify-start gap-1'>
                     <IoIosCheckmarkCircle className={`${isSelected ? 'text-[#FFFFFF] ' : 'text-[#000000]'}`} />
-                    <p className={`${isSelected ? 'text-[#FFFFFF] ' : 'text-[#000000]'} opacity-80 text-sm font-semibold font-poppins`}>Domain Name Appraisal </p>
+                    <p className={`${isSelected ? 'text-[#FFFFFF] ' : 'text-[#000000]'} opacity-80 text-sm font-normal font-poppins`}>Domain Name Appraisal </p>
                     <p className='text-[#1AA703] text-[9px] font-normal font-poppins rounded-sm p-1 bg-[#C9FAD6]'>Coming Soon</p>
                 </div>
                 <div className='flex items-center justify-start gap-1'>
