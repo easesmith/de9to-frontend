@@ -86,6 +86,11 @@ export default {
 					'100%': { transform: 'translateX(-100%)' },
 				},
 			},
+			screens: {
+				'small': '426px',
+				'med': '769px',
+				'large': '1024px',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
