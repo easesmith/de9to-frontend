@@ -40,11 +40,11 @@ const DeleteAccount = () => {
                 <div className='w-full h-full flex justify-center items-center'>
                     <div className="max-w-3xl rounded-lg w-full mt-24 bg-white p-5">
                         <h1 className='text-2xl font-inter font-semibold text-[#1A1A1A] text-center'>Delete Your Account</h1>
-                        <p className='font-inter mt-1 text-[#1A1A1A]'>Once the deletion process begins, you won't be able to reactivate your account or retrieve any data or information.</p>
+                        <p className='font-inter mt-1 text-[#1A1A1A]'>In order to delete your account, you must confirm your password which is linked to this account <span className="font-bold">{userInfo?.email}</span></p>
                         <Form {...form}>
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-10 w-full'>
                                 {/* Clinic Selection */}
-                                <div className="w-full grid grid-cols-[70%_20%] gap-20">
+                                <div className="w-full grid grid-cols-[70%_20%] max-[768px]:grid-cols-[60%_30%] max-[768px]:gap-10 max-[500px]:grid-cols-1 gap-20">
                                     <FormField
                                         control={form.control}
                                         name="password"

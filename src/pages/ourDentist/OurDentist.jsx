@@ -26,6 +26,7 @@ import { Label } from '@/components/ui/label'
 import ReactStars from 'react-stars'
 import { FaXmark } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
+import Clinic from '@/components/Clinic'
 
 const Modal = ({ isOpen, onClose, children }) => {
   // Close the modal if the user clicks outside of it
@@ -54,10 +55,11 @@ const Modal = ({ isOpen, onClose, children }) => {
 const OurDentist = () => {
 
   const { res, fetchData, isLoading } = useGetApiReq();
+  const { res: res3, fetchData: fetchData3, isLoading: isLoading3 } = useGetApiReq();
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
   const [allDentists, setAllDentists] = useState([])
-  const [selectedRating, setSelectedRating] = useState(null);
+  const [allClinics, setAllClinics] = useState([]);
 
   const getDentists = useCallback(async () => {
     fetchData(`/dentist/get-dentists?page=${page}`);
@@ -76,6 +78,22 @@ const OurDentist = () => {
       setPage(res.data.currentPage)
     }
   }, [res])
+
+  const getClinics = async () => {
+    fetchData3(`/patient/get-all-Clinics?page=${page}`);
+  }
+
+  useEffect(() => {
+    getClinics();
+  }, [page])
+
+
+  useEffect(() => {
+    if (res3?.status === 200 || res3?.status === 201) {
+      setAllClinics(res3?.data?.data?.clinics);
+      console.log("clinics response", res3);
+    }
+  }, [res3])
 
   const { res: res2, fetchData: fetchData2, isLoading: isLoading2 } = useGetApiReq();
 
@@ -157,7 +175,10 @@ const OurDentist = () => {
         </section>
         <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
         {/* <div className='mt-5 max-[700px]:hidden'> */}
-          <SearchListCompo setAllData={setAllDentists} />
+        <SearchListCompo
+          setAllClinics={setAllClinics}
+          setAllData={setAllDentists}
+        />
         {/* </div> */}
 
         {/* <div className='mt-5 min-[700px]:hidden'>
@@ -186,6 +207,16 @@ const OurDentist = () => {
                   <DataNotFound name='Dentist' />
               }
             </div>
+            <div className='flex flex-col justify-between gap-5'>
+              {
+                allClinics.length > 0 && !isLoading ? allClinics.map((clinic, i) => {
+                  return (
+                    <Clinic key={i} clinic={clinic} />
+                  )
+                }) :
+                  ""
+              }
+            </div>
             {allDentists.length > 0 &&
               <ReactPagination pageCount={pageCount} setPage={setPage} />}
           </div>
@@ -203,7 +234,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-5"
-                    checked={selectedRating === 5}
+                    checked={rating === 5}
                     onCheckedChange={() => handleRatingChange(5)}
                   />
                   <Label className="flex items-center gap-2">
@@ -214,7 +245,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-4"
-                    checked={selectedRating === 4}
+                    checked={rating === 4}
                     onCheckedChange={() => handleRatingChange(4)}
                   />
                   <Label className="flex items-center gap-2">
@@ -225,7 +256,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-3"
-                    checked={selectedRating === 3}
+                    checked={rating === 3}
                     onCheckedChange={() => handleRatingChange(3)}
                   />
                   <Label className="flex items-center gap-2">
@@ -236,7 +267,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-2"
-                    checked={selectedRating === 2}
+                    checked={rating === 2}
                     onCheckedChange={() => handleRatingChange(2)}
                   />
                   <Label className="flex items-center gap-2">
@@ -247,7 +278,7 @@ const OurDentist = () => {
                 <div className="flex items-center gap-2 py-[10px]">
                   <Checkbox
                     id="rating-1"
-                    checked={selectedRating === 1}
+                    checked={rating === 1}
                     onCheckedChange={() => handleRatingChange(1)}
                   />
                   <Label className="flex items-center gap-2">
@@ -264,7 +295,7 @@ const OurDentist = () => {
                 <ButtonLocation setLocation={setLocation} location={location} name="Ramlila Maidan" />
               </div>
             </div>
-            <Button className="bg-[#95C22B] mt-4 flex justify-center w-full h-10">
+            <Button onClick={() => setIsFilterOpen(false)} className="bg-[#95C22B] mt-4 flex justify-center w-full h-10">
               Apply Filters
             </Button>
           </div>

@@ -70,6 +70,7 @@ const LoginComp = ({ setIsShowTabs }) => {
           setIsOtpSectionOpen={setIsOtpSectionOpen}
           setIsShowTabs={setIsShowTabs}
           apiData={getValues()}
+          getOtp={onSubmit}
         />
         : <div>
           <h1 className='text-[#1A1A1A] font-inter text-2xl font-semibold text-center mt-8'>Welcome Back</h1>
@@ -128,7 +129,7 @@ const LoginComp = ({ setIsShowTabs }) => {
 
                           <label
                             htmlFor="rememberMe"
-                            className="text-sm text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className="text-sm max-[500px]:text-xs text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                           >
                             Remember me for 30 days
                           </label>
@@ -155,7 +156,7 @@ const LoginComp = ({ setIsShowTabs }) => {
 
                           <label
                             htmlFor="loginWithOtp"
-                            className="text-sm text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            className="text-sm max-[500px]:text-xs text-[#717171] font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                           >
                             Login with OTP instead
                           </label>

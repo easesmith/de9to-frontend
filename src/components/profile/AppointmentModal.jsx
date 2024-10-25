@@ -19,7 +19,7 @@ const AppointmentModal = ({ isAppointmentModalOpen, setIsAppointmentModalOpen, a
 
     return (
         <Dialog open={isAppointmentModalOpen} onOpenChange={setIsAppointmentModalOpen}>
-            <DialogContent className="max-w-[620px] max-sm:w-[320px] w-full rounded-lg p-4">
+            <DialogContent className="max-w-[620px] w-full rounded-lg p-4">
                 <div className='max-h-[75vh] overflow-y-auto scrollBar'>
                     <DialogHeader>
                         <div className='flex justify-start max-sm:justify-center w-full'>

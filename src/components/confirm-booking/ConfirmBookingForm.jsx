@@ -18,7 +18,7 @@ const ConfirmBookingForm = ({ apiData }) => {
     const navigate = useNavigate();
     const userInfo = readCookie("userInfo");
 
-    const [isConfirmBookingSuccessModalOpen, setIsConfirmBookingSuccessModalOpen] = useState(false);
+    const [isConfirmBookingSuccessModalOpen, setIsConfirmBookingSuccessModalOpen] = useState(true);
 
     const form = useForm({
         resolver: zodResolver(ConfirmBookingFormSchema),
@@ -158,10 +158,10 @@ const ConfirmBookingForm = ({ apiData }) => {
                         <div className="border border-[#1DC9A0] w-4 h-4 p-[3px] rounded-full">
                             <div className='w-full h-full rounded-full bg-[#1DC9A0]'></div>
                         </div>
-                        <p className="text-[#5B5B5B] font-normal">₹500 <span className='text-[#5B5B5B] font-semibold'>FREE</span> via <span className='text-[#5B5B5B] font-semibold'>de<span className='text-[#95C22B]'>9</span>to on first appointment</span></p>
+                        <p className="text-[#5B5B5B] font-normal max-[500px]:text-sm">₹500 <span className='text-[#5B5B5B] font-semibold'>FREE</span> via <span className='text-[#5B5B5B] font-semibold'>de<span className='text-[#95C22B]'>9</span>to on first appointment</span></p>
                     </div>
 
-                    <p className="font-inter text-[#717171]">By booking this appointment, you agree to De9to’s Terms and Conditions.</p>
+                    <p className="font-inter max-[500px]:text-sm text-[#717171]">By booking this appointment, you agree to De9to’s Terms and Conditions.</p>
 
                 </div>
 
