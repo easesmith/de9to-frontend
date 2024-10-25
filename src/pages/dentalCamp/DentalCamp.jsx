@@ -427,7 +427,7 @@ const DentalCamp = () => {
               </div>
             </div>
             <div className="right-side relative w-fit flex flex-col items-center h-[660px] max-med:hidden">
-              <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 -mb-5 ml-8'>
+              <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 -mb-10 ml-8'>
                 <h5 className='text-[#000000] text-center font-normal font-poppins mb-1'>our professionals</h5>
                 <div className='flex relative'>
                   <img src={ProfessionalImg1} alt="" className='absolute  z-0' />
@@ -442,7 +442,7 @@ const DentalCamp = () => {
                   </div>
                 </div>
               </div>
-              <img src={RequestDentalImg} alt="" className='-mb-20 relative z-10 max-large:h-[700px] max-large:w-[350px]' />
+              <img src={RequestDentalImg} alt="" className='relative z-10 max-large:h-[700px] max-large:w-[350px]' />
             </div>
           </section>
         </div>
