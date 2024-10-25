@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog"
 import ReactStars from 'react-stars'
 import { Textarea } from "@/components/ui/textarea"
@@ -8,8 +8,9 @@ import usePostApiReq from '@/hooks/usePostApiReq'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddFeedbackSchema } from '@/schema/formSchema'
+import { readCookie } from '@/utils/readCookie'
 
-const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen }) => {
+const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, dentistId,clinicId, reviewType ,getData}) => {
     const form = useForm({
         resolver: zodResolver(AddFeedbackSchema),
         defaultValues: {
@@ -20,11 +21,38 @@ const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen })
 
     const { res, fetchData, isLoading } = usePostApiReq();
     const { reset, handleSubmit, getValues, watch } = form;
+    const userInfo = readCookie("userInfo");
 
     const onSubmit = (data) => {
         console.log("Data:", data);
+        if (reviewType  === "dentist") {
+            fetchData(`/patient/add-dentist-rating`, {
+                patientRemarks: data.desc,
+                patientRating: data.rating,
+                patientId: userInfo?.userId,
+                dentistId: dentistId,
+                reviewType: reviewType
+            });
+        }
+        else{
+            fetchData(`/patient/post-review`, {
+                patientRemarks: data.desc,
+                patientRating: data.rating,
+                patientId: userInfo?.userId,
+                clinicId: clinicId,
+                reviewType: reviewType
+            });
+        }
     };
-    
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("add feedback res", res);
+            getData();
+            setIsAddFeedbackModalOpen(false);
+        }
+    }, [res])
+
     return (
         <Dialog open={isAddFeedbackModalOpen} onOpenChange={setIsAddFeedbackModalOpen}>
             <DialogContent className="max-w-[450px] w-full">

@@ -193,6 +193,9 @@ const DentistDetails = () => {
                     <AddFeedbackModal
                         isAddFeedbackModalOpen={isAddFeedbackModalOpen}
                         setIsAddFeedbackModalOpen={setIsAddFeedbackModalOpen}
+                        dentistId={dentistDetails?._id}
+                        reviewType="dentist"
+                        getData={getDentistRating}
                     />
                 }
             </section>

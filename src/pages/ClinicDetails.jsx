@@ -278,6 +278,9 @@ const ClinicDetails = () => {
                     <AddFeedbackModal
                         isAddFeedbackModalOpen={isAddFeedbackModalOpen}
                         setIsAddFeedbackModalOpen={setIsAddFeedbackModalOpen}
+                        clinicId={clinic?._id}
+                        reviewType="clinic"
+                        getData={getClinicRating}
                     />
                 }
             </section>
