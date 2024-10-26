@@ -64,6 +64,7 @@ import { generateTimeOptions } from '@/utils/generateTimeOptions'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 import ReactPlayer from 'react-player'
+import ScrollTrigger from 'react-scroll-trigger'
 
 
 const DentalCamp = () => {
@@ -73,7 +74,7 @@ const DentalCamp = () => {
   const swiperRef2 = useRef(null);
   const swiperRef3 = useRef(null);
   const swiperRef4 = useRef(null);
-
+  const [isCounter, setIsCounter] = useState(false);
 
   const [selectedPlan, setSelectedPlan] = useState(3);
 
@@ -454,26 +455,33 @@ const DentalCamp = () => {
           <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
           <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
           <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-        </section>*/} 
+        </section>*/}
         <div className="rounded-xl w-full max-md:hidden max-lg:rounded-none">
-          <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#808080] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
-            <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
-            <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
-            <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
-            <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
-            <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-          </div>
+          <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
+            <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#808080] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
+              <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
+              <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
+              <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
+              <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
+              <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
+            </div>
+          </ScrollTrigger>
         </div>
         <div className="w-full hidden max-md:block py-5">
-          <div className='grid grid-cols-3 justify-items-center text-[#808080] w-full mb-5 max-small:mb-[10px]'>
-            <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
-            <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
-            <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
-          </div>
-          <div className='grid grid-cols-2 justify-items-center text-[#808080] w-[450px] max-sm:w-[350px] max-small:w-[250px] mx-auto'>
-            <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
-            <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-          </div>
+          <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
+            <>
+              <div className='grid grid-cols-3 justify-items-center text-[#808080] w-full mb-5 max-small:mb-[10px]'>
+                <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
+                <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
+                <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
+              </div>
+              <div className='grid grid-cols-2 justify-items-center text-[#808080] w-[450px] max-sm:w-[350px] max-small:w-[250px] mx-auto'>
+                <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
+                <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
+              </div>
+            </>
+          </ScrollTrigger>
+
         </div>
         <section className=" bg-[#F6F6F6] w-full py-[70px] px-5">
           <div className='max-w-[1200px] mx-auto w-full flex flex-col gap-[30px]'>

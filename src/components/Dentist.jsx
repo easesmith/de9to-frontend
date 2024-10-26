@@ -11,8 +11,9 @@ import ConfirmbookingModal from './confirm-booking/ConfirmbookingModal';
 import { calculateAverageRating } from '@/utils/getAverageRating';
 import { format } from 'date-fns';
 import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
+import { useParams } from 'react-router-dom';
 
-const Dentist = ({ dentist }) => {
+const Dentist = ({ dentist,clinicDetails }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
 
     const daysOfWeek = [
@@ -27,6 +28,7 @@ const Dentist = ({ dentist }) => {
 
 
     console.log("dentist", dentist)
+    const params = useParams();
     const { personalDetails, _id, clinic } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
@@ -111,7 +113,7 @@ const Dentist = ({ dentist }) => {
                 <ConfirmBookingModal
                     isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                     setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
-                    clinic={clinic}
+                    clinic={clinicDetails}
                     dentistId={dentist?._id}
                     timing={dentist?.dentistAvailableTiming}
                     selectedIndex={0}

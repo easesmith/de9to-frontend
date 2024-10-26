@@ -111,11 +111,11 @@ const UpdateProfile = () => {
 
             setValue("name", foundPatient.name);
             // setValue("profileImg", foundPatient.profileImage);
-            setValue("profileImgPreview", `${import.meta.env.VITE_IMAGE_URL}/${foundPatient.profileImage}`);
+            setValue("profileImgPreview", foundPatient?.profileImage && `${import.meta.env.VITE_IMAGE_URL}/${foundPatient.profileImage}`);
             setValue("mobile", foundPatient.phone);
             setValue("email", foundPatient.email);
             setValue("gender", foundPatient.gender);
-            setValue("dateOfBirth", new Date(foundPatient.dob));
+            setValue("dateOfBirth", foundPatient?.dob ? new Date(foundPatient?.dob): new Date());
             setValue("address", foundPatient.address);
             setValue("area", foundPatient.area);
             setValue("city", foundPatient.city);

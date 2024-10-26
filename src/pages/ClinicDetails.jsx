@@ -141,6 +141,7 @@ const ClinicDetails = () => {
                                 <Dentist
                                     key={dentist?._id}
                                     dentist={dentist}
+                                    clinicDetails={clinic}
                                 />
                             ))}
 

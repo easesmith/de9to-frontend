@@ -86,7 +86,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             // console.log("availableSlots", availableSlots);
 
 
-            const hasSlots = timing?.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.allSlots?.length > 0);
+            const hasSlots = timing?.some((item) => item.day.toLowerCase() === day.toLowerCase() && item?.slot?.length > 0);
 
             return {
                 name: displayDate,
@@ -216,14 +216,14 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         const VisibleDays = days.slice(startIndex, startIndex + 3);
         setVisibleDays(VisibleDays)
         setSelected(`selected${startIndex}`)
-        const selectedDate = days[startIndex].date;
+        const selectedDate = days[startIndex]?.date;
         setSelectedDay(selectedDate);
     }, [startIndex])
 
     // Get the visible days (3 at a time)
     const { res: slotsRes, fetchData: fetchSlotsData, isLoading: isSlotsLoading, error } = useGetApiReq();
 
-    console.log("data", format(new Date(selectedDay), "EEEE"));
+    // console.log("data", format(new Date(selectedDay), "EEEE"));
 
     const getSlots = async () => {
         fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${getValues("clinic")}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE")}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);

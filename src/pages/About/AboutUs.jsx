@@ -1,5 +1,5 @@
 import Layout from '@/component/Layout/Layout'
-import React from 'react'
+import React, { useState } from 'react'
 import DestistSignupImg from '../../assets/dentist 1.png'
 import DentalConsultationImg from '../../assets/checklist 1.png'
 import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
@@ -23,10 +23,13 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import { z } from 'zod'
+import ScrollTrigger from 'react-scroll-trigger'
 // import './styles.css';
 
 
 const AboutUs = () => {
+    const [isCounter, setIsCounter] = useState(false);
+
     const form = useForm({
         resolver: zodResolver(z.object({
 
@@ -55,24 +58,28 @@ const AboutUs = () => {
                         <img src={HappyDentistImg} alt="happy-dentist-mg" className='w-[530px] h-[365px] max-[425px]:w-[360px] max-[425px]:h-[203px]' />
                     </div>
                     <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">
-                        <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#FFFFFF] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
-                            <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
-                            <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
-                            <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
-                            <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
-                            <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-                        </div>
+                        <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
+                            <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#FFFFFF] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
+                                <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
+                                <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
+                                <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
+                                <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
+                                <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
+                            </div>
+                        </ScrollTrigger>
                     </div>
                     <div className="bg-[#95C22B] w-full hidden max-md:block py-5">
-                        <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-5 max-[425px]:mb-[10px]'>
-                            <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
-                            <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
-                            <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
-                        </div>
-                        <div className='grid grid-cols-2 justify-items-center text-[#FFFFFF] w-[450px] max-sm:w-[350px] max-[425px]:w-[250px] mx-auto'>
-                            <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
-                            <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-                        </div>
+                        <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
+                            <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-5 max-[425px]:mb-[10px]'>
+                                <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
+                                <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
+                                <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
+                            </div>
+                            <div className='grid grid-cols-2 justify-items-center text-[#FFFFFF] w-[450px] max-sm:w-[350px] max-[425px]:w-[250px] mx-auto'>
+                                <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
+                                <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
+                            </div>
+                        </ScrollTrigger>
                     </div>
                 </section>
                 <section className='flex max-md:flex-wrap justify-between items-center gap-5 w-full px-5'>

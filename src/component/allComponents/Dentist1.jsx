@@ -29,18 +29,13 @@ const Dentist1 = ({ dentist }) => {
 
 
     console.log("dentist", dentist)
-    const { personalDetails, _id, clinic, dentistRatings } = dentist || {}
+    const { personalDetails, _id, clinic, dentistRatings,dentistAvailableTiming=[] } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
-    const availabilityData = clinic[0]?.weeklyHoliday?.map((item) => {
-        if (daysOfWeek.some(day => day.toLowerCase() === item.day.toLowerCase())) {
-            const dayAbbreviation = item.day.substring(0, 3);
-            return dayAbbreviation.charAt(0).toUpperCase() + dayAbbreviation.slice(1);
-        }
-    })
+    const availabilityData = dentistAvailableTiming?.map((item) => item?.day)
 
-    // console.log("availabilityData", availabilityData);
+    console.log("availabilityData", availabilityData);
 
     const averageRating = calculateAverageRating(dentistRatings);
     console.log("averageRating", averageRating);
@@ -84,10 +79,10 @@ const Dentist1 = ({ dentist }) => {
                         <p className='text-[#717171] font-inter font-semibold'>{availabilityData?.join(" - ")}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-2 mt-1">
+                {/* <div className="flex items-center gap-2 mt-1">
                     <FaLocationDot className='text-[#717171] text-xl max-[700px]:text-xl' />
                     <p className=' text-[#717171] font-inter max-[700px]:text-xs font-normal'>{clinic[0]?.clinicAddress}</p>
-                </div>
+                </div> */}
                 <p className='text-[#717171] font-inter font-normal max-[700px]:text-xs text-sm mt-1'>Dr Tanya Batra completed his graduation from Dr MGR Medical University Chennai in the year 2006 and internship in the year 2007</p>
                 <div className="flex items-center gap-2 mt-2">
                     <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">

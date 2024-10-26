@@ -56,9 +56,9 @@ const ConfirmBookingPage = () => {
 
     const { personalDetails, clinic = [], educationalQualification,dentistRatings } = dentistDetails || {};
 
-    console.log("clinic", clinic[0]);
+    console.log("clinicDetails?.clinicRating", clinicDetails?.clinicRating);
 
-    const clinicAverageRating = calculateAverageRating(clinicDetails?.clinicRating);
+    const clinicAverageRating = clinicDetails?.clinicRating && calculateAverageRating(clinicDetails?.clinicRating);
     const dentistAverageRating = dentistRatings && calculateAverageRating(dentistRatings);
 
 

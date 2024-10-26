@@ -10,6 +10,7 @@ import ProfessionalImg5 from '../../assets/Ellipse 7.png'
 import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
 import CategoryData from '@/data/Blog/categoryData.json'
+import CountUp from 'react-countup';
 
 const ButtonLocation = ({ location, setLocation, name }) => {
   const [isSelectLocation, setSelectLocation] = useState(false);
@@ -33,11 +34,11 @@ const FilterName = ({ name }) => {
   )
 }
 
-const MangementInfo = ({ img, number, title }) => {
+const MangementInfo = ({ img, number, title,isCounter }) => {
   return (
     <div className='w-fit flex flex-col items-center justify-center'>
       <img src={img} alt="destistSignup-img" className='h-[90px] max-lg:w-16 max-lg:h-16 max-sm:w-12 max-sm:h-12 max-[425px]:w-5 max-[425px]:h-5' />
-      <p className=' text-[40px] text-center font-bold font-inter max-lg:text-[27px] max-sm:text-xl max-[425px]:text-sm'>{number}</p>
+      <p className=' text-[40px] text-center font-bold font-inter max-lg:text-[27px] max-sm:text-xl max-[425px]:text-sm'>{isCounter && <CountUp start={0} end={number} duration={2} />}+</p>
       <p className=' text-[19px] text-center font-bold font-inter max-lg:text-sm max-sm:text-xs max-[425px]:text-[10px] max-[425px]:font-medium'>{title}</p>
     </div>
   )
