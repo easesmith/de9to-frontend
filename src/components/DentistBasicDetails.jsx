@@ -19,7 +19,7 @@ const DentistBasicDetails = ({ details }) => {
                     <div>
                         <div className='rounded-[6px] relative w-[210px] h-[210px] max-[500px]:w-full max-[900px]:w-[70%] '>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${details?.personalDetails?.image}`} alt="" />
+                            <img className='h-full w-full' src={details?.personalDetails?.image} alt="" />
                         </div>
                         <p className="text-center max-[900px]:text-left font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {details?.educationalQualification?.regNumber}</p>
                     </div>

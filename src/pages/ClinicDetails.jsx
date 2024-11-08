@@ -169,7 +169,7 @@ const ClinicDetails = () => {
                             <CarouselContent>
                                 {allPhotos?.map((item, i) => (
                                     <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
-                                        <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                        <img className='h-40 w-full' src={item?.photoPath} alt="" />
                                     </CarouselItem>
                                 ))}
                                 {/* {Array.from({ length: 5 }).map((_, index) => (
@@ -208,7 +208,7 @@ const ClinicDetails = () => {
                             >
                                 {allPhotos?.map((item, i) => (
                                     <SwiperSlide key={i}>
-                                        <img className='h-40 max-[700px]:h-20 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                        <img className='h-40 max-[700px]:h-20 w-full' src={item?.photoPath} alt="" />
                                     </SwiperSlide>
                                 ))}
                             </Swiper> */}
@@ -227,11 +227,11 @@ const ClinicDetails = () => {
 
                         </div>
                         <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2 max-[400px]:grid-cols-1  gap-5 mt-10">
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${receptionCounter}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${waitingArea}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={certificateWall} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={consultationTable} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={frontFascia} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={receptionCounter} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={waitingArea} alt="" />
                         </div>
                     </div>
                 </div>

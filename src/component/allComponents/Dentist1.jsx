@@ -51,7 +51,7 @@ const Dentist1 = ({ dentist }) => {
             <div>
                 <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-[6px] relative w-full cursor-pointer'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                    <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${personalDetails?.image}`} alt="" />
+                    <img className='h-full w-full' src={personalDetails?.image} alt="" />
                 </div>
                 <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
             </div>

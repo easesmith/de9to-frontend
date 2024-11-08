@@ -111,7 +111,7 @@ const UpdateProfile = () => {
 
             setValue("name", foundPatient.name);
             // setValue("profileImg", foundPatient.profileImage);
-            setValue("profileImgPreview", foundPatient?.profileImage && `${import.meta.env.VITE_IMAGE_URL}/${foundPatient.profileImage}`);
+            setValue("profileImgPreview", foundPatient?.profileImage && foundPatient.profileImage);
             setValue("mobile", foundPatient.phone);
             setValue("email", foundPatient.email);
             setValue("gender", foundPatient.gender);

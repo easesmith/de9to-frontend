@@ -34,7 +34,7 @@ const ClinicBasicDetails = ({ clinic }) => {
                 <div className='p-4 rounded-[6px] h-full flex max-[700px]:flex-col gap-[10px] shadow-lg'>
                     <div className='rounded-[6px] relative w-[210px] max-[500px]:w-full max-[900px]:w-[50%]'>
                         <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                        <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
+                        <img className='h-full w-full' src={clinic?.clinicLogo} alt="" />
                     </div>
                     <div className=' h-full ps-[9px] max-[500px]:px-0 flex flex-col items-start justify-between max-[900px]:w-full w-[calc(100%-210px)]'>
                         <div>

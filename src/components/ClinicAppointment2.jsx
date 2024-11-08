@@ -22,7 +22,7 @@ const ClinicAppointment2 = ({ clinic, dentistId, dentistDetails }) => {
         <div className="grid grid-cols-[8px_1fr] gap-1">
             <div className="border-l-8 max-[500px]:border-l-4 border-[#C4C4C4] h-full rounded-full w-2"></div>
             <div className='border-2 max-[500px]:border border-l-transparent border-[#5B5B5B] rounded-tr-md rounded-br-md px-4 py-2'>
-                <img className='w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinicLogo}`} alt="" />
+                <img className='w-full' src={clinicLogo} alt="" />
                 <div>
                     <ReactStars edit={false} size={25} count={5} value={5} color2={'#FF8A00'} />
                     <h2 className='font-inter font-semibold text-[#1A1A1A]'>{clinicName}</h2>

@@ -127,7 +127,7 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
                                                             return (
                                                                 <div key={i} className='flex flex-col gap-3'>
                                                                     <div className='flex gap-[10px]'>
-                                                                        <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.personalDetails?.image}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                        <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={e?.personalDetails?.image} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
                                                                         <div className='flex flex-col items-start gap-4'>
                                                                             <div className='flex items-center gap-9 -mt-1'>
                                                                                 <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
@@ -164,7 +164,7 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
                                                             return (
                                                                 <div key={i} className='flex flex-col gap-3'>
                                                                     <div className='flex gap-[10px]'>
-                                                                        <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.clinicLogo}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                        <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={e?.clinicLogo} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
                                                                         <div className='flex flex-col items-start gap-4'>
                                                                             <div className='flex items-center gap-9 -mt-1'>
                                                                                 <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.clinicName}</h4>
@@ -206,7 +206,7 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
                                                     <>
                                                         <div key={i} className='flex flex-col gap-3'>
                                                             <div className='flex gap-[10px]'>
-                                                                <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.personalDetails?.image}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                                <img onClick={() => handleNavigate(`/our-dentist/${e._id}`)} src={e?.personalDetails?.image} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
                                                                 <div className='flex flex-col items-start gap-4'>
                                                                     <div className='flex items-center gap-9 -mt-1'>
                                                                         <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.personalDetails.Firstname} {e.personalDetails.lastName}</h4>
@@ -245,7 +245,7 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
                                                 return (
                                                     <div key={i} className='flex flex-col gap-3'>
                                                         <div className='flex gap-[10px]'>
-                                                            <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={`${import.meta.env.VITE_IMAGE_URL}/${e?.clinicLogo}`} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
+                                                            <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={e?.clinicLogo} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' />
                                                             <div className='flex flex-col items-start gap-4'>
                                                                 <div className='flex items-center gap-9 -mt-1'>
                                                                     <h4 className='text-[#1A1A1A] text-lg font-semibold font-inter'>{e.clinicName}</h4>
