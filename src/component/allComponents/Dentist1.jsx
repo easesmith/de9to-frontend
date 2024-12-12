@@ -28,8 +28,8 @@ const Dentist1 = ({ dentist }) => {
     ];
 
 
-    console.log("dentist", dentist)
-    const { personalDetails, _id, clinic, dentistRatings,dentistAvailableTiming=[] } = dentist || {}
+    console.log("dentist1", dentist)
+    const { personalDetails, _id, clinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
@@ -38,7 +38,7 @@ const Dentist1 = ({ dentist }) => {
     console.log("availabilityData", availabilityData);
 
     const averageRating = calculateAverageRating(dentistRatings);
-    console.log("averageRating", averageRating);
+    // console.log("averageRating", averageRating);
 
     const navigate = useNavigate()
 
@@ -53,12 +53,12 @@ const Dentist1 = ({ dentist }) => {
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                     <img className='h-full w-full' src={personalDetails?.image} alt="" />
                 </div>
-                <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: A-14383</p>
+                <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
             </div>
             <div>
                 <div className="flex justify-between items-start max-[500px]:flex-col max-[500px]:gap-0 gap-3">
                     <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
-                    } {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
+                    }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
                         <ReactStars size={25} count={5} value={averageRating} edit={false} color2={'#FF8A00'} />
                         <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by {dentistRatings?.length} users</div>
@@ -69,7 +69,9 @@ const Dentist1 = ({ dentist }) => {
                     <div className='flex gap-2 items-center max-[700px]:text-xs'>
                         <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
                         <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                        <p className='text-[#FF8A00] font-inter font-semibold'>{clinic[0]?.clinicName}</p>
+                        <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
+                        <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+                        <p className='text-[#FF8A00] font-inter font-semibold'>{clinic?.length === 1 ? clinic[0]?.clinicName : clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-2 mt-1">
@@ -83,11 +85,11 @@ const Dentist1 = ({ dentist }) => {
                     <FaLocationDot className='text-[#717171] text-xl max-[700px]:text-xl' />
                     <p className=' text-[#717171] font-inter max-[700px]:text-xs font-normal'>{clinic[0]?.clinicAddress}</p>
                 </div> */}
-                <p className='text-[#717171] font-inter font-normal max-[700px]:text-xs text-sm mt-1'>Dr Tanya Batra completed his graduation from Dr MGR Medical University Chennai in the year 2006 and internship in the year 2007</p>
+                <p className='text-[#717171] font-inter font-normal max-[700px]:text-xs text-sm mt-1'>{personalDetails?.Bio}</p>
                 <div className="flex items-center gap-2 mt-2">
                     <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
                         <img src={VectorImg} alt="vectorImg" className='w-[26px] max-[500px]:w-3' />
-                        <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>2+ years Experience</span>
+                        <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>{educationalQualification?.yearsOfExperience} years Experience</span>
                     </div>
                     {/* <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
                         <img src={MediDocImg} alt="doctorImg" className='w-[26px] max-[500px]:w-3' />

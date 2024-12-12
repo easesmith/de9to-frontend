@@ -83,8 +83,8 @@ const DentalTeamCard = () => {
                                 <div key={index} className='w-[360px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
                                         <img
-                                            src={Image1}
-                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none' />
+                                            src={personalDetails?.image}
+                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none w-full h-72' />
                                     </figure>
                                     <div className='w-[360px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix

@@ -118,15 +118,6 @@ const DentistDetails = () => {
                                         dentistDetails={dentistDetails}
                                     />
                                 ))}
-                                {dentistDetails?.clinic?.map((clinic) => (
-                                    !clinic?.defaultClinic &&
-                                    <ClinicAppointment2
-                                        key={clinic._id}
-                                        clinic={clinic}
-                                        dentistId={dentistDetails?._id}
-                                        dentistDetails={dentistDetails}
-                                    />
-                                ))}
                             </div>
                         </div>
                     </div>
