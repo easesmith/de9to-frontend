@@ -29,13 +29,17 @@ const Dentist1 = ({ dentist }) => {
 
 
     console.log("dentist1", dentist)
-    const { personalDetails, _id, clinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
+    const { personalDetails, _id, clinic,assignedClinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
     const defaultClinic = clinic.find((singleClinic)=> singleClinic?.defaultClinic)
     const filteredAvailabilityData = dentistAvailableTiming?.filter((item) => item?.clinic === defaultClinic?._id);
     const availabilityData = filteredAvailabilityData?.map((item) => item?.day);
+    const modifiedClinic = assignedClinic.map((clinic)=> clinic?.clinicId)
+
+    console.log("modifiedClinic", [...modifiedClinic,...clinic]);
+    
 
     console.log("availabilityData", availabilityData);
 
@@ -118,7 +122,7 @@ const Dentist1 = ({ dentist }) => {
                     isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                     setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
                     dentistId={_id}
-                    clinic={dentist.clinic}
+                    clinic={ [...modifiedClinic,...clinic]}
                     timing={dentist?.dentistAvailableTiming}
                     selectedIndex={0}
                 />
