@@ -17,7 +17,7 @@ const DentistBasicDetails = ({ details }) => {
                 {/* <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p> */}
                 <div className='p-4 rounded-[6px] flex max-[900px]:flex-col gap-[10px] shadow-md'>
                     <div>
-                        <div className='rounded-[6px] relative w-[210px] h-[210px] max-[500px]:w-full max-[900px]:w-[70%] '>
+                        <div className='rounded-[6px] relative w-[210px] max-[500px]:w-full max-[900px]:w-[70%] '>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                             <img className='h-full w-full' src={details?.personalDetails?.image} alt="" />
                         </div>
