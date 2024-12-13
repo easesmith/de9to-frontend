@@ -8,6 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { handleErrorModal } from './store/slices/errorSlice'
 import { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './components/ProtectedRoute'
+import DentistSignup from './pages/dentist/DentistSignup'
+import ApplicationForm from './pages/dentist/ApplicationForm'
+import PersonalDetails from './pages/dentist/personal-details/PersonalDetails'
+import Clinic from './pages/dentist/clinic-details/Clinic'
+import OtherDetails from './pages/dentist/OtherDetails'
+import BankDetails from './pages/dentist/BankDetails'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -81,6 +87,14 @@ const App = () => {
             <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
             <Route path='/profile/delete-account' element={<DeleteAccount />} />
           </Route>
+
+
+          <Route path='/dentist/dentist-signup' element={<DentistSignup />} />
+          <Route path='/dentist/application' element={<ApplicationForm />} />
+          <Route path='/dentist/application/personal-details' element={<PersonalDetails />} />
+          <Route path='/dentist/application/clinic' element={<Clinic />} />
+          <Route path='/dentist/application/other-details' element={<OtherDetails />} />
+          <Route path='/dentist/application/bank-details' element={<BankDetails />} />
         </Routes>
       </Suspense>
       <Toaster />

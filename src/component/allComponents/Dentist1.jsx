@@ -33,7 +33,9 @@ const Dentist1 = ({ dentist }) => {
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
-    const availabilityData = dentistAvailableTiming?.map((item) => item?.day)
+    const defaultClinic = clinic.find((singleClinic)=> singleClinic?.defaultClinic)
+    const filteredAvailabilityData = dentistAvailableTiming?.filter((item) => item?.clinic === defaultClinic?._id);
+    const availabilityData = filteredAvailabilityData?.map((item) => item?.day);
 
     console.log("availabilityData", availabilityData);
 

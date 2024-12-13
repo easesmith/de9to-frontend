@@ -31,9 +31,10 @@ import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModa
 import useGetApiReq from '@/hooks/useGetApiReq'
 import CountUp from 'react-countup'
 import ScrollTrigger from 'react-scroll-trigger'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-
+  const navigate = useNavigate();
   const [active, setActive] = useState(1)
   const swiperRef3 = useRef(null);
   const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -87,7 +88,7 @@ const Home = () => {
                 <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
                 <div className=' flex gap-5 max-[500px]:justify-center'>
-                  <button onClick={() => setIsConfirmBookingModalOpen(false)} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>
+                  <button onClick={() => navigate("/our-dentist")} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>
                     <div className=' text-[#FFFFFF] text-lg max-[970px]:text-base font-semibold font-poppins '>Book an appointment</div>
                     <MdOutlineArrowOutward color='#FFFFFF' className='text-xl max-[970px]:text-lg' />
                   </button>
@@ -381,7 +382,7 @@ const Home = () => {
               </div>
               <div className='max-w-[550px] flex flex-col items-center'>
                 <h2 className="text-[#313131] text-[32px] max-[700px]:text-xl text-center font-semibold font-poppins leading-[48px] mb-8">Don’t wait <span className='text-[#FFFFFF]'>and make an appointment today</span></h2>
-                <button className='bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
+                <button onClick={() => navigate("/our-dentist")} className='bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
               </div>
             </div>
           </section>

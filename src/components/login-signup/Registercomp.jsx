@@ -10,10 +10,12 @@ import { Checkbox } from '../ui/checkbox';
 import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
 import usePostApiReq from '@/hooks/usePostApiReq';
+import { useNavigate } from 'react-router-dom';
 
 const Registercomp = ({ setIsShowTabs, setSelected }) => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
     const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(false);
+    const navigate = useNavigate();
 
     const form = useForm({
         resolver: zodResolver(RegisterSchema),
@@ -62,7 +64,7 @@ const Registercomp = ({ setIsShowTabs, setSelected }) => {
                         <p className='font-inter text-[#717171] font-normal max-[500px]:text-xs mt-1 max-[500px]:break-all uppercase'>Your problems, our solutions</p>
                         <div>
                             <p className='text-xs text-[#717171] font-inter max-[500px]:text-xs max-[500px]:leading-3 leading-[8px]'>Are You a Dentist?</p>
-                            <button className='text-xs text-[#1A1A1A] max-[500px]:text-xs max-[500px]:leading-3 font-semibold font-inter'>REGISTER HERE</button>
+                            <button onClick={()=>navigate("/dentist/dentist-signup")} className='text-xs text-[#1A1A1A] max-[500px]:text-xs max-[500px]:leading-3 font-semibold font-inter'>REGISTER HERE</button>
                         </div>
                     </div>
                     <Form {...form}>

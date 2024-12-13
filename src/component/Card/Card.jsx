@@ -35,7 +35,7 @@ const Card = ({ hidden, isCategorySelected, setIsCategorySelected, handleSelectC
                                     <img src={Image} alt=""
                                         className='rounded-2xl  max-[500px]:rounded-none' />
                                     <div className=' absolute px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
-                                        <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
+                                        <h4 className='text-[#313131] text-xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
                                         <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
                                     </div>
                                 </Link>}
@@ -88,7 +88,7 @@ const DentalTeamCard = () => {
                                     </figure>
                                     <div className='w-[360px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix
-                                        } {personalDetails?.Firstname} {personalDetails?.lastName}</h3>
+                                        }. {personalDetails?.Firstname} {personalDetails?.lastName}</h3>
                                         <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.experience}</p>
                                         <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.location}</p>
                                         <button onClick={() => navigate(`/our-dentist/${_id}`)} className="text-[#95C22B] max-[500px]:text-base text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10">View Profile</button>

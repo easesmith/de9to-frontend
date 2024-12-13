@@ -21,7 +21,7 @@ import Review from '@/components/Review'
 import { Button } from '@/components/ui/button'
 import { TbEdit } from 'react-icons/tb'
 import useGetApiReq from '@/hooks/useGetApiReq'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import DataNotFound from '@/components/DataNotFound'
 import Spinner from '@/components/Spinner'
 import AddFeedbackModal from '@/components/AddFeedbackModal'
@@ -48,7 +48,7 @@ const ClinicDetails = () => {
     const [allRating, setAllRating] = useState({});
     const [allPhotos, setAllPhotos] = useState([]);
     const [isAddFeedbackModalOpen, setIsAddFeedbackModalOpen] = useState(false);
-
+    const navigate = useNavigate();
 
     const getClinic = async () => {
         fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
@@ -126,7 +126,7 @@ const ClinicDetails = () => {
         <Layout>
             <section className='max-w-[1240px] px-4 mx-auto'>
                 <div className='flex items-center gap-4 h-[18px] my-5'>
-                    <FaArrowLeft className='text-[#717171]' />
+                    <FaArrowLeft onClick={() => navigate(-1)} className='text-[#717171]' />
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
                 <div className="mb-5">
