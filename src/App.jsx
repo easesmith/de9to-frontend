@@ -92,9 +92,10 @@ const App = () => {
           <Route path='/dentist/dentist-signup' element={<DentistSignup />} />
           <Route path='/dentist/application' element={<ApplicationForm />} />
           <Route path='/dentist/application/personal-details' element={<PersonalDetails />} />
-          <Route path='/dentist/application/clinic' element={<Clinic />} />
           <Route path='/dentist/application/other-details' element={<OtherDetails />} />
           <Route path='/dentist/application/bank-details' element={<BankDetails />} />
+          <Route path='/dentist/application/clinic' element={<Clinic />} />
+          {/* <Route path='/dentist/application/clinic-update-time' element={<Clinic2 />} /> */}
         </Routes>
       </Suspense>
       <Toaster />

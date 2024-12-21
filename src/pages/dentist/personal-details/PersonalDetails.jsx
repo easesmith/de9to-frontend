@@ -1,22 +1,46 @@
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { FaCheck } from "react-icons/fa6"
 import DentistWrapper from '@/components/dentist-wrapper/DentistWrapper'
 import BreadcrumbCompo from '@/component/dentist-signup/BreadcrumbCompo'
-import { PersonalDetailsSchema } from '@/schema/formSchema'
+import { PersonalDetails1Schema, PersonalDetails2Schema, PersonalDetailsSchema } from '@/schema/formSchema'
 import PersonalDetails1 from './PersonalDetails1'
 import PersonalDetails2 from './PersonalDetails2'
+import usePatchApiReq from '@/hooks/usePatchApiReq'
+import { useNavigate } from 'react-router-dom'
+import useGetApiReq from '@/hooks/useGetApiReq'
 
 const PersonalDetails = () => {
 
     const [step, setStep] = useState(0)
+    const navigate = useNavigate();
 
-    const nextStep = () => {
-        setStep(step + 1)
-    }
+    const { res, fetchData, isLoading } = usePatchApiReq();
+    const { res: res1, fetchData: fetchData1, isLoading: isLoading1 } = useGetApiReq();
+
+    const nextStep = async () => {
+        let schema;
+        switch (step) {
+            case 1:
+                schema = PersonalDetails1Schema;
+                break;
+            case 2:
+                schema = PersonalDetails2Schema;
+                break;
+        }
+
+        // const valid = await form.trigger(Object.keys(schema.shape));
+        // if (valid) {
+        // }
+        setStep(step + 1);
+    };
+
+    // const nextStep = () => {
+    //     setStep(step + 1)
+    // }
 
     const prevStep = () => {
         if (step >= 0)
@@ -30,11 +54,12 @@ const PersonalDetails = () => {
             doctorFirstName: "",
             doctorLastName: "",
             dateOfBirth: "",
+            age: "",
             gender: "",
             degree: "",
             specialization: "",
             email: "",
-            password: "",
+            // password: "",
             phoneNumber: "",
             adhaarFrontImg: "",
             adhaarBackImg: "",
@@ -48,29 +73,78 @@ const PersonalDetails = () => {
         }
     })
 
+    const { setValue, getValues } = form;
+    // console.log("getValues", getValues());
+
+
+    const dentistId = localStorage.getItem("dentistId")
+
+    const getDentistDetails = () => {
+        fetchData1(`/dentist/get-dentist-details?dentistId=${dentistId}`)
+    }
+
+    useEffect(() => {
+        getDentistDetails();
+    }, [])
+
+    useEffect(() => {
+        if (res1?.status === 200 || res1?.status === 201) {
+            console.log("dentist details res", res1.data);
+            const { personalDetails, dentistType } = res1?.data?.data?.dentist;
+            setValue("doctorFirstName", personalDetails?.Firstname)
+            setValue("doctorLastName", personalDetails?.lastName)
+            setValue("phoneNumber", personalDetails?.phone)
+            // setValue("specialization", dentistType)
+        }
+    }, [res1])
+
+
     const onSubmit = (data) => {
         console.log("data:", data)
-        form.reset({
-            doctorFirstName: "",
-            doctorLastName: "",
-            dateOfBirth: "",
-            gender: "",
-            degree: "",
-            specialization: "",
-            email: "",
-            password: "",
-            phoneNumber: "",
-            bio: "",
-            dentistRegistranstionNumber: "",
-            collegePassoutYear: "",
-            experiences: []
-        })
+
+        const formData = new FormData();
+        formData.append("collegePassoutYear", data.collegePassoutYear);
+        // formData.append("isFeatured", data.isFeatured || false);
+        formData.append("workExperience", JSON.stringify(data.experiences));
+        formData.append("dentistRegNumber", data.dentistRegistranstionNumber);
+        formData.append("yearsOfExperience", data.yearsOfExperience || 0);
+        formData.append("Firstname", data.doctorFirstName);
+        formData.append("lastName", data.doctorLastName);
+        formData.append("age", data.age);
+        formData.append("dob", data.dateOfBirth);
+        formData.append("gender", data.gender);
+        formData.append("email", data.email);
+        formData.append("degree", data.degree);
+        // formData.append("password", data.password);
+        formData.append("phone", data.phoneNumber);
+        formData.append("specialty", data.specialization);
+        formData.append("bio", data.bio);
+        formData.append("dentistId", dentistId || "");
+
+        // File fields
+        formData.append("image", data.doctorImg[0]);
+        formData.append("frontSide", data.adhaarFrontImg[0]);
+        formData.append("backSide", data.adhaarBackImg[0]);
+        formData.append("signature", data.doctorsSignature[0]);
+        formData.append("regCertificate", data.dentistRegistranstionCertificate[0]);
+        formData.append("regDegree", data.degreeByStateCouncil[0]);
+
+        fetchData("/dentist/update-dentist", formData);
+
     }
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("dentist details submit res", res);
+            navigate("/dentist/application")
+            form.reset();
+        }
+    }, [res])
 
     return (
         <DentistWrapper>
             <div className={`w-full shadow-[2px] rounded-[30px] bg-white px-16 py-10`}>
-                <BreadcrumbCompo title="Personal Details" />
+                {/* <BreadcrumbCompo title="Personal Details" /> */}
                 <div className="flex justify-center items-center gap-32 mt-12">
                     {/* Step 1 */}
                     <div className="flex flex-col items-center">

@@ -243,23 +243,9 @@ const PersonalDetails1 = ({ form }) => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Specialization</FormLabel>
-                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                        <FormControl className={`bg-[#F9FAFB] border-[#D1D5DB] rounded-lg`}>
-                                            <SelectTrigger className="w-full text-[#6B7280] text-sm font-normal font-barlow">
-                                                <SelectValue placeholder="Main Doctor" />
-                                            </SelectTrigger>
-                                        </FormControl>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                <SelectLabel>doctor</SelectLabel>
-                                                <SelectItem value="apple">Apple</SelectItem>
-                                                <SelectItem value="banana">Banana</SelectItem>
-                                                <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                <SelectItem value="grapes">Grapes</SelectItem>
-                                                <SelectItem value="pineapple">Pineapple</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
+                                    <FormControl>
+                                        <Input placeholder="Enter Specialization" className={`bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
+                                    </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -287,7 +273,7 @@ const PersonalDetails1 = ({ form }) => {
                             </FormItem>
                         )}
                     />
-                    <FormField
+                    {/* <FormField
                         control={control}
                         name="password"
                         render={({ field }) => (
@@ -304,7 +290,7 @@ const PersonalDetails1 = ({ form }) => {
                                 <FormMessage />
                             </FormItem>
                         )}
-                    />
+                    /> */}
                     <FormField
                         control={control}
                         name="phoneNumber"
@@ -313,6 +299,19 @@ const PersonalDetails1 = ({ form }) => {
                                 <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Phone Number</FormLabel>
                                 <FormControl>
                                     <Input type="number" placeholder="Enter Phone Number" className={`bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={control}
+                        name="age"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Age</FormLabel>
+                                <FormControl>
+                                    <Input type="number" placeholder="Enter Age" className={`bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>

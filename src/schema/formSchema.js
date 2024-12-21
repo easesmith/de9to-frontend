@@ -84,11 +84,51 @@ export const RegisterSchema = z.object({
 });
 
 export const DentistRegisterSchema = z.object({
-    name: z.string().min(1, "Name is required"),
+    category: z.enum(['main-dentist', 'visiting-dentist', 'associate-dentist', 'enterprise-owner'], {
+        required_error: 'Category is required',
+    }),
+    firstName: z.string()
+        .min(2, 'min 3 char is required')
+        .max(20, 'max 30 char is required')
+        .regex(/^[A-Za-z\s]+$/, 'Only alphabetic characters are allowed'),
+    lastName: z.string()
+        .min(2, 'min 3 char is required')
+        .max(20, 'max 30 char is required')
+        .regex(/^[A-Za-z\s]+$/, 'Only alphabetic characters are allowed'),
     phone: z
         .string()
-        .length(10, "Mobile No. must be exactly 10 digits")
-        .regex(/^\d+$/, "Mobile No. must contain only numbers"),
+        .regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
+    password: z
+        .string()
+        .min(8, { message: "Password must be at least 8 characters long." })
+        .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+        .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+        .regex(/[0-9]/, { message: "Password must contain at least one digit." })
+        .regex(/[!@#$%^&*]/, { message: "Password must contain at least one special character (!@#$%^&*)." }),
+    getUpdates: z.boolean().optional(),
+});
+export const DentistRegisterSchema1 = z.object({
+    category: z.enum(['main-dentist', 'visiting-dentist', 'associate-dentist', 'enterprise-owner'], {
+        required_error: 'Category is required',
+    }),
+    firstName: z.string()
+        .min(2, 'min 3 char is required')
+        .max(20, 'max 30 char is required')
+        .regex(/^[A-Za-z\s]+$/, 'Only alphabetic characters are allowed'),
+    lastName: z.string()
+        .min(2, 'min 3 char is required')
+        .max(20, 'max 30 char is required')
+        .regex(/^[A-Za-z\s]+$/, 'Only alphabetic characters are allowed'),
+    phone: z
+        .string()
+        .regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
+    password: z
+        .string()
+        .min(8, { message: "Password must be at least 8 characters long." })
+        .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+        .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+        .regex(/[0-9]/, { message: "Password must contain at least one digit." })
+        .regex(/[!@#$%^&*]/, { message: "Password must contain at least one special character (!@#$%^&*)." }),
     otp: z
         .string()
         .length(4, "Otp must be exactly 4 digits")
@@ -188,12 +228,13 @@ export const PersonalDetails1Schema = z.object({
     doctorImg: z.any().refine(file => file && file.length > 0, "Doctor image is required"),
     doctorFirstName: z.string().min(1, "First name is required"),
     doctorLastName: z.string().min(1, "Last name is required"),
+    age: z.string().min(1, "Age is required"),
     dateOfBirth: z.string(),
     gender: z.enum(["male", "female", "other"]),
     degree: z.enum(["BDS", "MDS"]),
     specialization: z.string(),
     email: z.string().email("Invalid email address"),
-    password: z.string().min(8, { message: "Password must be at least 8 characters long" }).max(20, { message: "Password must be at most 20 characters long" }),
+    // password: z.string().min(8, { message: "Password must be at least 8 characters long" }).max(20, { message: "Password must be at most 20 characters long" }),
     phoneNumber: z.string().regex(/^\d{10}$/, "Invalid phone number"),
     bio: z.string(),
     adhaarFrontImg: z.any().refine(file => file && file.length > 0, "Adhaar front is required"),
@@ -275,6 +316,7 @@ export const OthersDetailsSchema = z.object({
 
 // BankDetailsSchema
 export const BankDetailsSchema = z.object({
+    bankName: z.string().min(1, "Bank Name is required"),
     bankAccountNumber: z.string().regex(/^\d+$/, 'Account number must contain only digits'),
     bankAccountType: z.enum(['savings', 'current', 'fixed', 'recurring'], {
         errorMap: () => ({ message: 'Bank account type must be one of: savings, current, fixed, recurring' }),

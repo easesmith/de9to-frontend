@@ -17,14 +17,21 @@ import { BankDetailsSchema } from '@/schema/formSchema'
 import DentistWrapper from '@/components/dentist-wrapper/DentistWrapper'
 import BreadcrumbCompo from '@/component/dentist-signup/BreadcrumbCompo'
 import { ImageCompo, ShowImageCompo } from '@/component/dentist-signup/ImageCompo'
+import usePatchApiReq from '@/hooks/usePatchApiReq'
+import { useNavigate } from 'react-router-dom'
 
 const BankDetails = () => {
+
+    const dentistId = localStorage.getItem("dentistId");
+    const clinicId = localStorage.getItem("clinicId");
+    const navigate = useNavigate();
 
     const form = useForm({
         resolver: zodResolver(BankDetailsSchema),
         defaultValues: {
+            bankName: "",
             bankAccountNumber: "",
-            bankAccountType: "",
+            bankAccountType: "savings",
             branchName: "",
             IFSCCode: "",
             upiCode: "",
@@ -32,19 +39,46 @@ const BankDetails = () => {
         }
     })
 
+    const { res, fetchData, isLoading } = usePatchApiReq();
+
     const { register, handleSubmit, control, reset, watch, setValue, getValues } = form
 
     const onSubmit = (data) => {
         console.log("data:", data)
-        reset({
-            bankAccountNumber: "",
-            bankAccountType: "",
-            branchName: "",
-            IFSCCode: "",
-            upiCode: "",
-            // clinicQrCode: ""
-        })
+        // reset({
+        // bankName: "",
+        //     bankAccountNumber: "",
+        //     bankAccountType: "",
+        //     branchName: "",
+        //     IFSCCode: "",
+        //     upiCode: "",
+        //     clinicQrCode: ""
+        // })
+
+
+        const formData = new FormData();
+        formData.append("dentistId", dentistId || "");
+        formData.append("bankName", data.bankName);
+        formData.append("branchName", data.branchName);
+        formData.append("upiDetails", data.upiCode);
+        formData.append("ifscCode", data.IFSCCode);
+        formData.append("accountNumber", data.bankAccountNumber);
+        formData.append("accountType", data.bankAccountType);
+        formData.append("clinicId", clinicId);
+
+        // File fields
+        formData.append("clinicQrCode", data.clinicQrCode[0]);
+
+        fetchData("/dentist/update-dentist", formData);
     }
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            console.log("dentist details submit res", res);
+            navigate("/dentist/application")
+            form.reset();
+        }
+    }, [res])
 
     const clinicQrCodeImg = register("clinicQrCode")
     const clinicQrCodeImgWatch = watch("clinicQrCode")
@@ -58,7 +92,7 @@ const BankDetails = () => {
 
     // console.log(filledFields);
 
-    const values = watch()
+    const values = watch();
 
     const calculateFilledPercentage = (values) => {
         const totalFields = Object.keys(values).length;
@@ -113,28 +147,53 @@ const BankDetails = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
                             <h3 className='text-[#95C22B] text-2xl font-semibold font-Barlow'>Bank Documents</h3>
                             <div className='flex flex-col gap-5 w-[700px]'>
-                                <FormField
-                                    control={control}
-                                    name="bankAccountNumber"
-                                    render={({ field }) => (
-                                        <FormItem className="max-w-[700px]">
-                                            <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Bank Account number</FormLabel>
-                                            <div className="relative mt-1">
-                                                <FormControl>
-                                                    <Input type="text" placeholder="Enter Account Number" className={` bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
-                                                </FormControl>
-                                                <button
-                                                    type="button"
-                                                    className="absolute top-1 right-0 flex items-center pr-3 text-[#6B7280] hover:text-gray-600"
-                                                    onClick={() => setValue("bankAccountNumber", "")}
-                                                >
-                                                    &times;
-                                                </button>
-                                            </div>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
+                                <div className={`grid grid-cols-2 gap-4`}>
+                                    <FormField
+                                        control={control}
+                                        name="bankName"
+                                        render={({ field }) => (
+                                            <FormItem className="max-w-[700px]">
+                                                <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Bank Name</FormLabel>
+                                                <div className="relative mt-1">
+                                                    <FormControl>
+                                                        <Input type="text" placeholder="Enter Bank Name" className={` bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
+                                                    </FormControl>
+                                                    <button
+                                                        type="button"
+                                                        className="absolute top-1 right-0 flex items-center pr-3 text-[#6B7280] hover:text-gray-600"
+                                                        onClick={() => setValue("bankName", "")}
+                                                    >
+                                                        &times;
+                                                    </button>
+                                                </div>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    <FormField
+                                        control={control}
+                                        name="bankAccountNumber"
+                                        render={({ field }) => (
+                                            <FormItem className="max-w-[700px]">
+                                                <FormLabel className={`text-[#111928] text-sm font-medium font-barlow`}>Bank Account number</FormLabel>
+                                                <div className="relative mt-1">
+                                                    <FormControl>
+                                                        <Input type="number" placeholder="Enter Account Number" className={` bg-[#F9FAFB] border-[1px] border-[#D1D5DB] rounded-lg text-[#6B7280] text-sm font-normal font-barlow`} {...field} />
+                                                    </FormControl>
+                                                    <button
+                                                        type="button"
+                                                        className="absolute top-1 right-0 flex items-center pr-3 text-[#6B7280] hover:text-gray-600"
+                                                        onClick={() => setValue("bankAccountNumber", "")}
+                                                    >
+                                                        &times;
+                                                    </button>
+                                                </div>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
                                 <div className={`grid grid-cols-2 gap-4`}>
                                     <FormField
                                         control={control}

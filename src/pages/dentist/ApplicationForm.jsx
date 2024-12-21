@@ -7,10 +7,10 @@ const ApplicationForm = () => {
     return (
         <DentistWrapper>
             <div className="w-full shadow-[2px] rounded-[30px] bg-white px-16 py-10">
-                <BreadcrumbCompo hidden="hidden" />
-                <div className="border-2 border-[#D4D4D4] rounded-[10px] px-16 pt-12 pb-24 my-12 flex flex-col gap-10">
+                {/* <BreadcrumbCompo hidden="hidden" /> */}
+                <div className="border-2 border-[#D4D4D4] rounded-[10px] px-16 pt-6 pb-10 my-12 flex flex-col gap-3">
                     <div className="flex justify-between items-center">
-                        <h1 className='section-heading text-[#95C22B] text-xl font-normal font-barlow'>Application Form</h1>
+                        <h1 className='section-heading text-[#95C22B] text-3xl font-normal font-barlow'>Profile</h1>
                     </div>
 
                     <div className={`flex flex-wrap gap-4 mt-5`}>
