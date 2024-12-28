@@ -33,7 +33,7 @@ const Card = ({ hidden, isCategorySelected, setIsCategorySelected, handleSelectC
                             {i < number &&
                                 <Link to={`/blog/${i + 1}`} key={i} className={`rounded-2xl max-[500px]:h-60 max-[500px]:rounded-none relative shadow-custom5 cursor-pointer`}>
                                     <img src={Image} alt=""
-                                        className='rounded-2xl  max-[500px]:rounded-none' />
+                                        className='rounded-2xl  max-[500px]:rounded-none w-[387px] h-[415px]' />
                                     <div className=' absolute px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
                                         <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
                                         <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
@@ -78,20 +78,20 @@ const DentalTeamCard = () => {
                 <div className='scrollBar max-w-[1170px] mx-auto bg-[#FFFFFF] flex items-center overflow-x-auto gap-10 pb-5'>
                     {
                         featuredDentist.map((item, index) => {
-                            const { personalDetails, _id, clinic, dentistRatings } = item || {}
+                            const { personalDetails, _id, clinic, dentistRatings, educationalQualification } = item || {}
                             return (
-                                <div key={index} className='w-[360px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
+                                <div key={index} className='w-[350px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
                                         <img
                                             src={Image1}
-                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none' />
+                                            alt="" className='rounded-2xl rounded-ee-none rounded-es-none h-[335px]' />
                                     </figure>
-                                    <div className='w-[360px] max-[500px]:w-[250px] flex flex-col p-6'>
+                                    <div className='w-[350px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix
                                         } {personalDetails?.Firstname} {personalDetails?.lastName}</h3>
-                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.experience}</p>
-                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{item.location}</p>
-                                        <button onClick={() => navigate(`/our-dentist/${_id}`)} className="text-[#95C22B] max-[500px]:text-base text-xl font-semibold font-poppins border-[1px] border-[#95C22B] rounded-2xl py-3 mt-10">View Profile</button>
+                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{educationalQualification?.yearsOfExperience} Yr E xp</p>
+                                        <p className="text-[#474747] max-[500px]:text-sm text-base font-normal font-poppins">{}</p>
+                                        <button onClick={() => navigate(`/our-dentist/${_id}`)} className="text-[#95C22B] hover:bg-[#95C22B] hover:text-[#FFFFFF] transition-all duration-500 max-[500px]:text-base text-xl font-medium font-poppins border-[1px] border-[#95C22B] rounded-2xl h-12 mt-10">View Profile</button>
                                     </div>
                                 </div>
                             )

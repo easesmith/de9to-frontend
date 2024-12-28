@@ -247,27 +247,27 @@ const DentalCamp = () => {
   return (
     <Layout>
       <main className=' relative'>
-        <div className='bg-[#F6F6F6] w-full px-5 max-med:rounded-lg'>
-          <section className="flex items-end gap-2 py-7 max-w-[1200px] mx-auto max-large:items-center">
-            <div className="left-side w-1/2 flex flex-col gap-10 max-med:w-full max-med:gap-0">
-              <div className="upper flex flex-col items-start gap-[15px] max-large:gap-1">
-                <span className='text-[#95C22B] text-xl italic font-bold font-inter max-med:hidden'>Request</span>
-                <h2 className='text-[#000A2D] text-5xl font-bold font-inter max-large:text-3xl max-med:hidden'>Request A Dental Camp</h2>
-                <p className='text-[#606060] text-xl font-semibold font-roboto max-large:text-base max-med:hidden'>Feel free to drop a message related to your requirement.Our team will get back to you soon. </p>
+        <div className='bg-[#F6F6F6] w-full px-5 max-med rounded-lg'>
+          <section className="flex items-start max-w-[1200px] gap-2 py-5  mx-auto max-large:items-center">
+            <div className="left-side w-1/2 flex flex-col gap-3 max-med:w-full max-med:gap-0">
+              <div className="upper flex flex-col items-start gap-2">
+                <span className='text-[#95C22B] text-sm italic font-bold font-inter'>Request</span>
+                <h2 className='text-[#000A2D] text-2xl font-bold font-inter max-large:text-xl'>Request A Dental Camp</h2>
+                <p className='text-[#606060] text-sm font-normal font-roboto'>Feel free to drop a message related to your requirement.Our team will get back to you soon. </p>
               </div>
               <div className="lower">
                 <Form {...form}>
-                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-[18px] max-[950px]:gap-3">
-                    <div className='grid grid-cols-2 gap-6 w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
+                  <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 max-[950px]:gap-3">
+                    <div className='grid grid-cols-2 gap-4 w-full max-md:grid-cols-1 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="organiserName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className=" text-xl font-medium font-inter mb-4 max-[950px]:text-base max-small:text-sm">Organiser's Name <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className=" text-base font-medium font-inter mb-4 max-[950px]:text-base max-small:text-sm">Organiser's Name <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
-                              <Input placeholder="Enter Organiser's Name" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
+                              <Input placeholder="Enter Organiser Name" {...field}
+                                className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -279,10 +279,10 @@ const DentalCamp = () => {
                         name="designation"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Designation  <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-[] text-base font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Designation  <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter designation" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
+                                className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -290,16 +290,16 @@ const DentalCamp = () => {
                         )}
                       />
                     </div>
-                    <div className='grid grid-cols-2 gap-6 w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
+                    <div className='grid grid-cols-2 gap-4 w-full max-md:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="emailId"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Email Id <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-[] text-base font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Email Id <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter email id" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
+                                className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -311,10 +311,10 @@ const DentalCamp = () => {
                         name="contactNumber"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-[] text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Contact Number <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-[] text-base font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Contact Number <span className='text-[red]'>*</span></FormLabel>
                             <FormControl>
                               <Input placeholder="Enter contact number" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
+                                className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FormMessage />
@@ -322,13 +322,13 @@ const DentalCamp = () => {
                         )}
                       />
                     </div>
-                    <div className='grid grid-cols-2 gap-[23px] w-full max-large:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
+                    <div className='grid grid-cols-2 gap-4 w-full max-md:grid-cols-1 max-med:grid-cols-2 max-small:grid-cols-1 max-[950px]:gap-3'>
                       <FormField
                         control={form.control}
                         name="campPerferredDate"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xl font-medium font-inter mb-4 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-base font-medium font-inter mb-4 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">Camp Perferred Date <span className='text-[red]'>*</span></FormLabel>
                             <div className='relative'>
                               <FormControl>
                                 <Popover>
@@ -337,7 +337,7 @@ const DentalCamp = () => {
                                       <Button
                                         variant={"outline"}
                                         className={cn(
-                                          "w-full flex h-[60px] border-[#808080] gap-2 justify-start text-[#717171] max-med:px-3 max-med:h-[46px] max-med:rounded-lg",
+                                          "w-full flex h-12 border-[#808080] gap-2 justify-start text-[#717171] max-med:px-3 max-med:h-[46px] max-med:rounded-lg",
                                           !field.value && "text-muted-foreground"
                                         )}
                                       >
@@ -345,7 +345,7 @@ const DentalCamp = () => {
                                         {field.value ? (
                                           format(field.value, "PPP")
                                         ) : (
-                                          <span className='text-[#838383] text-lg font-normal max-med:text-sm'>Select a date</span>
+                                          <span className='text-[#838383] text-base font-normal max-med:text-sm'>Select a date</span>
                                         )}
                                       </Button>
                                     </FormControl>
@@ -373,7 +373,7 @@ const DentalCamp = () => {
                         name="campTiming"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Camp Timings <span className='text-[red]'>*</span></FormLabel>
+                            <FormLabel className="text-base font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Camp Timings <span className='text-[red]'>*</span></FormLabel>
                             <div className='relative'>
                               <FormControl>
                                 <Select
@@ -382,7 +382,7 @@ const DentalCamp = () => {
                                     field.onChange(e);
                                   }}
                                 >
-                                  <SelectTrigger className="w-full border-[#808080] text-[#838383] text-lg h-[60px] px-5 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">
+                                  <SelectTrigger className="w-full border-[#808080] text-[#838383] text-base h-12 px-5 max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg">
                                     <SelectValue placeholder="Select timing" />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -408,11 +408,11 @@ const DentalCamp = () => {
                       name="location"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-xl font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Location <span className='text-[red]'>*</span></FormLabel>
+                          <FormLabel className="text-base font-medium font-inter mb-4 max-med:text-base max-small:text-sm">Location <span className='text-[red]'>*</span></FormLabel>
                           <div className='relative'>
                             <FormControl>
                               <Input placeholder="Enter your location" {...field}
-                                className="h-[60px] text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
+                                className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383] max-[950px]:px-3 max-[950px]:text-sm max-[950px]:h-[46px] max-[950px]:rounded-lg"
                               />
                             </FormControl>
                             <FaLocationDot className='text-[#838383] text-xl absolute top-[35%] right-[3%]' />
@@ -421,12 +421,12 @@ const DentalCamp = () => {
                         </FormItem>
                       )}
                     />
-                    <Button variant='submit' size='lg' className='h-16 max-med:text-base max-med:h-11' type="submit">Submit</Button>
+                    <Button variant='submit' size='lg' className='h-[56px] max-med:text-base max-med:h-11' type="submit">Submit</Button>
                   </form>
                 </Form>
               </div>
             </div>
-            <div className="right-side relative w-fit flex flex-col items-center h-[660px] max-med:hidden">
+            <div className="right-side relative w-1/2 flex flex-col items-center h-[560px] max-med:hidden gap-5">
               <div className='w-[214px] h-[87px] rounded-2xl py-3 px-5 bg-[#F4F9EA] shadow-custom3 -mb-10 ml-8'>
                 <h5 className='text-[#000000] text-center font-normal font-poppins mb-1'>our professionals</h5>
                 <div className='flex relative'>
@@ -442,11 +442,11 @@ const DentalCamp = () => {
                   </div>
                 </div>
               </div>
-              <img src={RequestDentalImg} alt="" className='relative z-10 max-large:h-[700px] max-large:w-[350px]' />
+              <img src={RequestDentalImg} alt="" className='relative object-contain z-10 h-[500px] max-large:h-[700px] max-large:w-[350px] w-full' />
             </div>
           </section>
         </div>
-        <img src={BackgroundImg} alt="" className='min-w-[685px] absolute top-[0%] right-[0%] -z-0 max-large:hidden' />
+        <img src={BackgroundImg} alt="" className='min-w-[685px] max-h-[600px] absolute top-[0%] right-[0%] -z-0 max-large:hidden' />
 
         {/* <section className="min-h-[228px] flex justify-between items-end gap-9 px-[125px] text-[#808080] bg-[#FFFFFF] relative z-10 pt-20 mb-6">
           <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />

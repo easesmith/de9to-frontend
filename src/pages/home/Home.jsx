@@ -119,8 +119,8 @@ const Home = () => {
         </section>
         <section className='overflow-hidden bg-[#F6F6F6]'>
           <div className="w-[100vw] flex justify-between items-center gap-8 animate-scroll py-3">
-            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get Flat 20% Discount</span>
-            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get Flat 20% Discount</span>
+            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get upto 20% Discount</span>
+            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get upto 20% Discount</span>
           </div>
         </section>
         <section className='bg-[#FFFFFF]'>
@@ -259,10 +259,28 @@ const Home = () => {
             </div>
             <div className=' absolute z-10 left-[12%] mt-48 max-[1200px]:hidden'>
               <div className=' relative flex justify-center items-center'>
-                <img src={ProfileImg1} alt="" className=' absolute z-10 left-[0%] bottom-[25%]' />
+                <img src={ProfileImg1} alt="" className=' absolute z-10 -left-[4%] bottom-[35%]' />
+                <svg className='absolute top-[72%] right-[85%]' width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="100" height="100" rx="50" fill="url(#paint0_linear_718_1564)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_718_1564" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="white" />
+                      <stop offset="1" stop-color="#F4F9EA" />
+                    </linearGradient>
+                  </defs>
+                </svg>
                 <div className='relative z-0 w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
                   <img src={ProfileImg1} alt="" className=' absolute z-10 left-[25%] bottom-[18%]' />
                   <img src={ProfileImg2} alt="" className=' absolute z-10 left-[18%] top-[25%]' />
+                  <svg className='absolute bottom-[80%] left-[40%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
+                    <defs>
+                      <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="white" />
+                        <stop offset="1" stop-color="#F4F9EA" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                   <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
                     <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
                   </div>
@@ -273,9 +291,36 @@ const Home = () => {
               <div className=' relative flex justify-center items-center'>
                 <img src={ProfileImg2} alt="" className=' absolute z-10 right-[3%] top-[18%]' />
                 <img src={ProfileImg1} alt="" className=' absolute z-10 right-[3%] bottom-[18%]' />
+                <svg className='absolute top-[55%] left-[92%]' width="60" height="60" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="white" />
+                      <stop offset="1" stop-color="#F4F9EA" />
+                    </linearGradient>
+                  </defs>
+                </svg>
                 <div className='relative w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
                   <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
+                    <svg className='absolute bottom-[90%] left-[40%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
+                      <defs>
+                        <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="white" />
+                          <stop offset="1" stop-color="#F4F9EA" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
                     <img src={ProfileImg1} alt="" className=' absolute right-[16%] top-[42%]' />
+                    <svg className='absolute top-[60%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
+                      <defs>
+                        <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="white" />
+                          <stop offset="1" stop-color="#F4F9EA" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
                     <div className='w-[200px] h-[200px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'></div>
                   </div>
                 </div>
@@ -284,11 +329,11 @@ const Home = () => {
           </div>
         </section>
         <div className='max-[500px]:px-4'>
+          <div className=' max-md:hidden'>
+            <img src={TeethImg} alt="" className='bg-transparent opacity-[0.1] relative top-[308px] left-[20%]' />
+          </div>
           <section className=' bg-[#95C22B] flex justify-center items-center rounded-3xl max-[500px]:rounded-lg'>
-            <div className=' flex items-start px-5 pt-16 max-md:pb-16 max-[500px]:py-5'>
-              <div className=' max-md:hidden'>
-                <img src={TeethImg} alt="" className='bg-transparent opacity-[0.1]' />
-              </div>
+            <div className=' flex items-start px-5 py-16 max-md:pb-16 max-[500px]:py-5'>
               <div className='max-w-[550px] flex flex-col items-center'>
                 <h2 className="text-[#313131] text-[32px] max-[700px]:text-xl text-center font-semibold font-poppins leading-[48px] mb-8">Don’t wait <span className='text-[#FFFFFF]'>and make an appointment today</span></h2>
                 <button className='bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
