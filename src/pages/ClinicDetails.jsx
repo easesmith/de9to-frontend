@@ -21,7 +21,7 @@ import Review from '@/components/Review'
 import { Button } from '@/components/ui/button'
 import { TbEdit } from 'react-icons/tb'
 import useGetApiReq from '@/hooks/useGetApiReq'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import DataNotFound from '@/components/DataNotFound'
 import Spinner from '@/components/Spinner'
 import AddFeedbackModal from '@/components/AddFeedbackModal'
@@ -48,7 +48,7 @@ const ClinicDetails = () => {
     const [allRating, setAllRating] = useState({});
     const [allPhotos, setAllPhotos] = useState([]);
     const [isAddFeedbackModalOpen, setIsAddFeedbackModalOpen] = useState(false);
-
+    const navigate = useNavigate();
 
     const getClinic = async () => {
         fetchData(`/patient/get-single-clinic?clinicId=${params?.clinicId}`);
@@ -126,7 +126,7 @@ const ClinicDetails = () => {
         <Layout>
             <section className='max-w-[1240px] px-4 mx-auto'>
                 <div className='flex items-center gap-4 h-[18px] my-5'>
-                    <FaArrowLeft className='text-[#717171]' />
+                    <FaArrowLeft onClick={() => navigate(-1)} className='text-[#717171]' />
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
                 <div className="mb-5">
@@ -141,6 +141,7 @@ const ClinicDetails = () => {
                                 <Dentist
                                     key={dentist?._id}
                                     dentist={dentist}
+                                    clinicDetails={clinic}
                                 />
                             ))}
 
@@ -168,7 +169,7 @@ const ClinicDetails = () => {
                             <CarouselContent>
                                 {allPhotos?.map((item, i) => (
                                     <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
-                                        <img className='h-40 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                        <img className='h-40 w-full' src={item?.photoPath} alt="" />
                                     </CarouselItem>
                                 ))}
                                 {/* {Array.from({ length: 5 }).map((_, index) => (
@@ -207,7 +208,7 @@ const ClinicDetails = () => {
                             >
                                 {allPhotos?.map((item, i) => (
                                     <SwiperSlide key={i}>
-                                        <img className='h-40 max-[700px]:h-20 w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${item?.photoPath}`} alt="" />
+                                        <img className='h-40 max-[700px]:h-20 w-full' src={item?.photoPath} alt="" />
                                     </SwiperSlide>
                                 ))}
                             </Swiper> */}
@@ -226,11 +227,11 @@ const ClinicDetails = () => {
 
                         </div>
                         <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2 max-[400px]:grid-cols-1  gap-5 mt-10">
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${certificateWall}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${consultationTable}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${frontFascia}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${receptionCounter}`} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${waitingArea}`} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={certificateWall} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={consultationTable} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={frontFascia} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={receptionCounter} alt="" />
+                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={waitingArea} alt="" />
                         </div>
                     </div>
                 </div>

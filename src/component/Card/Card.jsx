@@ -35,7 +35,7 @@ const Card = ({ hidden, isCategorySelected, setIsCategorySelected, handleSelectC
                                     <img src={Image} alt=""
                                         className='rounded-2xl  max-[500px]:rounded-none w-[387px] h-[415px]' />
                                     <div className=' absolute px-3 max-[500px]:px-1 py-5 bottom-0 rounded-b-2xl max-[500px]:rounded-none bg-[#FFFFFF]'>
-                                        <h4 className='text-[#313131] text-2xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
+                                        <h4 className='text-[#313131] text-xl max-[900px]:text-lg max-[700px]:text-sm max-[500px]:text-xs font-medium font-poppins mb-2 leading-6'>{e.heading}</h4>
                                         <p className='text-[#535353] text-[15px] max-[700px]:text-xs font-medium font-poppins'>{e.description}</p>
                                     </div>
                                 </Link>}
@@ -83,8 +83,8 @@ const DentalTeamCard = () => {
                                 <div key={index} className='w-[350px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
                                         <img
-                                            src={Image1}
-                                            alt="" className='rounded-2xl rounded-ee-none rounded-es-none h-[335px]' />
+                                            src={personalDetails?.image}
+                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none w-full h-72' />
                                     </figure>
                                     <div className='w-[350px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix

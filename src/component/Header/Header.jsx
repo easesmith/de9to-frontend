@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import De9toLogo from '../../assets/de9to-logo-qc7xun2b6cqji9b2etrrmn9ecu7aif9fr5oesz8pp6-1.png.png'
+import De9toLogo from '../../assets/de9to-logo-1.png'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { IoIosArrowDown } from 'react-icons/io'
@@ -100,7 +100,7 @@ const Header = () => {
 
   return (
     <header className='sticky top-0 bg-white z-30'>
-      <nav className='h-[73px]  px-20 max-[900px]:px-4 flex justify-between items-center'>
+      <nav className='h-[73px] px-20 max-[900px]:px-4 flex justify-between items-center'>
         <div className='flex gap-2 items-center'>
           <Sheet>
             <SheetTrigger>
@@ -134,8 +134,8 @@ const Header = () => {
           </Sheet>
           {!pathname.includes("/profile") &&
             <Link to={'/'}>
-              <div className="logo">
-                <img src={De9toLogo} className='w-[138px] h-12' alt="" />
+              <div className="w-28 sm:w-40">
+                <img src={De9toLogo} className='' alt="" />
               </div>
             </Link>}
         </div>

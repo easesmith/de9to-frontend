@@ -1,4 +1,4 @@
-import logo from '@/assets/de9to-logo-qc7xun2b6cqji9b2etrrmn9ecu7aif9fr5oesz8pp6-1.png.png';
+import logo from '@/assets/de9to-logo-1.png';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 

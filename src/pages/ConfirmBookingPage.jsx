@@ -56,9 +56,9 @@ const ConfirmBookingPage = () => {
 
     const { personalDetails, clinic = [], educationalQualification,dentistRatings } = dentistDetails || {};
 
-    console.log("clinic", clinic[0]);
+    console.log("clinicDetails?.clinicRating", clinicDetails?.clinicRating);
 
-    const clinicAverageRating = calculateAverageRating(clinicDetails?.clinicRating);
+    const clinicAverageRating = clinicDetails?.clinicRating && calculateAverageRating(clinicDetails?.clinicRating);
     const dentistAverageRating = dentistRatings && calculateAverageRating(dentistRatings);
 
 
@@ -87,7 +87,7 @@ const ConfirmBookingPage = () => {
                         <div>
                             <div className='rounded-[6px] relative w-full'>
                                 <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                                <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${personalDetails?.image}`} alt="" />
+                                <img className='h-full w-full' src={personalDetails?.image} alt="" />
                             </div>
                             <p className="text-center font-inter font-semibold mt-4 text-sm max-[500px]:text-xs text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
                         </div>
@@ -116,7 +116,7 @@ const ConfirmBookingPage = () => {
                     <div className='shadow-lg rounded-md p-3 mt-5 bg-white grid max-[500px]:grid-cols-1 grid-cols-[40%_58%] lg:grid-cols-[30%_68%] gap-3'>
                         <div className='rounded-[6px] relative'>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='w-full h-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
+                            <img className='w-full h-full' src={clinic?.clinicLogo} alt="" />
                         </div>
                         <div>
                             <div className="flex justify-between flex-col lg:flex-row items-start lg:items-center gap-0 lg:gap-3">

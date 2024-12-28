@@ -1,0 +1,16 @@
+.sidebar {
+    @apply w-[220px] h-[calc(100vh-80px)] overflow-y-auto bg-white p-4 text-black
+}
+
+.ul {
+    @apply flex flex-col mt-2
+}
+
+.link {
+    @apply hover:font-bold rounded py-2 text-lg flex gap-2 items-center
+}
+
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}

@@ -21,7 +21,7 @@ import useGetApiReq from '@/hooks/useGetApiReq'
 import { useCallback, useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { TbEdit } from 'react-icons/tb'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const DentistDetails = () => {
     const params = useParams();
@@ -34,6 +34,7 @@ const DentistDetails = () => {
     const [sortRating, setSortRating] = useState("newest")
     const [isAddFeedbackModalOpen, setIsAddFeedbackModalOpen] = useState(false);
 
+    const navigate = useNavigate();
     const getDentistDetails = useCallback(async () => {
         fetchData(`/dentist/get-dentist-details?dentistId=${params.dentistId || "66d02520cd6af954e0eba864"}`);
     }, [fetchData])
@@ -87,7 +88,7 @@ const DentistDetails = () => {
         <Layout>
             <section className='max-w-[1240px] px-4 mx-auto'>
                 <div className='flex items-center gap-4 h-[18px] my-5'>
-                    <FaArrowLeft className='text-[#717171]' />
+                    <FaArrowLeft onClick={() => navigate(-1)} className='text-[#717171] cursor-pointer' />
                     <span className='text-[#1A1A1A] text-sm font-semibold font-inter'>Search List</span>
                 </div>
                 <div className="mb-10">
@@ -109,15 +110,6 @@ const DentistDetails = () => {
                                 />
                             ))}
                             <div className="grid grid-cols-3 max-[900px]:grid-cols-2 max-[560px]:grid-cols-1 gap-4 mt-5">
-                                {dentistDetails?.clinic?.map((clinic) => (
-                                    !clinic?.defaultClinic &&
-                                    <ClinicAppointment2
-                                        key={clinic._id}
-                                        clinic={clinic}
-                                        dentistId={dentistDetails?._id}
-                                        dentistDetails={dentistDetails}
-                                    />
-                                ))}
                                 {dentistDetails?.clinic?.map((clinic) => (
                                     !clinic?.defaultClinic &&
                                     <ClinicAppointment2

@@ -29,13 +29,18 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModal'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import CountUp from 'react-countup'
+import ScrollTrigger from 'react-scroll-trigger'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-
+  const navigate = useNavigate();
   const [active, setActive] = useState(1)
   const swiperRef3 = useRef(null);
   const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
   const [testimonials, setTestimonials] = useState([])
+
+  const [isCounter, setIsCounter] = useState(false);
 
   const { res, fetchData } = useGetApiReq()
 
@@ -83,7 +88,7 @@ const Home = () => {
                 <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
                 <div className=' flex gap-5 max-[500px]:justify-center'>
-                  <button onClick={() => setIsConfirmBookingModalOpen(false)} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>
+                  <button onClick={() => navigate("/our-dentist")} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>
                     <div className=' text-[#FFFFFF] text-lg max-[970px]:text-base font-semibold font-poppins '>Book an appointment</div>
                     <MdOutlineArrowOutward color='#FFFFFF' className='text-xl max-[970px]:text-lg' />
                   </button>
@@ -117,12 +122,95 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className='overflow-hidden bg-[#F6F6F6]'>
-          <div className="w-[100vw] flex justify-between items-center gap-8 animate-scroll py-3">
-            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get upto 20% Discount</span>
-            <span className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap">Pay via De9to App an get upto 20% Discount</span>
+        <section className="overflow-hidden bg-[#F6F6F6]">
+          <div className="logos">
+            <div className="logos-slide">
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+            </div>
+            <div className="logos-slide">
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+              <span
+                className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+              >
+                Pay via De9to App and get Flat 20% Discount
+              </span>
+            </div>
           </div>
         </section>
+
         <section className='bg-[#FFFFFF]'>
           <div className='bg-[#FFFFFF] flex justify-center items-start gap-20 flex-wrap px-5 pt-28 pb-20 h-full'>
             <div className='w-[550px] max-md:w-[400px] max-[450px]:w-[300px] rounded-[40px]'>
@@ -138,28 +226,31 @@ const Home = () => {
                 <h2 className='text-[#000000] text-[32px] max-[970px]:text-2xl max-[500px]:text-xl max-[500px]:text-center font-medium font-poppins tracking-[8%] w-full'>What We Have Achieved</h2>
                 <p className='max-w-[590px] text-[#818181] text-xl max-[970px]:text-lg max-[500px]:text-base max-[500px]:text-center font-normal font-poppins tracking-[2%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nisi ut aliquip ex ea  commodo consequat.</p>
               </div>
-              <div className=' grid grid-cols-2 gap-5 max-[500px]:grid-cols-4'>
-                <div className=''>
-                  <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image1} alt="" />
-                  <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>150+</div>
-                  <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Dentist Signups</p>
+              <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
+                <div className=' grid grid-cols-2 gap-5 max-[500px]:grid-cols-4'>
+                  <div className=''>
+                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image1} alt="" />
+                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={150} duration={2} />}+</div>
+                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Dentist Signups</p>
+                  </div>
+                  <div className=''>
+                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image2} alt="" />
+                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={10000} duration={2} />}+</div>
+                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Dental Consultations</p>
+                  </div>
+                  <div className=''>
+                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image3} alt="" />
+                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={150} duration={2} />}+</div>
+                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins my-[10px] -mt-1 max-[500px]:leading-3'>Dental Camps</p>
+                  </div>
+                  <div className=''>
+                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image4} alt="" />
+                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={175} duration={2} />}+</div>
+                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Pincode Covered</p>
+                  </div>
                 </div>
-                <div className=''>
-                  <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image2} alt="" />
-                  <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>10k+</div>
-                  <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Dental Consultations</p>
-                </div>
-                <div className=''>
-                  <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image3} alt="" />
-                  <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>150+</div>
-                  <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins my-[10px] -mt-1 max-[500px]:leading-3'>Dental Camps</p>
-                </div>
-                <div className=''>
-                  <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image4} alt="" />
-                  <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>175+</div>
-                  <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal font-poppins -mt-1 max-[500px]:leading-3'>Pincode Covered</p>
-                </div>
-              </div>
+              </ScrollTrigger>
+
             </div>
           </div>
         </section>
@@ -240,7 +331,7 @@ const Home = () => {
                     italic font-poppins'>{e.comment}</p>
                         <div className="profile flex justify-center items-start gap-6">
                           <div className="profile-picture">
-                            <img src={`${import.meta.env.VITE_IMAGE_URL}/${e.image}`} className='w-12 h-12 rounded-full' />
+                            <img src={e.image} className='w-12 h-12 rounded-full' />
                           </div>
                           <div>
                             <h4 className=' text-[#595959] text-2xl max-[500px]:text-lg font-bold font-inter'>{e.name}</h4>
@@ -336,7 +427,7 @@ const Home = () => {
             <div className=' flex items-start px-5 py-16 max-md:pb-16 max-[500px]:py-5'>
               <div className='max-w-[550px] flex flex-col items-center'>
                 <h2 className="text-[#313131] text-[32px] max-[700px]:text-xl text-center font-semibold font-poppins leading-[48px] mb-8">Don’t wait <span className='text-[#FFFFFF]'>and make an appointment today</span></h2>
-                <button className='bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
+                <button onClick={() => navigate("/our-dentist")} className='bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]'>Book Appointment</button>
               </div>
             </div>
           </section>

@@ -62,7 +62,7 @@ const OurDentist = () => {
   const [allClinics, setAllClinics] = useState([]);
 
   const getDentists = useCallback(async () => {
-    fetchData(`/dentist/get-dentists?page=${page}`);
+    fetchData(`/patient/get-dentists?page=${page}`);
   }, [page, fetchData])
 
   useEffect(() => {

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AddFeedbackSchema } from '@/schema/formSchema'
 import { readCookie } from '@/utils/readCookie'
+import toast from 'react-hot-toast'
 
 const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, dentistId,clinicId, reviewType ,getData}) => {
     const form = useForm({
@@ -25,6 +26,10 @@ const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, d
 
     const onSubmit = (data) => {
         console.log("Data:", data);
+        if (!userInfo) {
+            toast("Please Login to add review")
+            return;
+        }
         if (reviewType  === "dentist") {
             fetchData(`/patient/add-dentist-rating`, {
                 patientRemarks: data.desc,

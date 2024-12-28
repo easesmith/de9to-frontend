@@ -32,7 +32,7 @@ const Clinic = ({ clinic }) => {
     return (
         <div className='p-4 rounded-[6px] flex max-[500px]:flex-col gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
             <div onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-[6px] cursor-pointer w-[210px] max-[600px]:w-[350px] h-[210px] max-[500px]:w-full max-[500px]:h-full flex justify-center items-end relative -mt-[10px]'>
-                <img className='h-full w-full' src={`${import.meta.env.VITE_IMAGE_URL}/${clinic?.clinicLogo}`} alt="" />
+                <img className='h-full w-full' src={clinic?.clinicLogo} alt="" />
                 <img src={VerifiedImg} alt="" className='absolute top-[8%] right-[3%]' />
             </div>
             <div className='pe-[25px] ps-[9px] flex flex-col justify-between gap-2 max-[600px]:w-full w-[calc(100%-210px)]'>

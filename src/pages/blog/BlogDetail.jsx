@@ -223,7 +223,7 @@ const BlogDetail = () => {
         </section>
         <section className='pb-12'>
           <h3 className="text-[#717171] text-2xl max-[500px]:text-base px-4 font-medium font-inter mb-5">Recent Blogs</h3>
-          <div className='grid max-[900px]:grid-cols-3 max-[700px]:grid-cols-2 w-full gap-8 max-[500px]:gap-3 px-4 mb-4'>
+          <div className='grid grid-cols-3 max-[700px]:grid-cols-2 w-full gap-8 max-[500px]:gap-3 px-4 mb-4'>
             {BlogData.map((e, i) => {
               return (
                 <>
