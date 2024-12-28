@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, location, isShadow, setLocation, setIsShadow, setShowDentistAndClinic }) => {
 
     return (
-        <div className={` bg-[#FFFFFF] flex max-[700px]:hidden justify-center items-center gap-5 ${isShadow ? 'rounded-b-none border-t-0 border-s-0 border-e-0' : ''} rounded-2xl p-8 border-[1px] border-[#D9D9D9]`}>
+        <div className={` bg-[#FFFFFF] flex max-[700px]:hidden justify-center items-center gap-5 ${isShadow ? 'rounded-b-none border-t-0 border-s-0 border-e-0' : ''} rounded-2xl p-3 shadow-sm`}>
             <div className="relative w-[500px]">
                 <Input
                     type="search"

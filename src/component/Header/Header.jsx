@@ -145,7 +145,7 @@ const Header = () => {
               <div key={i} >
                 <NavLink
                   to={e.url}
-                  className={({ isActive }) => isActive ? 'text-[#95C22B] text-sm text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]' : 'text-[#212121] text-sm text-center font-medium font-inter'}
+                  className={({ isActive }) => isActive ? 'text-[#95C22B] text-xl text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]' : 'text-[#212121] text-xl text-center font-medium font-inter'}
                 >
                   {e.urlName}
                 </NavLink>
