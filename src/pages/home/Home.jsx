@@ -128,84 +128,84 @@ const Home = () => {
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
             </div>
             <div className="logos-slide">
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
               <span
                 className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
               >
-                Pay via De9to App and get Flat 20% Discount
+                Pay via De9to App an get Upto 20% Discount
               </span>
             </div>
           </div>
