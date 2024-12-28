@@ -1,0 +1,1 @@
+import{u as a,j as e,B as n}from"./index-C-yvlQ-I.js";const i=()=>{const t=a(),s=()=>{t(-1)};return e.jsxs("div",{className:"flex flex-col justify-center items-center h-screen",children:[e.jsx("h1",{className:"text-2xl font-semibold",children:"Page Not Found."}),e.jsx(n,{onClick:s,variant:"link",children:"Back"})]})};export{i as default};
