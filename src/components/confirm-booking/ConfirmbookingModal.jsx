@@ -226,7 +226,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     // console.log("data", format(new Date(selectedDay), "EEEE"));
 
     const getSlots = async () => {
-        fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${getValues("clinic")}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE")}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);
+        fetchSlotsData(`/patient/get-dentist-available-timing?clinicId=${getValues("clinic")}&dentistId=${dentistId}&day=${format(new Date(selectedDay), "EEEE").toLowerCase()}&date=${format(new Date(selectedDay), "dd-MM-yyy")}`);
     }
 
     useEffect(() => {
