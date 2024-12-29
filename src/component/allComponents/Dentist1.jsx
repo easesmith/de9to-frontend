@@ -29,17 +29,17 @@ const Dentist1 = ({ dentist }) => {
 
 
     console.log("dentist1", dentist)
-    const { personalDetails, _id, clinic,assignedClinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
+    const { personalDetails, _id, clinic, assignedClinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
     // console.log("personalDetails", personalDetails)
     // console.log("id", _id)
 
-    const defaultClinic = clinic.find((singleClinic)=> singleClinic?.defaultClinic)
+    const defaultClinic = clinic.find((singleClinic) => singleClinic?.defaultClinic)
     const filteredAvailabilityData = dentistAvailableTiming?.filter((item) => item?.clinic === defaultClinic?._id);
     const availabilityData = filteredAvailabilityData?.map((item) => item?.day);
-    const modifiedClinic = assignedClinic.map((clinic)=> clinic?.clinicId)
+    const modifiedClinic = assignedClinic.map((clinic) => clinic?.clinicId)
 
-    console.log("modifiedClinic", [...modifiedClinic,...clinic]);
-    
+    console.log("modifiedClinic", [...modifiedClinic, ...clinic]);
+
 
     console.log("availabilityData", availabilityData);
 
@@ -53,16 +53,91 @@ const Dentist1 = ({ dentist }) => {
     }
 
     return (
-        <div className='border-[1px max-[700px]:border-none shadow max-[700px]:shadow] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] max-[769px]:grid-cols-[28%_70%] max-[700px]:grid-cols-[34%_60%] max-[600px]:grid-cols-1 gap-5'>
-            <div>
-                <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-[6px] relative w-full cursor-pointer'>
+        // <div className='border-[1px] max-[700px]:border-none shadow max-[700px]:shadow] border-[#C9C9C9] rounded-md p-3 grid grid-cols-[24%_74%] max-[769px]:grid-cols-[28%_70%] max-[700px]:grid-cols-[34%_60%] gap-5 max-[600px]:grid-cols-1'>
+        //     <div className='flex justify-center flex-col items-center w-full'>
+        //         <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-lg relative w-full max-w-[250px] h-full max-h-[250px] cursor-pointer'>
+        //             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
+        //             <img className='rounded-lg' src={personalDetails?.image} alt="" />
+        //         </div>
+        //         <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
+        //     </div>
+        //     <div>
+        //         <div className="flex justify-between items-center max-[500px]:flex-col max-[500px]:gap-0 gap-3">
+        //             <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
+        //             }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
+        //             <div>
+        //                 <ReactStars size={25} count={5} value={averageRating} edit={false} color2={'#FF8A00'} />
+        //                 <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by {dentistRatings?.length} users</div>
+        //             </div>
+        //         </div>
+        //         <div className="flex items-center gap-2">
+        //             <FaGraduationCap className='text-[#717171] text-2xl max-[700px]:text-xl' />
+        //             <div className='flex gap-2 items-center max-[700px]:text-xs'>
+        //                 <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
+        //                 <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+        //                 <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
+        //                 <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+        //                 <p className='text-[#FF8A00] font-inter font-semibold'>{clinic?.length === 1 ? clinic[0]?.clinicName : clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
+        //             </div>
+        //         </div>
+        //         <div className="flex items-center gap-2 mt-1">
+        //             <FaCalendarAlt className='text-[#717171] text-xl max-[700px]:text-lg' />
+        //             <div className='flex gap-2 items-center max-[700px]:text-xs'>
+        //                 <p className=' text-[#717171] font-inter font-normal'>Availability: </p>
+        //                 <p className='text-[#717171] font-inter font-semibold'>{availabilityData?.join(" - ")}</p>
+        //             </div>
+        //         </div>
+        //         {/* <div className="flex items-center gap-2 mt-1">
+        //             <FaLocationDot className='text-[#717171] text-xl max-[700px]:text-xl' />
+        //             <p className=' text-[#717171] font-inter max-[700px]:text-xs font-normal'>{clinic[0]?.clinicAddress}</p>
+        //         </div> */}
+        //         <p className='text-[#717171] font-inter font-normal max-[700px]:text-xs text-sm mt-1'>{personalDetails?.Bio}</p>
+        //         <div className="flex items-center gap-2 mt-2">
+        //             <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
+        //                 <img src={VectorImg} alt="vectorImg" className='w-[26px] max-[500px]:w-3' />
+        //                 <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>{educationalQualification?.yearsOfExperience} years Experience</span>
+        //             </div>
+        //             {/* <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
+        //                 <img src={MediDocImg} alt="doctorImg" className='w-[26px] max-[500px]:w-3' />
+        //                 <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>Medica Dentals and 3 more</span>
+        //             </div> */}
+        //             <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
+        //                 <img src={RupayImg} alt="rupayImg" className='w-[26px] max-[500px]:w-3' />
+        //                 <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>₹500 at clinic</span>
+        //             </div>
+        //         </div>
+        //         <div className="flex justify-end mt-4">
+        //             <div className="flex items-center gap-3">
+        //                 <p className='text-[#5B5B5B] max-[500px]:text-xs'><span className='line-through'>₹500</span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
+        //                 <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] max-[500px]:text-xs max-[700px]:px-3 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
+        //                     <span>Book Appointment</span>
+        //                     <FiArrowUpRight className='text-2xl' />
+        //                 </Button>
+        //             </div>
+        //         </div>
+        //     </div>
+
+        //     {isConfirmBookingModalOpen &&
+        //         <ConfirmbookingModal
+        //             isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+        //             setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+        //             dentistId={_id}
+        //             clinic={[...modifiedClinic, ...clinic]}
+        //             timing={dentist?.dentistAvailableTiming}
+        //             selectedIndex={0}
+        //         />
+        //     }
+        // </div>
+        <div className='border-[1px] max-[700px]:border-none shadow max-[700px]:shadow] border-[#C9C9C9] rounded-md p-3 flex justify-between gap-5 max-sm:flex-wrap'>
+            <div className='flex justify-center flex-col items-center w-[250px] max-sm:w-full'>
+                <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-lg relative w-[250px] h-[250px] cursor-pointer'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                    <img className='h-full w-full' src={personalDetails?.image} alt="" />
+                    <img className='rounded-lg h-[250px] w-[250px]' src={personalDetails?.image} alt="" />
                 </div>
                 <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
             </div>
-            <div>
-                <div className="flex justify-between items-start max-[500px]:flex-col max-[500px]:gap-0 gap-3">
+            <div className='w-full'>
+                <div className="flex justify-between items-center max-[500px]:flex-col max-[500px]:gap-0 gap-3">
                     <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
                     }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                     <div>
@@ -70,7 +145,7 @@ const Dentist1 = ({ dentist }) => {
                         <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by {dentistRatings?.length} users</div>
                     </div>
                 </div>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center gap-2">
                     <FaGraduationCap className='text-[#717171] text-2xl max-[700px]:text-xl' />
                     <div className='flex gap-2 items-center max-[700px]:text-xs'>
                         <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
@@ -122,7 +197,7 @@ const Dentist1 = ({ dentist }) => {
                     isConfirmBookingModalOpen={isConfirmBookingModalOpen}
                     setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
                     dentistId={_id}
-                    clinic={ [...modifiedClinic,...clinic]}
+                    clinic={[...modifiedClinic, ...clinic]}
                     timing={dentist?.dentistAvailableTiming}
                     selectedIndex={0}
                 />

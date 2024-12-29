@@ -533,7 +533,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1200px] mx-auto my-36 px-5 max-med:my-16'>
+        <section className='max-w-[1200px] mx-auto my-24 px-5 max-med:my-16'>
           <div className='flex justify-between max-sm:flex-col mb-12 w-full gap-4'>
             <div className='flex flex-col items-start gap-2 max-sm:items-center w-full'>
               <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
@@ -615,7 +615,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1240px] mx-auto my-36 max-med:my-16 w-full px-4'>
+        <section className='max-w-[1240px] mx-auto my-24 max-med:my-16 w-full px-4'>
           <div className='flex justify-between mb-12 w-full'>
             <div className='flex flex-col items-start gap-2 max-med:items-center w-full'>
               <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
@@ -663,7 +663,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className=' my-36 max-med:my-16'>
+        <section className=' my-24 max-med:my-16'>
           <div className='flex justify-between mb-12 max-w-[1240px] mx-auto w-full px-5 max-sm:mb-4'>
             <div className='flex flex-col items-start gap-2 max-med:items-center w-full'>
               <h5 className='text-[#95C22B] text-xl italic font-bold font-inter max-med:text-base max-small:text-sm'>Why Dental Camps?</h5>
@@ -755,7 +755,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1240px] mx-auto my-36 px-5 max-med:my-16'>
+        <section className='max-w-[1240px] mx-auto my-24 px-5 max-med:my-16'>
           <div className="relative w-full ">
             <div className="">
               <div className='w-full flex justify-between items-center mb-12'>

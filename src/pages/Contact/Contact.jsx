@@ -69,7 +69,7 @@ const Contact = () => {
     <Layout>
       <main className='max-w-[1240px] p-4 mx-auto flex flex-col gap-10 max-sm:gap-5 mt-4 mb-2'>
         <section className='flex flex-col justify-center items-center'>
-          <h1 className='text-[#95C22B] text-[40px] text-center font-bold font-inter opacity-90 mb-2 max-lg:text-2xl'>Get in touch</h1>
+          <h1 className='text-[#95C22B] text-[40px] text-center font-bold font-inter opacity-90 max-lg:text-2xl'>Get in touch</h1>
           <p className='text-[#717171] text-base text-center font-medium font-inter opacity-70 max-lg:text-xs'>We're Here to Help Your Smile</p>
           <div className=' max-w-[1130px] flex justify-between items-start gap-5 shadow-custom rounded-[20px] p-5 max-lg:px-3 my-10 h-full'>
             <div className='w-1/2 max-[768px]:w-full border-[1px] border-[#212121] px-4 pt-5 pb-10 rounded-[10px] max-lg:px-3'>
@@ -84,7 +84,7 @@ const Contact = () => {
                         <FormLabel className="text-base font-medium font-inter mb-4 max-[768px]:text-base">Full Name <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Input placeholder="Enter full name" {...field}
-                            className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                           />
                         </FormControl>
                         <FormMessage />
@@ -100,7 +100,7 @@ const Contact = () => {
                           <FormLabel className="text-base font-medium font-inter mb-4 max-[768px]:text-base">Contact Number <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
                             <Input placeholder="Enter contact number" {...field}
-                              className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
                           <FormMessage />
@@ -115,7 +115,7 @@ const Contact = () => {
                           <FormLabel className="text-base font-medium max-[768px]:text-base font-inter mb-4">Email Id <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
                             <Input placeholder="Enter email id" {...field}
-                              className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                              className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
                           <FormMessage />
@@ -132,7 +132,7 @@ const Contact = () => {
                         <div className='relative'>
                           <FormControl>
                             <Input placeholder="Enter your location" {...field}
-                              className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383]"
+                              className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 pr-10 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
                           <FaLocationDot className='text-[#C8C8C8] text-xl absolute top-[28%] right-[4%]' />
@@ -149,7 +149,7 @@ const Contact = () => {
                         <FormLabel className="text-base max-[768px]:text-base font-medium font-inter mb-4">Pincode <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
                           <Input placeholder="Enter your pincode" {...field}
-                            className="h-12 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
+                            className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                           />
                         </FormControl>
                         <FormMessage />

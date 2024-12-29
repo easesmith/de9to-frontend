@@ -190,7 +190,9 @@ const Appointments = () => {
                 }
 
                 {allAppointments?.length === 0 && !isLoading &&
-                    <DataNotFound name={"Appointments"} />
+                    <div className='pt-5'>
+                        <DataNotFound name={"Appointments"} />
+                    </div>
                 }
             </div>
         </ProfileLayout>

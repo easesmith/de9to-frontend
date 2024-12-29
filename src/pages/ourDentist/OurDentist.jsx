@@ -164,7 +164,7 @@ const OurDentist = () => {
       {!isFilterOpen ? <main className='w-full relative px-4'>
         <section className='flex items-center justify-end max-[900px]:hidden pr-20'>
           <div className='flex flex-col gap-[18px] w-[483px]'>
-            <h1 className='text-[#0D0E0E] text-[60px] font-bold font-inter leading-[72px]'>Expert Care,<br /> Right Next Door</h1>
+            <h1 className='text-[#0D0E0E] text-[60px] max-xl:text-[40px] font-bold font-inter max-xl:leading-[52px] leading-[72px]'>Expert Care,<br /> Right Next Door</h1>
             <p className='text-[#787878] text-base italic font-bold font-inter'>Where you get the list of certified doctors with years of
               professional experiences</p>
             <AllProfileCard />

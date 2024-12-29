@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { NotificationSettingSchema } from '@/schema/formSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { readCookie } from '@/utils/readCookie';
 
 const NotificationsSettings = () => {
     const form = useForm({
@@ -26,6 +27,8 @@ const NotificationsSettings = () => {
 
     const { reset, handleSubmit, getValues, watch } = form;
 
+    const userInfo = readCookie("userInfo");
+    console.log("userInfo", userInfo)
 
     const onSubmit = (data) => {
         console.log("Data:", data);
@@ -106,7 +109,7 @@ const NotificationsSettings = () => {
 
                                 <h2 className='text-2xl max-sm:text-xl font-inter font-semibold text-[#1A1A1A] mt-10'>Whatsapp Settings</h2>
                                 <div className="flex items-center gap-2 mt-3">
-                                    <h3 className='font-inter max-sm:text-xs text-[#1A1A1A] text-base font-medium'>You are currently receiving all communications on +916291842324</h3>
+                                    <h3 className='font-inter max-sm:text-xs text-[#1A1A1A] text-base font-medium'>You are currently receiving all communications on +91{userInfo?.phone}</h3>
                                     <button className='rounded-[6px] border-[1px] border-[#95C22B] h-7 px-2 flex items-center gap-[6px]'>
                                         <span className='text-[#95C22B] text-xs font-medium font-inter'>Change</span>
                                     </button>

@@ -122,7 +122,9 @@ const MyFeedback = () => {
                 }
 
                 {allReviews?.length === 0 && !isLoading &&
-                    <DataNotFound name={"Reviews"} />
+                    <div className='pt-5'>
+                        <DataNotFound name={"Reviews"} />
+                    </div>
                 }
             </div>
         </ProfileLayout>

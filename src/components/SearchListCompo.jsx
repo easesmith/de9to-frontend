@@ -83,7 +83,7 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
     // if (!open) return null;
 
     return (
-        <section className={`max-w-[1240px] relative w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
+        <section className={`max-w-[1020px] relative w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
             <LocationCompo searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleQuery={handleQuery} handleGetSerachQuery={handleGetSerachQuery} location={location} isShadow={isShadow} setIsShadow={setIsShadow} setShowDentistAndClinic={setShowDentistAndClinic} setLocation={setLocation} />
             <div className='min-[700px]:hidden mt-4 flex items-center gap-2'>
                 <div className='relative w-full'>

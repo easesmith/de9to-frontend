@@ -6,6 +6,7 @@ import DeleteAccountModal from './DeleteAccountModal'
 import { Button } from './ui/button'
 import { readCookie } from '@/utils/readCookie'
 import LogoutModal from './LogoutModal'
+import De9tologo from '@/assets/de9to-logo-1.png'
 
 const Sidebar = () => {
     const { pathname } = useLocation()
@@ -19,14 +20,16 @@ const Sidebar = () => {
 
     return (
         <section className='sticky top-0 w-[280px] h-screen overflow-y-auto overflow-x-visible max-lg:hidden'>
-            <h2 className='text-xl font-inter text-[#1A1A1A] font-medium mt-10 mb-8 px-3'>Your De9to Space</h2>
-            <div className='flex items-center gap-1 px-3'>
+            <div className="w-28 sm:w-40 mt-4 px-3">
+                <img src={De9tologo} alt="" />
+            </div>
+            {/* <div className='flex items-center gap-1 px-3'>
                 <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <p className='font-inter font-medium text-[#0F172A]'>{userInfo?.name}</p>
-            </div>
+            </div> */}
             <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
                 <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                     Medical Records
@@ -74,8 +77,8 @@ const Sidebar = () => {
 
                 {isLogOutModalOpen &&
                     <LogoutModal
-                    isLogOutModalOpen={isLogOutModalOpen}
-                    setIsLogOutModalOpen={setIsLogOutModalOpen}
+                        isLogOutModalOpen={isLogOutModalOpen}
+                        setIsLogOutModalOpen={setIsLogOutModalOpen}
                     />
                 }
             </div>

@@ -12,7 +12,7 @@ import TeamMemberOne from '../../assets/WhatsApp-Image-2021-07-30-at-6.20.59-PM.
 import TeamMemberTwo from '../../assets/yash-1.png.png'
 import TeamMemberThree from '../../assets/mohit-1.png.png'
 import HappyDentistImg from '../../assets/happy-dentists-with-patient 1.png'
-import { MangementInfo, OurTeamMember, PrevLink } from '@/component/MiniCompo/MiniCompo'
+import { MangementInfo, OurTeamMember } from '@/component/MiniCompo/MiniCompo'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css';
@@ -48,14 +48,15 @@ const AboutUs = () => {
     return (
         <Layout>
             <main className=' max-w-[1240px] mx-auto flex flex-col gap-12 max-[425px]:gap-5 mb-12 mt-4'>
-                <PrevLink page='About us' />
                 <section className='w-full'>
                     <div className="rounded-3xl flex max-md:flex-wrap justify-center items-center w-full px-5">
                         <div className='w-[400px] max-md:w-full max-md:text-center'>
-                            <h1 className='text-[#95C22B] text-[64px] max-lg:text-4xl max-[425px]:text-[23px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
+                            <h1 className='text-[#95C22B] text-[64px] max-lg:text-5xl max-[425px]:text-[23px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
                             <p className='text-[#717171] text-xl font-normal font-poppins max-[425px]:text-sm'>Dedicated Dental Care You Can Trust</p>
                         </div>
-                        <img src={HappyDentistImg} alt="happy-dentist-mg" className='w-[530px] h-[365px] max-[425px]:w-[360px] max-[425px]:h-[203px]' />
+                        <div className="w-[530px] h-fit">
+                            <img src={HappyDentistImg} alt="happy-dentist-mg" className='w-full h-full max-[425px]:w-[360px] max-[425px]:h-[203px]' />
+                        </div>
                     </div>
                     <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">
                         <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
@@ -84,7 +85,7 @@ const AboutUs = () => {
                 </section>
                 <section className='flex max-md:flex-wrap justify-between items-center gap-5 w-full px-5'>
                     <div className="w-2/3 max-md:w-full flex flex-col gap-3">
-                        <h3 className='text-[#717171] text-3xl font-semibold font-inter max-sm:text-2xl'>Our Journey</h3>
+                        <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter max-sm:text-2xl max-[375px]:text-xl'>Our Journey</h3>
                         <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>De9to – Your Oral Health Partner</p>
                         <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>India faces a dental health crisis—cavities, oral cancers, and limited access to care affect millions. At De9to, we’re on a mission to change that. Founded in 2020, we’re shifting the focus from treatment to prevention, making regular dental check-ups easy and accessible.</p>
                         <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>Our platform connects you with certified dentists for hassle-free appointments and free consultations. We also lead awareness campaigns through dental camps and social media.</p>
@@ -99,15 +100,15 @@ const AboutUs = () => {
                         <img src={OurMissionImg} alt="" />
                     </div>
                     <div className=" w-2/3 max-md:w-full flex flex-col gap-3">
-                        <h3 className='text-[#717171] text-3xl font-semibold font-inter max-sm:text-2xl'>Our Mission & Vision</h3>
+                        <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter max-sm:text-2xl'>Our Mission & Vision</h3>
                         <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>At De9to, our vision is to revolutionize dental care in India by shifting the focus from treatment to prevention. We align with the WHO's mission to prioritize regular dental check-ups, and we aim to be the leading platform that connects patients with trusted dentists, making preventive dentistry accessible to all.</p>
                         <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>Our mission at De9to is to make quality dental care accessible and affordable for everyone. By 2025, we aim to onboard over 5,000 dental clinics and serve more than 100,000 patients, ensuring that everyone has access to the best in oral health.</p>
                     </div>
                 </section>
 
                 <section className='px-5'>
-                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4 max-sm:text-2xl'>Our Values</h3>
-                    <p className='text-[#5C5C5C] text-[17px] font-normal font-inter mb-10 max-lg:text-xl max-md:text-base'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
+                    <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter mb-2 max-sm:text-2xl'>Our Values</h3>
+                    <p className='text-[#5C5C5C] text-[17px] font-normal font-inter mb-10 max-md:text-base'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
                     <Swiper
                         loop={true}
                         slidesPerView={3}
@@ -120,6 +121,17 @@ const AboutUs = () => {
                             delay: 2000,
                             disableOnInteraction: false,
                         }}
+                        breakpoints={{
+                            0: {
+                              slidesPerView: 1,
+                            },
+                            768: {
+                              slidesPerView: 2,
+                            },
+                            1154: {
+                              slidesPerView: 3,
+                            },
+                          }}
                         className="mySwiper about-us max-w-[940px] h-[380px]"
                     >
                         <SwiperSlide>
@@ -161,7 +173,7 @@ const AboutUs = () => {
                     </Swiper>
                 </section>
                 <section className='px-5'>
-                    <h3 className='text-[#717171] text-3xl font-semibold font-inter mb-4 max-sm:text-2xl'>Our Team</h3>
+                    <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter mb-4 max-sm:text-2xl'>Our Team</h3>
                     <div className='flex justify-between items-center gap-10 max-sm:gap-5 max-sm:flex-wrap max-lg:justify-center w-full'>
                         <OurTeamMember img={TeamMemberOne} name="Dr. Gajendra Yadav" profile="Director and COO" />
                         <OurTeamMember img={TeamMemberTwo} name="Yash Bansal" profile="Founder and CEO" />
@@ -170,7 +182,7 @@ const AboutUs = () => {
                 </section>
                 <div>
                     <div className='p-5 bg-[#95C22B] rounded-lg max-sm:rounded-none '>
-                        <h2 className='font-inter font-semibold text-2xl max-sm:text-xl max-sm:text-center max-sm:mb-3 text-[#FFFFFFE5]'>Feedback to the CEO</h2>
+                        <h2 className='font-inter font-semibold text-2xl max-sm:text-xl max-sm:mb-3 text-[#FFFFFFE5]'>Feedback to the CEO</h2>
                         <p className="font-inter text-white max-sm:text-sm font-normal">Your every words matter. Please share your feedback to improve the overall experience of <span className='font-bold'>De9to</span></p>
                         <Form {...form}>
                             <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-2 w-full'>
