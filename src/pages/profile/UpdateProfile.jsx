@@ -242,9 +242,9 @@ const UpdateProfile = () => {
                                                                 <SelectValue placeholder="Select an option" />
                                                             </SelectTrigger>
                                                             <SelectContent className="text-[#717171]">
-                                                                <SelectItem value="male">Male</SelectItem>
-                                                                <SelectItem value="female">Female</SelectItem>
-                                                                <SelectItem value="other">Other</SelectItem>
+                                                                <SelectItem value="Male">Male</SelectItem>
+                                                                <SelectItem value="Female">Female</SelectItem>
+                                                                <SelectItem value="Other">Other</SelectItem>
                                                             </SelectContent>
                                                         </Select>
                                                     </FormControl>

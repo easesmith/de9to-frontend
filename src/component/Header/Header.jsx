@@ -100,7 +100,7 @@ const Header = () => {
 
   return (
     <header className='sticky top-0 bg-white z-30'>
-      <nav className='h-[73px] px-20 max-[900px]:px-4 flex justify-between items-center'>
+      <nav className='h-[73px] px-16 max-lg:px-8 max-[900px]:px-4 flex justify-between items-center'>
         <div className='flex gap-2 items-center'>
           <Sheet>
             <SheetTrigger>
@@ -139,13 +139,13 @@ const Header = () => {
               </div>
             </Link>}
         </div>
-        <ul className='flex items-center gap-5 max-[970px]:hidden'>
+        <ul className='flex items-center gap-8 max-[970px]:hidden'>
           {urlAndUrlName.map((e, i) => {
             return (
               <div key={i} >
                 <NavLink
                   to={e.url}
-                  className={({ isActive }) => isActive ? 'text-[#95C22B] text-xl text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]' : 'text-[#212121] text-xl text-center font-medium font-inter'}
+                  className={({ isActive }) => isActive ? 'text-[#95C22B] text-lg text-center font-bold font-inter bg-[#FFFFFF] py-[10px]' : 'text-[#212121] text-lg text-center font-medium font-inter'}
                 >
                   {e.urlName}
                 </NavLink>
@@ -155,84 +155,82 @@ const Header = () => {
         </ul>
 
         <div className='flex gap-4 items-center'>
-          <IoSearchSharp onClick={()=>navigate("/our-dentist")} className='text-[#95C22B] min-[970px]:hidden text-2xl' />
+          <IoSearchSharp onClick={() => navigate("/our-dentist")} className='text-[#95C22B] min-[970px]:hidden text-2xl' />
           {!isLogin ?
             <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
             :
             <>
               <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>
-                <Avatar>
+                {/* <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                </Avatar> */}
+                <img src={userInfo?.userImage ? userInfo?.userImage : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} className="w-12 h-12 rounded-full" />
                 <IoIosArrowDown className='text-xl text-[#717171]' />
               </button>
               <DropdownMenu>
-                  <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
-                    <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
-                      <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <IoIosArrowDown className='text-xl text-[#717171]' />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-[100vw]">
-                    <DropdownMenuGroup>
-                      <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
-                        <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                          Medical Records
-                        </Link>
-                        <Link to="/profile/appointments" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("appointments") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                          Appointments
-                        </Link>
-                        <Link to="/profile/my-feedback" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("my-feedback") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                          My Feedback
-                        </Link>
-                        <Link to="/profile/payment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("payment") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                          Payment
-                        </Link>
-                        <Link to="/profile/update-profile" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                          Update Profile
-                        </Link>
-                        <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
-                          <span className='font-inter text-[#1A1A1A] font-medium text-xl'>Masters</span>
-                          <IoIosArrowDown className={`text-xl text-[#717171] duration-300 ${isMasterOpen && "rotate-180 transition-transform duration-300"}`} />
-                        </button>
-                        {isMasterOpen &&
-                          <div className='flex flex-col gap-2'>
-                            <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                              Change Password
-                            </Link>
-                            <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
-                              Notification Settings
-                            </Link>
-                            <Link to="/profile/delete-account" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
-                              Delete Account
-                            </Link>
-                          </div>
-                        }
+                <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
+                  <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
+                    <img src={userInfo?.userImage ? userInfo?.userImage : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} className="w-12 h-12 rounded-full" />
+                    <IoIosArrowDown className='text-xl text-[#717171]' />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[100vw]">
+                  <DropdownMenuGroup>
+                    <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
+                      <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        Medical Records
+                      </Link>
+                      <Link to="/profile/appointments" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("appointments") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        Appointments
+                      </Link>
+                      <Link to="/profile/my-feedback" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("my-feedback") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        My Feedback
+                      </Link>
+                      <Link to="/profile/payment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("payment") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        Payment
+                      </Link>
+                      <Link to="/profile/update-profile" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        Update Profile
+                      </Link>
+                      <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
+                        <span className='font-inter text-[#1A1A1A] font-medium text-xl'>Masters</span>
+                        <IoIosArrowDown className={`text-xl text-[#717171] duration-300 ${isMasterOpen && "rotate-180 transition-transform duration-300"}`} />
+                      </button>
+                      {isMasterOpen &&
+                        <div className='flex flex-col gap-2'>
+                          <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                            Change Password
+                          </Link>
+                          <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                            Notification Settings
+                          </Link>
+                          <Link to="/profile/delete-account" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
+                            Delete Account
+                          </Link>
+                        </div>
+                      }
 
-                        <button onClick={() => setIsLogOutModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}>
-                          Log out
-                        </button>
+                      <button onClick={() => setIsLogOutModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}>
+                        Log out
+                      </button>
 
-                        {isDeleteAccountModalOpen &&
-                          <DeleteAccountModal
-                            isDeleteAccountModalOpen={isDeleteAccountModalOpen}
-                            setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
-                          />
-                        }
+                      {isDeleteAccountModalOpen &&
+                        <DeleteAccountModal
+                          isDeleteAccountModalOpen={isDeleteAccountModalOpen}
+                          setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
+                        />
+                      }
 
-                        {isLogOutModalOpen &&
-                          <LogoutModal
-                            isLogOutModalOpen={isLogOutModalOpen}
-                            setIsLogOutModalOpen={setIsLogOutModalOpen}
-                          />
-                        }
-                      </div>
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
+                      {isLogOutModalOpen &&
+                        <LogoutModal
+                          isLogOutModalOpen={isLogOutModalOpen}
+                          setIsLogOutModalOpen={setIsLogOutModalOpen}
+                        />
+                      }
+                    </div>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
               </DropdownMenu>
             </>
           }

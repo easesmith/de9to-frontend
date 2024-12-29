@@ -91,6 +91,7 @@ export default {
 				'med': '769px',
 				'[950px]': '950px',
 				'large': '1024px',
+				'[500px]': '500px'
 			},
 		}
 	},

@@ -37,9 +37,9 @@ const FilterName = ({ name }) => {
 const MangementInfo = ({ img, number, title,isCounter }) => {
   return (
     <div className='w-fit flex flex-col items-center justify-center'>
-      <img src={img} alt="destistSignup-img" className='h-[90px] max-lg:w-16 max-lg:h-16 max-sm:w-12 max-sm:h-12 max-[425px]:w-5 max-[425px]:h-5' />
-      <p className=' text-[40px] text-center font-bold font-inter max-lg:text-[27px] max-sm:text-xl max-[425px]:text-sm'>{isCounter && <CountUp start={0} end={number} duration={2} />}+</p>
-      <p className=' text-[19px] text-center font-bold font-inter max-lg:text-sm max-sm:text-xs max-[425px]:text-[10px] max-[425px]:font-medium'>{title}</p>
+      <img src={img} alt="destistSignup-img" className='h-[72px] max-lg:w-16 max-lg:h-16 max-sm:w-12 max-sm:h-12 max-[425px]:w-5 max-[425px]:h-5' />
+      <p className=' text-[32px] text-center font-bold font-inter max-lg:text-[27px] max-sm:text-xl max-[425px]:text-sm'>{isCounter && <CountUp start={0} end={number} duration={2} />}+</p>
+      <p className=' text-[16px] text-center font-medium font-inter max-lg:text-sm max-sm:text-xs max-[425px]:text-[10px] max-[425px]:font-medium'>{title}</p>
     </div>
   )
 }

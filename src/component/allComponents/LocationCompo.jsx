@@ -14,7 +14,7 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
 
     return (
         <div className={` bg-[#FFFFFF] flex max-[700px]:hidden justify-center items-center gap-5 ${isShadow ? 'rounded-b-none border-t-0 border-s-0 border-e-0' : ''} rounded-2xl p-3 shadow-sm`}>
-            <div className="relative w-[500px]">
+            <div className="relative w-[450px]">
                 <Input
                     type="search"
                     value={searchQuery}
@@ -36,7 +36,7 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
                 </SelectContent>
             </Select>
             <div className=' '>
-                <button onClick={handleGetSerachQuery} className=' w-[228px] bg-[#95C22B] text-[#FFFFFF] text-xl font-semibold font-poppins border-[1px] border-[#95C22B]  rounded-lg px-10 py-4'>search</button>
+                <button onClick={handleGetSerachQuery} className=' w-[228px] bg-[#95C22B] text-[#FFFFFF] text-xl font-semibold font-poppins border-[1px] border-[#95C22B]  rounded-lg px-10 py-4'>Search</button>
             </div>
         </div>
     )
