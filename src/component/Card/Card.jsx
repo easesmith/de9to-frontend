@@ -79,7 +79,7 @@ const DentalTeamCard = () => {
                 <h2 className="text-[#252B42] text-[32px] max-[500px]:text-xl text-center font-semibold font-poppins mb-8">Meet Our Highly Skilled Dental Team</h2>
                 <div className='scrollBar max-w-[1170px] mx-auto bg-[#FFFFFF] flex items-center overflow-x-auto gap-10 pb-5'>
                     {
-                        featuredDentist.length > 0 && featuredDentist.map((item, index) => {
+                        featuredDentist?.length > 0 && featuredDentist?.map((item, index) => {
                             const { personalDetails, _id, clinic, dentistRatings, educationalQualification } = item || {}
                             return (
                                 <div key={index} className='w-[350px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
