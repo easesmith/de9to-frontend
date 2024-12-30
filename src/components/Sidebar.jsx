@@ -10,9 +10,6 @@ import De9tologo from '@/assets/de9to-logo-1.png'
 
 const Sidebar = () => {
     const { pathname } = useLocation()
-    const navigate = useNavigate();
-    const userInfo = readCookie("userInfo");
-    console.log("userInfo", userInfo);
 
     const [isMasterOpen, setIsMasterOpen] = useState(false);
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);

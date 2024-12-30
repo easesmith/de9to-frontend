@@ -21,8 +21,10 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FiExternalLink } from 'react-icons/fi';
 import { MdOutlineFileDownload } from 'react-icons/md';
 import invoice from '@/assets/invoice.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PayNowModal from '@/components/profile/PayNowModal';
+import useGetApiReq from '@/hooks/useGetApiReq';
+import { readCookie } from '@/utils/readCookie';
 
 const Payment = () => {
     const payments = [
@@ -41,6 +43,28 @@ const Payment = () => {
     ]
 
     const [isPayNowModalOpen, setIsPayNowModalOpen] = useState(false);
+
+    const { res, fetchData, isLoading } = useGetApiReq();
+    const userInfo = readCookie("userInfo");
+    const [allPayments, setAllPayments] = useState([]);
+    console.log("userInfo", userInfo);
+
+
+    const getAppointments = async () => {
+        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}`);
+    }
+
+    useEffect(() => {
+        getAppointments();
+    }, [])
+
+
+    useEffect(() => {
+        if (res?.status === 200 || res?.status === 201) {
+            // setAllPayments(res.data.data);
+            console.log("payments response", res);
+        }
+    }, [res])
 
     return (
         <ProfileLayout>
