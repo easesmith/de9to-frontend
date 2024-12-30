@@ -75,6 +75,11 @@ const MedicalRecords = () => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             setAllTreatments(res.data.foundTreatment);
+            if (res?.data?.pagination) {
+                setTotalPage(res?.data?.pagination?.totalPages)
+                setTotal(res?.data?.pagination?.totalDocs)
+                setLimit(res?.data?.pagination?.limit)
+            }
             console.log("treatment response", res);
         }
     }, [res])
