@@ -51,7 +51,7 @@ const Payment = () => {
 
 
     const getAppointments = async () => {
-        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}`);
+        fetchData(`/patient/get-payment-records-patient?patientId=${userInfo?.userId}`);
     }
 
     useEffect(() => {
@@ -61,8 +61,8 @@ const Payment = () => {
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            // setAllPayments(res.data.data);
-            console.log("payments response", res);
+            console.log("payments response", res?.data?.paymentRecords);
+            setAllPayments(res?.data?.paymentRecords);
         }
     }, [res])
 
@@ -91,16 +91,17 @@ const Payment = () => {
                     <TableHeader className="bg-[#F6F6F6]">
                         <TableRow className="uppercase">
                             <TableHead className="w-[130px]">Date</TableHead>
-                            <TableHead className="w-[190px]">Clinic/Doctor</TableHead>
+                            <TableHead className="w-[190px]">Clinic Name</TableHead>
+                            <TableHead className="w-[190px]">Dentist Name</TableHead>
                             <TableHead className="w-[190px]">Amount</TableHead>
-                            <TableHead className="w-[190px]">Status</TableHead>
+                            <TableHead className="w-[190px]">Payment Status</TableHead>
                             <TableHead className="w-[190px]">Action</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {payments.map((payment, i) => (
+                        {allPayments.length > 0 && allPayments.map((payment, index) => (
                             <PaymentComp
-                                key={i}
+                                key={index}
                                 payment={payment}
                             />
                         ))}
