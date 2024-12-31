@@ -58,6 +58,8 @@ const OurDentist = () => {
   const { res: res3, fetchData: fetchData3, isLoading: isLoading3 } = useGetApiReq();
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
+  const [SearchAllDentists, setSearchAllDentists] = useState([])
+  const [SearchAllClinics, setSearchAllClinics] = useState([]);
   const [allDentists, setAllDentists] = useState([])
   const [allClinics, setAllClinics] = useState([]);
 
@@ -74,6 +76,7 @@ const OurDentist = () => {
     if (res?.status === 200 || res?.status === 201) {
       // console.log("AllDentists:", res.data.data.dentists)
       setAllDentists(res.data.data.dentists)
+      setSearchAllDentists(res.data.data.dentists)
       setPageCount(res.data.totalPages)
       setPage(res.data.currentPage)
     }
@@ -91,6 +94,7 @@ const OurDentist = () => {
   useEffect(() => {
     if (res3?.status === 200 || res3?.status === 201) {
       setAllClinics(res3?.data?.data?.clinics);
+      setSearchAllClinics(res3?.data?.data?.clinics);
       console.log("clinics response", res3);
     }
   }, [res3])
@@ -176,8 +180,8 @@ const OurDentist = () => {
         <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
         {/* <div className='mt-5 max-[700px]:hidden'> */}
         <SearchListCompo
-          setAllClinics={setAllClinics}
-          setAllData={setAllDentists}
+          setAllClinics={setSearchAllClinics}
+          setAllData={setSearchAllDentists}
         />
         {/* </div> */}
 
