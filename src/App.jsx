@@ -38,7 +38,7 @@ const UpdateProfile = lazy(() => import('./pages/profile/UpdateProfile'))
 const ChangePassword = lazy(() => import('./pages/profile/ChangePassword'))
 const NotificationsSettings = lazy(() => import('./pages/profile/NotificationsSettings'))
 const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
-
+import logo from '@/assets/logo.png'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,7 +58,12 @@ const App = () => {
 
       {isLoading && <BackdropLoader />}
 
-      <Suspense fallback={<div className='w-full h-screen bg-white text-black flex justify-center items-center text-xl font-semibold'>Loading...</div>}>
+      <Suspense fallback={
+        <div className='w-full h-screen bg-white text-black flex flex-col justify-center items-center text-xl font-semibold'>
+          <img src={logo} className='w-32 mt-2' alt="" />
+          Loading...
+        </div>
+      }>
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />

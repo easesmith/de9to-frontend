@@ -18,10 +18,11 @@ import ReactStars from 'react-stars'
 
 const ConfirmBookingPage = () => {
     const { state: { data, clinicDetails, slotId, timing, startIndex } } = useLocation();
-    const { clinicPhotos, clinicName, clinicAddress, city, nearbyLandmark, state, clinicPincode } = clinicDetails || {};
-
+    const [singleClinic, setSingleClinic] = useState();
     const userInfo = readCookie("userInfo");
     const { res, fetchData, isLoading } = useGetApiReq();
+    const { res: res1, fetchData: fetchData1, isLoading: isLoading1 } = useGetApiReq();
+
     console.log("userInfo", userInfo);
     console.log("data", data);
     console.log("clinicDetails", clinicDetails);
@@ -40,7 +41,7 @@ const ConfirmBookingPage = () => {
     const [dentistDetails, setDentistDetails] = useState("")
 
     const getDentistDetails = useCallback(async () => {
-        fetchData(`/dentist/get-dentist-details?dentistId=${data?.dentistId || "66d02520cd6af954e0eba864"}`);
+        fetchData(`/dentist/get-dentist-details?dentistId=${data?.dentistId}`);
     }, [fetchData])
 
     useEffect(() => {
@@ -54,7 +55,24 @@ const ConfirmBookingPage = () => {
         }
     }, [res])
 
-    const { personalDetails, clinic = [], educationalQualification,dentistRatings } = dentistDetails || {};
+    const getClinic = async () => {
+        fetchData1(`/patient/get-single-clinic?clinicId=${data.clinic}`);
+    }
+
+    useEffect(() => {
+        getClinic();
+    }, [])
+
+    useEffect(() => {
+        if (res1?.status === 200 || res1?.status === 201) {
+            setSingleClinic(res1?.data?.foundClinic);
+            console.log("clinic details response", res1);
+        }
+    }, [res1])
+
+    const { clinicPhotos, clinicName, clinicAddress, city, nearbyLandmark, state, clinicPincode } = singleClinic || {};
+
+    const { personalDetails, clinic = [], educationalQualification, dentistRatings } = dentistDetails || {};
 
     console.log("clinicDetails?.clinicRating", clinicDetails?.clinicRating);
 
@@ -96,7 +114,7 @@ const ConfirmBookingPage = () => {
                                 <h2 className='text-base sm:text-xl font-inter font-semibold text-[#1A1A1A]'>{`${personalDetails?.prefix} ${personalDetails?.Firstname} ${personalDetails?.lastName}`}</h2>
                                 <div>
                                     <ReactStars edit={false} size={25} count={5} value={dentistAverageRating} color2={'#FF8A00'} />
-                                    <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by 2 users</div>
+                                    <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by {dentistRatings && dentistRatings.length} users</div>
                                 </div>
                             </div>
                             <div className="flex items-center max-[500px]:items-start gap-2 mt-3">
@@ -116,14 +134,14 @@ const ConfirmBookingPage = () => {
                     <div className='shadow-lg rounded-md p-3 mt-5 bg-white grid max-[500px]:grid-cols-1 grid-cols-[40%_58%] lg:grid-cols-[30%_68%] gap-3'>
                         <div className='rounded-[6px] relative'>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='w-full h-full' src={clinic?.clinicLogo} alt="" />
+                            <img className='w-full h-full' src={singleClinic?.clinicLogo} alt="" />
                         </div>
                         <div>
                             <div className="flex justify-between flex-col lg:flex-row items-start lg:items-center gap-0 lg:gap-3">
                                 <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{clinicName}</h2>
                                 <div>
                                     <ReactStars edit={false} size={25} count={5} value={clinicAverageRating} color2={'#FF8A00'} />
-                                    <div className='text-[#000000] text-[10px] text-left lg:text-right font-normal font-inter'>Rated by {clinicDetails?.clinicRating?.length} users</div>
+                                    <div className='text-[#000000] text-[10px] text-left lg:text-right font-normal font-inter'>Rated by {singleClinic?.clinicRating?.length } users</div>
                                 </div>
                             </div>
                             <div className="flex gap-2 items-center mt-3">
