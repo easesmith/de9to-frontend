@@ -28,6 +28,20 @@ export const requestDentalCampSchema = z.object({
     location: z.string().min(1, "Camp Venue/Location is required"),
 })
 
+export const PatientFormSchema = z.object({
+    name: z.string().min(1, "Name is required").max(100, "Name cannot exceed 100 characters"),
+    mobile: z
+        .string()
+        .regex(/^\d{10}$/, "Mobile number must be a valid 10-digit number"),
+    dob: z.date(),
+    gender: z.enum(["male", "female", "other"], "Gender must be Male, Female, or Other"),
+    area: z.string().min(1, "Area is required").max(100, "Area cannot exceed 100 characters"),
+    pincode: z
+        .string()
+        .regex(/^\d{6}$/, "Pincode must be a valid 6-digit number"),
+    dentalIssue: z.string().min(1, "Dental issue is required").max(500, "Description cannot exceed 500 characters")
+})
+
 export const commentSchema = z.object({
     name: z.string().min(1, "Name is required"),
     emailId: z.string().email("Invalid email address"),

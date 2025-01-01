@@ -39,6 +39,7 @@ const ChangePassword = lazy(() => import('./pages/profile/ChangePassword'))
 const NotificationsSettings = lazy(() => import('./pages/profile/NotificationsSettings'))
 const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
 import logo from '@/assets/logo.png'
+import PatientForm from './pages/PatientForm'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ const App = () => {
           <Route path='/our-dentist/:dentistId' element={<DentistDetails />} />
           <Route path='/confirm-booking' element={<ConfirmBookingPage />} />
           <Route path='/payment' element={<PaymentPage />} />
+          <Route path='/patient-form/:dentalCampId' element={<PatientForm />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path='/profile/medical-records' element={<MedicalRecords />} />
