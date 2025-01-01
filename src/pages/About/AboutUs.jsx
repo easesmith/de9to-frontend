@@ -132,7 +132,7 @@ const AboutUs = () => {
                               slidesPerView: 3,
                             },
                           }}
-                        className="mySwiper about-us max-w-[940px] h-[380px]"
+                        className="mySwiper about-us max-w-[940px] h-[380px] p-5"
                     >
                         <SwiperSlide>
                             <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2'>

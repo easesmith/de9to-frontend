@@ -44,7 +44,7 @@ const Sidebar = () => {
                     Update Profile
                 </Link>
                 <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
-                    <span className='font-inter text-[#1A1A1A] font-medium text-xl'>Masters</span>
+                    <span className='font-inter text-[#1A1A1A] font-medium'>Setting</span>
                     <IoIosArrowDown className={`text-xl text-[#717171] duration-300 ${isMasterOpen && "rotate-180 transition-transform duration-300"}`} />
                 </button>
                 {isMasterOpen &&
