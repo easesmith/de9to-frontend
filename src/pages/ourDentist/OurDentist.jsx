@@ -178,19 +178,10 @@ const OurDentist = () => {
           </div>
         </section>
         <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
-        {/* <div className='mt-5 max-[700px]:hidden'> */}
         <SearchListCompo
           setAllClinics={setSearchAllClinics}
           setAllData={setSearchAllDentists}
         />
-        {/* </div> */}
-
-        {/* <div className='mt-5 min-[700px]:hidden'>
-          <div className='relative'>
-            <IoSearchSharp className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
-            <Input placeholder="Search doctors, clinic etc." className="placeholder:text-[#717171] pl-10 h-12 border-[#E4E6EE]" />
-          </div>
-        </div> */}
         <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 max-[700px]:gap-5 my-6'>
           <div className='max-[700px]:hidden rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>

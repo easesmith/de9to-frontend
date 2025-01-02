@@ -32,6 +32,7 @@ import useGetApiReq from '@/hooks/useGetApiReq'
 import CountUp from 'react-countup'
 import ScrollTrigger from 'react-scroll-trigger'
 import { useNavigate } from 'react-router-dom'
+import ImageSkeleton from '@/components/ImageSkeleton'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -290,7 +291,11 @@ const Home = () => {
                     italic font-poppins'>{testimonial?.comment}</p>
                         <div className="profile flex justify-center items-start gap-6">
                           <div className="profile-picture">
-                            <img src={testimonial?.image ? testimonial?.image : "https://wallpapers.com/images/high/placeholder-profile-icon-20tehfawxt5eihco.png"} className='w-12 h-12 rounded-full' />
+                            <ImageSkeleton
+                              src={testimonial?.image ? testimonial?.image : "https://wallpapers.com/images/high/placeholder-profile-icon-20tehfawxt5eihco.png"}
+                              imgClassName={'w-12 h-12 rounded-full'}
+                              skeletonClassName={"w-12 h-12 rounded-full"}
+                            />
                           </div>
                           <div>
                             <h4 className=' text-[#595959] text-2xl max-[500px]:text-lg font-bold font-inter'>{testimonial?.name}</h4>

@@ -7,6 +7,7 @@ import { calculateAverageRating } from '@/utils/getAverageRating';
 import { FaGraduationCap, FaPlay } from 'react-icons/fa';
 import ReactPlayer from 'react-player';
 import ReactStars from 'react-stars';
+import ImageSkeleton from './ImageSkeleton';
 
 const DentistBasicDetails = ({ details }) => {
     const averageRating = details && calculateAverageRating(details?.dentistRatings);
@@ -19,7 +20,12 @@ const DentistBasicDetails = ({ details }) => {
                     <div>
                         <div className='rounded-[6px] relative w-[210px] max-[500px]:w-full max-[900px]:w-[70%] '>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                            <img className='h-full w-full' src={details?.personalDetails?.image} alt="" />
+                            <ImageSkeleton
+                              src={details?.personalDetails?.image}
+                              imgClassName={'h-full w-full'}
+                              skeletonClassName={"h-full w-full"}
+                            />
+                            {/* <img className='h-full w-full' src={details?.personalDetails?.image} alt="" /> */}
                         </div>
                         <p className="text-center max-[900px]:text-left font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {details?.educationalQualification?.regNumber}</p>
                     </div>

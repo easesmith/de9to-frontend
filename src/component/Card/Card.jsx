@@ -10,6 +10,8 @@ import usePostApiReq from '@/hooks/usePostApiReq'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import Spinner from '@/components/Spinner'
 import DataNotFound from '@/components/DataNotFound'
+import { Skeleton } from '@/components/ui/skeleton'
+import ImageSkeleton from '@/components/ImageSkeleton'
 // import Image2 from '@/assets/user-cover-1 (1).png'
 // import Image3 from '@/assets/360_F_295518052_aO5d9CqRhPnjlNDTRDjKLZHNftqfsxzI 1.png'
 
@@ -53,6 +55,7 @@ const Card = ({ hidden, isCategorySelected, setIsCategorySelected, handleSelectC
 const DentalTeamCard = () => {
     const [featuredDentist, setFeaturedDentist] = useState([]);
     const { res, fetchData, isLoading } = useGetApiReq();
+    // const [imageLoading, setImageLoading] = useState(true);
     const navigate = useNavigate();
 
     const getFeaturedDentist = () => {
@@ -84,9 +87,11 @@ const DentalTeamCard = () => {
                             return (
                                 <div key={index} className='w-[350px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
-                                        <img
-                                            src={personalDetails?.image ? personalDetails?.image:"https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
-                                            alt="" className=' rounded-2xl rounded-ee-none rounded-es-none w-full h-72' />
+                                        <ImageSkeleton
+                                            src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
+                                            imgClassName={' rounded-2xl rounded-ee-none rounded-es-none w-full h-72'}
+                                            skeletonClassName={"w-full h-72 rounded-3xl"}
+                                        />
                                     </figure>
                                     <div className='w-[350px] max-[500px]:w-[250px] flex flex-col p-6'>
                                         <h3 className="text-[#2D2D32] max-[500px]:text-xl text-2xl font-medium font-poppins">{personalDetails?.prefix

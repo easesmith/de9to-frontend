@@ -192,22 +192,6 @@ const RangeSlider = () => {
 
 const AllProfileCard = () => {
   return (
-    // <div className="right-side relative">
-    // <div className=' h-[60px] rounded-2xl py-2 px-4 bg-[#F4F9EA] shadow-custom3 flex items-center gap-2 w-[350px]'>
-    //   <h5 className='text-[rgb(0,0,0)] text-xs text-center italic font-bold font-inter'>Our professionals</h5>
-    //   <div className=' flex items-center relative w-[200px]'>
-    //     <img src={ProfessionalImg1} alt="" className='absolute  z-0' />
-    //     <img src={ProfessionalImg2} alt="" className='absolute left-5 z-10' />
-    //     <img src={ProfessionalImg3} alt="" className='absolute left-10 z-20' />
-    //     <img src={ProfessionalImg4} alt="" className='absolute left-[60px] z-30' />
-    //     <img src={ProfessionalImg5} alt="" className='absolute left-20 z-40' />
-    //     <img src={ProfessionalImg6} alt="" className='absolute left-[100px] z-50' />
-    //     <img src={ProfessionalImg7} alt="" className='absolute left-[120px] z-60' />
-    //     <div className='bg-[#95C22B] rounded-full flex justify-center items-center absolute left-[140px] z-70 w-[37px] h-[37px]'>
-    //       <p className='text-[#FFFFFF] text-sm font-normal font-poppins'>30+</p>
-    //     </div>
-    //   </div>
-    // </div>
     <div className=' h-[60px] rounded-2xl py-2 px-4 bg-[#F4F9EA] shadow-custom3 flex items-center justify-start gap-[14px] w-[285px]'>
       <h5 className='text-[rgb(0,0,0)] text-xs text-center italic font-bold font-inter'>Our professionals</h5>
       <div className=' flex items-center relative w-[130px]'>

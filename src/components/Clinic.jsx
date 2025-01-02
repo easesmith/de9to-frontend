@@ -13,6 +13,7 @@ import { useState } from 'react';
 import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
 import { useNavigate } from 'react-router-dom';
 import { calculateAverageRating } from '@/utils/getAverageRating';
+import ImageSkeleton from './ImageSkeleton';
 
 const Clinic = ({ clinic }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -32,7 +33,12 @@ const Clinic = ({ clinic }) => {
     return (
         <div className='p-4 rounded-[6px] flex max-[500px]:flex-col gap-[10px] shadow-custom4 bg-[#FFFFFF]'>
             <div onClick={() => navigate(`/our-clinic/${clinic?._id}`)} className='rounded-lg cursor-pointer w-[250px] max-[600px]:w-[350px] h-[250px] max-[500px]:w-full max-[500px]:h-full flex justify-center items-end relative -mt-[10px]'>
-                <img className='h-full w-[250px] rounded-lg' src={clinic?.clinicLogo ? clinic?.clinicLogo:"https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} alt="" />
+                <ImageSkeleton
+                    src={clinic?.clinicLogo ? clinic?.clinicLogo : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
+                    imgClassName={'h-full w-[250px] rounded-lg'}
+                    skeletonClassName={"h-full w-[250px] rounded-lg"}
+                />
+                {/* <img className='h-full w-[250px] rounded-lg' src={clinic?.clinicLogo ? clinic?.clinicLogo : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} alt="" /> */}
                 <img src={VerifiedImg} alt="" className='absolute top-[2%] right-[2%]' />
             </div>
             <div className='pe-[25px] ps-[9px] flex flex-col justify-start gap-2 max-[600px]:w-full w-[calc(100%-210px)]'>
