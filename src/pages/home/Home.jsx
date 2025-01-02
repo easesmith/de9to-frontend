@@ -84,7 +84,7 @@ const Home = () => {
             <div className="max-[970px]:hidden">
               <SearchListCompo />
             </div>
-            <div className='flex justify-center items-center flex-wrap'>
+            <div className='flex justify-center items-center flex-wrap mt-6'>
               <div className='px-16 py-16 max-[500px]:px-6 max-[700px]:py-6'>
                 <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
                 <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
@@ -93,10 +93,6 @@ const Home = () => {
                     <div className=' text-[#FFFFFF] text-lg max-[970px]:text-base font-semibold font-poppins '>Book an appointment</div>
                     <MdOutlineArrowOutward color='#FFFFFF' className='text-xl max-[970px]:text-lg' />
                   </button>
-                  {/* <div className='flex justify-center items-center gap-1 border-[1px] border-[#95C22B] rounded-lg px-5 py-4 hover:bg-[#FFFFFF] cursor-pointer'>
-                    <button className=' text-[#95C22B] text-lg font-semibold font-poppins'>Know more</button>
-                    <MdOutlineArrowOutward color='#95C22B' fontSize={24} />
-                  </div> */}
                 </div>
                 {isConfirmBookingModalOpen &&
                   <ConfirmBookingModal
