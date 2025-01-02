@@ -14,6 +14,7 @@ import { useState } from 'react';
 import ConfirmbookingModal from '@/components/confirm-booking/ConfirmbookingModal';
 import { useNavigate } from 'react-router-dom';
 import { calculateAverageRating } from '@/utils/getAverageRating';
+import ImageSkeleton from '@/components/ImageSkeleton';
 
 const Dentist1 = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -132,7 +133,12 @@ const Dentist1 = ({ dentist }) => {
             <div className='flex justify-center flex-col items-center w-[250px] max-sm:w-full'>
                 <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-lg relative w-[250px] h-[250px] cursor-pointer'>
                     <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                    <img className='rounded-lg h-[250px] w-[250px]' src={personalDetails?.image} alt="" />
+                    <ImageSkeleton
+                        src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
+                        imgClassName={'rounded-lg h-[250px] w-[250px]'}
+                        skeletonClassName={"rounded-lg h-[250px] w-[250px]"}
+                    />
+                    {/* <img className='rounded-lg h-[250px] w-[250px]' src={personalDetails?.image} alt="" /> */}
                 </div>
                 <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
             </div>
