@@ -36,7 +36,7 @@ const PaymentPage = () => {
 
                     try {
                         const res = await axios.post(
-                            `${import.meta.env.VITE_APP_API_URL}/dentist/verify-payment`, { ...paymentDetails },
+                            `${import.meta.env.VITE_BACKEND_URL}/dentist/verify-payment`, { ...paymentDetails },
                             { withCredentials: true }
                         );
                         console.log("handler", res.data);

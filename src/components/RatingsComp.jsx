@@ -13,6 +13,7 @@ const RatingsComp = ({ allRating }) => {
     }
 
     console.log("totalReviews", totalReviews);
+    console.log("averageRating", averageRating);
 
 
     return (

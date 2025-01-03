@@ -188,6 +188,7 @@ const DentistDetails = () => {
                         dentistId={dentistDetails?._id}
                         reviewType="dentist"
                         getData={getDentistRating}
+                        getAllRating={getAllRating}
                     />
                 }
             </section>

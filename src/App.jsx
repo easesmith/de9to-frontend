@@ -33,13 +33,14 @@ const Login = lazy(() => import('./pages/Login'))
 const MedicalRecords = lazy(() => import('./pages/profile/MedicalRecords'))
 const Appointments = lazy(() => import('./pages/profile/Appointments'))
 const MyFeedback = lazy(() => import('./pages/profile/MyFeedback'))
-const Payment = lazy(() => import('./pages/profile/Payment'))
+const Payment = lazy(() => import('./pages/profile/payment/Payment'))
 const UpdateProfile = lazy(() => import('./pages/profile/UpdateProfile'))
 const ChangePassword = lazy(() => import('./pages/profile/ChangePassword'))
 const NotificationsSettings = lazy(() => import('./pages/profile/NotificationsSettings'))
 const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
 import logo from '@/assets/logo.png'
 import PatientForm from './pages/PatientForm'
+import TreatmentPayment from './pages/profile/payment/TreatmentPayment'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -88,7 +89,8 @@ const App = () => {
             <Route path='/profile/medical-records' element={<MedicalRecords />} />
             <Route path='/profile/appointments' element={<Appointments />} />
             <Route path='/profile/my-feedback' element={<MyFeedback />} />
-            <Route path='/profile/payment' element={<Payment />} />
+            <Route path='/profile/payment/appointment' element={<Payment />} />
+            <Route path='/profile/payment/treatment' element={<TreatmentPayment />} />
             <Route path='/profile/update-profile' element={<UpdateProfile />} />
             <Route path='/profile/change-password' element={<ChangePassword />} />
             <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
