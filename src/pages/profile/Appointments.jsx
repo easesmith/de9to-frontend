@@ -31,6 +31,7 @@ import { FiExternalLink } from 'react-icons/fi';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaArrowRight } from 'react-icons/fa';
 import AppointmentModal from '@/components/profile/AppointmentModal';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Appointments = () => {
     const { res, fetchData, isLoading } = useGetApiReq();
@@ -41,6 +42,8 @@ const Appointments = () => {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [date, setDate] = useState();
     const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const getAppointments = async () => {
         fetchData(`/patient/get-all-appointments?patientId=${userInfo?.userId}&status=${status}`);
@@ -82,6 +85,12 @@ const Appointments = () => {
         <ProfileLayout>
             <div className="bg-white rounded-lg p-5">
                 <h1 className='font-inter text-2xl font-medium text-[#00214B] max-[425px]:text-xl'>List of Appointments</h1>
+
+                <div className='flex items-center gap-2 mt-5'>
+                    <button onClick={() => navigate("/profile/medical-records/appointment")} className={`border-b-[3px]  ${pathname === "/profile/medical-records/appointment" ? "text-[#1AA6F1] border-[#1AA6F1]" : "border-transparent"} font-inter px-2 py-1`}>Appointment</button>
+                    <button onClick={() => navigate("/profile/medical-records/treatment")} className={`border-b-[3px] ${pathname === "/profile/medical-records/treatment" ? "text-[#1AA6F1] border-[#1AA6F1]" : "border-transparent"} font-inter px-2 py-1`}>Treatment</button>
+                </div>
+
                 <div className="flex gap-4 items-center mt-5">
                     <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
                         <PopoverTrigger asChild>

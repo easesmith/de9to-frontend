@@ -18,6 +18,7 @@ import useGetApiReq from '@/hooks/useGetApiReq';
 import { readCookie } from '@/utils/readCookie';
 import ReactPagination from '@/component/allComponents/ReactPagination';
 import { format } from 'date-fns';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const records = [
     {
@@ -56,6 +57,8 @@ const MedicalRecords = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(0);
     const [limit, setLimit] = useState(0);
+    const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const { res, fetchData, isLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
@@ -64,7 +67,7 @@ const MedicalRecords = () => {
 
 
     const getAppointments = async () => {
-        fetchData(`/patient/get-treatment-list?patientId=${userInfo?.userId}`);
+        fetchData(`/patient/get-treatment-list?patientId=${userInfo?.userId}&page=${currentPage}`);
     }
 
     useEffect(() => {
@@ -95,6 +98,10 @@ const MedicalRecords = () => {
                             Upload
                         </Button>
                     </div>
+                    <div className='flex items-center gap-2 mt-5'>
+                        <button onClick={() => navigate("/profile/medical-records/appointment")} className={`border-b-[3px]  ${pathname === "/profile/medical-records/appointment" ? "text-[#1AA6F1] border-[#1AA6F1]" : "border-transparent"} font-inter px-2 py-1`}>Appointment</button>
+                        <button onClick={() => navigate("/profile/medical-records/treatment")} className={`border-b-[3px] ${pathname === "/profile/medical-records/treatment" ? "text-[#1AA6F1] border-[#1AA6F1]" : "border-transparent"} font-inter px-2 py-1`}>Treatment</button>
+                    </div>
                     <Button variant="outline" className="border-[#717171] font-normal mt-5 text-[#717171]">
                         Filter by date
                     </Button>
@@ -107,7 +114,7 @@ const MedicalRecords = () => {
                                 <TableHead className="w-[250px]">Dentist</TableHead>
                                 <TableHead className="w-[200px]">Clinics</TableHead>
                                 <TableHead className="w-[200px]">medical concerns</TableHead>
-                                {/* <TableHead></TableHead> */}
+                                <TableHead className="w-20">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>

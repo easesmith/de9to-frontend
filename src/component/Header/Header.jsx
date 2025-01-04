@@ -160,7 +160,7 @@ const Header = () => {
             <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
             :
             <>
-              <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>
+              <button onClick={() => navigate("/profile/medical-records/appointment")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>
                 {/* <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
@@ -170,7 +170,7 @@ const Header = () => {
               </button>
               <DropdownMenu>
                 <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
-                  <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
+                  <button onClick={() => navigate("/profile/medical-records/appointment")} className='flex items-center gap-1 cursor-pointer'>
                     <img src={userInfo?.userImage ? userInfo?.userImage : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} className="w-12 h-12 rounded-full" />
                     <IoIosArrowDown className='text-xl text-[#717171]' />
                   </button>
@@ -178,7 +178,7 @@ const Header = () => {
                 <DropdownMenuContent className="w-[100vw]">
                   <DropdownMenuGroup>
                     <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
-                      <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      <Link to="/profile/medical-records/appointment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                         Medical Records
                       </Link>
                       <Link to="/profile/appointments" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("appointments") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>

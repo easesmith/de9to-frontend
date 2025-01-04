@@ -14,6 +14,7 @@ import PersonalDetails from './pages/dentist/personal-details/PersonalDetails'
 import Clinic from './pages/dentist/clinic-details/Clinic'
 import OtherDetails from './pages/dentist/OtherDetails'
 import BankDetails from './pages/dentist/BankDetails'
+import logo from '@/assets/logo.png'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -38,9 +39,9 @@ const UpdateProfile = lazy(() => import('./pages/profile/UpdateProfile'))
 const ChangePassword = lazy(() => import('./pages/profile/ChangePassword'))
 const NotificationsSettings = lazy(() => import('./pages/profile/NotificationsSettings'))
 const DeleteAccount = lazy(() => import('./pages/profile/DeleteAccount'))
-import logo from '@/assets/logo.png'
-import PatientForm from './pages/PatientForm'
-import TreatmentPayment from './pages/profile/payment/TreatmentPayment'
+const PatientForm = lazy(() => import('./pages/PatientForm'))
+const TreatmentPayment = lazy(() => import('./pages/profile/payment/TreatmentPayment'))
+const TreatmentDetails = lazy(() => import('./pages/profile/TreatmentDetails'))
 
 const App = () => {
   const dispatch = useDispatch();
@@ -86,8 +87,10 @@ const App = () => {
           <Route path='/patient-form/:dentalCampId' element={<PatientForm />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route path='/profile/medical-records' element={<MedicalRecords />} />
-            <Route path='/profile/appointments' element={<Appointments />} />
+            <Route path='/profile/medical-records/appointment' element={<Appointments />} />
+            <Route path='/profile/medical-records/treatment' element={<MedicalRecords />} />
+            <Route path='/profile/medical-records/treatment/:treatmentId' element={<TreatmentDetails />} />
+            {/* <Route path='/profile/appointments' element={<Appointments />} /> */}
             <Route path='/profile/my-feedback' element={<MyFeedback />} />
             <Route path='/profile/payment/appointment' element={<Payment />} />
             <Route path='/profile/payment/treatment' element={<TreatmentPayment />} />
