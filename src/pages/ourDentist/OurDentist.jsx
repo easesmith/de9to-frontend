@@ -178,10 +178,12 @@ const OurDentist = () => {
           </div>
         </section>
         <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
-        <SearchListCompo
-          setAllClinics={setSearchAllClinics}
-          setAllData={setSearchAllDentists}
-        />
+        <div className='mt-5'>
+          <SearchListCompo
+            setAllClinics={setSearchAllClinics}
+            setAllData={setSearchAllDentists}
+          />
+        </div>
         <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 max-[700px]:gap-5 my-6'>
           <div className='max-[700px]:hidden rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>

@@ -22,8 +22,8 @@ const DentistBasicDetails = ({ details }) => {
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                             <ImageSkeleton
                               src={details?.personalDetails?.image}
-                              imgClassName={'h-full w-full'}
-                              skeletonClassName={"h-full w-full"}
+                              imgClassName={'h-[200px] w-[200px]'}
+                              skeletonClassName={"h-[200px] w-[200px]"}
                             />
                             {/* <img className='h-full w-full' src={details?.personalDetails?.image} alt="" /> */}
                         </div>
