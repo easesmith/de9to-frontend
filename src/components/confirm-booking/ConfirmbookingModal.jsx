@@ -20,6 +20,7 @@ import SlotSection from "../SlotSection";
 import useGetApiReq from "@/hooks/useGetApiReq";
 import { readCookie } from "@/utils/readCookie";
 import toast from "react-hot-toast";
+import { X } from "lucide-react";
 
 const clinicSchema = z.object({
     clinic: z.string().min(1, "Please select a clinic"),
@@ -254,7 +255,10 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
         <Dialog open={isConfirmBookingModalOpen} onOpenChange={setIsConfirmBookingModalOpen}>
             <DialogContent className="max-w-[700px] max-h-[90vh] overflow-y-auto w-full">
                 <DialogHeader className="text-left">
-                    <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-base sm:text-2xl ">Confirm Your Booking</DialogTitle>
+                    <div className="flex justify-between items-center">
+                        <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-base sm:text-2xl ">Confirm Your Booking</DialogTitle>
+                        <X onClick={()=> setIsConfirmBookingModalOpen(false)} className="h-4 w-4 cursor-pointer" />
+                    </div>
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
                             {/* Clinic Selection */}

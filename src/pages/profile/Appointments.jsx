@@ -36,7 +36,7 @@ const Appointments = () => {
     const { res, fetchData, isLoading } = useGetApiReq();
     const { res: appointmentRes, fetchData: fetchAppointmentData, isLoading: isAppointmentLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
-    const [status, setStatus] = useState("upcoming");
+    const [status, setStatus] = useState("all");
     const [allAppointments, setAllAppointments] = useState([]);
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [date, setDate] = useState();
