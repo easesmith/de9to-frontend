@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { IoSearchSharp } from 'react-icons/io5'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
+import ImageSkeleton from './ImageSkeleton'
 
 const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) => {
     const [isShadow, setIsShadow] = useState(false)
