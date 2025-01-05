@@ -12,7 +12,7 @@ import { z } from "zod";
 import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import noSlot from "@/assets/Vector (7).png";
-import { format, addDays } from 'date-fns';  // Import for date manipulation
+import { format, addDays, parse } from 'date-fns';  // Import for date manipulation
 import { useNavigate } from "react-router-dom";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
@@ -140,7 +140,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
     };
 
     // Generate the days with slot times
-    const days = getDaysFromToday(7);
+    const days = getDaysFromToday(31);
 
     // Output the result
     console.log(days);
@@ -239,7 +239,20 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
 
     useEffect(() => {
         if (slotsRes?.status === 200 || slotsRes?.status === 201) {
-            setSlots(slotsRes?.data?.data?.availableSlots);
+            const filteredSlots = slotsRes?.data?.data?.availableSlots?.filter((slot) => {
+                const slotStartTime = slot?.slotId?.startTime; // Assume it's in "hh:mma" format, e.g., "03:45PM"
+                if (!slotStartTime) return false;
+
+                const currentTime = format(new Date(), "hh:mma");
+
+                // Parse both times into Date objects for reliable comparison
+                const slotTimeParsed = parse(slotStartTime, "hh:mma", new Date());
+                const currentTimeParsed = parse(currentTime, "hh:mma", new Date());
+
+                return slotTimeParsed > currentTimeParsed;
+            });
+            // setSlots(slotsRes?.data?.data?.availableSlots);
+            setSlots(filteredSlots);
             console.log("slotsRes response", slotsRes);
         }
     }, [slotsRes])
@@ -257,7 +270,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                 <DialogHeader className="text-left">
                     <div className="flex justify-between items-center">
                         <DialogTitle className="font-inter font-medium text-[#0D0E0E] text-base sm:text-2xl ">Confirm Your Booking</DialogTitle>
-                        <X onClick={()=> setIsConfirmBookingModalOpen(false)} className="h-4 w-4 cursor-pointer" />
+                        <X onClick={() => setIsConfirmBookingModalOpen(false)} className="h-4 w-4 cursor-pointer" />
                     </div>
                     <Form {...form}>
                         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 w-full'>
@@ -361,7 +374,7 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
                                                         <Button
                                                             type="button"
                                                             className="bg-[#95C22B] w-full"
-                                                            onClick={() => handleDaySelection2(dayIndex + findNextAvailableDate(item.date).index)}
+                                                            onClick={() => handleDaySelection2(findNextAvailableDate(item.date).index)}
                                                             disabled={!findNextAvailableDate(item.date)}
                                                         >
                                                             Next availability on {findNextAvailableDate(item.date)?.name} {/* Dynamic date */}
