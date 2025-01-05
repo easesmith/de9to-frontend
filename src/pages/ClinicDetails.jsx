@@ -282,6 +282,7 @@ const ClinicDetails = () => {
                         clinicId={clinic?._id}
                         reviewType="clinic"
                         getData={getClinicRating}
+                        getAllRating={getAllRating}
                     />
                 }
             </section>

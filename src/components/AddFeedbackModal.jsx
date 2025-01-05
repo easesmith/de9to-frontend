@@ -11,7 +11,7 @@ import { AddFeedbackSchema } from '@/schema/formSchema'
 import { readCookie } from '@/utils/readCookie'
 import toast from 'react-hot-toast'
 
-const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, dentistId,clinicId, reviewType ,getData}) => {
+const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, dentistId,clinicId, reviewType ,getData,getAllRating=()=>{}}) => {
     const form = useForm({
         resolver: zodResolver(AddFeedbackSchema),
         defaultValues: {
@@ -54,6 +54,7 @@ const AddFeedbackModal = ({ isAddFeedbackModalOpen, setIsAddFeedbackModalOpen, d
         if (res?.status === 200 || res?.status === 201) {
             console.log("add feedback res", res);
             getData();
+            getAllRating()
             setIsAddFeedbackModalOpen(false);
         }
     }, [res])

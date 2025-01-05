@@ -122,9 +122,9 @@ const ConfirmBookingPage = () => {
                                 <div className='flex gap-2 items-center flex-wrap max-[500px]:text-sm'>
                                     <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
                                     <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                                    <p className='text-[#FF8A00] font-inter font-semibold'>Oral Pathology</p>
+                                    <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
                                     <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                                    <p className='text-[#FF8A00] font-inter font-semibold'>{clinic[0]?.clinicName}</p>
+                                    <p className='text-[#FF8A00] font-inter font-semibold'>{clinic?.some((item) => item.defaultClinic) ? clinic?.find((item) => item.defaultClinic)?.clinicName : clinic[0]?.clinicName}</p>
                                 </div>
                             </div>
                         </div>
