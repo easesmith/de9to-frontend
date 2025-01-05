@@ -95,9 +95,9 @@ const MyFeedback = () => {
                             <div className='flex flex-col justify-center gap-1 w-full'>
                                 <div className='flex flex-col justify-start items-start'>
                                     <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
-                                    <div className='w-full flex justify-start items-center gap-3'>
+                                    <div className='w-full flex justify-start items-center'>
                                         <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{feedback?.clinic ? feedback?.clinic?.clinicName : `${feedback?.dentist?.personalDetails?.prefix} ${feedback?.dentist?.personalDetails?.Firstname}`} </h5>
-                                        <FiExternalLink className='text-[#717171]' />
+                                        <FiExternalLink className='text-[#717171] inline-block ml-3' />
                                     </div>
                                 </div>
                             </div>
