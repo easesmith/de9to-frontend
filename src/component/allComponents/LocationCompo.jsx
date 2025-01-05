@@ -20,7 +20,7 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder='Search Dentists, Clinic etc.'
-                    className="text-[#000000] text-base font-medium font-poppins rounded-lg focus-visible:ring-[#95C22B] placeholder:text-[#000000] px-10 py-5"
+                    className="text-[#000000] text-base font-medium font-poppins rounded-lg focus-visible:ring-[#95C22B] placeholder:text-[#000000] px-6 py-5"
                 />
                 {searchQuery &&
                     <HiMiniXMark onClick={() => { setIsShadow(false), setShowDentistAndClinic('All'), setSearchQuery("") }} className='absolute text-lg right-5 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer' />
@@ -36,7 +36,7 @@ const LocationCompo = ({ searchQuery, setSearchQuery, handleGetSerachQuery, loca
                 </SelectContent>
             </Select>
             <div className=' '>
-                <button onClick={handleGetSerachQuery} className=' w-[150px] bg-[#95C22B] text-[#FFFFFF] text-base font-semibold font-poppins border-[1px] border-[#95C22B]  rounded-lg px-10 py-2'>Search</button>
+                <button onClick={handleGetSerachQuery} className=' w-[150px] bg-[#95C22B] text-[#FFFFFF] text-base font-semibold font-poppins border-[1px] border-[#95C22B] rounded-lg px-10 py-2'>Search</button>
             </div>
         </div>
     )

@@ -109,7 +109,7 @@ const Payment = () => {
                 </Table>
                 <div className='max-[425px]:flex hidden mt-4 gap-3 justify-between flex-wrap'>
                     {payments.map((payment, i) => (
-                        <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] w-[154px] flex flex-col items-center gap-5'>
+                        <div key={i} className='rounded-md py-[10px] px-3 bg-[#F4F9EA] min-w-[133px] w-[47.8%] flex flex-col items-center gap-2'>
                             <div className='flex gap-3 justify-start items-center w-full -mb-2'>
                                 <p className='text-[#717171] text-[10px] font-medium font-inter'>Date</p>
                                 <p className='text-[#1A1A1A] text-xs font-normal font-inter'>{payment.date}</p>

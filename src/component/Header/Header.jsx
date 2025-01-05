@@ -49,6 +49,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import DeleteAccountModal from '@/components/DeleteAccountModal'
 import LogoutModal from '@/components/LogoutModal'
+import ImageSkeleton from '@/components/ImageSkeleton'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -165,13 +166,27 @@ const Header = () => {
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar> */}
-                <img src={userInfo?.userImage ? userInfo?.userImage : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} className="w-12 h-12 rounded-full" />
+                <ImageSkeleton
+                  src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"}
+                  imgClassName={'w-10 h-10 rounded-full'}
+                  skeletonClassName={"w-10 h-10 rounded-full"}
+                />
+                {/* <div className='w-10 h-10'>
+                  <img src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"} className="w-full h-full rounded-full" />
+                </div> */}
                 <IoIosArrowDown className='text-xl text-[#717171]' />
               </button>
               <DropdownMenu>
                 <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
                   <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
-                    <img src={userInfo?.userImage ? userInfo?.userImage : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="} className="w-12 h-12 rounded-full" />
+                    <ImageSkeleton
+                      src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"}
+                      imgClassName={'w-10 h-10 rounded-full'}
+                      skeletonClassName={"w-10 h-10 rounded-full"}
+                    />
+                    {/* <div className='w-10 h-10'>
+                      <img src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"} className="w-full h-full rounded-full" />
+                    </div> */}
                     <IoIosArrowDown className='text-xl text-[#717171]' />
                   </button>
                 </DropdownMenuTrigger>

@@ -135,14 +135,14 @@ const MedicalRecords = () => {
                                         <p className='text-[#717171] text-[10px] font-medium font-inter'>Dentist</p>
                                         <div className='w-full flex justify-start items-center gap-3'>
                                             <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{`${record?.appointmentId?.dentistId?.personalDetails?.Firstname} ${record?.appointmentId?.dentistId?.personalDetails?.lastName}`} </h5>
-                                            <FiExternalLink className='text-[#717171]' />
+                                            <FiExternalLink className='text-[#717171] inline-block ml-3' />
                                         </div>
                                     </div>
                                     <div className='w-full flex flex-col justify-start items-start'>
                                         <p className='text-[#717171] text-[10px] font-medium font-inter'>Clinics</p>
                                         <div className='w-full flex justify-between items-center'>
                                             <h5 className='text-[#1A1A1A] text-xs font-normal font-inter'>{record?.appointmentId?.clinicId?.clinicName}</h5>
-                                            <FaLocationDot className='text-[#717171]' />
+                                            <FaLocationDot className='text-[#717171] inline-block ml-3' />
                                         </div>
                                     </div>
                                 </div>

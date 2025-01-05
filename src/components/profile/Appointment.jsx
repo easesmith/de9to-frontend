@@ -13,12 +13,12 @@ const Appointment = ({ appointment, index }) => {
             <TableCell>{appointment?.timing?.date}</TableCell>
             <TableCell>{appointment?.timing?.slot?.startTime || "no time"}</TableCell>
             <TableCell>{appointment?.patientId?.name}</TableCell>
-            <TableCell>{`${appointment?.dentistId?.personalDetails?.prefix} ${appointment?.dentistId?.personalDetails?.Firstname} ${appointment?.dentistId?.personalDetails?.lastName}`}
-                <FaExternalLinkAlt className='text-[#717171] inline-block ml-4' />
+            <TableCell>{`${appointment?.dentistId?.personalDetails?.prefix}. ${appointment?.dentistId?.personalDetails?.Firstname} ${appointment?.dentistId?.personalDetails?.lastName}`}
+                <FaExternalLinkAlt className='text-[#717171] inline-block ml-3' />
             </TableCell>
-            <TableCell className="flex gap-2 items-center">
+            <TableCell>
                 {appointment?.clinicId?.clinicName}
-                <FaLocationDot className='text-[#717171]' />
+                <FaLocationDot className='text-[#717171] inline-block ml-3' />
             </TableCell>
             <TableCell className={`font-medium ${appointment.status === "completed" ? "text-[#00CD4B]" :appointment.status === "cancelled"? "text-[#FF0000]":appointment.status === "upcoming"?"text-blue-400":"text-yellow-400"}`}>{appointment?.status.charAt(0).toUpperCase() + appointment?.status.slice(1).toLowerCase()}</TableCell>
             <TableCell>

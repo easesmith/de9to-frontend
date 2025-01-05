@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Link, useLocation } from 'react-router-dom'
 import { IoIosArrowDown } from 'react-icons/io'
 import DeleteAccountModal from './DeleteAccountModal'
-import { Button } from './ui/button'
-import { readCookie } from '@/utils/readCookie'
 import LogoutModal from './LogoutModal'
 import De9tologo from '@/assets/de9to-logo-1.png'
 
@@ -20,14 +17,7 @@ const Sidebar = () => {
             <div className="w-28 sm:w-40 mt-4 px-3">
                 <img src={De9tologo} alt="" />
             </div>
-            {/* <div className='flex items-center gap-1 px-3'>
-                <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <p className='font-inter font-medium text-[#0F172A]'>{userInfo?.name}</p>
-            </div> */}
-            <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
+            <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-2'>
                 <Link to="/profile/medical-records" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                     Medical Records
                 </Link>

@@ -81,10 +81,8 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
         return () => window.removeEventListener('click', handleOutsideClick);
     }, [isShadow]);
 
-    // if (!open) return null;
-
     return (
-        <section className={`max-w-[1020px] relative w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
+        <section className={`max-w-[800px] relative w-full mx-auto ${isShadow ? 'min-[700px]:shadow-custom7' : ''}`}>
             <LocationCompo searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleQuery={handleQuery} handleGetSerachQuery={handleGetSerachQuery} location={location} isShadow={isShadow} setIsShadow={setIsShadow} setShowDentistAndClinic={setShowDentistAndClinic} setLocation={setLocation} />
             <div className='min-[700px]:hidden mt-4 flex items-center gap-2'>
                 <div className='relative w-full'>
@@ -103,11 +101,11 @@ const SearchListCompo = ({ setAllData = () => { }, setAllClinics = () => { } }) 
             <>
                 {isShadow &&
                     // <div className='modal max-[700px]:hidden fixed inset-0 bg-black/50 flex justify-center items-center z-30'>
-                    <div className={`flex max-[700px]:hidden flex-col py-8 px-10 gap-8 max-w-[1240px] w-full  z-30 mx-auto absolute  bg-white ${isShadow ? 'shadow-custom7 rounded-b-2xl' : 'hidden'}`}>
+                    <div className={`flex max-[700px]:hidden flex-col py-8 px-10 gap-8 max-w-[1240px] w-full z-30 mx-auto absolute  bg-white ${isShadow ? 'shadow-custom7 rounded-b-2xl' : 'hidden'}`}>
                         <div className='flex justify-center gap-10'>
-                            <button onClick={() => setShowDentistAndClinic('All')} className={`${showDentistAndClinic === "All" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>All</button>
-                            <button onClick={() => setShowDentistAndClinic('doctor')} className={`${showDentistAndClinic === "doctor" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Doctor</button>
-                            <button onClick={() => setShowDentistAndClinic('clinic')} className={`${showDentistAndClinic === "clinic" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-bold font-inter border  rounded-[10px] py-3 px-24`}>Clinics</button>
+                            <button onClick={() => setShowDentistAndClinic('All')} className={`w-[150px] ${showDentistAndClinic === "All" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-semibold font-inter border rounded-[10px] px-10 py-2`}>All</button>
+                            <button onClick={() => setShowDentistAndClinic('doctor')} className={`w-[150px] ${showDentistAndClinic === "doctor" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-semibold font-inter border rounded-[10px] px-10 py-2`}>Doctor</button>
+                            <button onClick={() => setShowDentistAndClinic('clinic')} className={`w-[150px] ${showDentistAndClinic === "clinic" ? 'bg-[#95C22B] text-[#FFFFFF] border-[#95C22B]' : 'bg-[#FFFFFF] text-[#95C22B] border-[#808080]'} text-base font-semibold font-inter border rounded-[10px] px-10 py-2`}>Clinics</button>
                         </div>
                         <div className='flex flex-col gap-5'>
                             {showDentistAndClinic === 'All' &&
