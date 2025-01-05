@@ -25,7 +25,7 @@ const ProfileLayout = ({ children }) => {
                 <Sidebar />
                 <main className="w-[calc(100%-280px)] max-lg:w-full bg-[#F4F9EA]">
                     <Header />
-                    <div className='p-5 h-[calc(100vh-75px)] overflow-y-auto max-[425px]:p-5'>
+                    <div className='p-5 h-[calc(100vh-75px)] overflow-y-auto max-[425px]:p-0'>
                         {children}
                     </div>
                 </main>

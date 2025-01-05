@@ -282,10 +282,10 @@ const Home = () => {
                 {testimonials.length > 0 && testimonials.map((testimonial, index) => {
                   return (
                     <SwiperSlide key={index}>
-                      <div className=' bg-white flex flex-col items-center gap-12 rounded-2xl shadow-custom5 p-10 px-0'>
-                        <p className=' text-[#636571] text-2xl max-w-[500px] break-words whitespace-break-spaces max-[500px]:text-lg text-center font-light 
+                      <div className=' bg-white flex flex-col items-center gap-8 rounded-2xl shadow-custom5 p-10 px-0 h-[300px] max-lg:h-[270px] mb-7'>
+                        <p className=' text-[#636571] text-2xl max-w-[500px] break-words whitespace-break-spaces max-lg:text-lg max-sm:text-base text-center font-light 
                     italic font-poppins'>{testimonial?.comment}</p>
-                        <div className="profile flex justify-center items-start gap-6">
+                        <div className="profile flex justify-center items-start gap-4">
                           <div className="profile-picture">
                             <ImageSkeleton
                               src={testimonial?.image ? testimonial?.image : "https://wallpapers.com/images/high/placeholder-profile-icon-20tehfawxt5eihco.png"}
@@ -294,8 +294,8 @@ const Home = () => {
                             />
                           </div>
                           <div>
-                            <h4 className=' text-[#595959] text-2xl max-[500px]:text-lg font-bold font-inter'>{testimonial?.name}</h4>
-                            <p className=" text-[#595959] text-base max-[500px]:text-sm font-normal font-inter">{testimonial?.location}</p>
+                            <h4 className=' text-[#595959] text-2xl max-lg:text-lg max-sm:text-base font-bold font-inter'>{testimonial?.name}</h4>
+                            <p className=" text-[#595959] text-base max-lg:text-sm max-sm:text-[10px] font-normal font-inter">{testimonial?.location}</p>
                           </div>
                         </div>
                       </div>
@@ -323,7 +323,7 @@ const Home = () => {
                 <div className='relative z-0 w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
                   <img src={ProfileImg1} alt="" className=' absolute z-10 left-[25%] bottom-[18%]' />
                   <img src={ProfileImg2} alt="" className=' absolute z-10 left-[18%] top-[25%]' />
-                  <svg className='absolute bottom-[80%] left-[40%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg className='absolute bottom-[82%] left-[47%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
                     <defs>
                       <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">
@@ -353,7 +353,7 @@ const Home = () => {
                 </svg>
                 <div className='relative w-[510px] h-[510px] flex justify-center items-center border-[1px] border-[#D7D7D7] rounded-full'>
                   <div className='relative w-[350px] h-[350px] flex justify-center items-center  border-[1px] border-[#D7D7D7] rounded-full'>
-                    <svg className='absolute bottom-[90%] left-[40%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className='absolute bottom-[90%] left-[28%]' width="100" height="100" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect width="110" height="110" rx="55" fill="url(#paint0_linear_718_1563)" />
                       <defs>
                         <linearGradient id="paint0_linear_718_1563" x1="55" y1="0" x2="55" y2="110" gradientUnits="userSpaceOnUse">

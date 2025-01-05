@@ -176,7 +176,7 @@ const Contact = () => {
               </Form>
             </div>
             <div className='w-1/2 max-[768px]:hidden h-full'>
-              <img src={DoctorImg} alt="" className='h-[704px] max-lg:h-[807px] w-full' />
+              <img src={DoctorImg} alt="" className='h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full' />
             </div>
           </div>
         </section>
