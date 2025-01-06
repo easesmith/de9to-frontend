@@ -59,7 +59,7 @@ const AppointmentModal = ({ isAppointmentModalOpen, setIsAppointmentModalOpen, a
                                     </button>
                                 </div>
                             </p>
-                            <p className="p-2 text-[#1A1A1A] max-sm:text-xs font-inter">{appointment?._id}</p>
+                            <p className="p-2 text-[#1A1A1A] max-sm:text-xs font-inter">{appointment?.customAppointmentId}</p>
                         </div>
                     </div>
                     <Button className="w-full mt-5 max-sm:text-base" onClick={() => setIsAppointmentModalOpen(false)}>Reschedule</Button>

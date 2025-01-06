@@ -23,7 +23,7 @@ const TreatmentPayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen, payment
     const { res: verifyPaymentRes, fetchData: fetchVerifyPaymentData, isLoading: isVerifyPaymentLoading } = usePostApiReq();
     const { res: updatePaymentStatusRes, fetchData: fetchUpdatePaymentStatusData, isLoading: isUpdatePaymentStatusLoading } = usePatchApiReq();
 
-    const { patientId, dentistId, clinicId, paymentFor } = payment || {};
+    const { patientId, dentistId, clinicId, paymentFor, treatmentId } = payment || {};
 
     const userInfo = readCookie("userInfo");
     console.log("userInfo", userInfo);
@@ -121,7 +121,7 @@ const TreatmentPayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen, payment
                                 <div className="grid grid-cols-2 gap-2 mt-3">
                                     <div>
                                         <h3 className='font-inter text-xl max-md:text-lg font-medium text-[#1A1A1A]'>{patientId?.name}</h3>
-                                        <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>ID: 778899888</p>
+                                        <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>ID: {patientId?.customPatientId}</p>
                                         <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>+91 {patientId?.phone}</p>
                                         <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>Email: {patientId?.email}</p>
                                     </div>
@@ -146,7 +146,7 @@ const TreatmentPayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen, payment
 
                                 <div className='mt-5'>
                                     <h3 className='font-inter text-xl max-md:text-lg font-medium text-[#1A1A1A]'>Medical History</h3>
-                                    <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>Allergies, Undergone Medical Treatment</p>
+                                    <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>{treatmentId?.dentalIssue}</p>
                                 </div>
 
                                 <div className='mt-6'>

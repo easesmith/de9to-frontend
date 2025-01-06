@@ -101,7 +101,7 @@ const PayNowModal = ({ isPayNowModalOpen, setIsPayNowModalOpen, payment }) => {
                                 <div className="grid grid-cols-2 gap-2 mt-3">
                                     <div>
                                         <h3 className='font-inter text-xl max-md:text-lg font-medium text-[#1A1A1A]'>{patientId?.name}</h3>
-                                        <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>ID: 778899888</p>
+                                        <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>ID: {patientId?.customPatientId}</p>
                                         <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>+91 {patientId?.phone}</p>
                                         <p className='font-inter text-sm max-md:text-xs text-[#1A1A1A]'>Email: {patientId?.email}</p>
                                     </div>

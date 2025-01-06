@@ -65,7 +65,7 @@ const Appointments = () => {
     }, [res])
 
     const filterAppointments = async () => {
-        fetchAppointmentData(`/patient/filter-appointment-by-date?patientId=${userInfo?.userId}&date=${format(new Date(date), "dd-MM-yyy")}&status=${status}`);
+        fetchAppointmentData(`/patient/filter-appointment-by-date?patientId=${userInfo?.userId}&date=${date}&status=${status}`);
     }
 
     useEffect(() => {
