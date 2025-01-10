@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import DentalCampImg1 from '../../assets/Frame 1171283211.png'
-import DentalCampImg1 from '@/assets/Frame 1171283211.png'
-import DentalCampImg2 from '@/assets/Frame 1171283212.png'
-import DentalCampImg3 from '@/assets/Frame 1171283211.png'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import useGetApiReq from '@/hooks/useGetApiReq';
+import ImageSkeleton from '@/components/ImageSkeleton';
 
 const SuccessfulDentalCamps = () => {
 
@@ -23,7 +20,7 @@ const SuccessfulDentalCamps = () => {
     })
 
     const getContent = () => {
-        fetchData(`/admin/get-specific-content?pageName=dental-camps&sectionName=successful-dental-camps`)
+        fetchData(`/patient/get-specific-content?pageName=dental-camps&sectionName=successful-dental-camps`)
     }
 
     useEffect(() => {
@@ -36,7 +33,7 @@ const SuccessfulDentalCamps = () => {
             const { images = [], content = [] } = res?.data?.foundContent;
             setContentData({
                 content: content[0]?.resources,
-                image: images[0]?.image
+                image: images
             })
         }
     }, [res])
@@ -102,24 +99,18 @@ const SuccessfulDentalCamps = () => {
                     }}
                     className='h-[420px]'
                 >
-                    <SwiperSlide>
-                        <img src={DentalCampImg1} alt="" className='cursor-pointer h-[370px]' />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={DentalCampImg2} alt="" className='cursor-pointer h-[370px]' />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer h-[370px]' />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={DentalCampImg1} alt="" className='cursor-pointer h-[370px]' />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={DentalCampImg2} alt="" className='cursor-pointer h-[370px]' />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer h-[370px]' />
-                    </SwiperSlide>
+                    {contentData?.image && contentData?.image.map(({ image }, index) => {
+                        return (
+                            <SwiperSlide key={index}>
+                                {/* <img src={image} alt="" className='cursor-pointer h-[370px]' /> */}
+                                <ImageSkeleton
+                                    src={image}
+                                    imgClassName={'cursor-pointer h-[370px]'}
+                                    skeletonClassName={"cursor-pointer h-[370px]"}
+                                />
+                            </SwiperSlide>
+                        )
+                    })}
                 </Swiper>
             </div>
         </section>

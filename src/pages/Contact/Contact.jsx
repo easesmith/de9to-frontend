@@ -20,6 +20,7 @@ import usePostApiReq from '@/hooks/usePostApiReq'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import ImageSkeleton from '@/components/ImageSkeleton'
 
 
 const Contact = () => {
@@ -103,7 +104,7 @@ const Contact = () => {
   })
 
   const getContent = () => {
-    fetchData2(`/admin/get-specific-content?pageName=contact-us&sectionName=our-contact`)
+    fetchData2(`/patient/get-specific-content?pageName=contact-us&sectionName=our-contact`)
   }
 
   useEffect(() => {
@@ -238,7 +239,11 @@ const Contact = () => {
               </Form>
             </div>
             <div className='w-1/2 max-[768px]:hidden h-full'>
-              <img src={`${contentData.image ? contentData.image : DoctorImg}`} alt="" className='h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full' />
+              <ImageSkeleton
+                src={contentData?.image}
+                imgClassName={'h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full rounded-[10px]'}
+                skeletonClassName={"h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full rounded-[10px]"}
+              />
             </div>
           </div>
         </section>
