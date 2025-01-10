@@ -1,6 +1,7 @@
 import useGetApiReq from '@/hooks/useGetApiReq'
 import React, { useEffect, useState } from 'react'
 import parse from 'html-react-parser';
+import ImageSkeleton from '@/components/ImageSkeleton';
 
 const OurJourneySection = () => {
     const { res, fetchData } = useGetApiReq()
@@ -34,7 +35,12 @@ const OurJourneySection = () => {
                 <p className='text-[#5C5C5C] text-[17px] font-normal font-inter'>{parse(contentData.content)}</p>
             </div>
             <div className="w-full md:w-1/3 h-full flex justify-center">
-                <img src={contentData.image} alt="" className='rounded-lg' />
+                {/* <img src={contentData.image} alt="" className='rounded-lg' /> */}
+                <ImageSkeleton
+                    src={contentData.image}
+                    imgClassName={'rounded-lg'}
+                    skeletonClassName={"rounded-lg h-80 w-full"}
+                />
             </div>
         </section>
     )

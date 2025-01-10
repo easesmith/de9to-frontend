@@ -1,4 +1,5 @@
 import DocImage2 from '@/assets/Group 1321317071.png';
+import ImageSkeleton from '@/components/ImageSkeleton';
 import SearchListCompo from '@/components/SearchListCompo';
 import useGetApiReq from '@/hooks/useGetApiReq';
 import { useEffect, useState } from 'react';
@@ -50,7 +51,12 @@ const HeroSection = () => {
                     </div>
                     <div className=''>
                         <div className=' relative'>
-                            <img className='max-w-md w-full' src={contentData.image} alt="" />
+                            {/* <img className='max-w-md w-full' src={contentData.image} alt="" /> */}
+                            <ImageSkeleton
+                                src={contentData.image}
+                                imgClassName={'max-w-md w-full'}
+                                skeletonClassName={"max-w-md w-full h-[450px] w-[400px]"}
+                            />
                         </div>
                     </div>
                 </div>

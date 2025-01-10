@@ -4,6 +4,7 @@ import Image2 from '@/assets/checklist 1.png';
 import Image3 from '@/assets/dental-clinic (1) 1.png';
 import Image1 from '@/assets/dentist 1.png';
 import Image4 from '@/assets/maps.png';
+import ImageSkeleton from '@/components/ImageSkeleton';
 import useGetApiReq from '@/hooks/useGetApiReq';
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
@@ -40,9 +41,14 @@ const WhatWeHaveAchieved = () => {
     return (
         <section className='bg-[#FFFFFF]'>
             <div className='bg-[#FFFFFF] flex justify-center items-start gap-20 flex-wrap px-5 pt-20 pb-10 h-full'>
-                <div className='w-[550px] max-md:w-[400px] max-[450px]:w-[300px] rounded-[40px]'>
+                <div className='w-[550px] max-md:w-[400px] max-[450px]:w-[300px] rounded-[40px] h-full'>
                     <div className=' relative'>
-                        <img src={contentData.image} alt="" className='w-[550px] bg-[#F8F8F8] rounded-[40px]' />
+                        {/* <img src={contentData.image} alt="" className='w-[550px] bg-[#F8F8F8] rounded-[40px]' /> */}
+                        <ImageSkeleton
+                            src={contentData.image}
+                            imgClassName={'w-[550px] bg-[#F8F8F8] rounded-[40px]'}
+                            skeletonClassName={"w-[550px] max-md:w-[400px] max-[450px]:w-[300px] max-md:h-[400px] max-[450px]:h-[300px] h-[560px] rounded-[40px]"}
+                        />
                         <div className=' absolute top-[2%] right-[2%] border-[16px] border-[#EBEBEB] rounded-full max-w-[150px] max-h-[150px] w-full h-full max-md:w-[175px] max-md:h-[175px] max-[500px]:w-[90px] max-[500px]:h-[90px] '>
                             <img src={CheckMarkImg} alt="" />
                         </div>

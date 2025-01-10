@@ -26,6 +26,8 @@ const OurTeamSection = () => {
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
+            console.log("get-teams-section get-teams-section",res);
+            
             const {
                 teamMember1Name,
                 teamMember1Designation,
@@ -52,11 +54,16 @@ const OurTeamSection = () => {
         }
     }, [res])
 
+    console.log("contentData",contentData?.teamMember1Designation);
+    
+
     return (
         <section className='px-5'>
             <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter mb-4 max-sm:text-2xl'>Our Team</h3>
-            <div className='flex justify-between items-center gap-10 max-sm:gap-5 max-sm:flex-wrap max-lg:justify-center w-full'>
-                <OurTeamMember img={contentData.teamMember1Image} name="Dr. Gajendra Yadav" profile="Director and COO" />
+            <div className='grid grid-cols-1 sm:grid-cols-3 gap-10 max-sm:gap-5 max-lg:justify-center w-full h-full'>
+                <OurTeamMember img={contentData.teamMember1Image} name={contentData.teamMember1Name} profile={contentData.teamMember1Designation} />
+                <OurTeamMember img={contentData.teamMember2Image} name={contentData.teamMember2Name} profile={contentData.teamMember2Designation} />
+                <OurTeamMember img={contentData.teamMember3Image} name={contentData.teamMember3Name} profile={contentData.teamMember3Designation} />
             </div>
         </section>
     )
