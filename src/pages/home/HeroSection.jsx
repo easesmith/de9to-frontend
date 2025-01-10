@@ -14,7 +14,7 @@ const HeroSection = () => {
     })
 
     const getContent = () => {
-        fetchData(`/admin/get-specific-content?pageName=home&sectionName=hero`)
+        fetchData(`/patient/get-specific-content?pageName=home&sectionName=hero`)
     }
 
     useEffect(() => {

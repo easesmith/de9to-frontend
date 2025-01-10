@@ -20,7 +20,7 @@ const AboutUsHero = () => {
     })
 
     const getContent = () => {
-        fetchData(`/admin/get-specific-content?pageName=about-us&sectionName=hero`)
+        fetchData(`/patient/get-specific-content?pageName=about-us&sectionName=hero`)
     }
 
     useEffect(() => {
