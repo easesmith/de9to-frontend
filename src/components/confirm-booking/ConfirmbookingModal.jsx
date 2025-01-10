@@ -254,6 +254,24 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
             // setSlots(slotsRes?.data?.data?.availableSlots);
             setSlots(filteredSlots);
             console.log("slotsRes response", slotsRes);
+            if (format(new Date(selectedDay), "EEEE").toLowerCase() === format(new Date(), "EEEE").toLowerCase()) {
+                const filteredSlots = slotsRes?.data?.data?.availableSlots?.filter((slot) => {
+                    const slotStartTime = slot?.slotId?.startTime; // Assume it's in "hh:mma" format, e.g., "03:45PM"
+                    if (!slotStartTime) return false;
+
+                    const currentTime = format(new Date(), "hh:mma");
+
+                    // Parse both times into Date objects for reliable comparison
+                    const slotTimeParsed = parse(slotStartTime, "hh:mma", new Date());
+                    const currentTimeParsed = parse(currentTime, "hh:mma", new Date());
+
+                    return slotTimeParsed > currentTimeParsed;
+                });
+                setSlots(filteredSlots);
+            }
+            else {
+                setSlots(slotsRes?.data?.data?.availableSlots)
+            }
         }
     }, [slotsRes])
 

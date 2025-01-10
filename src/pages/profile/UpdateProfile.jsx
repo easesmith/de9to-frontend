@@ -73,7 +73,7 @@ const UpdateProfile = () => {
         console.log("Data:", data);
         const formData = new FormData();
 
-        formData.append("profileImage", data.profileImg)
+        formData.append("profileImage", data.profileImg[0])
         formData.append("name", data.name)
         formData.append("email", data.email)
         formData.append("pincode", data.pincode)
@@ -88,7 +88,7 @@ const UpdateProfile = () => {
         formData.append("patientId", userInfo?.userId)
         fetchData(`/patient/update-patient`, formData);
     };
-
++
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             console.log("patient profile res", res);

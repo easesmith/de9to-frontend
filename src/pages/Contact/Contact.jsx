@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../component/Layout/Layout'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -18,6 +18,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { FaLocationDot } from "react-icons/fa6";
 import usePostApiReq from '@/hooks/usePostApiReq'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
+import useGetApiReq from '@/hooks/useGetApiReq'
 
 
 const Contact = () => {
@@ -65,8 +67,43 @@ const Contact = () => {
     }
   }, [res])
 
+  const [seoData, setSeoData] = useState({
+    title: "",
+    description: "",
+    focusedKeywords: "",
+  });
+
+  const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+  const getSeo = () => {
+    fetchData1(`/patient/get-seo?pageName=contact-us`);
+  }
+
+  useEffect(() => {
+    getSeo();
+  }, [])
+
+  useEffect(() => {
+    if (res1?.status === 200 || res1?.status === 201) {
+      console.log("get seo api res: ", res1)
+      const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+      setSeoData({
+        title: seoTitle,
+        description: description,
+        focusedKeywords: focusedKeywords,
+      })
+    }
+  }, [res1])
+
   return (
     <Layout>
+      <Helmet>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.description} />
+        <meta name="keywords" content={seoData.focusedKeywords} />
+      </Helmet>
+
       <main className='max-w-[1240px] p-4 mx-auto flex flex-col gap-10 max-sm:gap-5 mt-4 mb-2'>
         <section className='flex flex-col justify-center items-center'>
           <h1 className='text-[#95C22B] text-[40px] text-center font-bold font-inter opacity-90 max-lg:text-2xl'>Get in touch</h1>

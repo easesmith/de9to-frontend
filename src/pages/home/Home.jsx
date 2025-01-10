@@ -1,47 +1,38 @@
-import React, { useCallback, useEffect, useRef } from 'react'
-import Layout from '@/component/Layout/Layout'
-import TreatementCompo from '@/components/TreatementCompo'
-import Card, { DentalTeamCard } from '@/component/Card/Card'
-import DocImage from '@/assets/Group 1321317071.png'
-import DocImage2 from '@/assets/Group 1321317071.png'
-import TeethImg from '@/assets/_Compound Path_.png'
-import ProfileImg from '@/assets/_Compound Path_.png'
-import ProfileImg1 from '@/assets/dniedeibeib.png'
 import ProfileImg2 from '@/assets/Image-100.png'
 import Image from '@/assets/Picture1-removebg-preview 1.png'
+import TeethImg from '@/assets/_Compound Path_.png'
 import CheckMarkImg from '@/assets/anbx.png'
-import Image1 from '@/assets/dentist 1.png'
 import Image2 from '@/assets/checklist 1.png'
 import Image3 from '@/assets/dental-clinic (1) 1.png'
+import Image1 from '@/assets/dentist 1.png'
+import ProfileImg1 from '@/assets/dniedeibeib.png'
 import Image4 from '@/assets/maps.png'
-import PhoneImg from '@/assets/main.png'
-import { IoMdArrowBack } from "react-icons/io";
-import { IoMdArrowForward } from "react-icons/io";
-import { MdOutlineArrowOutward } from "react-icons/md";
-import { useState } from 'react'
-import SearchListCompo from '@/components/SearchListCompo'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import ConfirmBookingModal from '@/components/confirm-booking/ConfirmbookingModal'
-import useGetApiReq from '@/hooks/useGetApiReq'
-import CountUp from 'react-countup'
-import ScrollTrigger from 'react-scroll-trigger'
-import { useNavigate } from 'react-router-dom'
+import Card, { DentalTeamCard } from '@/component/Card/Card'
+import Layout from '@/component/Layout/Layout'
 import ImageSkeleton from '@/components/ImageSkeleton'
+import TreatementCompo from '@/components/TreatementCompo'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { useEffect, useRef, useState } from 'react'
+import CountUp from 'react-countup'
+import { Helmet } from 'react-helmet-async'
+import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+import ScrollTrigger from 'react-scroll-trigger'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import HeroSection from './HeroSection'
+import WhatWeHaveAchieved from './WhatWeHaveAchieved'
 
 const Home = () => {
   const navigate = useNavigate();
   const [active, setActive] = useState(1)
   const swiperRef3 = useRef(null);
-  const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
   const [testimonials, setTestimonials] = useState([])
 
-  const [isCounter, setIsCounter] = useState(false);
 
   const { res, fetchData } = useGetApiReq()
 
@@ -76,49 +67,44 @@ const Home = () => {
     setActive(number)
   }
 
+  const [seoData, setSeoData] = useState({
+    title: "",
+    description: "",
+    focusedKeywords: "",
+  });
+
+  const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+  const getSeo = () => {
+    fetchData1(`/patient/get-seo?pageName=home-page`);
+  }
+
+  useEffect(() => {
+    getSeo();
+  }, [])
+
+  useEffect(() => {
+    if (res1?.status === 200 || res1?.status === 201) {
+      console.log("get seo api res: ", res1)
+      const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+      setSeoData({
+        title: seoTitle,
+        description: description,
+        focusedKeywords: focusedKeywords,
+      })
+    }
+  }, [res1])
+
   return (
     <Layout>
       <main>
-        <section className='bg-[#FBFEF6]'>
-          <div className='flex justify-center items-center flex-wrap pt-10'>
-            <div className="max-[970px]:hidden">
-              <SearchListCompo />
-            </div>
-            <div className='flex justify-center items-center flex-wrap mt-6'>
-              <div className='px-16 py-16 max-[500px]:px-6 max-[700px]:py-6'>
-                <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
-                <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">Personalized <span className='text-[#95C22B]'>Dental Solutions</span> for Every Patient</h1>
-                <div className=' flex gap-5 max-[500px]:justify-center'>
-                  <button onClick={() => navigate("/our-dentist")} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>
-                    <div className=' text-[#FFFFFF] text-lg max-[970px]:text-base font-semibold font-poppins '>Book an appointment</div>
-                    <MdOutlineArrowOutward color='#FFFFFF' className='text-xl max-[970px]:text-lg' />
-                  </button>
-                </div>
-                {isConfirmBookingModalOpen &&
-                  <ConfirmBookingModal
-                    isConfirmBookingModalOpen={isConfirmBookingModalOpen}
-                    setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
-                  />
-                }
-              </div>
-              <div className=''>
-                <div className=' relative'>
-                  {/* <div className=' absolute hidden top-[39%] w-fit bg-[#D8F3AB] flex justify-center items-center gap-1 rounded-2xl px-5 py-3'>
-                    <span className='text-[#000000] text-2xl font-medium font-poppins'>30+</span>
-                    <p className='text-[#000000] text-xs font-normal font-poppins'>Expert<br />
-                      Dentist</p>
-                  </div> */}
-                  <img className='max-w-md w-full' src={DocImage2} alt="" />
-                  {/* <div className=' absolute hidden bottom-[65%] right-[0%] w-fit bg-[#D8F3AB] flex justify-center items-center gap-1 rounded-2xl px-5 py-3'>
-                    <span className='text-[#000000] text-2xl font-medium font-poppins'>200k+</span>
-                    <p className='text-[#000000] text-xs font-normal font-poppins break-all'>Expert
-                      Dentist</p>
-                  </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Helmet>
+          <title>{seoData.title}</title>
+          <meta name="description" content={seoData.description} />
+          <meta name="keywords" content={seoData.focusedKeywords} />
+        </Helmet>
+        <HeroSection />
         <section className="overflow-hidden bg-[#F6F6F6]">
           <div className="logos">
             <div className="logos-slide">
@@ -208,49 +194,8 @@ const Home = () => {
           </div>
         </section>
 
-        <section className='bg-[#FFFFFF]'>
-          <div className='bg-[#FFFFFF] flex justify-center items-start gap-20 flex-wrap px-5 pt-20 pb-10 h-full'>
-            <div className='w-[550px] max-md:w-[400px] max-[450px]:w-[300px] rounded-[40px]'>
-              <div className=' relative'>
-                <img src={Image} alt="" className='w-[550px] bg-[#F8F8F8] rounded-[40px]' />
-                <div className=' absolute top-[2%] right-[2%] border-[16px] border-[#EBEBEB] rounded-full max-w-[150px] max-h-[150px] w-full h-full max-md:w-[175px] max-md:h-[175px] max-[500px]:w-[90px] max-[500px]:h-[90px] '>
-                  <img src={CheckMarkImg} alt="" />
-                </div>
-              </div>
-            </div>
-            <div className='max-w-[590px] flex flex-col gap-[45px] h-full'>
-              <div className='flex flex-col items-start justify-start gap-[22px]'>
-                <h2 className='text-[#000000] text-[32px] max-[970px]:text-2xl max-[500px]:text-xl max-[500px]:text-center font-medium font-poppins tracking-[8%] w-full'>What We Have Achieved</h2>
-                <p className='max-w-[590px] text-[#818181] text-xl max-[970px]:text-lg max-[500px]:text-base max-[500px]:text-center font-normal font-poppins tracking-[2%]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nisi ut aliquip ex ea  commodo consequat.</p>
-              </div>
-              <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
-                <div className=' grid grid-cols-2 gap-5 max-[500px]:grid-cols-4 max-[500px]:gap-1'>
-                  <div className='w-full flex flex-col items-start max-[500px]:items-center justify-start'>
-                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image1} alt="" />
-                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={150} duration={2} />}+</div>
-                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal text-center font-poppins -mt-1 max-[500px]:leading-3'>Dentist Signups</p>
-                  </div>
-                  <div className='w-full flex flex-col items-start max-[500px]:items-center justify-start'>
-                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image2} alt="" />
-                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={10000} duration={2} />}+</div>
-                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal text-center font-poppins -mt-1 max-[500px]:leading-3'>Dental Consultations</p>
-                  </div>
-                  <div className='w-full flex flex-col items-start max-[500px]:items-center justify-start'>
-                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image3} alt="" />
-                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={150} duration={2} />}+</div>
-                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal text-center font-poppins my-[10px] -mt-1 max-[500px]:leading-3'>Dental Camps</p>
-                  </div>
-                  <div className='w-full flex flex-col items-start max-[500px]:items-center justify-start'>
-                    <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image4} alt="" />
-                    <div className='text-[#8E8E8E] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={175} duration={2} />}+</div>
-                    <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal text-center font-poppins -mt-1 max-[500px]:leading-3'>Pincode Covered</p>
-                  </div>
-                </div>
-              </ScrollTrigger>
+       <WhatWeHaveAchieved />
 
-            </div>
-          </div>
-        </section>
         <DentalTeamCard />
         <TreatementCompo />
         <section>

@@ -65,6 +65,8 @@ import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 import ReactPlayer from 'react-player'
 import ScrollTrigger from 'react-scroll-trigger'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { Helmet } from 'react-helmet-async'
 
 
 const DentalCamp = () => {
@@ -245,9 +247,45 @@ const DentalCamp = () => {
     }
   }, [res])
 
+
+  const [seoData, setSeoData] = useState({
+    title: "",
+    description: "",
+    focusedKeywords: "",
+  });
+
+  const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+  const getSeo = () => {
+    fetchData1(`/patient/get-seo?pageName=dental-camps`);
+  }
+
+  useEffect(() => {
+    getSeo();
+  }, [])
+
+  useEffect(() => {
+    if (res1?.status === 200 || res1?.status === 201) {
+      console.log("get seo api res: ", res1)
+      const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+      setSeoData({
+        title: seoTitle,
+        description: description,
+        focusedKeywords: focusedKeywords,
+      })
+    }
+  }, [res1])
+
   return (
     <Layout>
       <main className=' relative'>
+        <Helmet>
+          <title>{seoData.title}</title>
+          <meta name="description" content={seoData.description} />
+          <meta name="keywords" content={seoData.focusedKeywords} />
+        </Helmet>
+
         <div className='bg-[#F6F6F6] w-full px-5 max-med rounded-lg'>
           <section className="flex items-start max-w-[1200px] gap-2 py-5  mx-auto max-large:items-center">
             <div className="left-side w-1/2 flex flex-col gap-3 max-med:w-full max-med:gap-0">

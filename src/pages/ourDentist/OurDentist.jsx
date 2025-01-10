@@ -27,6 +27,7 @@ import ReactStars from 'react-stars'
 import { FaXmark } from 'react-icons/fa6'
 import { Button } from '@/components/ui/button'
 import Clinic from '@/components/Clinic'
+import { Helmet } from 'react-helmet-async'
 
 const Modal = ({ isOpen, onClose, children }) => {
   // Close the modal if the user clicks outside of it
@@ -161,10 +162,43 @@ const OurDentist = () => {
   //   setSearchListModel(false)
   // }
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [seoData, setSeoData] = useState({
+    title: "",
+    description: "",
+    focusedKeywords: "",
+  });
+
+  const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+  const getSeo = () => {
+    fetchData1(`/patient/get-seo?pageName=our-dentists`);
+  }
+
+  useEffect(() => {
+    getSeo();
+  }, [])
+
+  useEffect(() => {
+    if (res1?.status === 200 || res1?.status === 201) {
+      console.log("get seo api res: ", res1)
+      const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+      setSeoData({
+        title: seoTitle,
+        description: description,
+        focusedKeywords: focusedKeywords,
+      })
+    }
+  }, [res1])
 
   return (
     <Layout>
+      <Helmet>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.description} />
+        <meta name="keywords" content={seoData.focusedKeywords} />
+      </Helmet>
+
       {!isFilterOpen ? <main className='w-full relative px-4'>
         <section className='flex items-center justify-end max-[900px]:hidden pr-20'>
           <div className='flex flex-col gap-[18px] w-[483px]'>

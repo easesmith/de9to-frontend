@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Select,
     SelectContent,
@@ -22,6 +22,8 @@ import { useNavigate } from 'react-router-dom'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import { BsChevronDoubleDown } from "react-icons/bs";
 import CategoryData from '@/data/Blog/categoryData.json'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { Helmet } from 'react-helmet-async'
 
 
 const Blog = () => {
@@ -43,8 +45,44 @@ const Blog = () => {
     //     isCategorySelected === 'All' ? true : item.category === isCategorySelected
     //   );
 
+
+    const [seoData, setSeoData] = useState({
+        title: "",
+        description: "",
+        focusedKeywords: "",
+    });
+
+    const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+    const getSeo = () => {
+        fetchData1(`/patient/get-seo?pageName=blogs`);
+    }
+
+    useEffect(() => {
+        getSeo();
+    }, [])
+
+    useEffect(() => {
+        if (res1?.status === 200 || res1?.status === 201) {
+            console.log("get seo api res: ", res1)
+            const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+            setSeoData({
+                title: seoTitle,
+                description: description,
+                focusedKeywords: focusedKeywords,
+            })
+        }
+    }, [res1])
+
     return (
         <Layout>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.focusedKeywords} />
+            </Helmet>
+
             <main className='bg-[#FFFFFF] w-full max-w-[1240px] mx-auto flex flex-col gap-8 my-8'>
                 {/* <PrevLink page="Blogs" /> */}
                 <section className="bg-[#95C22B] w-full h-[365px] overflow-hidden px-4 max-[700px]:h-[250px] max-[500px]:h-44 text-white flex items-center justify-center rounded-3xl max-[500px]:rounded-sm shadow-lg mx-auto">
@@ -64,10 +102,10 @@ const Blog = () => {
                 <section className='flex flex-col gap-4 px-4'>
                     <div className='flex justify-between items-center gap-2'>
                         <h3 className="text-[#717171] text-2xl max-[500px]:text-base font-medium font-inter">Choose Topic</h3>
-                        <Button onClick={()=>setIsShowCategory(!isShowCategory)} variant='category' size='lg' className={`min-[700px]:hidden max-[500px]:text-xs max-[500px]:py-[5px] max-[700px]:px-2 flex gap-1 items-center`} >See all <BsChevronDoubleDown className='text-[#95C22B]' /></Button>
+                        <Button onClick={() => setIsShowCategory(!isShowCategory)} variant='category' size='lg' className={`min-[700px]:hidden max-[500px]:text-xs max-[500px]:py-[5px] max-[700px]:px-2 flex gap-1 items-center`} >See all <BsChevronDoubleDown className='text-[#95C22B]' /></Button>
                     </div>
                     <div className='flex justify-between items-center'>
-                        <div className={`flex items-center gap-4 flex-wrap  ${isShowCategory? "flex":"max-[700px]:hidden"}`}>
+                        <div className={`flex items-center gap-4 flex-wrap  ${isShowCategory ? "flex" : "max-[700px]:hidden"}`}>
                             <CategoryBtn isCategorySelected={isCategorySelected} setIsCategorySelected={setIsCategorySelected} handleSelectCategoryed={handleSelectCategoryed} />
                         </div>
                         {/* <Select>
