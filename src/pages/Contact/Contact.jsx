@@ -99,7 +99,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-base font-medium font-inter mb-4 max-[768px]:text-base">Contact Number <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter contact number" {...field}
+                            <Input type='number' placeholder="Enter contact number" {...field}
                               className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
@@ -114,7 +114,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-base font-medium max-[768px]:text-base font-inter mb-4">Email Id <span className='text-[red]'>*</span></FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter email id" {...field}
+                            <Input type='email' placeholder="Enter email id" {...field}
                               className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                             />
                           </FormControl>
@@ -148,7 +148,7 @@ const Contact = () => {
                       <FormItem>
                         <FormLabel className="text-base max-[768px]:text-base font-medium font-inter mb-4">Pincode <span className='text-[red]'>*</span></FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your pincode" {...field}
+                          <Input type='number' placeholder="Enter your pincode" {...field}
                             className="h-12 max-[375px]:h-10 text-[#838383] text-base font-normal font-inter border-[1px] border-[#808080] rounded-[10px] px-5 py-[10px] placeholder:text-[#838383]"
                           />
                         </FormControl>
