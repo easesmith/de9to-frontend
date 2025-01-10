@@ -93,9 +93,9 @@ const AboutUs = () => {
 
                 <OurMissionAndVisionSection />
 
-                <section className='px-5'>
-                    <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter mb-2 max-sm:text-2xl'>Our Values</h3>
-                    <p className='text-[#5C5C5C] text-[17px] font-normal font-inter mb-10 max-md:text-base'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
+                <section className=''>
+                    <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter mb-2 max-sm:text-2xl px-5'>Our Values</h3>
+                    <p className='text-[#5C5C5C] text-[17px] font-normal font-inter mb-10 max-md:text-base px-5'>At De9to, we are deeply committed to upholding the highest standards in every aspect of our work. Here’s what drives us:</p>
                     <Swiper
                         loop={true}
                         slidesPerView={3}
@@ -122,7 +122,7 @@ const AboutUs = () => {
                         className="mySwiper about-us max-w-[940px] h-[380px] p-5"
                     >
                         <SwiperSlide>
-                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2'>
+                            <div className='h-[300px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -131,7 +131,7 @@ const AboutUs = () => {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                            <div className='h-[300px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -140,7 +140,7 @@ const AboutUs = () => {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                            <div className='h-[300px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
@@ -149,7 +149,7 @@ const AboutUs = () => {
                             </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <div className='h-[320px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
+                            <div className='h-[300px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px]  shadow-custom2'>
                                 <img src={CardImg} alt="" />
                                 <div className=' flex flex-col gap-1 py-[5px] px-5'>
                                     <h4 className='text-[#95C22B] text-xl text-center font-bold font-inter'>Data Privacy & Security</h4>
