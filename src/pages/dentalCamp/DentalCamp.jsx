@@ -67,6 +67,7 @@ import ReactPlayer from 'react-player'
 import ScrollTrigger from 'react-scroll-trigger'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import { Helmet } from 'react-helmet-async'
+import SuccessfulDentalCamps from '@/component/dentalComponent/SuccessfulDentalCamps'
 
 
 const DentalCamp = () => {
@@ -563,7 +564,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1200px] mx-auto my-24 px-5 max-med:my-16'>
+        {/* <section className='max-w-[1200px] mx-auto my-24 px-5 max-med:my-16'>
           <div className='flex justify-between max-sm:flex-col mb-12 w-full gap-4'>
             <div className='flex flex-col items-start gap-2 max-sm:items-center w-full'>
               <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
@@ -643,7 +644,8 @@ const DentalCamp = () => {
               </SwiperSlide>
             </Swiper>
           </div>
-        </section>
+        </section> */}
+        <SuccessfulDentalCamps/>
 
         <section className='max-w-[1240px] mx-auto my-24 max-med:my-16 w-full px-4'>
           <div className='flex justify-between mb-12 w-full'>
