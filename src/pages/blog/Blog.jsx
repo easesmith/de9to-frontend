@@ -1,5 +1,14 @@
 import { Button } from '@/components/ui/button'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import Card from '@/component/Card/Card'
 import BlogCircleImg1 from '../../assets/Frame 1171283296.png'
 import BlogCircleImg2 from '../../assets/Frame 1171283297.png'
@@ -8,6 +17,10 @@ import Layout from '@/component/Layout/Layout'
 import { CategoryBtn } from '@/component/MiniCompo/MiniCompo'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import { BsChevronDoubleDown } from "react-icons/bs";
+import CategoryData from '@/data/Blog/categoryData.json'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { Helmet } from 'react-helmet-async'
+
 
 const Blog = () => {
 
@@ -18,9 +31,50 @@ const Blog = () => {
         setIsCategorySelected(title)
     }
 
+    // const filteredItems = CategoryData.filter((item) =>
+    //     isCategorySelected === 'All' ? true : item.category === isCategorySelected
+    //   );
+
+
+    const [seoData, setSeoData] = useState({
+        title: "",
+        description: "",
+        focusedKeywords: "",
+    });
+
+    const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+    const getSeo = () => {
+        fetchData1(`/patient/get-seo?pageName=blogs`);
+    }
+
+    useEffect(() => {
+        getSeo();
+    }, [])
+
+    useEffect(() => {
+        if (res1?.status === 200 || res1?.status === 201) {
+            console.log("get seo api res: ", res1)
+            const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+            setSeoData({
+                title: seoTitle,
+                description: description,
+                focusedKeywords: focusedKeywords,
+            })
+        }
+    }, [res1])
+
     return (
         <Layout>
-            <main className='bg-[#FFFFFF] w-full max-w-[1240px] mx-auto flex flex-col gap-6 my-8'>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.focusedKeywords} />
+            </Helmet>
+
+            <main className='bg-[#FFFFFF] w-full max-w-[1240px] mx-auto flex flex-col gap-8 my-8'>
+                {/* <PrevLink page="Blogs" /> */}
                 <section className="bg-[#95C22B] w-full h-[365px] overflow-hidden px-4 max-[700px]:h-[250px] max-[500px]:h-44 text-white flex items-center justify-center rounded-3xl max-[500px]:rounded-sm shadow-lg mx-auto">
                     <h1 className="text-[#FFFFFF] text-[40px] max-[700px]:text-2xl max-[500px]:ml-[4%] max-[500px]:text-base max-[500px]:w-[70%] max-[500px]:mx-auto font-bold font-poppins max-w-[400px] leading-[47px]">
                         Insights & Stories:<br /><span className='font-light'>Explore the World of Dental Health</span>

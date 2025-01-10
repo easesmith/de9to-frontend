@@ -1,5 +1,5 @@
 import Layout from '@/component/Layout/Layout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DestistSignupImg from '../../assets/dentist 1.png'
 import DentalConsultationImg from '../../assets/checklist 1.png'
 import DestistCampsImg from '../../assets/dental-clinic (1) 1.png'
@@ -24,12 +24,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Textarea } from '@/components/ui/textarea'
 import { z } from 'zod'
 import ScrollTrigger from 'react-scroll-trigger'
+import useGetApiReq from '@/hooks/useGetApiReq'
+import { Helmet } from 'react-helmet-async'
+import AboutUsHero from './AboutUsHero'
 // import './styles.css';
 
 
 const AboutUs = () => {
-    const [isCounter, setIsCounter] = useState(false);
-
     const form = useForm({
         resolver: zodResolver(z.object({
 
@@ -45,44 +46,46 @@ const AboutUs = () => {
     const onSubmit = (data) => {
         console.log("Data:", data);
     };
+
+    const [seoData, setSeoData] = useState({
+        title: "",
+        description: "",
+        focusedKeywords: "",
+    });
+
+    const { res: res1, fetchData: fetchData1 } = useGetApiReq();
+
+    const getSeo = () => {
+        fetchData1(`/patient/get-seo?pageName=about-us`);
+    }
+
+    useEffect(() => {
+        getSeo();
+    }, [])
+
+    useEffect(() => {
+        if (res1?.status === 200 || res1?.status === 201) {
+            console.log("get seo api res: ", res1)
+            const { seoTitle, focusedKeywords, description } = res1?.data?.seo;
+
+            setSeoData({
+                title: seoTitle,
+                description: description,
+                focusedKeywords: focusedKeywords,
+            })
+        }
+    }, [res1])
+
     return (
         <Layout>
+            <Helmet>
+                <title>{seoData.title}</title>
+                <meta name="description" content={seoData.description} />
+                <meta name="keywords" content={seoData.focusedKeywords} />
+            </Helmet>
+
             <main className=' max-w-[1240px] mx-auto flex flex-col gap-12 max-[425px]:gap-5 mb-12 mt-4'>
-                <section className='w-full'>
-                    <div className="rounded-3xl flex max-md:flex-wrap justify-center items-center w-full px-5">
-                        <div className='w-[400px] max-md:w-full max-md:text-center'>
-                            <h1 className='text-[#95C22B] text-[64px] max-lg:text-5xl max-[425px]:text-[23px] font-bold font-poppins leading-[70px] mb-3'>Your Smile<span className='text-[#717171]'>, Our Mission</span></h1>
-                            <p className='text-[#717171] text-xl font-normal font-poppins max-[425px]:text-sm'>Dedicated Dental Care You Can Trust</p>
-                        </div>
-                        <div className="w-[530px] h-fit">
-                            <img src={HappyDentistImg} alt="happy-dentist-mg" className='w-full h-full max-[425px]:w-[360px] max-[425px]:h-[203px]' />
-                        </div>
-                    </div>
-                    <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">
-                        <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
-                            <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#FFFFFF] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
-                                <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
-                                <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
-                                <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
-                                <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
-                                <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
-                            </div>
-                        </ScrollTrigger>
-                    </div>
-                    <div className="bg-[#95C22B] w-full hidden max-md:block py-5">
-                        <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
-                            <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-5 max-[425px]:mb-[10px]'>
-                                <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
-                                <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
-                                <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
-                            </div>
-                            <div className='grid grid-cols-2 justify-items-center text-[#FFFFFF] w-[450px] max-sm:w-[350px] max-[425px]:w-[250px] mx-auto'>
-                                <MangementInfo isCounter={isCounter} img={PinCodersCoveredImg} number={75} title="Pin Codes Covered" />
-                                <MangementInfo isCounter={isCounter} img={HealthWebinarImg} number={75} title="Health Webinars" />
-                            </div>
-                        </ScrollTrigger>
-                    </div>
-                </section>
+                <AboutUsHero />
                 <section className='flex max-md:flex-wrap justify-between items-center gap-5 w-full px-5'>
                     <div className="w-2/3 max-md:w-full flex flex-col gap-3">
                         <h3 className='text-[#717171] text-3xl max-lg:text-[28px] font-semibold font-inter max-sm:text-2xl max-[375px]:text-xl'>Our Journey</h3>
@@ -123,16 +126,16 @@ const AboutUs = () => {
                         }}
                         breakpoints={{
                             0: {
-                              slidesPerView: 1,
+                                slidesPerView: 1,
                             },
                             768: {
-                              slidesPerView: 2,
+                                slidesPerView: 2,
                             },
                             1154: {
-                              slidesPerView: 3,
+                                slidesPerView: 3,
                             },
-                          }}
-                        className="mySwiper about-us max-w-[940px] h-[360px]"
+                        }}
+                        className="mySwiper about-us max-w-[940px] h-[380px] p-5"
                     >
                         <SwiperSlide>
                             <div className='h-[300px] flex flex-col justify-center items-center border-[1px] border-[#E0E0E0] py-5 rounded-[14px] shadow-custom2'>
