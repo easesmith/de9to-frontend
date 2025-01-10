@@ -435,7 +435,6 @@ const DentalCamp = () => {
                                   </SelectContent>
                                 </Select>
                               </FormControl>
-                              <MdAccessTimeFilled className='text-[#838383] text-xl absolute top-[35%] right-[6.5%]' />
                             </div>
                             <FormMessage />
                           </FormItem>
@@ -487,13 +486,6 @@ const DentalCamp = () => {
         </div>
         <img src={BackgroundImg} alt="" className='min-w-[685px] max-h-[600px] absolute top-[0%] right-[0%] -z-0 max-large:hidden' />
 
-        {/* <section className="min-h-[228px] flex justify-between items-end gap-9 px-[125px] text-[#808080] bg-[#FFFFFF] relative z-10 pt-20 mb-6">
-          <MangementInfo img={DestistSignupImg} number="150+" title="Dentist Signups" />
-          <MangementInfo img={DentalConsultationImg} number="10K+" title="Dental Consultations" />
-          <MangementInfo img={DestistCampsImg} number="150+" title="Dental Camps" />
-          <MangementInfo img={PinCodersCoveredImg} number="75+" title="Pin Codes Covered" />
-          <MangementInfo img={HealthWebinarImg} number="75+" title="Health Webinars" />
-        </section>*/}
         <div className="rounded-xl w-full max-md:hidden max-lg:rounded-none">
           <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
             <div className='flex flex-wrap justify-between items-center gap-6 px-10 py-10 text-[#808080] w-full max-lg:justify-between max-lg:px-5 max-[425px]:px-2'>
@@ -534,7 +526,7 @@ const DentalCamp = () => {
               </div>
             </div>
             <div className="lower w-full grid grid-cols-4 max-large:grid-cols-3 place-items-start justify-items-center max-med:grid-cols-2 gap-6 max-[1154px]:justify-center max-med:gap-3">
-              <div className="hover:translate-y-2 max-w-[278px] h-fit bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-5 cursor-pointer max-small:gap-2 max-small:p-3">
+              <div className="hover:translate-y-2 max-w-[278px] h-[410px] max-lg:h-[340px] max-md:h-[320px] max-small:h-[200px] bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-3 cursor-pointer max-small:gap-2 max-small:p-3">
                 <img src={PreventingImg} alt="" className='max-small:w-8 max-small:h-8' />
                 <div className='flex flex-col items-start gap-2 max-small:gap-0'>
                   <h4 className='text-[#1A1A1A] text-xl font-semibold font-inter max-large:text-lg max-med:text-base max-small:text-[10px] max-small:leading-[13px]'>Preventing Tooth Decay</h4>
@@ -542,7 +534,7 @@ const DentalCamp = () => {
                 </div>
                 <HiArrowLongRight className='text-2xl ms-2' />
               </div>
-              <div className="hover:translate-y-2 max-w-[278px] h-fit bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-5 cursor-pointer max-small:gap-2 max-small:p-3">
+              <div className="hover:translate-y-2 max-w-[278px] h-[410px] max-lg:h-[340px] max-md:h-[320px] max-small:h-[200px] bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-3 cursor-pointer max-small:gap-2 max-small:p-3">
                 <img src={GumDiseaseImg} alt="" className='max-small:w-8 max-small:h-8' />
                 <div className='flex flex-col items-start gap-2 max-small:gap-0'>
                   <h4 className='text-[#1A1A1A] text-xl font-semibold font-inter max-large:text-lg max-med:text-base max-small:text-[10px] max-small:leading-[13px]'>Gum Disease Prevention</h4>
@@ -550,7 +542,7 @@ const DentalCamp = () => {
                 </div>
                 <HiArrowLongRight className='text-2xl ms-2' />
               </div>
-              <div className="hover:translate-y-2 max-w-[278px] h-fit bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-5 cursor-pointer max-small:gap-2 max-small:p-3">
+              <div className="hover:translate-y-2 max-w-[278px] h-[410px] max-lg:h-[340px] max-md:h-[320px] max-small:h-[200px] bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-3 cursor-pointer max-small:gap-2 max-small:p-3">
                 <img src={OverallImg} alt="" className='max-small:w-8 max-small:h-8' />
                 <div className='flex flex-col items-start gap-2 max-small:gap-0'>
                   <h4 className='text-[#1A1A1A] text-xl font-semibold font-inter max-large:text-lg max-med:text-base max-small:text-[10px] max-small:leading-[13px]'>Overall Health Connect</h4>
@@ -559,7 +551,7 @@ const DentalCamp = () => {
                 <HiArrowLongRight className='text-2xl ms-2' />
               </div>
               <div className='hidden max-large:block max-med:hidden'></div>
-              <div className="hover:translate-y-2 max-w-[278px] h-fit bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-5 cursor-pointer max-small:gap-2 max-small:p-3">
+              <div className="hover:translate-y-2 max-w-[278px] h-[410px] max-lg:h-[340px] max-md:h-[320px] max-small:h-[200px] bg-[#FFFFFF] rounded-xl p-5 flex flex-col items-start justify-center gap-3 cursor-pointer max-small:gap-2 max-small:p-3">
                 <img src={BoostingImg} alt="" className='max-small:w-8 max-small:h-8' />
                 <div className='flex flex-col items-start gap-2 max-small:gap-0'>
                   <h4 className='text-[#1A1A1A] text-xl font-semibold font-inter max-large:text-lg max-med:text-base max-small:text-[10px] max-small:leading-[13px]'>Boosting Confidence and Appearance</h4>
