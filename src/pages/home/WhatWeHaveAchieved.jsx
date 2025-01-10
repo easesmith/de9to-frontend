@@ -19,7 +19,7 @@ const WhatWeHaveAchieved = () => {
     })
 
     const getContent = () => {
-        fetchData(`/admin/get-specific-content?pageName=home&sectionName=whatWeHaveAchieved`)
+        fetchData(`/patient/get-specific-content?pageName=home&sectionName=whatWeHaveAchieved`)
     }
 
     useEffect(() => {
