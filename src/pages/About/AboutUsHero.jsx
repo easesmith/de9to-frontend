@@ -45,7 +45,7 @@ const AboutUsHero = () => {
                     <p className='text-[#717171] text-xl font-normal font-poppins max-[425px]:text-sm'>Dedicated Dental Care You Can Trust</p>
                 </div> */}
                 <div className="w-full h-full">
-                    <img src={contentData.image} alt="happy-dentist-mg" className='w-full h-full max-[425px]:w-[360px] max-[425px]:h-[203px]' />
+                    <img src={contentData.image} alt="happy-dentist-mg" className='w-full h-full' />
                 </div>
             </div>
             <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">
