@@ -1,23 +1,15 @@
 import ProfileImg2 from '@/assets/Image-100.png'
-import Image from '@/assets/Picture1-removebg-preview 1.png'
 import TeethImg from '@/assets/_Compound Path_.png'
-import CheckMarkImg from '@/assets/anbx.png'
-import Image2 from '@/assets/checklist 1.png'
-import Image3 from '@/assets/dental-clinic (1) 1.png'
-import Image1 from '@/assets/dentist 1.png'
 import ProfileImg1 from '@/assets/dniedeibeib.png'
-import Image4 from '@/assets/maps.png'
 import Card, { DentalTeamCard } from '@/component/Card/Card'
 import Layout from '@/component/Layout/Layout'
 import ImageSkeleton from '@/components/ImageSkeleton'
 import TreatementCompo from '@/components/TreatementCompo'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import { useEffect, useRef, useState } from 'react'
-import CountUp from 'react-countup'
 import { Helmet } from 'react-helmet-async'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
-import ScrollTrigger from 'react-scroll-trigger'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -194,7 +186,7 @@ const Home = () => {
           </div>
         </section>
 
-       <WhatWeHaveAchieved />
+        <WhatWeHaveAchieved />
 
         <DentalTeamCard />
         <TreatementCompo />

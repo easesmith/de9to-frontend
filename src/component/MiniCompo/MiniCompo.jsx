@@ -11,6 +11,7 @@ import ProfessionalImg6 from '../../assets/Ellipse 8.png'
 import ProfessionalImg7 from '../../assets/Ellipse 9.png'
 import CategoryData from '@/data/Blog/categoryData.json'
 import CountUp from 'react-countup';
+import ImageSkeleton from '@/components/ImageSkeleton';
 
 const ButtonLocation = ({ location, setLocation, name }) => {
   const [isSelectLocation, setSelectLocation] = useState(false);
@@ -34,7 +35,7 @@ const FilterName = ({ name }) => {
   )
 }
 
-const MangementInfo = ({ img, number, title,isCounter }) => {
+const MangementInfo = ({ img, number, title, isCounter }) => {
   return (
     <div className='w-fit flex flex-col items-center justify-center'>
       <img src={img} alt="destistSignup-img" className='h-[72px] max-lg:w-16 max-lg:h-16 max-sm:w-12 max-sm:h-12 max-[425px]:w-5 max-[425px]:h-5' />
@@ -48,14 +49,24 @@ const OurTeamMember = ({ img, name, profile }) => {
   return (
     <>
       <div className='flex justify-center relative max-[425px]:hidden'>
-        <img src={img} alt="" className='rounded-b-[10px]' />
+        {/* <img src={img} alt="" className='rounded-b-[10px]' /> */}
+        <ImageSkeleton
+          src={img}
+          imgClassName={'rounded-[10px]'}
+          skeletonClassName={"rounded-[10px] h-80 w-full"}
+        />
         <div className=' absolute bottom-2'>
           <h3 className='text-[#FFFFFF] text-[26px] text-center font-bold font-inter max-lg:text-[22px] max-md:text-lg'>{name}</h3>
           <p className='text-[#FFFFFF] text-[15px] text-center font-normal font-inter max-lg:text-sm max-md:text-xs'>{profile}</p>
         </div>
       </div>
       <div className='justify-start items-center gap-3 hidden max-[425px]:flex w-full'>
-        <img src={img} alt="" className='rounded-[10px] w-[118px] h-[125px]' />
+        {/* <img src={img} alt="" className='rounded-[10px] w-[118px] h-[125px]' /> */}
+        <ImageSkeleton
+          src={img}
+          imgClassName={'rounded-[10px] w-[118px] h-[125px]'}
+          skeletonClassName={"rounded-[10px] w-[118px] h-[125px]"}
+        />
         <div className=''>
           <h3 className='text-[#000000] text-base text-start font-bold font-inter'>{name}</h3>
           <p className='text-[#000000] text-xs font-normal font-inter'>{profile}</p>

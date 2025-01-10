@@ -9,6 +9,7 @@ import HappyDentistImg from '../../assets/happy-dentists-with-patient 1.png'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import ImageSkeleton from '@/components/ImageSkeleton'
 
 const AboutUsHero = () => {
     const [isCounter, setIsCounter] = useState(false);
@@ -45,7 +46,12 @@ const AboutUsHero = () => {
                     <p className='text-[#717171] text-xl font-normal font-poppins max-[425px]:text-sm'>Dedicated Dental Care You Can Trust</p>
                 </div> */}
                 <div className="w-full h-full">
-                    <img src={contentData.image} alt="happy-dentist-mg" className='w-full h-full' />
+                    {/* <img src={contentData.image} alt="happy-dentist-mg" className='w-full h-full' /> */}
+                    <ImageSkeleton
+                    src={contentData.image}
+                    imgClassName={'rounded-lg'}
+                    skeletonClassName={"rounded-lg h-96 w-full"}
+                />
                 </div>
             </div>
             <div className="rounded-xl bg-[#95C22B] w-full max-md:hidden max-lg:rounded-none">

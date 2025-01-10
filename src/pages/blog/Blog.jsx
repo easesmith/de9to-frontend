@@ -83,7 +83,7 @@ const Blog = () => {
                         <img src={Img2} alt="Smiling Person" className="self-end  " />
                     </div>
                     <img src={BlogCircleImg1} alt="Smiling Person" className="absolute max-[500px]:hidden top-[15%] right-[2%]" />
-                    <img src={BlogCircleImg2} alt="Smiling Person" className=" absolute max-[360px]:hidden bottom-[18%] left-[3%]" />
+                    <img src={BlogCircleImg2} alt="Smiling Person" className=" absolute max-[500px]:hidden bottom-[18%] left-[3%]" />
                 </section>
                 <section className='flex flex-col gap-3 px-4'>
                     <div className='flex justify-between items-center gap-2'>
