@@ -67,6 +67,8 @@ import ReactPlayer from 'react-player'
 import ScrollTrigger from 'react-scroll-trigger'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import { Helmet } from 'react-helmet-async'
+import SuccessfulDentalCamps from '@/component/dentalComponent/SuccessfulDentalCamps'
+import SharpNGO from '@/component/dentalComponent/SharpNGO'
 
 
 const DentalCamp = () => {
@@ -563,87 +565,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1200px] mx-auto my-24 px-5 max-med:my-16'>
-          <div className='flex justify-between max-sm:flex-col mb-12 w-full gap-4'>
-            <div className='flex flex-col items-start gap-2 max-sm:items-center w-full'>
-              <h5 className='text-[#95C22B] text-xl italic font-bold font-inter'>Pictures</h5>
-              <h4 className='text-[#95C22B] text-[40px] font-extrabold font-inter max-large:text-3xl max-med:text-2xl max-sm:text-center'>De9to<span className='text-black'>’s Successful Dental Camps</span></h4>
-              <p className='text-[#606060] text-xl font-semibold font-roboto max-sm:text-base'>Elevating Oral Health Awareness</p>
-            </div>
-            <div className='flex items-center gap-5 justify-end'>
-              <div
-                className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                onClick={() => swiperRef1.current?.slidePrev()} // Navigate to the previous slide
-              >
-                <BsArrowLeft className='text-2xl ' />
-              </div>
-              <div
-                className="bg-[#F4F4F4] rounded-full w-12 h-12 flex items-center justify-center cursor-pointer"
-                onClick={() => swiperRef1.current?.slideNext()} // Navigate to the next slide
-              >
-                <BsArrowRight className='text-2xl' />
-              </div>
-            </div>
-          </div>
-          <div className='flex justify-between dental-camp'>
-            <Swiper
-              slidesPerView={3}
-              spaceBetween={30}
-              loop={true}
-              pagination={{
-                clickable: true,
-              }}
-              navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              }}
-              breakpoints={
-                {
-                  0: {
-                    slidesPerView: 1
-                  },
-                  424: {
-                    slidesPerView: 2
-                  },
-                  500: {
-                    slidesPerView: 2
-                  },
-                  768: {
-                    slidesPerView: 3
-                  }
-                }
-              }
-              modules={[Pagination, Navigation, Autoplay]}
-              onSwiper={(swiper) => {
-                swiperRef1.current = swiper;
-              }}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: false,
-              }}
-              className='h-[420px]'
-            >
-              <SwiperSlide>
-                <img src={DentalCampImg1} alt="" className='cursor-pointer h-[370px]' />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={DentalCampImg2} alt="" className='cursor-pointer h-[370px]' />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer h-[370px]' />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={DentalCampImg1} alt="" className='cursor-pointer h-[370px]' />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={DentalCampImg2} alt="" className='cursor-pointer h-[370px]' />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src={DentalCampImg3} alt="" className='rounded-2xl cursor-pointer h-[370px]' />
-              </SwiperSlide>
-            </Swiper>
-          </div>
-        </section>
+        <SuccessfulDentalCamps />
 
         <section className='max-w-[1240px] mx-auto my-24 max-med:my-16 w-full px-4'>
           <div className='flex justify-between mb-12 w-full'>
@@ -785,7 +707,7 @@ const DentalCamp = () => {
           </div>
         </section>
 
-        <section className='max-w-[1240px] mx-auto my-24 px-5 max-med:my-16'>
+        {/* <section className='max-w-[1240px] mx-auto my-24 px-5 max-med:my-16'>
           <div className="relative w-full ">
             <div className="">
               <div className='w-full flex justify-between items-center mb-12'>
@@ -864,7 +786,8 @@ const DentalCamp = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+        <SharpNGO/>
         <section className=" flex flex-col items-center gap-10 w-full max-w-[1240px] mx-auto my-28 px-5 max-med:my-16">
           <div className='flex flex-col items-center'>
             <span className='text-[#95C22B] text-xl text-center italic font-bold font-inter max-md:text-base max-sm:text-sm'>Our Contributors</span>

@@ -20,6 +20,7 @@ import usePostApiReq from '@/hooks/usePostApiReq'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
 import useGetApiReq from '@/hooks/useGetApiReq'
+import ImageSkeleton from '@/components/ImageSkeleton'
 
 
 const Contact = () => {
@@ -96,6 +97,31 @@ const Contact = () => {
     }
   }, [res1])
 
+  const { res: res2, fetchData: fetchData2 } = useGetApiReq()
+  const [contentData, setContentData] = useState({
+    content: "",
+    image: "",
+  })
+
+  const getContent = () => {
+    fetchData2(`/patient/get-specific-content?pageName=contact-us&sectionName=our-contact`)
+  }
+
+  useEffect(() => {
+    getContent()
+  }, [])
+
+  useEffect(() => {
+    if (res2?.status === 200 || res2?.status === 201) {
+      console.log("get content api res: ", res2?.data?.foundContent)
+      const { images = [], content = [] } = res2?.data?.foundContent;
+      setContentData({
+        content: content[0]?.resources,
+        image: images[0]?.image
+      })
+    }
+  }, [res2])
+
   return (
     <Layout>
       <Helmet>
@@ -107,7 +133,7 @@ const Contact = () => {
       <main className='max-w-[1240px] p-4 mx-auto flex flex-col gap-10 max-sm:gap-5 mt-4 mb-2'>
         <section className='flex flex-col justify-center items-center'>
           <h1 className='text-[#95C22B] text-[40px] text-center font-bold font-inter opacity-90 max-lg:text-2xl'>Get in touch</h1>
-          <p className='text-[#717171] text-base text-center font-medium font-inter opacity-70 max-lg:text-xs'>We're Here to Help Your Smile</p>
+          <p className='text-[#717171] text-base text-center font-medium font-inter opacity-70 max-lg:text-xs'>{`${contentData.content ? contentData.content : "We're Here to Help Your Smile"}`}</p>
           <div className=' max-w-[1130px] flex justify-between items-start gap-5 shadow-custom rounded-[20px] p-5 max-lg:px-3 my-10 h-full'>
             <div className='w-1/2 max-[768px]:w-full border-[1px] border-[#212121] px-4 pt-5 pb-10 rounded-[10px] max-lg:px-3'>
               <Form {...form}>
@@ -213,7 +239,11 @@ const Contact = () => {
               </Form>
             </div>
             <div className='w-1/2 max-[768px]:hidden h-full'>
-              <img src={DoctorImg} alt="" className='h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full' />
+              <ImageSkeleton
+                src={contentData?.image}
+                imgClassName={'h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full rounded-[10px]'}
+                skeletonClassName={"h-[704px] max-lg:h-[807px] max-[939px]:h-[832px] w-full rounded-[10px]"}
+              />
             </div>
           </div>
         </section>
