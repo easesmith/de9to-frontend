@@ -114,7 +114,7 @@ const Contact = () => {
   useEffect(() => {
     if (res2?.status === 200 || res2?.status === 201) {
       console.log("get content api res: ", res2?.data?.foundContent)
-      const { images = [], content = [] } = res2?.data?.foundContent;
+      const { images = [], content = [] } = res2?.data?.foundContent || {};
       setContentData({
         content: content[0]?.resources,
         image: images[0]?.image

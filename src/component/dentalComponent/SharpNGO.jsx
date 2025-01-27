@@ -29,7 +29,7 @@ const SharpNGO = () => {
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
       console.log("get content SharpNGO: ", res?.data?.foundContent)
-      const { content = [] } = res?.data?.foundContent;
+      const { content = [] } = res?.data?.foundContent || {};
       setContentData(content)
     }
   }, [res])
@@ -96,7 +96,7 @@ const SharpNGO = () => {
                   <SwiperSlide key={index} className='rounded-2xl overflow-hidden h-full w-full'>
                     <ReactPlayer
                       url={resources}
-                      playing={true}
+                      // playing={true}
                       onPlay={false}
                       controls={true}
                       onReady={() => setVideoLoading(false)} />

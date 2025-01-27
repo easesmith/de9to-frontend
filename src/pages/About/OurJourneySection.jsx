@@ -20,7 +20,7 @@ const OurJourneySection = () => {
 
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
-            const { images = [], content = [] } = res?.data?.foundContent;
+            const { images = [], content = [] } = res?.data?.foundContent || {};
             setContentData({
                 content: content[0]?.resources,
                 image: images[0]?.image
