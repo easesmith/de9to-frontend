@@ -11,6 +11,7 @@ import { Input } from '../ui/input';
 import OtpComp from './OtpComp';
 import usePostApiReq from '@/hooks/usePostApiReq';
 import { useNavigate } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const LoginComp = ({ setIsShowTabs }) => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -52,6 +53,10 @@ const LoginComp = ({ setIsShowTabs }) => {
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
       console.log("patient login res", res);
+      const { token, userInfo } = res?.data?.cookies
+      Cookies.set("token", token, { expires: 7 });
+      Cookies.set("userInfo", JSON.stringify(userInfo), { expires: 7 });
+
       if (isLoginwithOtp) {
         setIsShowTabs(false);
         setIsOtpSectionOpen(true);

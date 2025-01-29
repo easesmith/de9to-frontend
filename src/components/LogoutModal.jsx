@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import usePostApiReq from "@/hooks/usePostApiReq";
+import Cookies from "js-cookie";
 
 const LogoutModal = ({ isLogOutModalOpen, setIsLogOutModalOpen }) => {
     const userInfo = readCookie("userInfo");
@@ -27,6 +28,8 @@ const LogoutModal = ({ isLogOutModalOpen, setIsLogOutModalOpen }) => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             console.log("logout account response", res);
+            Cookies.remove("token")
+            Cookies.remove("userInfo")
             navigate("/")
         }
     }, [res])
