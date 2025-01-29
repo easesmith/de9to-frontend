@@ -28,7 +28,6 @@ const LogoutModal = ({ isLogOutModalOpen, setIsLogOutModalOpen }) => {
     useEffect(() => {
         if (res?.status === 200 || res?.status === 201) {
             console.log("logout account response", res);
-            Cookies.remove("token")
             Cookies.remove("userInfo")
             navigate("/")
         }

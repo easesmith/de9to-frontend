@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 import { OtpSchema } from '@/schema/formSchema';
 import usePostApiReq from '@/hooks/usePostApiReq';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const OtpComp = ({ phone, getOtp, setIsOtpSectionOpen, setSelected = () => { }, setIsShowTabs, login = true, apiData }) => {
     const [timeLeft, setTimeLeft] = useState(60);
@@ -68,6 +69,8 @@ const OtpComp = ({ phone, getOtp, setIsOtpSectionOpen, setSelected = () => { }, 
             setIsShowTabs(false);
             setIsOtpSectionOpen(true);
             if (login) {
+                const { userInfo } = res?.data?.cookies || {}
+                Cookies.set("userInfo", JSON.stringify(userInfo), { expires: 7 });
                 navigate("/")
             }
             else {
