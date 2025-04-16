@@ -100,159 +100,267 @@ const Header = () => {
   ]
 
   return (
-    <header className='sticky top-0 bg-white z-30'>
-      <nav className='h-[73px] px-16 max-lg:px-8 max-[900px]:px-4 flex justify-between items-center'>
-        <div className='flex gap-2 items-center'>
+    <header className="sticky top-0 bg-white z-30">
+      <nav className="h-[73px] px-16 max-lg:px-8 max-[900px]:px-4 flex justify-between items-center">
+        <div className="flex gap-2 items-center">
           <Sheet>
             <SheetTrigger>
-              <MdMenu className='min-[970px]:hidden text-3xl' />
+              <MdMenu className="min-[970px]:hidden text-3xl" />
             </SheetTrigger>
             <SheetContent className="w-[400px] sm:w-full" side="left">
               <SheetHeader>
                 <SheetTitle></SheetTitle>
                 <SheetDescription>
-                  <div className='flex justify-center'>
+                  <div className="flex justify-center">
                     <img src={logo} alt="" />
                   </div>
-                  <ul className='flex flex-col items-center gap-8 mt-9'>
+                  <ul className="flex flex-col items-center gap-8 mt-9">
                     {urlAndUrlName.map((e, i) => {
                       return (
-                        <div key={i} >
+                        <div key={i}>
                           <NavLink
                             to={e.url}
-                            className={({ isActive }) => isActive ? 'text-[#95C22B] text-sm text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]' : 'text-[#212121] text-sm text-center font-extrabold font-inter'}
+                            className={({ isActive }) =>
+                              isActive
+                                ? "text-[#95C22B] text-sm text-center font-bold font-inter bg-[#FFFFFF] px-5 py-[10px]"
+                                : "text-[#212121] text-sm text-center font-extrabold font-inter"
+                            }
                           >
                             {e.urlName}
                           </NavLink>
                         </div>
-                      )
+                      );
                     })}
-                    {!userInfo?.userId && <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>}
+                    {!userInfo?.userId && (
+                      <Button onClick={handleLogin} variant="log" size="log">
+                        Log in / Sign up
+                      </Button>
+                    )}
                   </ul>
                 </SheetDescription>
               </SheetHeader>
             </SheetContent>
           </Sheet>
-          {!pathname.includes("/profile") &&
-            <Link to={'/'}>
+          {!pathname.includes("/profile") && (
+            <Link to={"/"}>
               <div className="w-28 sm:w-40">
-                <img src={De9toLogo} className='' alt="" />
+                <img src={De9toLogo} className="" alt="" />
               </div>
-            </Link>}
+            </Link>
+          )}
         </div>
-        <ul className='flex items-center gap-8 max-[970px]:hidden'>
+        <ul className="flex items-center gap-8 max-[970px]:hidden">
           {urlAndUrlName.map((e, i) => {
             return (
-              <div key={i} >
+              <div key={i}>
                 <NavLink
                   to={e.url}
-                  className={({ isActive }) => isActive ? 'text-[#95C22B] text-lg text-center font-bold font-inter bg-[#FFFFFF] py-[10px]' : 'text-[#212121] text-lg text-center font-medium font-inter'}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-[#95C22B] text-lg text-center font-bold font-inter bg-[#FFFFFF] py-[10px]"
+                      : "text-[#212121] text-lg text-center font-medium font-inter"
+                  }
                 >
                   {e.urlName}
                 </NavLink>
               </div>
-            )
+            );
           })}
         </ul>
 
-        <div className='flex gap-4 items-center'>
-          <IoSearchSharp onClick={() => navigate("/our-dentist")} className='text-[#95C22B] min-[970px]:hidden text-2xl' />
-          {!isLogin ?
-            <Button onClick={handleLogin} variant='log' size='log'>Log in / Sign up</Button>
-            :
+        <div className="flex gap-4 items-center">
+          <IoSearchSharp
+            onClick={() => navigate("/our-dentist")}
+            className="text-[#95C22B] min-[970px]:hidden text-2xl"
+          />
+          {!isLogin ? (
+            <Button
+              onClick={handleLogin}
+              variant="log"
+              size="log"
+              className="bg-[#5A5A5A] hover:bg-[#515151] hidden sm:block"
+            >
+              Log in / Sign up
+            </Button>
+          ) : (
             <>
-              <button onClick={() => navigate("/profile/medical-records/appointment")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>
+              <button
+                onClick={() => navigate("/profile/medical-records/appointment")}
+                className="flex items-center gap-1 cursor-pointer max-lg:hidden"
+              >
                 {/* <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar> */}
                 <ImageSkeleton
-                  src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"}
-                  imgClassName={'w-10 h-10 rounded-full'}
+                  src={
+                    userInfo?.userImage
+                      ? userInfo?.userImage
+                      : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                  }
+                  imgClassName={"w-10 h-10 rounded-full"}
                   skeletonClassName={"w-10 h-10 rounded-full"}
                 />
                 {/* <div className='w-10 h-10'>
                   <img src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"} className="w-full h-full rounded-full" />
                 </div> */}
-                <IoIosArrowDown className='text-xl text-[#717171]' />
+                <IoIosArrowDown className="text-xl text-[#717171]" />
               </button>
               <DropdownMenu>
-                <DropdownMenuTrigger className='hidden max-lg:flex' asChild>
-                  <button onClick={() => navigate("/profile/medical-records")} className='flex items-center gap-1 cursor-pointer'>
+                <DropdownMenuTrigger className="hidden max-lg:flex" asChild>
+                  <button
+                    onClick={() => navigate("/profile/medical-records")}
+                    className="flex items-center gap-1 cursor-pointer"
+                  >
                     <ImageSkeleton
-                      src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"}
-                      imgClassName={'w-10 h-10 rounded-full'}
+                      src={
+                        userInfo?.userImage
+                          ? userInfo?.userImage
+                          : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                      }
+                      imgClassName={"w-10 h-10 rounded-full"}
                       skeletonClassName={"w-10 h-10 rounded-full"}
                     />
                     {/* <div className='w-10 h-10'>
                       <img src={userInfo?.userImage ? userInfo?.userImage : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"} className="w-full h-full rounded-full" />
                     </div> */}
-                    <IoIosArrowDown className='text-xl text-[#717171]' />
+                    <IoIosArrowDown className="text-xl text-[#717171]" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[100vw]">
                   <DropdownMenuGroup>
-                    <div className='flex flex-col gap-2 bg-[#FFFFFF] mt-4'>
-                      <Link to="/profile/medical-records/appointment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("medical-records") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                    <div className="flex flex-col gap-2 bg-[#FFFFFF] mt-4">
+                      <Link
+                        to="/profile/medical-records/appointment"
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                          pathname.includes("medical-records")
+                            ? "bg-[#EEEEEE] text-[#95C22B]"
+                            : "text-[#0F172A]"
+                        }`}
+                      >
                         Medical Records
                       </Link>
-                      <Link to="/profile/appointments" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("appointments") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      <Link
+                        to="/profile/appointments"
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                          pathname.includes("appointments")
+                            ? "bg-[#EEEEEE] text-[#95C22B]"
+                            : "text-[#0F172A]"
+                        }`}
+                      >
                         Appointments
                       </Link>
-                      <Link to="/profile/my-feedback" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("my-feedback") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      <Link
+                        to="/profile/my-feedback"
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                          pathname.includes("my-feedback")
+                            ? "bg-[#EEEEEE] text-[#95C22B]"
+                            : "text-[#0F172A]"
+                        }`}
+                      >
                         My Feedback
                       </Link>
-                      <Link to="/profile/payment/appointment" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("payment") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      <Link
+                        to="/profile/payment/appointment"
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                          pathname.includes("payment")
+                            ? "bg-[#EEEEEE] text-[#95C22B]"
+                            : "text-[#0F172A]"
+                        }`}
+                      >
                         Payment
                       </Link>
-                      <Link to="/profile/update-profile" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      <Link
+                        to="/profile/update-profile"
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                          pathname.includes("update-profile")
+                            ? "bg-[#EEEEEE] text-[#95C22B]"
+                            : "text-[#0F172A]"
+                        }`}
+                      >
                         Update Profile
                       </Link>
-                      <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
-                        <span className='font-inter text-[#1A1A1A] font-medium text-xl'>Masters</span>
-                        <IoIosArrowDown className={`text-xl text-[#717171] duration-300 ${isMasterOpen && "rotate-180 transition-transform duration-300"}`} />
+                      <button
+                        onClick={() => setIsMasterOpen(!isMasterOpen)}
+                        className="flex justify-between px-3"
+                      >
+                        <span className="font-inter text-[#1A1A1A] font-medium text-xl">
+                          Masters
+                        </span>
+                        <IoIosArrowDown
+                          className={`text-xl text-[#717171] duration-300 ${
+                            isMasterOpen &&
+                            "rotate-180 transition-transform duration-300"
+                          }`}
+                        />
                       </button>
-                      {isMasterOpen &&
-                        <div className='flex flex-col gap-2'>
-                          <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                      {isMasterOpen && (
+                        <div className="flex flex-col gap-2">
+                          <Link
+                            to="/profile/change-password"
+                            className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                              pathname.includes("change-password")
+                                ? "bg-[#EEEEEE] text-[#95C22B]"
+                                : "text-[#0F172A]"
+                            }`}
+                          >
                             Change Password
                           </Link>
-                          <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                          <Link
+                            to="/profile/notifications-settings"
+                            className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                              pathname.includes("notifications-settings")
+                                ? "bg-[#EEEEEE] text-[#95C22B]"
+                                : "text-[#0F172A]"
+                            }`}
+                          >
                             Notification Settings
                           </Link>
-                          <Link to="/profile/delete-account" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("delete-account") ? 'bg-[#EEEEEE] text-[#FF0000]' : 'text-[#FF0000]'}`}>
+                          <Link
+                            to="/profile/delete-account"
+                            className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
+                              pathname.includes("delete-account")
+                                ? "bg-[#EEEEEE] text-[#FF0000]"
+                                : "text-[#FF0000]"
+                            }`}
+                          >
                             Delete Account
                           </Link>
                         </div>
-                      }
+                      )}
 
-                      <button onClick={() => setIsLogOutModalOpen(true)} className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}>
+                      <button
+                        onClick={() => setIsLogOutModalOpen(true)}
+                        className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE]`}
+                      >
                         Log out
                       </button>
 
-                      {isDeleteAccountModalOpen &&
+                      {isDeleteAccountModalOpen && (
                         <DeleteAccountModal
                           isDeleteAccountModalOpen={isDeleteAccountModalOpen}
-                          setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
+                          setIsDeleteAccountModalOpen={
+                            setIsDeleteAccountModalOpen
+                          }
                         />
-                      }
+                      )}
 
-                      {isLogOutModalOpen &&
+                      {isLogOutModalOpen && (
                         <LogoutModal
                           isLogOutModalOpen={isLogOutModalOpen}
                           setIsLogOutModalOpen={setIsLogOutModalOpen}
                         />
-                      }
+                      )}
                     </div>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
-          }
+          )}
         </div>
       </nav>
     </header>
-  )
+  );
 }
 
 export default Header
