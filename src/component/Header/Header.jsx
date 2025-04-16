@@ -75,11 +75,11 @@ const Header = () => {
     },
     {
       url: '/dental-camp',
-      urlName: 'Dental camps'
+      urlName: 'Dental Camps'
     },
     {
       url: '/our-dentist',
-      urlName: 'Our dentist'
+      urlName: 'Our Dentist'
     },
     // {
     //   url: '/our-clinic',
@@ -91,11 +91,11 @@ const Header = () => {
     },
     {
       url: '/about',
-      urlName: 'About us'
+      urlName: 'About Us'
     },
     {
       url: '/contact',
-      urlName: 'Contact us'
+      urlName: 'Contact Us'
     }
   ]
 
@@ -158,7 +158,7 @@ const Header = () => {
         <div className='flex gap-4 items-center'>
           <IoSearchSharp onClick={() => navigate("/our-dentist")} className='text-[#95C22B] min-[970px]:hidden text-2xl' />
           {!isLogin ?
-            <Button onClick={handleLogin} variant='log' size='log'>Log in</Button>
+            <Button onClick={handleLogin} variant='log' size='log'>Log in / Sign up</Button>
             :
             <>
               <button onClick={() => navigate("/profile/medical-records/appointment")} className='flex items-center gap-1 cursor-pointer max-lg:hidden'>

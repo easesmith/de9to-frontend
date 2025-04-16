@@ -40,7 +40,7 @@ const HeroSection = () => {
                 </div>
                 <div className='flex justify-center items-center flex-wrap mt-6'>
                     <div className='px-16 py-16 max-[500px]:px-6 max-[700px]:py-6'>
-                        <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-[#95C22B]'>Smile</span>, Our Passion</h4>
+                        <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">Your <span className='text-black font-bold'>Smile</span>, Our Passion</h4>
                         <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">{contentData.content}</h1>
                         <div className=' flex gap-5 max-[500px]:justify-center'>
                             <button onClick={() => navigate("/our-dentist")} className='flex justify-center items-center gap-1 bg-[#95C22B] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#98c52f] cursor-pointer'>

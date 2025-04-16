@@ -298,7 +298,7 @@ textarea::-webkit-scrollbar-track {
 .logos-slide {
   display: flex;
   gap: 40px;
-  animation: 35s slide infinite linear;
+  animation: 45s slide infinite linear;
 }
 
 .logos-slide img {

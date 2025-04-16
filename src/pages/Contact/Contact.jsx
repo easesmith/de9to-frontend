@@ -29,10 +29,10 @@ const Contact = () => {
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       fullName: "",
-      contactNumber: "",
+      // contactNumber: "",
       emailId: "",
       location: "",
-      pincode: "",
+      // pincode: "",
       dentalIssue: ""
     },
   })
@@ -154,8 +154,8 @@ const Contact = () => {
                       </FormItem>
                     )}
                   />
-                  <div className='grid grid-cols-2 gap-[24px] w-full max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[18px]'>
-                    <FormField
+                  <div className='grid grid-cols-1 gap-[24px] w-full max-lg:grid-cols-1 max-md:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-[18px]'>
+                    {/* <FormField
                       control={form.control}
                       name="contactNumber"
                       render={({ field }) => (
@@ -169,7 +169,7 @@ const Contact = () => {
                           <FormMessage />
                         </FormItem>
                       )}
-                    />
+                    /> */}
                     <FormField
                       control={form.control}
                       name="emailId"
@@ -204,7 +204,7 @@ const Contact = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField
+                  {/* <FormField
                     control={form.control}
                     name="pincode"
                     render={({ field }) => (
@@ -218,7 +218,7 @@ const Contact = () => {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
+                  /> */}
                   <FormField
                     control={form.control}
                     name="dentalIssue"

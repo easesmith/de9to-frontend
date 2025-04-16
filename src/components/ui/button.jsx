@@ -22,7 +22,7 @@ const buttonVariants = cva(
         paginationActive:"bg-[#95C22B] text-[#FFFFFF] shadow-custom6",
         submit:"bg-[#95C22B] text-xl hover:bg-[#9bc833] text-[#FFFFFF] font-bold font-openSans",
         comment:"bg-[#95C22B] text-lg hover:bg-[#9bc833] text-[#FFFFFF] font-medium font-inter",
-        log:"bg-[#95C22B] hover:bg-[#9bc833] text-base text-[#FFFFFF] font-bold font-inter w-[120px]",
+        log:"bg-[#95C22B] hover:bg-[#9bc833] text-base text-[#FFFFFF] font-bold font-inter",
         moreBlog:"hover:bg-[#FFFFFF] border-[1px] border-[#95C22B] text-sm text-[#1A1A1A] font-normal font-inter",
         category:"border-[1px] border-[#212121] text-sm text-[#1A1A1A] font-light font-inter",
         prev:"text-[#95C22B] border-2 border-[#95C22B] bg-[#FFFFFF] font-semibold font-inter"
