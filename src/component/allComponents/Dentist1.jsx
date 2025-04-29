@@ -154,7 +154,7 @@ const Dentist1 = ({ dentist }) => {
                 <div className="flex items-center gap-2">
                     <FaGraduationCap className='text-[#717171] text-2xl max-[700px]:text-xl' />
                     <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                        <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
+                        <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}dd</p>
                         <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
                         <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
                         <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>

@@ -1,6 +1,7 @@
 import DocImage2 from "@/assets/Group 1321317071.png";
 import ImageSkeleton from "@/components/ImageSkeleton";
 import SearchListCompo from "@/components/SearchListCompo";
+import { useIsMobile } from "@/hooks/use-mobile";
 import useGetApiReq from "@/hooks/useGetApiReq";
 import { useEffect, useState } from "react";
 import { MdOutlineArrowOutward } from "react-icons/md";
@@ -8,10 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
+
   const { res, fetchData } = useGetApiReq();
   const [contentData, setContentData] = useState({
     content: "",
     image: "",
+    image1: "",
   });
 
   const getContent = () => {
@@ -25,53 +29,43 @@ const HeroSection = () => {
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
       const { images = [], content = [] } = res?.data?.foundContent || {};
+
       setContentData({
         content: content[0]?.resources,
-        image: images[0]?.image,
+        image: images[0]?.image || "",
+        image1: images[1]?.image || "",
       });
     }
   }, [res]);
+  console.log("contentData", contentData);
 
   return (
-    <section className="bg-[#95C22B]">
-      <div className="flex justify-center items-center flex-wrap pt-10">
+    <section
+      style={{
+        backgroundImage: `url("${
+          isMobile ? contentData.image1 : contentData.image
+        }")`,
+      }}
+      className="bg-cover bg-center bg-no-repeat h-[90vh]"
+    >
+      <div className="max-w-[1200px] px-1 relative w-full mx-auto pt-10 h-full">
         <div className="max-[970px]:hidden w-full">
           <SearchListCompo />
         </div>
-        <div className="flex justify-center items-center flex-wrap mt-6">
-          <div className="px-16 py-16 max-[500px]:px-6 max-[700px]:py-6">
-            <h4 className="text-[#000000] text-[32px] max-[970px]:text-xl font-normal italic font-poppins max-[500px]:text-center mb-4">
-              Your <span className="text-white font-bold">Smile</span>, Our
-              Passion
-            </h4>
-            <h1 className="max-w-[700px] w-full text-[#000000] text-5xl max-[970px]:text-3xl max-[500px]:text-xl max-[500px]:text-center font-extrabold font-poppins leading-[72px] mb-8">
-              {contentData.content}
-            </h1>
-            <div className=" flex gap-5 max-[500px]:justify-center">
-              <button
-                onClick={() => navigate("/our-dentist")}
-                className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#95C22B] rounded-lg px-5 py-4 max-[500px]:py-2 hover:bg-[#5A5A5A] cursor-pointer"
-              >
-                <div className=" text-[#FFFFFF] text-lg max-[970px]:text-base font-semibold font-poppins ">
-                  Book an appointment
-                </div>
-                <MdOutlineArrowOutward
-                  color="#FFFFFF"
-                  className="text-xl max-[970px]:text-lg"
-                />
-              </button>
+        <div className="w-full h-[90%] sm:h-[75%] flex items-start sm:items-end">
+          <button
+            onClick={() => navigate("/our-dentist")}
+            className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded-lg px-5 py-3 max-[500px]:py-2 hover:bg-[#5A5A5A] cursor-pointer mt-32 sm:mt-0 group"
+          >
+            <div className=" text-[#FFFFFF] text-base max-[970px]:text-sm font-semibold font-poppins ">
+              Book an appointment
             </div>
-          </div>
-          <div className="">
-            <div className=" relative">
-              {/* <img className='max-w-md w-full' src={contentData.image} alt="" /> */}
-              <ImageSkeleton
-                src={contentData.image}
-                imgClassName={"max-w-md w-full"}
-                skeletonClassName={"max-w-md w-full h-[450px] w-[400px]"}
-              />
-            </div>
-          </div>
+            <MdOutlineArrowOutward
+              color="#FFFFFF"
+              className="text-xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform duration-150 ease-out group-hover:rotate-12 group-hover:scale-110
+ max-[970px]:text-lg"
+            />
+          </button>
         </div>
       </div>
     </section>
