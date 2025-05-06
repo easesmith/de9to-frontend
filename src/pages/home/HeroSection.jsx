@@ -40,13 +40,14 @@ const HeroSection = () => {
   console.log("contentData", contentData);
 
   return (
+    <div className="relative w-full overflow-hidden">
     <section
       style={{
         backgroundImage: `url("${
           isMobile ? contentData.image1 : contentData.image
         }")`,
       }}
-      className="bg-cover bg-center bg-no-repeat h-[90vh]"
+      className="bg-cover bg-center bg-no-repeat h-[800px] sm:h-[600px] w-full"
     >
       <div className="max-w-[1200px] px-1 relative w-full mx-auto pt-10 h-full">
         <div className="max-[970px]:hidden w-full">
@@ -55,7 +56,7 @@ const HeroSection = () => {
         <div className="w-full h-[90%] sm:h-[75%] flex items-start sm:items-end">
           <button
             onClick={() => navigate("/our-dentist")}
-            className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded-lg px-5 py-3 max-[500px]:py-2 hover:bg-[#5A5A5A] cursor-pointer mt-32 sm:mt-0 group"
+            className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded-lg px-5 py-3 max-[500px]:py-2 hover:bg-[#5A5A5A] cursor-pointer mt-52 sm:mt-0 group"
           >
             <div className=" text-[#FFFFFF] text-base max-[970px]:text-sm font-semibold font-poppins ">
               Book an appointment
@@ -69,6 +70,7 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

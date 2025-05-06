@@ -15,7 +15,7 @@ const Footer = () => {
             <img src={De9toLogo} className='' alt="" />
           </div>
         </Link>
-        <ul className='flex justify-between max-[830px]:gap-y-2 flex-wrap items-center max-[700px]:text-sm gap-10 list-none ml-0'>
+        <ul className='flex sm:justify-between max-[830px]:gap-y-2 flex-wrap items-center max-[700px]:text-sm gap-10 list-none ml-0'>
           <Link to={'/about'} className='text-[#000000] text-lg font-medium max-[700px]:text-sm font-poppins'><>About Us</></Link>
           <Link to={'/our-dentist'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Our Dentist</></Link>
           <Link to={'/dental-camp'} className='text-[#000000] text-lg max-[700px]:text-sm font-medium font-poppins'><>Dental Camps</></Link>

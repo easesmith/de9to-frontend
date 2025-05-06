@@ -1,57 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '@/component/Layout/Layout'
 import ButtonLocation, { AllProfileCard, FilterName } from '@/component/MiniCompo/MiniCompo'
+import { useCallback, useEffect, useState } from 'react'
 import DoctorImg from '../../assets/codifyformatter__2_-removebg-preview 1.png'
 import ImgBackgroundImg from '../../assets/Group.png'
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import Dentist1 from '@/component/allComponents/Dentist1'
 import ReactPagination from '@/component/allComponents/ReactPagination'
-import SearchListCompo from '@/components/SearchListCompo'
-import useGetApiReq from '@/hooks/useGetApiReq'
-import FilterCompo from '@/components/FilterCompo'
+import Clinic from '@/components/Clinic'
 import DataNotFound from '@/components/DataNotFound'
-import { FaFilter } from 'react-icons/fa'
-import { Input } from '@/components/ui/input'
-import { IoSearchSharp } from 'react-icons/io5'
+import FilterCompo from '@/components/FilterCompo'
+import SearchListCompo from '@/components/SearchListCompo'
+import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
-import ReactStars from 'react-stars'
-import { FaXmark } from 'react-icons/fa6'
-import { Button } from '@/components/ui/button'
-import Clinic from '@/components/Clinic'
+import useGetApiReq from '@/hooks/useGetApiReq'
 import { Helmet } from 'react-helmet-async'
-
-const Modal = ({ isOpen, onClose, children }) => {
-  // Close the modal if the user clicks outside of it
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (isOpen && event.target.classList.contains('modal-overlay')) {
-        onClose();
-      }
-    };
-
-    window.addEventListener('click', handleOutsideClick);
-    return () => window.removeEventListener('click', handleOutsideClick);
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-        {children}
-      </div>
-    </div>
-  );
-};
+import { FaFilter } from 'react-icons/fa'
+import { FaXmark } from 'react-icons/fa6'
+import ReactStars from 'react-stars'
 
 const OurDentist = () => {
 
@@ -144,23 +110,6 @@ const OurDentist = () => {
   const handleLocationChange = (value) => {
     setLocation(value);
   }
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [searchListModel, setSearchListModel] = useState(false)
-  const [ayush, setAyush] = useState(false)
-
-  // function handleSearchListOpenModel() {
-  //   setSearchListModel(true)
-  // }
-
-  function handleAyush() {
-    setAyush(!ayush)
-  }
-
-  // function handleSearchListCloseModel() {
-  //   setSearchListModel(false)
-  // }
 
   const [seoData, setSeoData] = useState({
     title: "",

@@ -538,9 +538,12 @@ const DentalCamp = () => {
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectGroup>
-                                    <SelectItem value="1hr">1 hr</SelectItem>
-                                    <SelectItem value="2hr">2 hr</SelectItem>
                                     <SelectItem value="3hr">3 hr</SelectItem>
+                                    <SelectItem value="4hr">4 hr</SelectItem>
+                                    <SelectItem value="5hr">5 hr</SelectItem>
+                                    <SelectItem value="6hr">6 hr</SelectItem>
+                                    <SelectItem value="7hr">7 hr</SelectItem>
+                                    <SelectItem value="8hr">8 hr</SelectItem>
                                   </SelectGroup>
                                 </SelectContent>
                               </Select>
@@ -691,7 +694,7 @@ const DentalCamp = () => {
             onExit={() => setIsCounter(false)}
           >
             <>
-              <div className="grid grid-cols-3 justify-items-center text-[#808080] w-full mb-5 max-small:mb-[10px]">
+              <div className="grid grid-cols-3 justify-items-center text-[#808080] w-full mb-10 max-small:mb-5">
                 <MangementInfo
                   isCounter={isCounter}
                   img={DestistSignupImg}

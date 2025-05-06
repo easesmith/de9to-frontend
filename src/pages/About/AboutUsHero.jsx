@@ -67,7 +67,7 @@ const AboutUsHero = () => {
             </div>
             <div className="bg-[#95C22B] w-full hidden max-md:block py-5">
                 <ScrollTrigger onEnter={() => setIsCounter(true)} onExit={() => setIsCounter(false)}>
-                    <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-5 max-[425px]:mb-[10px]'>
+                    <div className='grid grid-cols-3 justify-items-center text-[#FFFFFF] w-full mb-10 max-[425px]:mb-5'>
                         <MangementInfo isCounter={isCounter} img={DestistSignupImg} number={150} title="Dentist Signups" />
                         <MangementInfo isCounter={isCounter} img={DentalConsultationImg} number={10000} title="Dental Consultations" />
                         <MangementInfo isCounter={isCounter} img={DestistCampsImg} number={150} title="Dental Camps" />
