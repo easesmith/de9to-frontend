@@ -42,7 +42,7 @@ const Payment = () => {
 
     useEffect(() => {
         getAppointments();
-    }, [])
+    }, [currentPage])
 
 
     useEffect(() => {

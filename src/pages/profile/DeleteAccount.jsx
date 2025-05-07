@@ -64,7 +64,7 @@ const DeleteAccount = () => {
                                         )}
                                     />
                                     <div className='flex flex-col items-end'>
-                                        <button className='text-sm font-inter'>Forgot Password?</button>
+                                        <button type='button' className='text-sm font-inter'>Forgot Password?</button>
                                         <Button type="submit" className="bg-[#95C22B] mt-3 flex justify-center w-full h-12">
                                             Delete
                                         </Button>

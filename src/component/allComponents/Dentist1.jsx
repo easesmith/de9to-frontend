@@ -119,18 +119,28 @@ const Dentist1 = ({ dentist }) => {
                         <Button onClick={() => handleNavigateDentistDetailPage(_id)} className="rounded-none mt-2 h-9">View Profile</Button>
                     </div>
                     <div>
-                        <div className="flex flex-col sm:flex-row justify-between gap-3 flex-wrap">
+                        <div className="flex flex-col sm:flex-row justify-between gap-3 flex-wrap sm:flex-nowrap">
                             <div className="">
                                 <h2 className='text-2xl font-inter font-semibold text-gray-600'>{personalDetails?.prefix
                                 }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                                 <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                                    <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.degree[0]}</p>
-                                    <div className='w-[1.5px] h-[14px] bg-gray-500'></div>
+                                    {personalDetails?.degree[0] &&
+                                        <>
+                                            <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.degree[0]}</p>
+                                            <div className='w-[1.5px] h-[14px] bg-gray-500'></div>
+                                        </>
+                                    }
+                                    {personalDetails?.degree[1] &&
+                                        <>
+                                            <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.degree[1]}</p>
+                                            <div className='w-[1.5px] h-[14px] bg-gray-500'></div>
+                                        </>
+                                    }
                                     <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.specialty}</p>
                                 </div>
                                 <p className='text-[#95C22B] font-inter text-lg font-bold'>{clinic?.length === 1 ? clinic[0]?.clinicName : clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
                                 <p className='text-gray-500 font-inter font-semibold'>Self Owned Clinic</p>
-                                <p className='text-gray-500 font-medium'><b className='mr-2'>Experience:</b> {educationalQualification?.yearsOfExperience}+ Years</p>
+                                <p className='text-gray-500 font-medium'><b className='mr-2'>Experience:</b> {educationalQualification?.yearsOfExperience > 0 ? `${educationalQualification?.yearsOfExperience}+ Years` : 'Not mentioned'}</p>
                             </div>
                             <div className="max-w-[340px] w-full">
                                 <ReactStars size={30} count={5} value={averageRating} edit={false} color2={'#95C22B'} />
@@ -149,7 +159,7 @@ const Dentist1 = ({ dentist }) => {
                         <span className='font-medium'>7 Patient Stories</span>
                     </div>
                     <Button className="rounded-none text-base h-9 w-full sm:w-44">Share Your Review</Button>
-                    <Button className="rounded-none text-base h-9 w-full sm:w-44">Book Appointment</Button>
+                    <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="rounded-none text-base h-9 w-full sm:w-44">Book Appointment</Button>
                     <div className="rounded-none mt-1 w-full sm:w-44 flex items-center justify-center gap-x-4">
                         <BiSolidInjection className='text-[#95C22B]' />
                         <FaShieldVirus className='text-[#95C22B]' />
