@@ -2,7 +2,7 @@ import logo from '@/assets/logo.png'
 import { lazy, Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import BackdropLoader from './components/backdrop-loader/BackdropLoader'
 import ErrorModal from './components/ErrorModal'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -15,6 +15,11 @@ import DentistSignup from './pages/dentist/DentistSignup'
 import OtherDetails from './pages/dentist/OtherDetails'
 import PersonalDetails from './pages/dentist/personal-details/PersonalDetails'
 import { handleErrorModal } from './store/slices/errorSlice'
+import { useScrollToTop } from './hooks/useScrollToTop'
+import ComplaintList from './pages/complaint/ComplaintList'
+// import ComplaintDetails from './pages/complaint/ComplaintDetails'
+import AddComplaint from './pages/complaint/AddComplaint'
+import ComplaintDetails from './pages/complaint/ComplaintDetails'
 
 const Home = lazy(() => import('./pages/home/Home'))
 const DentalCamp = lazy(() => import('./pages/dentalCamp/DentalCamp'))
@@ -48,6 +53,10 @@ const App = () => {
 
   const { isErrorModalOpen, message, isUnautorizedModalOpen } = useSelector((state) => state.error);
   const { isLoading } = useSelector((state) => state.loading);
+
+  const { pathname } = useLocation();
+
+  useScrollToTop([pathname])
 
   return (
     <>
@@ -97,6 +106,15 @@ const App = () => {
             <Route path='/profile/update-profile' element={<UpdateProfile />} />
             <Route path='/profile/change-password' element={<ChangePassword />} />
             <Route path='/profile/notifications-settings' element={<NotificationsSettings />} />
+            <Route path='/profile/complaints' element={<ComplaintList />} />
+            <Route
+              path="/profile/complaints/:complaintId"
+              element={<ComplaintDetails />}
+            />
+            <Route
+              path="/profile/complaints/add-complaint"
+              element={<AddComplaint />}
+            />
             <Route path='/profile/delete-account' element={<DeleteAccount />} />
           </Route>
 

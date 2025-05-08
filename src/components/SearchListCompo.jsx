@@ -52,7 +52,6 @@ const SearchListCompo = ({
     if (res?.status === 200 || res?.status === 201) {
       setIsShadow(true);
       if (res?.data?.status === true) {
-        console.log("search res :", res);
         const { foundClinics, foundDentists } = res?.data || {};
         setAllClinic(foundClinics);
         setAllDentist(foundDentists);
@@ -69,9 +68,6 @@ const SearchListCompo = ({
       }
     }
   }, [res]);
-
-  console.log("foundClinics :", allClinic);
-  console.log("allDentist :", allDentist);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {

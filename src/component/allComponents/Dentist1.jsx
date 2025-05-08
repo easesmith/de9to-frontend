@@ -21,6 +21,16 @@ import { BiSolidInjection } from 'react-icons/bi';
 const Dentist1 = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
 
+    const handleClick = (e) => {
+        e.stopPropagation();
+        setIsConfirmBookingModalOpen(true);
+    }
+
+    const handleClickReview = (e) => {
+        e.stopPropagation();
+        navigate(`/our-dentist/${dentist?._id}#reviews`)
+    }
+
     console.log("dentist1", dentist)
     const { personalDetails, _id, clinic, assignedClinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
 
@@ -29,10 +39,10 @@ const Dentist1 = ({ dentist }) => {
     const availabilityData = filteredAvailabilityData?.map((item) => item?.day);
     const modifiedClinic = assignedClinic.map((clinic) => clinic?.clinicId)
 
-    console.log("modifiedClinic", [...modifiedClinic, ...clinic]);
+    // console.log("modifiedClinic", [...modifiedClinic, ...clinic]);
 
 
-    console.log("availabilityData", availabilityData);
+    // console.log("availabilityData", availabilityData);
 
     const averageRating = calculateAverageRating(dentistRatings);
 
@@ -106,11 +116,16 @@ const Dentist1 = ({ dentist }) => {
 
             </div> */}
 
-            <div className="border-2 p-4 grid grid-cols-1 lg:grid-cols-[75%_23%] gap-x-[2%] border-[#95C22B]">
+            <div onClick={() => handleNavigateDentistDetailPage(_id)} className="border-2 cursor-pointer p-4 grid grid-cols-1 lg:grid-cols-[75%_23%] gap-x-[2%] border-[#95C22B]">
                 <div className="grid grid-cols-1 md:grid-cols-[20%_78%] gap-x-[2%]">
                     <div className="flex flex-col items-center">
                         <div className="w-32 h-32 rounded-full relative">
-                            <img src={personalDetails?.image} className='w-full h-full object-cover rounded-full' alt="" />
+                            <ImageSkeleton
+                                src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
+                                imgClassName={'rounded-full h-32 w-32 object-cover'}
+                                skeletonClassName={"rounded-lg h-[250px] w-[250px]"}
+                            />
+                            {/* <img src={personalDetails?.image} className='w-full h-full object-cover rounded-full' alt="" /> */}
                             <div className="w-8 h-8 rounded-full flex justify-center items-center bg-[#95C22B] absolute -bottom-1 right-0">
                                 <FaCheck className='text-white size-5' />
                             </div>
@@ -153,13 +168,13 @@ const Dentist1 = ({ dentist }) => {
                         {/* <p className='text-gray-500 font-medium'><b className='mr-2'>Address:</b> {educationalQualification?.yearsOfExperience}+ Years</p> */}
                     </div>
                 </div>
-                <div className='lg:border-l-4 border-gray-500 flex flex-row flex-wrap lg:flex-col mt-5 lg:mt-0 items-center md:justify-center gap-2 px-5'>
-                    <div className="border-2 flex items-center gap-x-3 justify-center text-gray-400 border-gray-400 px-2 lg:mt-2 h-9 w-full sm:w-44">
+                <div className='lg:border-l-4 border-gray-500 flex flex-row flex-wrap lg:flex-col mt-5 lg:mt-0 items-center gap-2 px-5'>
+                    <div className="border-2 flex items-center gap-x-3 justify-center text-gray-400 border-gray-400 px-2 h-9 w-full sm:w-44">
                         <IoChatbox className='text-[#95C22B] size-5' />
-                        <span className='font-medium'>7 Patient Stories</span>
+                        <span className='font-medium'>{dentist?.dentistRatings?.length} Patient Stories</span>
                     </div>
-                    <Button className="rounded-none text-base h-9 w-full sm:w-44">Share Your Review</Button>
-                    <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="rounded-none text-base h-9 w-full sm:w-44">Book Appointment</Button>
+                    <Button onClick={handleClickReview} className="rounded-none text-base h-9 w-full sm:w-44">Share Your Review</Button>
+                    <Button onClick={handleClick} className="rounded-none text-base h-9 w-full sm:w-44">Book Appointment</Button>
                     <div className="rounded-none mt-1 w-full sm:w-44 flex items-center justify-center gap-x-4">
                         <BiSolidInjection className='text-[#95C22B]' />
                         <FaShieldVirus className='text-[#95C22B]' />

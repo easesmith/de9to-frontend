@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import De9toLogo from '../../assets/de9to-logo-1.png'
+import logo from '@/assets/logo.png'
+import DeleteAccountModal from '@/components/DeleteAccountModal'
+import ImageSkeleton from '@/components/ImageSkeleton'
+import LogoutModal from '@/components/LogoutModal'
 import { Button } from '@/components/ui/button'
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { IoIosArrowDown } from 'react-icons/io'
-import { readCookie } from '@/utils/readCookie'
-import { MdMenu } from 'react-icons/md'
-import { FaSearch } from 'react-icons/fa'
-import { IoSearchSharp } from 'react-icons/io5'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
 import {
   Sheet,
   SheetContent,
@@ -16,46 +17,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import logo from '@/assets/logo.png'
-import {
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-} from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import DeleteAccountModal from '@/components/DeleteAccountModal'
-import LogoutModal from '@/components/LogoutModal'
-import ImageSkeleton from '@/components/ImageSkeleton'
+import { readCookie } from '@/utils/readCookie'
+import { useState } from 'react'
+import { IoIosArrowDown } from 'react-icons/io'
+import { IoSearchSharp } from 'react-icons/io5'
+import { MdMenu } from 'react-icons/md'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
+import De9toLogo from '../../assets/de9to-logo-1.png'
 
 const Header = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const userInfo = readCookie("userInfo");
-  console.log("userInfo", userInfo);
 
 
   const [isLogin, setIsLogin] = useState(userInfo ? true : false);

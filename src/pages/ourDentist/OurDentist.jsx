@@ -41,7 +41,7 @@ const OurDentist = () => {
 
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
-      // console.log("AllDentists:", res.data.data.dentists)
+      console.log("AllDentists:", res.data.data.dentists)
       setAllDentists(res.data.data.dentists)
       setSearchAllDentists(res.data.data.dentists)
       setPageCount(res.data.totalPages)

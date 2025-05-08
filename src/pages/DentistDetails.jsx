@@ -50,6 +50,16 @@ const DentistDetails = () => {
         }
     }, [res])
 
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+            const el = document.querySelector(hash);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, []);
+
 
     const getDentistRating = async () => {
         fetchDentistRatingsData(`/patient/get-dentist-reviews?dentistId=${params?.dentistId}&sort=${sortRating}`);
@@ -142,7 +152,7 @@ const DentistDetails = () => {
                     </div>
                 </div>
 
-                <div className="flex items-start gap-2 mt-10">
+                <div id='reviews' className="flex items-start gap-2 mt-10">
                     <div className='font-inter font-medium max-[900px]:hidden text-[#717171] w-28 text-right px-4 py-2 border-r-[3px] border-r-[#95C22B]'>Reviews</div>
                     <div className='w-full mb-5'>
                         <RatingsComp allRating={allRating} />
