@@ -18,6 +18,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import HeroSection from "./HeroSection";
 import WhatWeHaveAchieved from "./WhatWeHaveAchieved";
+import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -94,21 +95,17 @@ const Home = () => {
           <meta name="keywords" content={seoData.focusedKeywords} />
         </Helmet>
         <HeroSection />
-        <section className="overflow-hidden bg-[#F6F6F6]">
-          <div className="logos">
-            <div className="logos-slide">
-              {Array.from({ length: 10 }).map((_, index) => (
-                <span
-                  key={index}
-                  className="text-[#5A5A5A] text-2xl max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
-                >
-                  Pay via <span className="font-bold text-black">De9to</span> and get Upto
-                  <span className="font-bold text-black"> 20% Discount</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Marquee className="bg-[#F6F6F6] overflow-hidden py-4" autoFill gradient={false} speed={50}>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <span
+              key={index}
+              className="text-[#5A5A5A] text-2xl px-5 max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
+            >
+              Pay via <span className="font-bold text-black">De9to</span> and get Upto
+              <span className="font-bold text-black"> 20% Discount</span>
+            </span>
+          ))}
+        </Marquee>
 
         <WhatWeHaveAchieved />
 

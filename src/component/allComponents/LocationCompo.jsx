@@ -9,6 +9,8 @@ import {
 import { HiMiniXMark } from "react-icons/hi2";
 import { Input } from "@/components/ui/input";
 import { useLocation } from "react-router-dom";
+import { IoSearchSharp } from "react-icons/io5";
+import { Button } from "@/components/ui/button";
 
 const LocationCompo = ({
   searchQuery,
@@ -19,18 +21,19 @@ const LocationCompo = ({
   setLocation,
   setIsShadow,
   setShowDentistAndClinic,
+  gender,
+  handleGenderChange
 }) => {
   const { pathname } = useLocation();
 
   return (
     <div
-      className={`flex max-[700px]:hidden w-full justify-center items-center gap-3 ${
-        isShadow ? "rounded-b-none border-t-0 border-s-0 border-e-0" : ""
-      }`}
+      className={`flex max-[700px]:hidden w-full justify-center items-center gap-3 ${isShadow ? "rounded-b-none border-t-0 border-s-0 border-e-0" : ""
+        }`}
     >
       <div className="relative w-full">
         <Input
-          type="search"
+          // type="search"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search Dentists, Clinic etc."
@@ -48,24 +51,31 @@ const LocationCompo = ({
         )}
       </div>
       <Select value={location} onValueChange={setLocation}>
-        <SelectTrigger className="w-[180px] py-7 rounded-lg text-base text-[#3F3F3F] font-medium font-poppins border-[#95C22B]">
-          <SelectValue placeholder="location" />
+        <SelectTrigger className="w-[280px] py-7 rounded-lg text-base text-[#3F3F3F] font-medium font-poppins border-[#95C22B]">
+          <SelectValue placeholder="Select Location" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="Najabgarh">Najabgarh</SelectItem>
           <SelectItem value="Ramlila Maidan">Ramlila Maidan</SelectItem>
         </SelectContent>
       </Select>
-      <div className=" ">
-        <button
-          onClick={handleGetSerachQuery}
-          className={`w-[150px] ${
-            pathname === "/" ? "bg-[#5A5A5A]" : "bg-[#95C22B]"
-          }  text-[#FFFFFF] text-base font-semibold font-poppins border-[1px] border-[#95C22B] rounded-lg px-10 py-4`}
-        >
-          Search
-        </button>
-      </div>
+      <Select value={gender} onValueChange={handleGenderChange}>
+        <SelectTrigger className="w-[280px] py-7 rounded-lg text-base text-[#3F3F3F] font-medium font-poppins border-[#95C22B]">
+          <SelectValue placeholder="Select Gender" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="male">Male</SelectItem>
+          <SelectItem value="female">Female</SelectItem>
+        </SelectContent>
+      </Select>
+      <Button
+        disabled={!searchQuery}
+        onClick={handleGetSerachQuery}
+        className={`${pathname === "/" ? "bg-[#5A5A5A]" : "bg-[#5B5B5B]"
+          }  text-[#FFFFFF] text-base font-semibold font-poppins rounded-lg px-5 hover:bg-[#5A5A5A] py-[18px] h-full`}
+      >
+        <IoSearchSharp size={20} />
+      </Button>
     </div>
   );
 };

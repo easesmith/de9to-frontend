@@ -28,8 +28,7 @@ const DeleteAccount = () => {
     const { res, fetchData, isLoading } = usePostApiReq();
     const { reset, handleSubmit, getValues, watch } = form;
 
-    const onSubmit = (data) => {
-        console.log("Data:", data);
+    const onSubmit = () => {
         setIsDeleteAccountModalOpen(true);
     };
     console.log("userInfo:", userInfo);
@@ -41,38 +40,12 @@ const DeleteAccount = () => {
                     <div className="max-w-3xl rounded-lg w-full mt-24 bg-white p-5">
                         <h1 className='text-2xl font-inter font-semibold text-[#1A1A1A] text-center'>Delete Your Account</h1>
                         <p className='font-inter mt-1 text-[#1A1A1A]'>In order to delete your account, you must confirm your password which is linked to this account <span className="font-bold">{userInfo?.email}</span></p>
-                        <Form {...form}>
-                            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col items-start gap-4 mt-10 w-full'>
-                                {/* Clinic Selection */}
-                                <div className="w-full grid grid-cols-[70%_20%] max-[768px]:grid-cols-[60%_30%] max-[768px]:gap-10 max-[500px]:grid-cols-1 gap-20">
-                                    <FormField
-                                        control={form.control}
-                                        name="password"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-inter text-base text-[#1A1A1A] font-normal">Enter Password</FormLabel>
-                                                <FormControl>
-                                                    <div className='relative'>
-                                                        <FaUnlockAlt className='absolute left-3 top-1/2 -translate-y-1/2 text-[#717171]' />
-                                                        <Input type={isPasswordShow ? "text" : "password"} placeholder="********" className="placeholder:text-[#717171] pl-10 pr-12 h-12 border-[#E4E6EE]" {...field} />
-                                                        <button type='button' onClick={() => setIsPasswordShow(!isPasswordShow)} className='absolute right-3 top-1/2 -translate-y-1/2 text-[#717171] text-xs'>{isPasswordShow ? "Hide" : "Show"}</button>
-                                                    </div>
-                                                </FormControl>
-                                                {/* <FormDescription className="text-xs font-inter">Updates will be sent to the number you will provide</FormDescription> */}
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <div className='flex flex-col items-end'>
-                                        <button type='button' className='text-sm font-inter'>Forgot Password?</button>
-                                        <Button type="submit" className="bg-[#95C22B] mt-3 flex justify-center w-full h-12">
-                                            Delete
-                                        </Button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </Form>
+                        <div className='flex flex-col items-end mt-5'>
+                            <button type='button' className='text-sm font-inter'>Forgot Password?</button>
+                            <Button onClick={onSubmit} className="bg-[#95C22B] mt-3 flex justify-center w-full h-12">
+                                Delete
+                            </Button>
+                        </div>
                     </div>
                 </div>
                 {isDeleteAccountModalOpen &&

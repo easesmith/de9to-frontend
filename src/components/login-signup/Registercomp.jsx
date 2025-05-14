@@ -22,7 +22,6 @@ const Registercomp = ({ setIsShowTabs, setSelected }) => {
         defaultValues: {
             name: "",
             phone: "",
-            password: "",
             getUpdates: false,
         },
     });
@@ -105,7 +104,7 @@ const Registercomp = ({ setIsShowTabs, setSelected }) => {
                                         </FormItem>
                                     )}
                                 />
-                                {!getValues("loginWithOtp") && <FormField
+                                {/* {!getValues("loginWithOtp") && <FormField
                                     control={form.control}
                                     name="password"
                                     render={({ field }) => (
@@ -121,7 +120,7 @@ const Registercomp = ({ setIsShowTabs, setSelected }) => {
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />}
+                                />} */}
                             </div>
                             <div className="w-full flex flex-col gap-2">
                                 <FormField

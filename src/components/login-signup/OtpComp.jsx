@@ -98,7 +98,7 @@ const OtpComp = ({ phone, getOtp, setIsOtpSectionOpen, setSelected = () => { }, 
                                             value={field.value}
                                             onChange={field.onChange}
                                             containerClassName="mt-4"
-                                            maxLength={6}
+                                            maxLength={4}
                                         >
                                             <InputOTPGroup>
                                                 <InputOTPSlot index={0} />

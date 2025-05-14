@@ -38,10 +38,10 @@ const ClinicAppointment2 = ({ clinic, dentistId, dentistDetails }) => {
                     <p className='font-inter text-sm max-[500px]:text-[10px] text-[#717171] my-2'><span className='font-bold'>Address:</span>
                         {`${clinicAddress}, ${nearbyLandmark}, ${city}, ${state}, ${clinicPincode}`}</p>
                     <p className='text-[#5B5B5B]'><span className='line-through'>₹500</span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
-                    <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] w-full mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
+                    {/* <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] w-full mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
                         <span>Book Appointment</span>
                         <FiArrowUpRight className='text-2xl' />
-                    </Button>
+                    </Button> */}
 
                     {isConfirmBookingModalOpen &&
                         <ConfirmBookingModal

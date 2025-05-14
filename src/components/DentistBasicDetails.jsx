@@ -13,17 +13,17 @@ const DentistBasicDetails = ({ details }) => {
     const averageRating = details && calculateAverageRating(details?.dentistRatings);
 
     return (
-        <div className="grid grid-cols-[75%_23%] max-[900px]:grid-cols-[58%_40%] max-[700px]:grid-cols-1 gap-4">
+        <div className="grid grid-cols-1  gap-4">
             <div className='rounded-[5px] flex flex-col gap-5'>
                 {/* <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p> */}
-                <div className='p-4 rounded-[6px] flex max-[900px]:flex-col gap-[10px] shadow-md'>
+                <div className='p-4 rounded-[6px] flex flex-col sm:flex-row gap-[10px] shadow-md'>
                     <div>
-                        <div className='rounded-[6px] relative w-[210px] max-[500px]:w-full max-[900px]:w-[70%] '>
+                        <div className='rounded-[6px] relative h-[200px] w-[200px] '>
                             <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
                             <ImageSkeleton
-                              src={details?.personalDetails?.image}
-                              imgClassName={'h-[200px] w-[200px]'}
-                              skeletonClassName={"h-[200px] w-[200px]"}
+                                src={details?.personalDetails?.image}
+                                imgClassName={'aspect-square'}
+                                skeletonClassName={"aspect-square"}
                             />
                             {/* <img className='h-full w-full' src={details?.personalDetails?.image} alt="" /> */}
                         </div>
@@ -46,12 +46,10 @@ const DentistBasicDetails = ({ details }) => {
                         <div className='flex flex-col justify-start gap-2'>
                             <div className="flex items-center gap-2 mt-1">
                                 <FaGraduationCap className='text-[#95C22B] text-2xl' />
-                                <div className='flex gap-2 items-center'>
-                                    <p className=' text-[#95C22B] font-inter font-semibold whitespace-nowrap max-[760px]:text-sm max-[500px]:text-xs'>{details?.personalDetails?.degree}</p>
-                                    <div className='w-[2px] h-[14px] bg-[#95C22B]'></div>
-                                    <p className='text-[#95C22B] font-inter font-semibold whitespace-nowrap max-[760px]:text-sm max-[500px]:text-xs'>{details?.personalDetails?.specialty}</p>
-                                    <div className='w-[2px] h-[14px] bg-[#95C22B]'></div>
-                                    <p className='text-[#95C22B] font-inter font-semibold whitespace-nowrap max-[760px]:text-sm max-[500px]:text-xs'>{details?.clinic?.length === 1? details?.clinic[0]?.clinicName: details?.clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
+                                <div className='flex gap-1 items-center'>
+                                    {details?.personalDetails?.degree.some((item) => item === "MDS") && <p className='text-[#95C22B] font-inter font-semibold'>{details?.personalDetails?.degree.find((item) => item === "MDS")} -</p>}
+                                    {details?.personalDetails?.specialty  && <p className='text-[#95C22B] font-inter font-semibold whitespace-nowrap max-[760px]:text-sm max-[500px]:text-xs'>{details?.personalDetails?.specialty},</p>}
+                                    {details?.personalDetails?.degree.some((item) => item === "BDS")  && <p className='text-[#95C22B] font-inter font-semibold'>{details?.personalDetails?.degree.find((item) => item === "BDS")}</p>}
                                 </div>
                             </div>
                             {/* <ul className='flex flex-col gap-2'>
@@ -69,7 +67,7 @@ const DentistBasicDetails = ({ details }) => {
                 </div>
             </div>
             <div className='relative rounded-md h-full w-full'>
-                <ReactPlayer
+                {/* <ReactPlayer
                     url={testVideo}
                     playing={true}
                     controls
@@ -85,7 +83,7 @@ const DentistBasicDetails = ({ details }) => {
                             </div>
                         </div>
                     }
-                />
+                /> */}
             </div>
         </div>
     )

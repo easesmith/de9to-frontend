@@ -91,10 +91,6 @@ export const RegisterSchema = z.object({
         .string()
         .length(10, "Mobile No. must be exactly 10 digits")
         .regex(/^\d+$/, "Mobile No. must contain only numbers"),
-    password: z
-        .string()
-        .min(8, "Password must be at least 8 characters long")
-        .regex(passwordRegex, "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character"),
     getUpdates: z.boolean().optional(),
 });
 

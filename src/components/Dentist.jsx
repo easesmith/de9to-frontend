@@ -13,7 +13,7 @@ import { format } from 'date-fns';
 import ConfirmBookingModal from './confirm-booking/ConfirmbookingModal';
 import { useParams } from 'react-router-dom';
 
-const Dentist = ({ dentist,clinicDetails }) => {
+const Dentist = ({ dentist, clinicDetails }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
 
     const daysOfWeek = [
@@ -29,7 +29,7 @@ const Dentist = ({ dentist,clinicDetails }) => {
 
     console.log("dentist", dentist)
     const params = useParams();
-    const { personalDetails, _id, clinic,educationalQualification } = dentist || {}
+    const { personalDetails, _id, clinic, educationalQualification } = dentist || {}
     console.log("clinicDetails", clinicDetails)
     // console.log("id", _id)
 
@@ -65,10 +65,18 @@ const Dentist = ({ dentist,clinicDetails }) => {
                 <div className="flex items-center gap-2 mt-1">
                     <FaGraduationCap className='text-[#717171] text-2xl max-[700px]:text-xl' />
                     <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                    <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
-                        <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                        <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
-                        <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+                        {personalDetails?.degree[0] &&
+                            <>
+                            <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree[0]}</p>
+                            <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+                            </>
+                        }
+                        {personalDetails?.degree[1] &&
+                            <>
+                            <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree[1]}</p>
+                            <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+                            </>
+                        }
                         <p className='text-[#FF8A00] font-inter font-semibold'>{clinic[0]?.clinicName}</p>
                     </div>
                 </div>
@@ -101,7 +109,7 @@ const Dentist = ({ dentist,clinicDetails }) => {
                     </div>
                 </div>
                 <div className="flex justify-end gap-3 mt-3 items-center">
-                <p className='text-[#5B5B5B] min-[769px]:hidden max-[500px]:text-xs'>₹500<span className='line-through'></span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
+                    <p className='text-[#5B5B5B] min-[769px]:hidden max-[500px]:text-xs'>₹500<span className='line-through'></span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
                     <div className="flex items-center gap-3">
                         <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] max-[500px]:text-xs hover:bg-[#9dd41d] flex gap-3 items-center max-[700px]:px-3 px-6 rounded-[10px]">
                             <span>Book Appointment</span>

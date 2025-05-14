@@ -168,8 +168,14 @@ const ClinicDetails = () => {
                         >
                             <CarouselContent>
                                 {allPhotos?.map((item, i) => (
-                                    <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
-                                        <img className='h-40 w-full' src={item?.photoPath} alt="" />
+                                    <CarouselItem key={i} className="sm:basis-1/2 md:basis-1/3 2xl:basis-1/4">
+                                        <div className="w-full">
+                                            <img
+                                                className="w-full h-full"
+                                                src={item?.photoPath}
+                                                alt={`Photo ${i + 1}`}
+                                            />
+                                        </div>
                                     </CarouselItem>
                                 ))}
                                 {/* {Array.from({ length: 5 }).map((_, index) => (
@@ -227,11 +233,11 @@ const ClinicDetails = () => {
 
                         </div>
                         <div className="grid grid-cols-5 max-[900px]:grid-cols-4 max-[700px]:grid-cols-3 max-[500px]:grid-cols-2 max-[400px]:grid-cols-1  gap-5 mt-10">
-                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={certificateWall} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={consultationTable} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={frontFascia} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={receptionCounter} alt="" />
-                            <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={waitingArea} alt="" />
+                            {certificateWall && <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={certificateWall} alt="" />}
+                            {consultationTable && <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={consultationTable} alt="" />}
+                            {frontFascia && <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={frontFascia} alt="" />}
+                            {receptionCounter && <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={receptionCounter} alt="" />}
+                            {waitingArea && <img className='h-40 w-full max-[400px]:h-full hover:scale-105' src={waitingArea} alt="" />}
                         </div>
                     </div>
                 </div>

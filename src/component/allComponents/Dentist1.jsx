@@ -17,6 +17,17 @@ import { calculateAverageRating } from '@/utils/getAverageRating';
 import ImageSkeleton from '@/components/ImageSkeleton';
 import { IoChatbox } from 'react-icons/io5';
 import { BiSolidInjection } from 'react-icons/bi';
+import { MdVerified } from 'react-icons/md';
+import VerifiedIcon from '@/components/VerifiedIcon';
+import { Verified } from 'lucide-react';
+
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 const Dentist1 = ({ dentist }) => {
     const [isConfirmBookingModalOpen, setIsConfirmBookingModalOpen] = useState(false);
@@ -54,81 +65,27 @@ const Dentist1 = ({ dentist }) => {
 
     return (
         <>
-            {/* <div className='border-[1px] max-[700px]:border-none shadow max-[700px]:shadow] border-[#C9C9C9] rounded-md p-3 flex justify-between gap-5 max-sm:flex-wrap'>
-                <div className='flex justify-center flex-col items-center w-[250px] max-sm:w-full'>
-                    <div onClick={() => handleNavigateDentistDetailPage(_id)} className='rounded-lg relative w-[250px] h-[250px] cursor-pointer'>
-                        <img className='absolute top-1 right-1' src={VerifiedImg} alt="" />
-                        <ImageSkeleton
-                            src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
-                            imgClassName={'rounded-lg h-[250px] w-[250px]'}
-                            skeletonClassName={"rounded-lg h-[250px] w-[250px]"}
-                        />
-                    </div>
-                    <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
-                </div>
-                <div className='w-full'>
-                    <div className="flex justify-between items-center max-[500px]:flex-col max-[500px]:gap-0 gap-3">
-                        <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-xl font-inter font-semibold text-[#1A1A1A] cursor-pointer'>{personalDetails?.prefix
-                        }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
-                        <div>
-                            <ReactStars size={25} count={5} value={averageRating} edit={false} color2={'#FF8A00'} />
-                            <div className='text-[#000000] text-[10px] max-[500px]:text-left text-right font-normal font-inter'>Rated by {dentistRatings?.length} users</div>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <FaGraduationCap className='text-[#717171] text-2xl max-[700px]:text-xl' />
-                        <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                            <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
-                            <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                            <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
-                            <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                            <p className='text-[#FF8A00] font-inter font-semibold'>{clinic?.length === 1 ? clinic[0]?.clinicName : clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-2 mt-1">
-                        <FaCalendarAlt className='text-[#717171] text-xl max-[700px]:text-lg' />
-                        <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                            <p className=' text-[#717171] font-inter font-normal'>Availability: </p>
-                            <p className='text-[#717171] font-inter font-semibold'>{availabilityData?.join(" - ")}</p>
-                        </div>
-                    </div>
-                    <p className='text-[#717171] font-inter font-normal max-[700px]:text-xs text-sm mt-1'>{personalDetails?.Bio}</p>
-                    <div className="flex items-center gap-2 mt-2">
-                        <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
-                            <img src={VectorImg} alt="vectorImg" className='w-[26px] max-[500px]:w-3' />
-                            <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>{educationalQualification?.yearsOfExperience} years Experience</span>
-                        </div>
-                        <div className="border border-[#717171] rounded-md max-[500px]:p-1 flex items-center gap-2 p-2">
-                            <img src={RupayImg} alt="rupayImg" className='w-[26px] max-[500px]:w-3' />
-                            <span className='text-[#717171] font-inter text-xs max-[500px]:text-[8px]'>₹500 at clinic</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-end mt-4">
-                        <div className="flex items-center gap-3">
-                            <p className='text-[#5B5B5B] max-[500px]:text-xs'><span className='line-through'>₹500</span> <b>FREE</b> via <b>de<span className='text-[#95C22B]'>9</span>to</b></p>
-                            <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] max-[500px]:text-xs max-[700px]:px-3 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
-                                <span>Book Appointment</span>
-                                <FiArrowUpRight className='text-2xl' />
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-
-            </div> */}
-
-            <div onClick={() => handleNavigateDentistDetailPage(_id)} className="border-2 cursor-pointer p-4 grid grid-cols-1 lg:grid-cols-[75%_23%] gap-x-[2%] border-[#95C22B]">
+            <div className="border-2 p-4 grid grid-cols-1 lg:grid-cols-[75%_23%] gap-x-[2%] border-[#95C22B]">
                 <div className="grid grid-cols-1 md:grid-cols-[20%_78%] gap-x-[2%]">
                     <div className="flex flex-col items-center">
                         <div className="w-32 h-32 rounded-full relative">
-                            <ImageSkeleton
-                                src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
-                                imgClassName={'rounded-full h-32 w-32 object-cover'}
-                                skeletonClassName={"rounded-lg h-[250px] w-[250px]"}
-                            />
-                            {/* <img src={personalDetails?.image} className='w-full h-full object-cover rounded-full' alt="" /> */}
-                            <div className="w-8 h-8 rounded-full flex justify-center items-center bg-[#95C22B] absolute -bottom-1 right-0">
-                                <FaCheck className='text-white size-5' />
-                            </div>
+                            <TooltipProvider delayDuration={200}>
+                                <ImageSkeleton
+                                    src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
+                                    imgClassName={'rounded-full h-32 w-32 object-cover'}
+                                    skeletonClassName={"rounded-full h-32 w-32"}
+                                />
+                                {/* <MdVerified className='text-[#95C22B] absolute -top-1 right-1 size-6' /> */}
+                                <Tooltip>
+                                    <TooltipTrigger className='absolute -top-1 right-1'>
+                                        <VerifiedIcon />
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>De9to Verified</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+
                         </div>
                         <p className="text-center font-inter font-semibold mt-4 text-sm text-[#717171]">Reg. No: {educationalQualification?.regNumber}</p>
                         <Button onClick={() => handleNavigateDentistDetailPage(_id)} className="rounded-none mt-2 h-9">View Profile</Button>
@@ -136,33 +93,23 @@ const Dentist1 = ({ dentist }) => {
                     <div>
                         <div className="flex flex-col sm:flex-row justify-between gap-3 flex-wrap sm:flex-nowrap">
                             <div className="">
-                                <h2 className='text-2xl font-inter font-semibold text-gray-600'>{personalDetails?.prefix
+                                <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-2xl cursor-pointer hover:underline hover:text-blue-800 font-inter -mt-1 font-semibold text-gray-600'>{personalDetails?.prefix
                                 }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
-                                <div className='flex gap-2 items-center max-[700px]:text-xs'>
-                                    {personalDetails?.degree[0] &&
-                                        <>
-                                            <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.degree[0]}</p>
-                                            <div className='w-[1.5px] h-[14px] bg-gray-500'></div>
-                                        </>
-                                    }
-                                    {personalDetails?.degree[1] &&
-                                        <>
-                                            <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.degree[1]}</p>
-                                            <div className='w-[1.5px] h-[14px] bg-gray-500'></div>
-                                        </>
-                                    }
-                                    <p className='text-gray-500 font-inter font-semibold'>{personalDetails?.specialty}</p>
+                                <div className='flex gap-1 items-center max-[700px]:text-xs'>
+                                    {personalDetails?.degree.some((item) => item === "MDS") && <p className='text-[#95C22B] font-inter font-semibold'>{personalDetails?.degree.find((item) => item === "MDS")} -</p>}
+                                    {personalDetails?.specialty && <p className='text-[#95C22B] font-inter font-semibold whitespace-nowrap max-[760px]:text-sm max-[500px]:text-xs'>{personalDetails?.specialty},</p>}
+                                    {personalDetails?.degree.some((item) => item === "BDS") && <p className='text-[#95C22B] font-inter font-semibold'>{personalDetails?.degree.find((item) => item === "BDS")}</p>}
                                 </div>
                                 <p className='text-[#95C22B] font-inter text-lg font-bold'>{clinic?.length === 1 ? clinic[0]?.clinicName : clinic?.find((item) => item?.defaultClinic)?.clinicName}</p>
                                 <p className='text-gray-500 font-inter font-semibold'>Self Owned Clinic</p>
                                 <p className='text-gray-500 font-medium'><b className='mr-2'>Experience:</b> {educationalQualification?.yearsOfExperience > 0 ? `${educationalQualification?.yearsOfExperience}+ Years` : 'Not mentioned'}</p>
                             </div>
-                            <div className="max-w-[340px] w-full">
-                                <ReactStars size={30} count={5} value={averageRating} edit={false} color2={'#95C22B'} />
+                            <div className="ml-auto">
+                                <ReactStars className='-mt-3' size={30} count={5} value={averageRating} edit={false} color2={'#95C22B'} />
                                 <b className='text-gray-500'>Monday to Sunday</b>
                                 <p className='text-gray-500 font-medium'>10:00 AM to 01:30 PM</p>
                                 <p className='text-gray-500 font-medium'>05:30 AM to 08:30 PM</p>
-                                <p className='text-gray-500 font-medium'><b className='mr-2'>Info:</b> Monday (Morning) & Sunday(Evening)</p>
+                                <p className='text-gray-500 font-medium'><b className='mr-2'>Info:</b> Monday (Morning) & <br /> Sunday(Evening)</p>
                             </div>
                         </div>
                         {/* <p className='text-gray-500 font-medium'><b className='mr-2'>Address:</b> {educationalQualification?.yearsOfExperience}+ Years</p> */}
@@ -176,10 +123,10 @@ const Dentist1 = ({ dentist }) => {
                     <Button onClick={handleClickReview} className="rounded-none text-base h-9 w-full sm:w-44">Share Your Review</Button>
                     <Button onClick={handleClick} className="rounded-none text-base h-9 w-full sm:w-44">Book Appointment</Button>
                     <div className="rounded-none mt-1 w-full sm:w-44 flex items-center justify-center gap-x-4">
-                        <BiSolidInjection className='text-[#95C22B]' />
-                        <FaShieldVirus className='text-[#95C22B]' />
-                        <FaRegHeart className='text-[#95C22B]' />
-                        <FaCheckCircle className='text-[#95C22B]' />
+                        <BiSolidInjection className='text-[#95C22B] hover:scale-125 transition' />
+                        <FaShieldVirus className='text-[#95C22B] hover:scale-125 transition' />
+                        <FaRegHeart className='text-[#95C22B] hover:scale-125 transition' />
+                        <FaCheckCircle className='text-[#95C22B] hover:scale-125 transition' />
                     </div>
 
                 </div>

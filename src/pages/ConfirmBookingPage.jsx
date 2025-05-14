@@ -119,14 +119,21 @@ const ConfirmBookingPage = () => {
                             </div>
                             <div className="flex items-center max-[500px]:items-start gap-2 mt-3">
                                 <FaGraduationCap className='text-[#717171] text-2xl' />
-                                <div className='flex gap-2 items-center flex-wrap max-[500px]:text-sm'>
-                                    <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree}</p>
-                                    <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                                    <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.specialty}</p>
-                                    <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
-                                    <p className='text-[#FF8A00] font-inter font-semibold'>{clinic?.some((item) => item.defaultClinic) ? clinic?.find((item) => item.defaultClinic)?.clinicName : clinic[0]?.clinicName}</p>
+                                <div className='flex gap-2 items-center flex- text-sm'>
+                                    {personalDetails?.degree[0] &&
+                                        <>
+                                            <p className=' text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree[0]}</p>
+                                        </>
+                                    }
+                                    {personalDetails?.degree[1] &&
+                                        <>
+                                            <div className='w-[2px] h-[14px] bg-[#FF8A00]'></div>
+                                            <p className='text-[#FF8A00] font-inter font-semibold'>{personalDetails?.degree[1]}</p>
+                                        </>
+                                    }
                                 </div>
                             </div>
+                            <p className='text-[#717171] font-inter break-words font-semibold'>{clinic?.some((item) => item.defaultClinic) ? clinic?.find((item) => item.defaultClinic)?.clinicName : clinic[0]?.clinicName}</p>
                         </div>
                     </div>
 
@@ -139,8 +146,8 @@ const ConfirmBookingPage = () => {
                         <div>
                             <div className="flex justify-between flex-col lg:flex-row items-start lg:items-center gap-0 lg:gap-3">
                                 <h2 className='text-xl font-inter font-semibold text-[#1A1A1A]'>{clinicName}</h2>
-                                <div>
-                                    <ReactStars edit={false} size={25} count={5} value={clinicAverageRating} color2={'#FF8A00'} />
+                                <div className='w-32'>
+                                    <ReactStars edit={false} size={20} count={5} value={clinicAverageRating} color2={'#FF8A00'} />
                                     <div className='text-[#000000] text-[10px] text-left lg:text-right font-normal font-inter'>Rated by {singleClinic?.clinicRating?.length } users</div>
                                 </div>
                             </div>

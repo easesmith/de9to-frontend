@@ -85,11 +85,11 @@ const DentalTeamCard = () => {
                         featuredDentist?.length > 0 && featuredDentist?.map((item, index) => {
                             const { personalDetails, _id, clinic, dentistRatings, educationalQualification } = item || {}
                             return (
-                                <div key={index} className='w-[350px] max-[500px]:w-[250px]  cursor-pointer shadow-custom9 rounded-2xl'>
+                                <div key={index} className='w-[350px] max-[500px]:w-[250px] cursor-pointer shadow-custom9 rounded-2xl'>
                                     <figure>
                                         <ImageSkeleton
                                             src={personalDetails?.image ? personalDetails?.image : "https://media.istockphoto.com/id/1451587807/vector/user-profile-icon-vector-avatar-or-person-icon-profile-picture-portrait-symbol-vector.jpg?s=612x612&w=0&k=20&c=yDJ4ITX1cHMh25Lt1vI1zBn2cAKKAlByHBvPJ8gEiIg="}
-                                            imgClassName={' rounded-2xl rounded-ee-none rounded-es-none w-full h-72'}
+                                            imgClassName={' rounded-2xl rounded-ee-none rounded-es-none w-full h-72 object-cover object-top'}
                                             skeletonClassName={"w-full h-72 rounded-3xl"}
                                         />
                                     </figure>

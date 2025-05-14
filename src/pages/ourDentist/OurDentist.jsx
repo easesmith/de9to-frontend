@@ -8,16 +8,15 @@ import Dentist1 from '@/component/allComponents/Dentist1'
 import ReactPagination from '@/component/allComponents/ReactPagination'
 import Clinic from '@/components/Clinic'
 import DataNotFound from '@/components/DataNotFound'
-import FilterCompo from '@/components/FilterCompo'
 import SearchListCompo from '@/components/SearchListCompo'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import useGetApiReq from '@/hooks/useGetApiReq'
 import { Helmet } from 'react-helmet-async'
-import { FaFilter } from 'react-icons/fa'
 import { FaXmark } from 'react-icons/fa6'
 import ReactStars from 'react-stars'
+import Spinner from '@/components/Spinner'
 
 const OurDentist = () => {
 
@@ -89,9 +88,9 @@ const OurDentist = () => {
     }
   }, [location, rating, gender, fetchData2])
 
-  useEffect(() => {
-    getfilterDentist();
-  }, [location, rating, gender])
+  // useEffect(() => {
+  //   getfilterDentist();
+  // }, [location, rating])
 
 
   useEffect(() => {
@@ -165,27 +164,31 @@ const OurDentist = () => {
           <SearchListCompo
             setAllClinics={setSearchAllClinics}
             setAllData={setSearchAllDentists}
+            handleGenderChange={handleGenderChange}
+            gender={gender}
           />
         </div>
         <section className='max-w-[1240px] w-full mx-auto flex flex-col gap-10 max-[700px]:gap-5 my-6'>
-          <div className='max-[700px]:hidden rounded-[5px] flex flex-col gap-3'>
+          {/* <div className='max-[700px]:hidden rounded-[5px] flex flex-col gap-3'>
             <p className='text-[#838383] text-base font-semibold font-inter'>Advance Filter</p>
             <FilterCompo gender={gender} handleGenderChange={handleGenderChange} rating={rating} handleRatingChange={handleRatingChange} location={location} handleLocationChange={handleLocationChange} />
           </div>
           <div className="flex justify-end min-[700px]:hidden">
             <FaFilter onClick={() => setIsFilterOpen(true)} className='text-xl text-[#95C22B]' />
-          </div>
+          </div> */}
           <div className='flex flex-col gap-[60px]'>
             <div className='flex flex-col justify-between gap-5'>
               <p className='text-[#838383] text-base font-semibold font-inter'>Choose Your Dentist</p>
               {
-                allDentists.length > 0 && !isLoading ? allDentists.map((e, i) => {
+                allDentists.map((e, i) => {
                   return (
                     <Dentist1 key={i} dentist={e} />
                   )
-                }) :
-                  <DataNotFound name='Dentist' />
+                })
               }
+
+              {allDentists.length === 0 && !isLoading && <DataNotFound name='Dentist' />}
+              {allDentists.length === 0 && isLoading && <Spinner />}
             </div>
             <div className='flex flex-col justify-between gap-5'>
               {

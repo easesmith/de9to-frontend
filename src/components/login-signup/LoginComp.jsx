@@ -19,7 +19,7 @@ const LoginComp = ({ setIsShowTabs }) => {
   const [isOtpSectionOpen, setIsOtpSectionOpen] = useState(false);
 
   const form = useForm({
-    resolver: zodResolver(isLoginwithOtp ? LoginSchema1 : LoginSchema),
+    resolver: zodResolver(LoginSchema1),
     defaultValues: {
       emailOrPhone: "",
       password: "",
@@ -40,13 +40,7 @@ const LoginComp = ({ setIsShowTabs }) => {
 
   const onSubmit = (data) => {
     console.log("Data:", data);
-    if (isLoginwithOtp) {
-      fetchData(`/patient/get-otp`, { phone: data.emailOrPhone });
-    }
-    else {
-      fetchData(`/patient/patient-login`, { loginInput: data.emailOrPhone, password: data.password });
-    }
-    // reset();
+    fetchData(`/patient/get-otp`, { phone: data.emailOrPhone });
   };
 
 
@@ -54,15 +48,8 @@ const LoginComp = ({ setIsShowTabs }) => {
     if (res?.status === 200 || res?.status === 201) {
       console.log("patient login res", res);
 
-      if (isLoginwithOtp) {
-        setIsShowTabs(false);
-        setIsOtpSectionOpen(true);
-      }
-      else {
-        const { userInfo } = res?.data?.cookies || {}
-        Cookies.set("userInfo", JSON.stringify(userInfo), { expires: 7 });
-        navigate("/")
-      }
+      setIsShowTabs(false);
+      setIsOtpSectionOpen(true);
     }
   }, [res])
 
@@ -98,7 +85,7 @@ const LoginComp = ({ setIsShowTabs }) => {
                     </FormItem>
                   )}
                 />
-                {!getValues("loginWithOtp") && <FormField
+                {/* {!getValues("loginWithOtp") && <FormField
                   control={form.control}
                   name="password"
                   render={({ field }) => (
@@ -114,7 +101,7 @@ const LoginComp = ({ setIsShowTabs }) => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />}
+                />} */}
               </div>
               <div className="w-full flex flex-col gap-2">
                 <FormField
@@ -144,7 +131,7 @@ const LoginComp = ({ setIsShowTabs }) => {
                   )}
                 />
 
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="loginWithOtp"
                   render={({ field }) => (
@@ -169,16 +156,13 @@ const LoginComp = ({ setIsShowTabs }) => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
               </div>
 
-              {getValues("loginWithOtp") ? <Button type="submit" className="bg-[#95C22B] mt-4 flex justify-center w-full h-12">
+              <Button type="submit" className="bg-[#95C22B] mt-4 flex justify-center w-full h-12">
                 Send OTP
               </Button>
-                : <Button type="submit" className="bg-[#95C22B] mt-4 flex justify-between w-full h-12">
-                  <span>Proceed to my Account</span>
-                  <FaArrowRight className='text-white' />
-                </Button>}
+
               <div className="flex justify-end items-center w-full">
                 <button type='button' className='font-inter text-xs text-[#1A1A1A]'>Forgot Password?</button>
               </div>

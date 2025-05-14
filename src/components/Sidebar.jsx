@@ -33,7 +33,7 @@ const Sidebar = () => {
                 <Link to="/profile/update-profile" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                     Update Profile
                 </Link>
-                <Link to="/profile/complaints" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("update-profile") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                <Link to="/profile/complaints" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("complaints") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                     Complaints
                 </Link>
                 <button onClick={() => setIsMasterOpen(!isMasterOpen)} className='flex justify-between px-3'>
@@ -42,9 +42,9 @@ const Sidebar = () => {
                 </button>
                 {isMasterOpen &&
                     <div className='flex flex-col gap-2'>
-                        <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
+                        {/* <Link to="/profile/change-password" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("change-password") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                             Change Password
-                        </Link>
+                        </Link> */}
                         <Link to="/profile/notifications-settings" className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${pathname.includes("notifications-settings") ? 'bg-[#EEEEEE] text-[#95C22B]' : 'text-[#0F172A]'}`}>
                             Notification Settings
                         </Link>
