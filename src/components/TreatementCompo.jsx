@@ -18,7 +18,7 @@ const TreatementCompo = () => {
               </div>
               <h5 className="text-[#000000] text-lg max-[500px]:text-base text-center font-semibold font-poppins">{item.name}</h5>
               <p className="text-[#6C6C6C] text-base max-[500px]:text-xs text-center font-normal font-poppins">{item.description}</p>
-              <div className=' bg-[#95C22B] max-[500px]:flex cursor-pointer justify-center items-center gap-3 border-[1px] border-[#95C22B] rounded-2xl max-[500px]:rounded-lg px-12 max-[500px]:px-2 max-[500px]:py-1 py-4 mt-10 max-[500px]:mt-5 hidden group-hover:flex'>
+              <div className=' bg-[#95C22B] max-[500px]:flex cursor-pointer justify-center items-center gap-3 border-[1px] border-[#95C22B] active:scale-105 hover:scale-95 transition-all duration-200 rounded-2xl max-[500px]:rounded-lg px-12 max-[500px]:px-2 max-[500px]:py-1 py-4 mt-10 max-[500px]:mt-5 hidden group-hover:flex'>
                 <button className=' text-[#FFFFFF] text-lg max-[500px]:text-[10px] font-semibold font-poppins'>Learn more</button>
                 <IoMdArrowForward color='#FFFFFF' className='text-2xl max-[500px]:text-lg' />
               </div>

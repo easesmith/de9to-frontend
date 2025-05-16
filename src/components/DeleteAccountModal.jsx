@@ -17,7 +17,7 @@ import useDeleteApiReq from "@/hooks/useDeleteApiReq";
 import { readCookie } from "@/utils/readCookie";
 import { useNavigate } from "react-router-dom";
 
-const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalOpen, password }) => {
+const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalOpen }) => {
     const userInfo = readCookie("userInfo");
     console.log("userInfo", userInfo);
 
@@ -26,7 +26,7 @@ const DeleteAccountModal = ({ isDeleteAccountModalOpen, setIsDeleteAccountModalO
 
     const onSubmit = (data) => {
         console.log("Data:", data);
-        fetchData(`/patient/delete-patient-account?password=${password}&patientId=${userInfo?.userId}`,);
+        fetchData(`/patient/delete-patient-account?patientId=${userInfo?.userId}`,);
     };
 
     useEffect(() => {

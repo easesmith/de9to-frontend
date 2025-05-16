@@ -402,7 +402,7 @@ const Home = () => {
                 </h2>
                 <button
                   onClick={() => navigate("/our-dentist")}
-                  className="bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9]"
+                  className="bg-[#FFFFFF] text-[#95C22B] text-xl max-[500px]:w-full max-[700px]:text-base font-semibold font-poppins rounded-2xl max-[500px]:rounded-lg px-5 py-3 hover:bg-[#f9f9f9] active:scale-105 hover:scale-95 transition-all duration-200"
                 >
                   Book Appointment
                 </button>

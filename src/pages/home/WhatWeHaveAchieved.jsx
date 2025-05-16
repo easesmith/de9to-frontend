@@ -1,8 +1,8 @@
 import CheckMarkImg from '@/assets/anbx.png';
-import Image1 from '@/assets/dentist-signups.png';
-import Image2 from '@/assets/dental-consultations.png';
-import Image3 from '@/assets/dental-camps.png';
-import Image4 from '@/assets/pincode-covered.png';
+import Image1 from '@/assets/dentist-signups.svg';
+import Image2 from '@/assets/dental-consultations.svg';
+import Image3 from '@/assets/dental-camps.svg';
+import Image4 from '@/assets/pincode-covered.svg';
 import ImageSkeleton from '@/components/ImageSkeleton';
 import useGetApiReq from '@/hooks/useGetApiReq';
 import { useEffect, useState } from 'react';
@@ -77,7 +77,7 @@ const WhatWeHaveAchieved = () => {
                             </div>
                             <div className='w-full flex flex-col items-start max-[500px]:items-center justify-start'>
                                 <img className='w-14 h-14 max-[500px]:w-8 max-[500px]:h-8' src={Image4} alt="" />
-                                <div className='text-[#95C22B] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={175} duration={2} />}+</div>
+                                <div className='text-[#95C22B] max-[500px]:text-sm text-5xl font-semibold font-poppins my-[10px] max-[500px]:my-1'>{isCounter && <CountUp start={0} end={75} duration={2} />}+</div>
                                 <p className='text-[#818181] max-[500px]:text-[8px] text-xl font-normal text-center font-poppins -mt-1 max-[500px]:leading-3'>Pincode Covered</p>
                             </div>
                         </div>

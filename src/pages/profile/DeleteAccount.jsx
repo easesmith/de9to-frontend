@@ -1,32 +1,16 @@
-import ProfileLayout from '@/component/Layout/ProfileLayout'
+import ProfileLayout from '@/component/Layout/ProfileLayout';
 import DeleteAccountModal from '@/components/DeleteAccountModal';
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import usePostApiReq from '@/hooks/usePostApiReq';
-import { useState } from 'react'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { AddFeedbackSchema, ConfirmBookingFormSchema, DeleteAccountSchema } from '@/schema/formSchema';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { MdCall } from 'react-icons/md';
-import { Input } from '@/components/ui/input';
 import { readCookie } from '@/utils/readCookie';
-import { FaUnlockAlt } from 'react-icons/fa';
+import { useState } from 'react';
 
 
 const DeleteAccount = () => {
     const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
-    const [isPasswordShow, setIsPasswordShow] = useState(false);
-
-    const form = useForm({
-        resolver: zodResolver(DeleteAccountSchema),
-        defaultValues: {
-            password: "",
-        },
-    });
 
     const userInfo = readCookie("userInfo");
     const { res, fetchData, isLoading } = usePostApiReq();
-    const { reset, handleSubmit, getValues, watch } = form;
 
     const onSubmit = () => {
         setIsDeleteAccountModalOpen(true);
@@ -52,7 +36,6 @@ const DeleteAccount = () => {
                     <DeleteAccountModal
                         isDeleteAccountModalOpen={isDeleteAccountModalOpen}
                         setIsDeleteAccountModalOpen={setIsDeleteAccountModalOpen}
-                        password={getValues("password")}
                     />
                 }
             </div>

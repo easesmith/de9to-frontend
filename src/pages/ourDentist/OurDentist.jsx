@@ -82,16 +82,6 @@ const OurDentist = () => {
     };
   }, []);
 
-  const getfilterDentist = useCallback(async () => {
-    if (location || rating || gender) {
-      fetchData2(`/patient/filter?area=${location}&ratings=${rating}&gender=${gender}`);
-    }
-  }, [location, rating, gender, fetchData2])
-
-  // useEffect(() => {
-  //   getfilterDentist();
-  // }, [location, rating])
-
 
   useEffect(() => {
     if (res2?.status === 200 || res2?.status === 201) {
