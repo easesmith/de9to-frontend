@@ -25,7 +25,7 @@ export const requestDentalCampSchema = z.object({
         .max(15, "Contact Number cannot exceed 15 digits"),
     campPerferredDate: z.date({ required_error: "Preferred Date is required" }),
     campStartTime: z.string().min(1, "Camp Start Time is required"),
-    campDuration: z.string().min(1, "Camp Start Time is required"),
+    campDuration: z.string().min(1, "Camp Duration is required"),
     location: z.string().min(1, "Camp Venue/Location is required"),
 })
 

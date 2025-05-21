@@ -33,6 +33,9 @@ const ConfirmBookingModal = ({ isConfirmBookingModalOpen, setIsConfirmBookingMod
 
     const navigate = useNavigate();
 
+    console.log("clinic",clinic);
+    
+
     const form = useForm({
         resolver: zodResolver(clinicSchema),
         defaultValues: {

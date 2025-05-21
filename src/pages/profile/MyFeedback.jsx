@@ -3,6 +3,7 @@ import DataNotFound from '@/components/DataNotFound';
 import Feedback from '@/components/profile/Feedback';
 import Spinner from '@/components/Spinner';
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverTrigger } from '@/components/ui/popover';
 import {
     Table,
     TableBody,
@@ -11,8 +12,10 @@ import {
     TableRow
 } from "@/components/ui/table";
 import useGetApiReq from '@/hooks/useGetApiReq';
+import { cn } from '@/lib/utils';
 import { readCookie } from '@/utils/readCookie';
 import { format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { FiExternalLink } from 'react-icons/fi';
 import { MdEdit } from "react-icons/md";
@@ -20,29 +23,20 @@ import { MdDelete } from "react-icons/md";
 import ReactStars from 'react-stars';
 
 const MyFeedback = () => {
-    const feedbacks = [
-        {
-            date: "23/08/2024",
-            clinicOrDoctor: "Dr Anusha",
-            ratings: 4,
-            feedback: "Working at Sam.AI has been an incredible journey so far. The technology we're building is truly cutting-edge, and being a part of a team that's revolutionizing how people achieve their goals is immensely fulfilling.",
-        },
-        {
-            date: "23/08/2024",
-            clinicOrDoctor: "Dr Anusha",
-            ratings: 4,
-            feedback: "Working at Sam.AI has been an incredible journey so far. The technology we're building is truly cutting-edge, and being a part of a team that's revolutionizing how people achieve their goals is immensely fulfilling.",
-        },
-    ]
-
-    const { res, fetchData, isLoading } = useGetApiReq();
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [date, setDate] = useState();
+  
+    const handleDateSelect = (value) => {
+      setDate(value);
+      setIsCalendarOpen(false);
+    };    const { res, fetchData, isLoading } = useGetApiReq();
     const userInfo = readCookie("userInfo");
     const [allReviews, setAllReviews] = useState([]);
     console.log("userInfo", userInfo);
 
 
     const getAppointments = async () => {
-        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}`);
+        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}&date=${date}`);
     }
 
     useEffect(() => {
@@ -61,9 +55,28 @@ const MyFeedback = () => {
         <ProfileLayout>
             <div className="bg-white rounded-lg p-5">
                 <h1 className='font-inter text-2xl font-medium text-[#00214B] max-[425px]:text-xl'>My Feedback</h1>
-                <Button variant="outline" className="border-[#717171] mt-5 font-normal text-[#717171]">
-                    Filter by date
-                </Button>
+                <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={cn(
+                  "w-[240px] text-[#717171] text-base font-normal font-inter h-10 flex justify-between",
+                  !date && "text-muted-foreground h-10",
+                )}
+              >
+                {date ? format(date, "PPP") : "Pick a date"}
+                <CalendarIcon />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={handleDateSelect}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
 
                 <Table className="mt-4 max-[425px]:hidden">
                     <TableHeader className="bg-[#F6F6F6]">

@@ -269,7 +269,7 @@ const Header = () => {
                       </button>
                       {isMasterOpen && (
                         <div className="flex flex-col gap-2">
-                          <Link
+                          {/* <Link
                             to="/profile/change-password"
                             className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${
                               pathname.includes("change-password")
@@ -278,7 +278,7 @@ const Header = () => {
                             }`}
                           >
                             Change Password
-                          </Link>
+                          </Link> */}
                           <Link
                             to="/profile/notifications-settings"
                             className={`flex justify-start items-center gap-[14px] h-[52px] p-[14px] cursor-pointer font-inter font-medium group hover:bg-[#EEEEEE] ${

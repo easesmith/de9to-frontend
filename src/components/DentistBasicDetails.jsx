@@ -33,10 +33,6 @@ const DentistBasicDetails = ({ details }) => {
                         <div className='flex items-center justify-between max-[500px]:justify-start max-[500px]:items-start max-[500px]:flex-col max-[500px]:gap-0 gap-4'>
                             <div className='flex items-center'>
                                 <h4 className='text-[#1A1A1A] text-2xl font-semibold font-inter'>{`${details?.personalDetails?.prefix}. ${details?.personalDetails?.Firstname} ${details?.personalDetails?.lastName}`}</h4>
-                                {/* <Button variant="outline" className="flex gap-2 text-[#95C22B] border-[#95C22B] hover:text-[#95C22B]">
-                                    <FaLocationArrow className='text-[#95C22B]' />
-                                    <span>Search on map</span>
-                                </Button> */}
                             </div>
                             <div>
                                 <ReactStars edit={false} size={25} count={5} value={averageRating} color2={'#FF8A00'} />

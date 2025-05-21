@@ -24,7 +24,7 @@ const Feedback = ({ feedback }) => {
             </TableCell>
             <TableCell className="text-[#0D0C22]">{feedback?.patientRemarks}</TableCell>
             <TableCell className="flex items-center gap-3">
-                <BiSolidPencil className='text-2xl cursor-pointer' />
+                {/* <BiSolidPencil className='text-2xl cursor-pointer' /> */}
                 <FaTrash className='text-xl cursor-pointer text-[#FF0000]' />
             </TableCell>
         </TableRow>

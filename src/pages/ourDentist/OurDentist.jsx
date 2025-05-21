@@ -24,6 +24,8 @@ const OurDentist = () => {
   const { res: res3, fetchData: fetchData3, isLoading: isLoading3 } = useGetApiReq();
   const [pageCount, setPageCount] = useState(1)
   const [page, setPage] = useState(1)
+  const [pageCount1, setPageCount1] = useState(1)
+  const [page1, setPage1] = useState(1)
   const [SearchAllDentists, setSearchAllDentists] = useState([])
   const [SearchAllClinics, setSearchAllClinics] = useState([]);
   const [allDentists, setAllDentists] = useState([])
@@ -49,18 +51,19 @@ const OurDentist = () => {
   }, [res])
 
   const getClinics = async () => {
-    fetchData3(`/patient/get-all-Clinics?page=${page}`);
+    fetchData3(`/patient/get-all-Clinics?page=${page1}`);
   }
 
   useEffect(() => {
     getClinics();
-  }, [page])
-
-
+  }, [page1])
+  
+  
   useEffect(() => {
     if (res3?.status === 200 || res3?.status === 201) {
       setAllClinics(res3?.data?.data?.clinics);
-      setSearchAllClinics(res3?.data?.data?.clinics);
+      setPageCount1(res3.data.totalPages)
+      setPage1(res3.data.currentPage)
       console.log("clinics response", res3);
     }
   }, [res3])
@@ -179,6 +182,10 @@ const OurDentist = () => {
 
               {allDentists.length === 0 && !isLoading && <DataNotFound name='Dentist' />}
               {allDentists.length === 0 && isLoading && <Spinner />}
+
+              {allDentists.length > 0 &&
+                <ReactPagination pageCount={pageCount} setPage={setPage} />}
+            </div>
             </div>
             <div className='flex flex-col justify-between gap-5'>
               {
@@ -190,9 +197,8 @@ const OurDentist = () => {
                   ""
               }
             </div>
-            {allDentists.length > 0 &&
-              <ReactPagination pageCount={pageCount} setPage={setPage} />}
-          </div>
+            {allClinics.length > 0 &&
+              <ReactPagination pageCount={pageCount1} setPage={setPage1} />}
         </section>
       </main>
         : <section className='px-4 py-8'>
