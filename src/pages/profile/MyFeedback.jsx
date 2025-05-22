@@ -3,7 +3,8 @@ import DataNotFound from '@/components/DataNotFound';
 import Feedback from '@/components/profile/Feedback';
 import Spinner from '@/components/Spinner';
 import { Button } from '@/components/ui/button';
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import {
     Table,
     TableBody,
@@ -35,13 +36,13 @@ const MyFeedback = () => {
     console.log("userInfo", userInfo);
 
 
-    const getAppointments = async () => {
-        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}&date=${date}`);
+    const getReviews = async () => {
+        fetchData(`/patient/get-all-patient-review?patientId=${userInfo?.userId}&date=${date || ""}`);
     }
 
     useEffect(() => {
-        getAppointments();
-    }, [])
+        getReviews();
+    }, [date])
 
 
     useEffect(() => {
@@ -60,7 +61,7 @@ const MyFeedback = () => {
               <Button
                 variant={"outline"}
                 className={cn(
-                  "w-[240px] text-[#717171] text-base font-normal font-inter h-10 flex justify-between",
+                  "w-[240px] mt-5 text-[#717171] text-base font-normal font-inter h-10 flex justify-between",
                   !date && "text-muted-foreground h-10",
                 )}
               >
@@ -93,6 +94,7 @@ const MyFeedback = () => {
                             <Feedback
                                 key={i}
                                 feedback={feedback}
+                                getReviews={getReviews}
                             />
                         ))}
                     </TableBody>
