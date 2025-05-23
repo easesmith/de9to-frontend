@@ -22,7 +22,6 @@ import Marquee from "react-fast-marquee";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [active, setActive] = useState(1);
   const swiperRef3 = useRef(null);
   const [testimonials, setTestimonials] = useState([]);
 
@@ -31,14 +30,6 @@ const Home = () => {
   const getTestimonialData = async () => {
     fetchData(`/patient/get-testimonials`);
   };
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActive((prev) => (prev === 3 ? 1 : prev + 1));
-  //   }, 2000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
 
   useEffect(() => {
     getTestimonialData();
@@ -50,12 +41,6 @@ const Home = () => {
       setTestimonials(res.data.testimonials);
     }
   }, [res]);
-
-  console.log("testimonials:", testimonials);
-
-  const handleActive = (number) => {
-    setActive(number);
-  };
 
   const [seoData, setSeoData] = useState({
     title: "",
@@ -94,14 +79,22 @@ const Home = () => {
           <meta name="description" content={seoData.description} />
           <meta name="keywords" content={seoData.focusedKeywords} />
         </Helmet>
+
         <HeroSection />
-        <Marquee className="bg-[#F6F6F6] overflow-hidden py-4" autoFill gradient={false} speed={50}>
+
+        <Marquee
+          className="bg-[#F6F6F6] overflow-hidden py-4"
+          autoFill
+          gradient={false}
+          speed={50}
+        >
           {Array.from({ length: 10 }).map((_, index) => (
             <span
               key={index}
               className="text-[#5A5A5A] text-2xl px-5 max-[700px]:text-xl max-[500px]:text-sm font-semibold font-poppins whitespace-nowrap"
             >
-              Pay via <span className="font-bold text-black">De9to</span> and get Upto
+              Pay via <span className="font-bold text-black">De9to</span> and
+              get Upto
               <span className="font-bold text-black"> 20% Discount</span>
             </span>
           ))}

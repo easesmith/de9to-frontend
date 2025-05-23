@@ -41,8 +41,6 @@ const SearchListCompo = ({
   const { pathname } = useLocation();
   const { res, fetchData, isLoading } = useGetApiReq();
 
-  console.log("gender", gender);
-
 
   const getSearchQuery = useCallback(async () => {
     fetchData(`/patient/search?searchText=${searchQuery}&location=${location}&gender=${gender}`);

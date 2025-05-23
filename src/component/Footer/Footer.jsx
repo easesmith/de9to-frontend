@@ -10,7 +10,7 @@ import { SlSocialFacebook } from "react-icons/sl";
 
 const Footer = () => {
   return (
-    <footer className='bg-[#95C22B] text-white w-full pt-10 pb-5 flex flex-col justify-center'>
+    <footer className='bg-[#717171] text-white w-full pt-10 pb-5 flex flex-col justify-center'>
       <div className='border-b-2 border-[#7B7E86]'>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pb-20 px-5 max-w-[1380px] mx-auto w-full">
           <div>

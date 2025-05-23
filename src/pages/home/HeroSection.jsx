@@ -1,9 +1,17 @@
-import SearchListCompo from "@/components/SearchListCompo";
+import Ellipse1 from "@/assets/Ellipse-1.png";
+import Ellipse2 from "@/assets/Ellipse-2.png";
+import heroImg from "@/assets/hero-img.svg";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import useGetApiReq from "@/hooks/useGetApiReq";
 import { useEffect, useState } from "react";
-import { MdOutlineArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import SearchCompo from "./SearchCompo";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { Button } from "@/components/ui/button";
+import Feature from "./Feature";
+import teeth from "@/assets/teeth.svg";
+import SearchListCompo from "@/components/SearchListCompo";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -35,33 +43,32 @@ const HeroSection = () => {
       });
     }
   }, [res]);
-  console.log("contentData", contentData);
 
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState("");
 
   const handleGenderChange = (value) => {
     setGender(value);
-  }
+  };
 
   return (
-    <div className="relative w-full">
-      <section
-        style={{
-          backgroundImage: `url("${isMobile ? contentData.image1 : contentData.image
-            }")`,
-        }}
-        className="bg-cover bg-center bg-no-repeat h-[800px] sm:h-[600px] w-full"
-      >
-        <div className="max-w-[1200px] px-1 relative w-full mx-auto pt-20 h-full">
-          <div className="max-[970px]:hidden w-full">
-            <SearchListCompo gender={gender} handleGenderChange={handleGenderChange} />
-          </div>
-          <div className="w-full h-[90%] sm:h-[75%] flex items-start sm:items-end">
-            <button
+    <section className="bg-[#95C22B] relative w-full overflow-hidden h-[576px]">
+      <img className="absolute -top-28 right-0" src={Ellipse2} alt="" />
+      <img className="absolute bottom-0 left-0" src={Ellipse1} alt="" />
+
+      <SearchCompo />
+      {/* <SearchListCompo /> */}
+
+      <div className="flex h-full">
+        <div className="pl-40 pt-10 max-w-[860px] w-full">
+          <h1 className="text-[52px] font-bold text-white">
+            Personalized Dental Solutions for Every Patient
+          </h1>
+          <div className="flex gap-4 items-center mt-5">
+            <Button
               onClick={() => navigate("/our-dentist")}
-              className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded-lg px-5 py-3 max-[500px]:py-2 hover:bg-[#5A5A5A] cursor-pointer mt-52 sm:mt-0 group"
+              className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded h-12 hover:bg-[#5A5A5A] cursor-pointer group"
             >
-              <div className=" text-[#FFFFFF] text-base max-[970px]:text-sm font-semibold font-poppins ">
+              <div className=" text-[#FFFFFF] text-sm font-semibold font-poppins ">
                 Book an appointment
               </div>
               <MdOutlineArrowOutward
@@ -69,11 +76,29 @@ const HeroSection = () => {
                 className="text-xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform duration-150 ease-out group-hover:rotate-12 group-hover:scale-110
  max-[970px]:text-lg"
               />
-            </button>
+            </Button>
+            <Button
+              variant="outline"
+              className="h-12 group bg-transparent text-white"
+            >
+              <span>Know more</span>
+              <MdOutlineArrowOutward
+                className="text-xl group-hover:-translate-y-2 group-hover:translate-x-2 transition-transform duration-150 ease-out group-hover:rotate-12 group-hover:scale-110
+ max-[970px]:text-lg"
+              />
+            </Button>
+          </div>
+          <div className="grid grid-cols-3 gap-4 mt-6">
+            <Feature img={teeth} title={"Find Dentist Near You"} />
+            <Feature img={teeth} title={"Video Consultation"} />
+            <Feature img={teeth} title={"Request a Dental Camp"} />
           </div>
         </div>
-      </section>
-    </div>
+        <div className="w-1/2 -ml-32 relative hidden lg:block">
+          <img src={heroImg} alt="" className="absolute bottom-20 right-0" />
+        </div>
+      </div>
+    </section>
   );
 };
 
