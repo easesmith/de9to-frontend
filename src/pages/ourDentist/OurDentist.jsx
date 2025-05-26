@@ -62,8 +62,8 @@ const OurDentist = () => {
   useEffect(() => {
     if (res3?.status === 200 || res3?.status === 201) {
       setAllClinics(res3?.data?.data?.clinics);
-      setPageCount1(res3.data.totalPages)
-      setPage1(res3.data.currentPage)
+      // setPageCount1(res3.data.totalPages)
+      // setPage1(res3.data.currentPage)
       console.log("clinics response", res3);
     }
   }, [res3])

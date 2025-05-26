@@ -51,19 +51,21 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="bg-[#95C22B] relative w-full overflow-hidden h-[576px]">
+    <section className="bg-[#95C22B] relative w-full overflow-hidden pb-10 sm:pb-0 sm:h-[576px]">
       <img className="absolute -top-28 right-0" src={Ellipse2} alt="" />
       <img className="absolute bottom-0 left-0" src={Ellipse1} alt="" />
 
-      <SearchCompo />
+      <div className="max-[970px]:hidden">
+        <SearchCompo />
+      </div>
       {/* <SearchListCompo /> */}
 
       <div className="flex h-full">
-        <div className="pl-40 pt-10 max-w-[860px] w-full">
-          <h1 className="text-[52px] font-bold text-white">
+        <div className="px-5 lg:pl-40 pt-10 max-w-[860px] w-full">
+          <h1 className="text-5xl sm:text-[52px] font-bold text-white">
             Personalized Dental Solutions for Every Patient
           </h1>
-          <div className="flex gap-4 items-center mt-5">
+          <div className="flex flex-col sm:flex-row gap-4 sm:items-center mt-5">
             <Button
               onClick={() => navigate("/our-dentist")}
               className="flex justify-center items-center gap-1 bg-[#5A5A5A] border-[1px] border-[#5A5A5A] rounded h-12 hover:bg-[#5A5A5A] cursor-pointer group"
@@ -88,7 +90,7 @@ const HeroSection = () => {
               />
             </Button>
           </div>
-          <div className="grid grid-cols-3 gap-4 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             <Feature img={teeth} title={"Find Dentist Near You"} />
             <Feature img={teeth} title={"Video Consultation"} />
             <Feature img={teeth} title={"Request a Dental Camp"} />

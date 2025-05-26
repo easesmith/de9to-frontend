@@ -30,7 +30,7 @@ const clinicSchema = z.object({
 });
 
 const BookAppointment = ({ isConfirmBookingModalOpen, setIsConfirmBookingModalOpen, selectedDate, selectedTime, selectedIndex, clinic = "", dentistId, timing }) => {
-console.log("clinic",clinic);
+// console.log("clinic",clinic);
 
     const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ console.log("clinic",clinic);
             dentistId: dentistId || "",
         },
     });
-    console.log("dentistId:", dentistId);
+    // console.log("dentistId:", dentistId);
 
     const { reset, handleSubmit, getValues, setValue } = form;
 
@@ -54,7 +54,7 @@ console.log("clinic",clinic);
 
 
     const onSubmit = (data) => {
-        console.log("Booking Data:", data);
+        // console.log("Booking Data:", data);
         // reset();
         const userInfo = readCookie("userInfo");
         if (!userInfo || !userInfo?.userId) {
@@ -110,7 +110,7 @@ console.log("clinic",clinic);
     const days = getDaysFromToday(31);
 
     // Output the result
-    console.log(days);
+    // console.log(days);
     // Generate the next 7 days starting from today
 
     // Handle slot selection
@@ -220,7 +220,7 @@ console.log("clinic",clinic);
             });
             // setSlots(slotsRes?.data?.data?.availableSlots);
             setSlots(filteredSlots);
-            console.log("slotsRes response", slotsRes);
+            // console.log("slotsRes response", slotsRes);
             if (format(new Date(selectedDay), "EEEE").toLowerCase() === format(new Date(), "EEEE").toLowerCase()) {
                 const filteredSlots = slotsRes?.data?.data?.availableSlots?.filter((slot) => {
                     const slotStartTime = slot?.slotId?.startTime; // Assume it's in "hh:mma" format, e.g., "03:45PM"
@@ -244,7 +244,7 @@ console.log("clinic",clinic);
 
     useEffect(() => {
         if (error) {
-            console.log("slotsRes error", error);
+            // console.log("slotsRes error", error);
             setSlots([]);
         }
     }, [error])

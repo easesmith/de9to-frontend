@@ -21,7 +21,6 @@ const Review = ({ rating }) => {
                         <p className='font-inter font-normal text-sm mt-1 text-[#0D0C22]'>{rating?.patientRemarks}</p>
                     </div>
                 </div>
-                <div className="h-[1px] w-[98%] ml-auto bg-[#8f8f8f] mt-8"></div>
             </div>}
         </div>
     )

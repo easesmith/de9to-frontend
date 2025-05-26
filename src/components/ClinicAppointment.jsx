@@ -3,13 +3,15 @@ import { FaLocationArrow } from "react-icons/fa";
 import ReactStars from "react-stars";
 import { Button } from "./ui/button";
 import ConfirmBookingModal from "./confirm-booking/ConfirmbookingModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { calculateAverageRating } from "@/utils/getAverageRating";
 import { searchOnMap } from "@/utils/searchOnMap";
+import { FaLocationDot } from "react-icons/fa6";
+import { Skeleton } from "./ui/skeleton";
 
-const ClinicAppointment = ({ clinic, dentistId, dentistDetails }) => {
+const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
   const {
     clinicPhotos,
     clinicName,
@@ -27,80 +29,163 @@ const ClinicAppointment = ({ clinic, dentistId, dentistDetails }) => {
   const navigate = useNavigate();
 
   const averageRating = calculateAverageRating(clinic?.clinicRating);
+  const {
+    cabinetPics = [],
+    opdArea = [],
+    certificateWall,
+    consultationTable,
+    frontFascia,
+    receptionCounter,
+    waitingArea,
+  } = clinic?.clinicPhotos || {};
+
+  const [allPhotos, setAllPhotos] = useState([]);
+
+  useEffect(() => {
+    if (clinic?.clinicPhotos) {
+      setAllPhotos([...cabinetPics, ...opdArea]);
+    }
+  }, [clinic]);
 
   console.log("clinic", clinic);
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-[8px_1fr] gap-1">
-        <div className="border-l-8 max-[500px]:border-l-4 border-[#95C22B] h-full rounded-full w-2"></div>
-        <div className="border-2 max-[500px]:border border-l-transparent border-[#5B5B5B] rounded-tr-md rounded-br-md px-4 grid grid-cols-[28%_70%] gap-[2%] max-[700px]:grid-cols-1 py-2">
-          <img
-            onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
-            className="w-full cursor-pointer"
-            src={clinicLogo}
-            alt=""
-          />
-          <div>
-            <ReactStars
-              edit={false}
-              size={25}
-              count={5}
-              value={averageRating}
-              color2={"#FF8A00"}
-            />
-            <h2
-              onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
-              className="font-inter cursor-pointer font-semibold text-[#1A1A1A]"
-            >
-              {clinicName}
-            </h2>
-            <div className="flex justify-between gap-2">
-              <p className="font-inter text-sm text-[#717171] my-2">
-                <span className="font-bold">Fee:</span> ₹{consultationfee}
-              </p>
-              <Button
-                onClick={() =>
-                  searchOnMap({
-                    latitude: clinic?.latitude,
-                    longitude: clinic?.longitude,
-                  })
-                }
-                variant="outline"
-                className="flex gap-2 mt-2 text-[#717171] border-[#717171] hover:text-[#939292]"
+      <p className="font-inter font-semibold text-sm mb-3">{clinic.area}</p>
+      <div className="border border-[#85858533] rounded px-4 py-2">
+        <div>
+          <div className="grid grid-cols-[50%_1fr_1fr] gap-4">
+            <div>
+              <h2
+                onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
+                className="font-inter cursor-pointer font-semibold text-[#95C22B]"
               >
-                <FaLocationArrow className="text-[#717171]" />
-                <span className="max-[500px]:hidden">Search on map</span>
-              </Button>
-            </div>
-            <p className="font-inter text-sm text-[#717171] my-2">
-              <span className="font-bold">Timings:</span> Mon-Sat (10:45AM-
-              4:00PM)
-            </p>
-            <p className="font-inter text-sm text-[#717171] my-2">
-              <span className="font-bold">Address:</span> {clinicAddress}, {nearbyLandmark}, {area}, {city}, {state}, {clinicPincode}
-            </p>
-            <div className="flex justify-between items-end">
-              {/* <p className='font-inter text-sm text-[#5B5B5B]'>Booked appointment on 23 Aug’24</p> */}
-              {/* <Button onClick={() => { }} className="bg-[#465C13] mt-2 hover:bg-[#526d13] flex gap-3 items-center px-6 rounded-[10px]">
-                                Pending
-                            </Button> */}
-              {/* <Button onClick={() => setIsConfirmBookingModalOpen(true)} className="bg-[#95C22B] mt-2 ml-auto hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded-[10px]">
-                                <span>Book Appointment</span>
-                                <FiArrowUpRight className='text-2xl' />
-                            </Button> */}
-            </div>
-            {isConfirmBookingModalOpen && (
-              <ConfirmBookingModal
-                isConfirmBookingModalOpen={isConfirmBookingModalOpen}
-                setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
-                clinic={clinic}
-                dentistId={dentistId}
-                timing={dentistDetails?.dentistAvailableTiming}
-                selectedIndex={0}
+                {clinicName}
+              </h2>
+              <ReactStars
+                edit={false}
+                size={25}
+                count={5}
+                value={averageRating}
+                color2={"#FF8A00"}
+                className="-mt-2"
+                // char="*"
               />
+            </div>
+            <div className="mt-4">
+              <p className="text-[#717171] font-inter font-semibold text-xs">
+                Mon-Fri
+              </p>
+              <p className="text-[#717171] font-inter font-semibold text-xs">
+                09:30 AM - 07:45 PM
+              </p>
+            </div>
+            <p className="font-inter text-sm text-[#717171]">
+              ₹{consultationfee}
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <p className="flex items-center gap-2">
+              <FaLocationDot className="text-[#95C22B] size-6" />
+              <span className="text-sm text-[#717171]">
+                {clinicAddress}, {nearbyLandmark}, {area}, {city}, {state},{" "}
+                {clinicPincode}
+              </span>
+            </p>
+            <Button
+              onClick={() =>
+                searchOnMap({
+                  latitude: clinic?.latitude,
+                  longitude: clinic?.longitude,
+                })
+              }
+              variant="outline"
+              className="flex gap-2 text-[#717171] border-[#95C22B] hover:text-[#939292]"
+            >
+              Get Directions
+            </Button>
+          </div>
+          <p className="font-inter text-xs mt-3 text-[#95C22B] font-semibold">
+            Gallery
+          </p>
+          <div className="flex items-center gap-2 mt-3">
+            {allPhotos.slice(0, 3).map((item, i) => (
+              <img
+                key={i}
+                className="w-10 h-10 rounded-sm"
+                src={item.photoPath}
+                alt="clinic image"
+              />
+            ))}
+            {allPhotos.length > 3 && (
+              <div className="w-10 h-10 flex items-center justify-center bg-[#D9D9D9] rounded-sm">
+                +{allPhotos.length - 3}
+              </div>
             )}
           </div>
+
+          <div className="flex justify-end items-center gap-2">
+            <p className="text-[#5B5B5B]">
+              <span className="line-through">₹500</span> <b>FREE</b> via{" "}
+              <b>
+                de<span className="text-[#95C22B]">9</span>to
+              </b>
+            </p>
+            <Button
+              onClick={() => setIsConfirmBookingModalOpen(true)}
+              className="bg-[#95C22B] mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded"
+            >
+              <span>Book Appointment</span>
+              <FiArrowUpRight className="text-2xl" />
+            </Button>
+          </div>
+          {isConfirmBookingModalOpen && (
+            <ConfirmBookingModal
+              isConfirmBookingModalOpen={isConfirmBookingModalOpen}
+              setIsConfirmBookingModalOpen={setIsConfirmBookingModalOpen}
+              clinic={clinic}
+              dentistId={dentistId}
+              timing={dentistAvailableTiming}
+              selectedIndex={0}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+ClinicAppointment.Skeleton = function ClinicAppointmentSkeleton() {
+  return (
+    <div>
+      <Skeleton className="w-40 h-8 mb-3" />
+      <div className="h-60">
+        <div className="grid grid-cols-3 gap-4">
+          <div>
+            <Skeleton className="w-full h-8" />
+            <Skeleton className="w-full h-8 mt-2" />
+          </div>
+          <div>
+            <Skeleton className="w-full h-8" />
+            <Skeleton className="w-full h-8 mt-2" />
+          </div>
+          <div>
+            <Skeleton className="w-full h-8" />
+          </div>
+        </div>
+        <div className="flex items-center gap-3 mt-3">
+          <Skeleton className="w-full h-10" />
+          <Skeleton className="w-40 h-10" />
+        </div>
+        <div className="flex items-center gap-2 mt-3">
+          <Skeleton className="w-10 h-10 rounded-sm" />
+          <Skeleton className="w-10 h-10 rounded-sm" />
+          <Skeleton className="w-10 h-10 rounded-sm" />
+          <Skeleton className="w-10 h-10 rounded-sm" />
+        </div>
+        <div className="flex justify-end items-center gap-2">
+          <Skeleton className="w-44 h-10 rounded-sm" />
+          <Skeleton className="w-36 h-10 rounded-sm" />
         </div>
       </div>
     </div>
