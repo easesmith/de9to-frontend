@@ -132,7 +132,7 @@ const DentistDetails = () => {
             <DentistBasicDetails details={dentistDetails} />
           </div>
 
-          <div className="md:hidden block pl-5 pb-6 flex-1">
+          <div className="md:hidden block md:pl-5 pb-6 flex-1">
             <BookAppointment
               dentistId={dentistDetails?._id}
               timing={dentistDetails?.dentistAvailableTiming || []}
@@ -154,12 +154,12 @@ const DentistDetails = () => {
             id="reviews"
             className="flex flex-col bg-white shadow-[0px_0px_20px_rgba(0,0,0,0.1)] p-4 rounded gap-2 mt-5"
           >
-            <div className="font-inter font-medium text-[#1A1A1A]">Reviews</div>
+            <h5 className="font-inter font-semibold text-[#1A1A1A]">Reviews</h5>
             <div className="w-full mb-5">
               <RatingsComp allRating={allRating} />
-              <div className="flex justify-end gap-5 my-5">
+              <div className="flex flex-col sm:flex-row-reverse sm:justify-end gap-5 my-5">
                 <Select onValueChange={setSortRating} value={sortRating}>
-                  <SelectTrigger className="w-1/5 max-[700px]:w-1/3 max-[500px]:w-1/2 border-[1px] border-[#95C22B] rounded-xl">
+                  <SelectTrigger className="w-1/5 max-[700px]:w-1/3 max-[500px]:w-full border-[1px] border-[#95C22B] rounded-xl">
                     <SelectValue placeholder="" />
                   </SelectTrigger>
                   <SelectContent className="border-[1px] border-[#95C22B] rounded-lg py-[10px] px-5">
@@ -214,7 +214,7 @@ const DentistDetails = () => {
           <ConsultQAndA />
         </div>
 
-        <div className="sticky top-20 hidden md:block pl-5 pb-6 flex-1">
+        <div className="sticky top-20 hidden md:block md:pl-5 pb-6 flex-1">
           <BookAppointment
             dentistId={dentistDetails?._id}
             timing={dentistDetails?.dentistAvailableTiming || []}

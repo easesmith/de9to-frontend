@@ -43,18 +43,24 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
 
   useEffect(() => {
     if (clinic?.clinicPhotos) {
-      setAllPhotos([...cabinetPics, ...opdArea]);
+      setAllPhotos([
+        ...cabinetPics,
+        ...opdArea,
+        certificateWall,
+        consultationTable,
+        frontFascia,
+        receptionCounter,
+        waitingArea,
+      ]);
     }
   }, [clinic]);
-
-  console.log("clinic", clinic);
 
   return (
     <div className="w-full">
       <p className="font-inter font-semibold text-sm mb-3">{clinic.area}</p>
       <div className="border border-[#85858533] rounded px-4 py-2">
         <div>
-          <div className="grid grid-cols-[50%_1fr_1fr] gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-[50%_1fr_1fr] gap-4">
             <div>
               <h2
                 onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
@@ -72,7 +78,20 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
                 // char="*"
               />
             </div>
-            <div className="mt-4">
+            <div className="grid sm:hidden grid-cols-2 gap-2 mb-3">
+              <div>
+                <p className="text-[#717171] font-inter font-semibold text-xs">
+                  Mon-Fri
+                </p>
+                <p className="text-[#717171] font-inter font-semibold text-xs">
+                  09:30 AM - 07:45 PM
+                </p>
+              </div>
+              <p className="font-inter text-sm text-[#717171]">
+                ₹{consultationfee}
+              </p>
+            </div>
+            <div className="mt-4 hidden sm:block">
               <p className="text-[#717171] font-inter font-semibold text-xs">
                 Mon-Fri
               </p>
@@ -80,13 +99,13 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
                 09:30 AM - 07:45 PM
               </p>
             </div>
-            <p className="font-inter text-sm text-[#717171]">
+            <p className="font-inter hidden sm:block text-sm text-[#717171]">
               ₹{consultationfee}
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <p className="flex items-center gap-2">
-              <FaLocationDot className="text-[#95C22B] size-6" />
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+            <p className="flex items-start gap-2">
+              <FaLocationDot className="text-[#95C22B] size-6 hidden sm:block shrink-0" />
               <span className="text-sm text-[#717171]">
                 {clinicAddress}, {nearbyLandmark}, {area}, {city}, {state},{" "}
                 {clinicPincode}
@@ -125,7 +144,7 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
           </div>
 
           <div className="flex justify-end items-center gap-2">
-            <p className="text-[#5B5B5B]">
+            <p className="text-[#5B5B5B] text-xs sm:text-base">
               <span className="line-through">₹500</span> <b>FREE</b> via{" "}
               <b>
                 de<span className="text-[#95C22B]">9</span>to
@@ -133,10 +152,10 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
             </p>
             <Button
               onClick={() => setIsConfirmBookingModalOpen(true)}
-              className="bg-[#95C22B] mt-2 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded"
+              className="bg-[#95C22B] mt-2 text-xs sm:text-sm h-8 sm:h-10 hover:bg-[#9dd41d] flex gap-3 items-center px-6 rounded"
             >
               <span>Book Appointment</span>
-              <FiArrowUpRight className="text-2xl" />
+              <FiArrowUpRight className="text-xl sm:text-2xl" />
             </Button>
           </div>
           {isConfirmBookingModalOpen && (
@@ -183,7 +202,7 @@ ClinicAppointment.Skeleton = function ClinicAppointmentSkeleton() {
           <Skeleton className="w-10 h-10 rounded-sm" />
           <Skeleton className="w-10 h-10 rounded-sm" />
         </div>
-        <div className="flex justify-end items-center gap-2">
+        <div className="flex justify-end items-center gap-2 mt-3">
           <Skeleton className="w-44 h-10 rounded-sm" />
           <Skeleton className="w-36 h-10 rounded-sm" />
         </div>

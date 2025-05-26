@@ -1,8 +1,9 @@
+import { cn } from '@/lib/utils'
 import React from 'react'
 
-const DataNotFound = ({name}) => {
+const DataNotFound = ({name,className}) => {
   return (
-    <div className='w-full text-center'>{name} not found.</div>
+    <div className={cn("w-full text-center",className)}>{name} not found.</div>
   )
 }
 

@@ -92,7 +92,7 @@ const Dentist1 = ({ dentist }) => {
                     </div>
                     <div>
                         <div className="flex flex-col sm:flex-row justify-between gap-3 flex-wrap sm:flex-nowrap">
-                            <div className="">
+                            <div className="mt-2 sm:mt-0">
                                 <h2 onClick={() => handleNavigateDentistDetailPage(_id)} className='text-2xl cursor-pointer hover:underline hover:text-blue-800 font-inter -mt-1 font-semibold text-gray-600'>{personalDetails?.prefix
                                 }. {personalDetails?.Firstname} {personalDetails?.lastName}</h2>
                                 <div className='flex gap-1 items-center max-[700px]:text-xs'>
@@ -104,7 +104,7 @@ const Dentist1 = ({ dentist }) => {
                                 <p className='text-gray-500 font-inter font-semibold'>Self Owned Clinic</p>
                                 <p className='text-gray-500 font-medium'><b className='mr-2'>Experience:</b> {educationalQualification?.yearsOfExperience > 0 ? `${educationalQualification?.yearsOfExperience}+ Years` : 'Not mentioned'}</p>
                             </div>
-                            <div className="ml-auto">
+                            <div className="sm:ml-auto">
                                 <ReactStars className='-mt-3' size={30} count={5} value={averageRating} edit={false} color2={'#95C22B'} />
                                 <b className='text-gray-500'>Monday to Sunday</b>
                                 <p className='text-gray-500 font-medium'>10:00 AM to 01:30 PM</p>

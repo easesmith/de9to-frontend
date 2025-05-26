@@ -125,7 +125,7 @@ const SearchCompo = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="absolute grid grid-cols-[60%_39%]  top-16 max-w-7xl z-20 mx-auto left-0 right-0 w-full h-full">
+        <div className="absolute grid grid-cols-[60%_39%] top-16 max-w-7xl z-20 mx-auto left-0 right-0 w-full h-full">
           <div
             className={`flex flex-col py-8 px-10 gap-2 h-[400px] overflow-y-auto  bg-white ${
               isModalOpen ? "shadow-custom7 rounded-b" : "hidden"

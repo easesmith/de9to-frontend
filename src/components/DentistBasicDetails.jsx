@@ -63,7 +63,7 @@ const DentistBasicDetails = ({ details }) => {
                   {details?.personalDetails?.degree.some(
                     (item) => item === "MDS",
                   ) && (
-                    <p className="text-[#95C22B] font-inter font-semibold">
+                    <p className="text-[#95C22B] font-inter font-semibold max-[760px]:text-sm max-[500px]:text-xs">
                       {details?.personalDetails?.degree.find(
                         (item) => item === "MDS",
                       )}{" "}
@@ -78,7 +78,7 @@ const DentistBasicDetails = ({ details }) => {
                   {details?.personalDetails?.degree.some(
                     (item) => item === "BDS",
                   ) && (
-                    <p className="text-[#95C22B] font-inter font-semibold">
+                    <p className="text-[#95C22B] font-inter font-semibold max-[760px]:text-sm max-[500px]:text-xs">
                       {details?.personalDetails?.degree.find(
                         (item) => item === "BDS",
                       )}

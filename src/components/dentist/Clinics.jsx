@@ -17,11 +17,9 @@ const Clinics = ({ clinics, dentistAvailableTiming }) => {
     setModifiedClinics(() => (isSeeMore ? clinics?.slice(0, 1) : clinics));
   }, [isSeeMore, clinics]);
 
-  console.log("modifiedClinics", modifiedClinics);
-  console.log("clinics", clinics);
 
   return (
-    <div>
+    <div className="bg-white shadow-[0px_0px_20px_rgba(0,0,0,0.1)] rounded p-4">
       {clinics ? (
         <div className="flex flex-col gap-4">
           {modifiedClinics?.map((clinic) => (
@@ -41,7 +39,7 @@ const Clinics = ({ clinics, dentistAvailableTiming }) => {
         {clinics?.length > 0 && (
           <button
             onClick={handleSeeMore}
-            className="flex flex-col items-center font-inter text-[#95C22B] font-semibolda"
+            className="flex flex-col text-sm sm:text-base items-center font-inter text-[#95C22B] font-semibolda"
           >
             <span>See {isSeeMore ? "More" : "Less"}</span>
             <ChevronDown />

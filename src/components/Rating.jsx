@@ -14,7 +14,7 @@ export const Rating = ({ ratingValue, ratingStar, maxRating = 500 }) => {
                     style={{ width: `${scaledPercent || 0}%` }}
                 ></div>
             </div>
-            <div className='font-inter text-xs font-medium'>{1000}</div>
+            <div className='font-inter text-xs font-medium'>{ratingValue}</div>
         </div>
     )
 }
