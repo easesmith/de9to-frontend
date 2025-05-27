@@ -26,11 +26,11 @@ const ClinicPhotosCarousel = ({ clinic }) => {
       const combinedPhotos = [
         ...cabinetPics.map((item) => item?.photoPath),
         ...opdArea.map((item) => item?.photoPath),
-        certificateWall,
-        consultationTable,
-        frontFascia,
-        receptionCounter,
-        waitingArea,
+        // certificateWall,
+        // consultationTable,
+        // frontFascia,
+        // receptionCounter,
+        // waitingArea,
       ].filter(Boolean); // Remove undefined/null/empty values
 
       setAllPhotos(combinedPhotos);

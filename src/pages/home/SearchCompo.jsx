@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import useGetApiReq from "@/hooks/useGetApiReq";
 import { calculateAverageRating } from "@/utils/getAverageRating";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaGraduationCap } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { IoSearchSharp } from "react-icons/io5";
@@ -30,6 +30,26 @@ const SearchCompo = () => {
   const [showAllDentist, setShowAllDentist] = useState(false);
   const [showDentistAndClinic, setShowDentistAndClinic] = useState("All");
   const navigate = useNavigate();
+  const modalRef = useRef();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      console.log("event.target", event.target);
+      console.log("modalRef", modalRef);
+
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setIsModalOpen(false);
+      }
+    }
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isModalOpen]);
 
   const { pathname } = useLocation();
   const { res, fetchData, isLoading } = useGetApiReq();
@@ -125,7 +145,10 @@ const SearchCompo = () => {
         </div>
       </div>
       {isModalOpen && (
-        <div className="absolute grid grid-cols-[60%_39%] top-16 max-w-7xl z-20 mx-auto left-0 right-0 w-full h-full">
+        <div
+          ref={modalRef}
+          className="absolute grid grid-cols-[60%_39%] top-16 max-w-7xl z-20 mx-auto left-0 right-0 w-full h-full"
+        >
           <div
             className={`flex flex-col py-8 px-10 gap-2 h-[400px] overflow-y-auto  bg-white ${
               isModalOpen ? "shadow-custom7 rounded-b" : "hidden"

@@ -36,7 +36,7 @@ const Clinics = ({ clinics, dentistAvailableTiming }) => {
       )}
 
       <div className="flex justify-center items-center mt-4">
-        {clinics?.length > 0 && (
+        {clinics?.length > 1 && (
           <button
             onClick={handleSeeMore}
             className="flex flex-col text-sm sm:text-base items-center font-inter text-[#95C22B] font-semibolda"

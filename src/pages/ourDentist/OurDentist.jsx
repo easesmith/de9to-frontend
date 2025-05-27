@@ -17,6 +17,7 @@ import { Helmet } from 'react-helmet-async'
 import { FaXmark } from 'react-icons/fa6'
 import ReactStars from 'react-stars'
 import Spinner from '@/components/Spinner'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 const OurDentist = () => {
 
@@ -30,6 +31,7 @@ const OurDentist = () => {
   const [SearchAllClinics, setSearchAllClinics] = useState([]);
   const [allDentists, setAllDentists] = useState([])
   const [allClinics, setAllClinics] = useState([]);
+  const isMobile = useIsMobile();
 
   const getDentists = useCallback(async () => {
     fetchData(`/patient/get-dentists?page=${page}`);
@@ -43,12 +45,13 @@ const OurDentist = () => {
   useEffect(() => {
     if (res?.status === 200 || res?.status === 201) {
       console.log("AllDentists:", res.data.data.dentists)
-      setAllDentists(res.data.data.dentists)
-      setSearchAllDentists(res.data.data.dentists)
-      setPageCount(res.data.totalPages)
-      setPage(res.data.currentPage)
+      if(!isMobile){
+        setAllDentists(res.data.data.dentists)
+        setPageCount(res.data.totalPages)
+        setPage(res.data.currentPage)
+      }
     }
-  }, [res])
+  }, [res,isMobile])
 
   const getClinics = async () => {
     fetchData3(`/patient/get-all-Clinics?page=${page1}`);
@@ -62,8 +65,8 @@ const OurDentist = () => {
   useEffect(() => {
     if (res3?.status === 200 || res3?.status === 201) {
       setAllClinics(res3?.data?.data?.clinics);
-      // setPageCount1(res3.data.totalPages)
-      // setPage1(res3.data.currentPage)
+      setPageCount1(res3?.data?.data?.pagination?.totalPages)
+      setPage1(res3?.data?.data?.pagination?.currentPage)
       console.log("clinics response", res3);
     }
   }, [res3])
@@ -155,8 +158,8 @@ const OurDentist = () => {
         <img src={ImgBackgroundImg} alt="background-img" className='absolute max-[900px]:hidden -top-[4%] right-0 -z-10' />
         <div className='mt-5'>
           <SearchListCompo
-            setAllClinics={setSearchAllClinics}
-            setAllData={setSearchAllDentists}
+            setAllClinics={setAllClinics}
+            setAllDentists={setAllDentists}
             handleGenderChange={handleGenderChange}
             gender={gender}
           />
@@ -188,6 +191,7 @@ const OurDentist = () => {
             </div>
             </div>
             <div className='flex flex-col justify-between gap-5'>
+            <p className='text-[#838383] text-base font-semibold font-inter'>Choose Your Clinic</p>
               {
                 allClinics.length > 0 && !isLoading ? allClinics.map((clinic, i) => {
                   return (
@@ -197,6 +201,10 @@ const OurDentist = () => {
                   ""
               }
             </div>
+
+            {allClinics.length === 0 && !isLoading3 && <DataNotFound name='Clinic' />}
+            {allClinics.length === 0 && isLoading3 && <Spinner />}
+
             {allClinics.length > 0 &&
               <ReactPagination pageCount={pageCount1} setPage={setPage1} />}
         </section>

@@ -359,7 +359,7 @@ const BookAppointment = ({
                       <FormItem className="space-y-0 mt-3">
                         <FormLabel className="font-inter text-sm sm:text-base text-left sm:text-left"></FormLabel>
                         <FormControl>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 sm:max-h-[200px] overflow-y-auto">
+                          <div className={`grid grid-cols-1 ${modifiedClinics.length === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2"} sm:grid-cols-2 gap-2 mt-4 sm:max-h-[200px] overflow-y-auto`}>
                             {modifiedClinics.map((clinic) => {
                               const {
                                 clinicAddress,

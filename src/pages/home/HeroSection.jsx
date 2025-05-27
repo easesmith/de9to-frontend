@@ -2,53 +2,16 @@ import Ellipse1 from "@/assets/Ellipse-1.png";
 import Ellipse2 from "@/assets/Ellipse-2.png";
 import heroImg from "@/assets/hero-img.svg";
 
-import { useIsMobile } from "@/hooks/use-mobile";
-import useGetApiReq from "@/hooks/useGetApiReq";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import SearchCompo from "./SearchCompo";
-import { MdOutlineArrowOutward } from "react-icons/md";
-import { Button } from "@/components/ui/button";
-import Feature from "./Feature";
 import teeth from "@/assets/teeth.svg";
-import SearchListCompo from "@/components/SearchListCompo";
+import { Button } from "@/components/ui/button";
+import { MdOutlineArrowOutward } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Feature from "./Feature";
+import SearchCompo from "./SearchCompo";
 
 const HeroSection = () => {
   const navigate = useNavigate();
-  const isMobile = useIsMobile();
 
-  const { res, fetchData } = useGetApiReq();
-  const [contentData, setContentData] = useState({
-    content: "",
-    image: "",
-    image1: "",
-  });
-
-  const getContent = () => {
-    fetchData(`/patient/get-specific-content?pageName=home&sectionName=hero`);
-  };
-
-  useEffect(() => {
-    getContent();
-  }, []);
-
-  useEffect(() => {
-    if (res?.status === 200 || res?.status === 201) {
-      const { images = [], content = [] } = res?.data?.foundContent || {};
-
-      setContentData({
-        content: content[0]?.resources,
-        image: images[0]?.image || "",
-        image1: images[1]?.image || "",
-      });
-    }
-  }, [res]);
-
-  const [gender, setGender] = useState("");
-
-  const handleGenderChange = (value) => {
-    setGender(value);
-  };
 
   return (
     <section className="bg-[#95C22B] relative w-full overflow-hidden pb-10 sm:pb-0 sm:h-[576px]">

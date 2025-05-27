@@ -42,7 +42,6 @@ const Dentist1 = ({ dentist }) => {
         navigate(`/our-dentist/${dentist?._id}#reviews`)
     }
 
-    console.log("dentist1", dentist)
     const { personalDetails, _id, clinic, assignedClinic, dentistRatings, dentistAvailableTiming = [], educationalQualification } = dentist || {}
 
     const defaultClinic = clinic.find((singleClinic) => singleClinic?.defaultClinic)

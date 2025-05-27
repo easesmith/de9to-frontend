@@ -29,7 +29,6 @@ const Clinic = ({ clinic }) => {
   // };
 
   const averageRating = calculateAverageRating(clinic?.clinicRating);
-  console.log("clinic", clinic);
 
   return (
     <div className="p-4 rounded-[6px] flex max-[500px]:flex-col gap-[10px] shadow-custom4 bg-[#FFFFFF]">
