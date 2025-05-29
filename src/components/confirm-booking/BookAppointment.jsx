@@ -100,12 +100,12 @@ const BookAppointment = ({
   });
   // console.log("dentistId:", dentistId);
 
-  const { reset, handleSubmit, getValues, setValue } = form;
+  const { watch, handleSubmit, getValues, setValue } = form;
 
   useEffect(() => {
     setValue("dentistId", dentistId);
-    setValue("clinic", clinic[0]?._id);
-  }, [dentistId, clinic[0]?._id]);
+    // setValue("clinic", clinic[0]?._id);
+  }, [dentistId]);
 
   const onSubmit = (data) => {
     console.log("Booking Data:", data);
@@ -429,7 +429,7 @@ const BookAppointment = ({
               </div>
             )}
 
-            {getValues("clinic") && (
+            {watch("clinic") && (
               <>
                 <Label className="font-inter font-medium text-xs text-primary w-full">
                   Select Date and Time

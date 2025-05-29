@@ -66,6 +66,7 @@ const SearchCompo = () => {
 
   const handleGetSerachQuery = () => {
     searchQuery && getSearchQuery();
+    !searchQuery && setIsModalOpen(false);
   };
 
   useEffect(() => {
