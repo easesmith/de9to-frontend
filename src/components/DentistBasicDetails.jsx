@@ -10,16 +10,18 @@ import ReactPlayer from "react-player";
 import ReactStars from "react-stars";
 import ImageSkeleton from "./ImageSkeleton";
 import location from "@/assets/location.svg";
+import { useState } from "react";
 
 const DentistBasicDetails = ({ details }) => {
   const averageRating =
     details && calculateAverageRating(details?.dentistRatings);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="grid grid-cols-1  gap-4">
+    <div className="grid grid-cols-1 gap-4">
       <div className="rounded-[5px] flex flex-col gap-5">
         {/* <p className='text-[#838383] text-xl font-semibold font-inter'>Choose clinic near you</p> */}
-        <div className="p-4 rounded-[6px] flex flex-col sm:flex-row gap-[10px] shadow-md">
+        <div className="p-4 rounded-[6px] flex flex-col sm:flex-row gap-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.1)] bg-[#FFFFFF]">
           <div>
             <div className="rounded-[6px] relative h-[200px] w-[200px] ">
               <img
@@ -39,7 +41,7 @@ const DentistBasicDetails = ({ details }) => {
             </p>
           </div>
           <div className="pe-[25px] ps-[9px] max-[500px]:px-0 gap-6 w-[calc(100%-210px)] max-[900px]:w-full">
-            <div className="flex items-center justify-between max-[500px]:justify-start max-[500px]:items-start max-[500px]:flex-col max-[500px]:gap-0 gap-4">
+            <div className="flex items-center justify-between max-[500px]:justify-start max-[500px]:items-start max-[500px]:flex-col max-[500px]:gap-0 gap-4 -mt-3">
               <div className="flex items-center">
                 <h4 className="text-[#1A1A1A] text-2xl font-semibold font-inter">{`${details?.personalDetails?.prefix}. ${details?.personalDetails?.Firstname} ${details?.personalDetails?.lastName}`}</h4>
               </div>
@@ -51,13 +53,13 @@ const DentistBasicDetails = ({ details }) => {
                   value={averageRating}
                   color2={"#FF8A00"}
                 />
-                <div className="text-[#000000] text-[10px] max-[900px]:text-left text-right font-normal font-inter">
+                <div className="text-[#000000] hidden text-[10px] max-[900px]:text-left text-right font-normal font-inter">
                   Rated by {details?.dentistRatings?.length} users
                 </div>
               </div>
             </div>
             <div className="flex flex-col justify-start gap-2">
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-2 mt-0">
                 <FaGraduationCap className="text-[#95C22B] text-2xl" />
                 <div className="flex gap-1 items-center">
                   {details?.personalDetails?.degree.some(
@@ -116,15 +118,22 @@ const DentistBasicDetails = ({ details }) => {
               </div>
 
               <div className="flex items-center gap-2 mt-2 py-1 px-2 bg-[#F6F6F6] w-auto">
-              <img
-                className="size-5"
-                src={VerifiedImg}
-                alt=""
-              />
-                <span className="text-xs text-[#717171] font-inter font-semibold">Medical Registrations Verified</span>
+                <img className="size-5" src={VerifiedImg} alt="" />
+                <span className="text-xs text-[#717171] font-inter font-semibold">
+                  Medical Registrations Verified
+                </span>
               </div>
-              <p className="text-[#717171] font-inter font-normal text-xs mt-1">
-                {details?.personalDetails?.Bio}
+              <div></div>
+              <p>
+                <span className="text-[#717171] font-inter font-normal text-xs mt-1">
+                  {isExpanded ? details?.personalDetails?.Bio : details?.personalDetails?.Bio.slice(0, 150) + '...'}
+                </span>
+                <button
+                  className="text-[#95C22B] font-inter font-semibold text-xs ml-1"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                >
+                  {isExpanded ? "Read less" : "Read more"}
+                </button>
               </p>
             </div>
 

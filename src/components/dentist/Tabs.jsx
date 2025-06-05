@@ -30,6 +30,12 @@ const Tabs = ({ clinics, dentistAvailableTiming }) => {
           Clinics
         </button>
         <button
+          onClick={() => handleTabClick("gallery")}
+          className={`font-inter px-2 sm:px-6 text-sm sm:text-base text-[#1A1A1A] font-medium ${currentTab === "gallery" ? "bg-[#D9D9D9] border-b-2  border-[#95C22B]" : ""} py-2`}
+        >
+          Gallery
+        </button>
+        <button
           onClick={handleClickReview}
           className={`font-inter px-2 sm:px-6 text-sm sm:text-base text-[#1A1A1A] font-medium py-2`}
         >
@@ -40,12 +46,6 @@ const Tabs = ({ clinics, dentistAvailableTiming }) => {
           className={`font-inter px-2 sm:px-6 text-sm sm:text-base text-[#1A1A1A] font-medium py-2`}
         >
           Consult Q&A
-        </button>
-        <button
-          onClick={() => handleTabClick("gallery")}
-          className={`font-inter px-2 sm:px-6 text-sm sm:text-base text-[#1A1A1A] font-medium ${currentTab === "gallery" ? "bg-[#D9D9D9] border-b-2  border-[#95C22B]" : ""} py-2`}
-        >
-          Gallery
         </button>
       </div>
       <div>

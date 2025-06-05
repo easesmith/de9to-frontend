@@ -119,7 +119,7 @@ const DentistDetails = () => {
     <Layout>
       <section className="max-w-[1240px] py-5 flex items-start px-4 mx-auto">
         <div className="w-full md:w-[65%]">
-          <div className="flex items-center gap-4 h-[18px] my-5">
+          {/* <div className="flex items-center gap-4 h-[18px] mb-2">
             <FaArrowLeft
               onClick={() => navigate(-1)}
               className="text-[#717171] cursor-pointer"
@@ -127,7 +127,7 @@ const DentistDetails = () => {
             <span className="text-[#1A1A1A] text-sm font-semibold font-inter">
               Search List
             </span>
-          </div>
+          </div> */}
           <div className="mb-5">
             <DentistBasicDetails details={dentistDetails} />
           </div>
