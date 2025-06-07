@@ -323,7 +323,14 @@ const SearchCompo = () => {
                                       {/* <img onClick={() => handleNavigate(`/our-clinic/${e._id}`)} src={e?.clinicLogo} alt="" className='w-[60px] h-[60px] rounded-sm cursor-pointer' /> */}
                                       <div className="flex flex-col items-start gap-1">
                                         <div className="flex items-center gap-9 -mt-1">
-                                          <h4 className="text-[#1A1A1A] cursor-pointer hover:text-blue-800 hover:underline text-lg font-semibold font-inter">
+                                          <h4
+                                            onClick={() =>
+                                              handleNavigate(
+                                                `/our-clinic/${e._id}`,
+                                              )
+                                            }
+                                            className="text-[#1A1A1A] cursor-pointer hover:text-blue-800 hover:underline text-lg font-semibold font-inter"
+                                          >
                                             {e.clinicName}
                                           </h4>
                                           <ReactStars
@@ -478,7 +485,12 @@ const SearchCompo = () => {
                                 />
                                 <div className="flex flex-col items-start gap-1">
                                   <div className="flex items-center gap-9 -mt-1">
-                                    <h4 className="text-[#1A1A1A] text-lg font-semibold font-inter">
+                                    <h4
+                                      onClick={() =>
+                                        handleNavigate(`/our-clinic/${e._id}`)
+                                      }
+                                      className="text-[#1A1A1A] text-lg font-semibold font-inter hover:text-blue-800 hover:underline cursor-pointer"
+                                    >
                                       {e.clinicName}
                                     </h4>
                                     <ReactStars

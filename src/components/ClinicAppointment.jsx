@@ -128,15 +128,15 @@ const ClinicAppointment = ({ clinic, dentistId, dentistAvailableTiming }) => {
             Gallery
           </p>
           <div className="flex items-center gap-2 mt-3">
-            {allPhotos.slice(0, 3).map((item, i) => (
+            {allPhotos?.slice(0, 3).map((item, i) => (
               <img
                 key={i}
                 className="w-10 h-10 rounded-sm"
-                src={item.photoPath}
+                src={item?.photoPath}
                 alt="clinic image"
               />
             ))}
-            {allPhotos.length > 3 && (
+            {allPhotos?.length > 3 && (
               <div className="w-10 h-10 flex items-center justify-center bg-[#D9D9D9] rounded-sm">
                 +{allPhotos.length - 3}
               </div>

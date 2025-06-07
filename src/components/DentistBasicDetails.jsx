@@ -124,17 +124,23 @@ const DentistBasicDetails = ({ details }) => {
                 </span>
               </div>
               <div></div>
-              <p>
-                <span className="text-[#717171] font-inter font-normal text-xs mt-1">
-                  {isExpanded ? details?.personalDetails?.Bio : details?.personalDetails?.Bio.slice(0, 150) + '...'}
-                </span>
-                <button
-                  className="text-[#95C22B] font-inter font-semibold text-xs ml-1"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                >
-                  {isExpanded ? "Read less" : "Read more"}
-                </button>
-              </p>
+              {details?.personalDetails?.Bio && (
+                <p>
+                  <span className="text-[#717171] font-inter font-normal text-xs mt-1">
+                    {isExpanded
+                      ? details?.personalDetails?.Bio
+                      : details?.personalDetails?.Bio?.length > 150 ? (details?.personalDetails?.Bio?.slice(0, 150) + "..."): details?.personalDetails?.Bio}
+                  </span>
+                  {details?.personalDetails?.Bio?.length > 150 && (
+                    <button
+                      className="text-[#95C22B] font-inter font-semibold text-xs ml-1"
+                      onClick={() => setIsExpanded(!isExpanded)}
+                    >
+                      {isExpanded ? "Read less" : "Read more"}
+                    </button>
+                  )}
+                </p>
+              )}
             </div>
 
             {/* <div>

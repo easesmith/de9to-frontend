@@ -83,8 +83,7 @@ const BookAppointment = ({
   useEffect(() => {
     if (modifiedClinics.length === 0) {
       setValue("clinic", "");
-    }
-    else{
+    } else {
       setValue("clinic", modifiedClinics[0]?._id);
     }
   }, [modifiedClinics]);
@@ -100,7 +99,13 @@ const BookAppointment = ({
   });
   // console.log("dentistId:", dentistId);
 
-  const { watch, handleSubmit, getValues, setValue } = form;
+  const {
+    watch,
+    handleSubmit,
+    getValues,
+    setValue,
+    formState: { errors },
+  } = form;
 
   useEffect(() => {
     setValue("dentistId", dentistId);
@@ -237,8 +242,10 @@ const BookAppointment = ({
   };
 
   const handlePrev = () => {
-    if (startIndex > 0) {
+    if (startIndex > 2) {
       setStartIndex(startIndex - 3);
+    } else {
+      setStartIndex(0);
     }
   };
 
@@ -359,7 +366,9 @@ const BookAppointment = ({
                       <FormItem className="space-y-0 mt-3">
                         <FormLabel className="font-inter text-sm sm:text-base text-left sm:text-left"></FormLabel>
                         <FormControl>
-                          <div className={`grid grid-cols-1 ${modifiedClinics.length === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2"} gap-2 mt-4 sm:max-h-[200px] overflow-y-auto`}>
+                          <div
+                            className={`grid grid-cols-1 ${modifiedClinics.length === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2"} gap-2 mt-4 sm:max-h-[200px] overflow-y-auto`}
+                          >
                             {modifiedClinics.map((clinic) => {
                               const {
                                 clinicAddress,
@@ -501,6 +510,11 @@ const BookAppointment = ({
                               dayDate={item.date}
                             />
                             {/* ))} */}
+                            {errors?.time?.message && (
+                              <p className="text-destructive text-sm font-medium">
+                                {errors.time.message}
+                              </p>
+                            )}
                             <Button
                               type="submit"
                               className="bg-[#95C22B] hover:scale-100 w-full"
