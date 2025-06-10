@@ -40,7 +40,9 @@ const Dentist = ({ dentist, clinicDetails }) => {
         }
     })
     const today = format(new Date(), "EEEE");
-    const availabilityTime = dentist?.dentistAvailableTiming?.find((item) => item.day === today)
+    console.log("today",today);
+    
+    const availabilityTime = dentist?.dentistAvailableTiming?.find((item) => item.day === today.toLowerCase())
 
     const averageRating = calculateAverageRating(dentist?.dentistRatings);
 
