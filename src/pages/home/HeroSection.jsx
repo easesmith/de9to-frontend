@@ -14,7 +14,7 @@ const HeroSection = () => {
 
 
   return (
-    <section className="bg-[#95C22B] relative w-full overflow-hidden pb-10 sm:pb-0 sm:h-[576px]">
+    <section className="bg-[#95C22B] relative w-full overflow-hidden pb-10 sm:pb-0 sm:h-[546px]">
       <img className="absolute -top-28 right-0" src={Ellipse2} alt="" />
       <img className="absolute bottom-0 left-0" src={Ellipse1} alt="" />
 
@@ -54,9 +54,9 @@ const HeroSection = () => {
             </Button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            <Feature img={teeth} title={"Find Dentist Near You"} />
-            <Feature img={teeth} title={"Video Consultation"} />
-            <Feature img={teeth} title={"Request a Dental Camp"} />
+            <Feature href="/our-dentist" img={teeth} title={"Find Dentist Near You"} />
+            <Feature href="/about" img={teeth} title={"About Us"} />
+            <Feature href="/dental-camp" img={teeth} title={"Request a Dental Camp"} />
           </div>
         </div>
         <div className="w-1/2 -ml-32 relative hidden lg:block">

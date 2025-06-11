@@ -1,25 +1,24 @@
-import Spinner from '@/components/Spinner';
-import useGetApiReq from '@/hooks/useGetApiReq';
-import usePostApiReq from '@/hooks/usePostApiReq';
-import { PatientFormSchema } from '@/schema/formSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { MdCalendarMonth } from 'react-icons/md';
-import { format } from 'date-fns';
-import { Calendar } from '@/components/ui/calendar';
+} from "@/components/ui/popover";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useGetApiReq from '@/hooks/useGetApiReq';
+import usePostApiReq from '@/hooks/usePostApiReq';
+import { cn } from '@/lib/utils';
+import { PatientFormSchema } from '@/schema/formSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { MdCalendarMonth } from 'react-icons/md';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const PatientForm = () => {
     const { res, fetchData, isLoading, error } = useGetApiReq();
@@ -81,7 +80,7 @@ const PatientForm = () => {
             {
                 name: data.name,
                 gender: data.gender,
-                area: data.gender,
+                area: data.area,
                 dob: data.dob,
                 mobile: data.mobile,
                 pincode: data.pincode,

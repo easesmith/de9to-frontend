@@ -13,7 +13,7 @@ const ChoosePlanCompo = ({ title, amount, isSelected, onSelect }) => {
     return (
         <div  className={`max-w-[365px] w-full cursor-pointer mx-auto border-[2.8px] flex flex-col gap-7 border-[#95C22B] rounded-lg p-8 max-small:p-2 ${isSelected ? 'bg-[#95C22B] ' : 'bg-[#FFFFFF]'}`}>
             <div className='flex flex-col items-start gap-4'>
-                {isSelected && <button className={`bg-[#FFFFFF] text-[#1A1A1A] text-sm font-normal font-roboto py-1 px-3 rounded-sm max-med:hidden`}>Popular</button>}
+                {/* {isSelected && <button className={`bg-[#FFFFFF] text-[#1A1A1A] text-sm font-normal font-roboto py-1 px-3 rounded-sm max-med:hidden`}>Popular</button>} */}
                 <div className="bg-[#F1F1F1] rounded-md text-center py-[6px] px-3">
                     <span className="text-sm text-[#000B33] font-semibold font-poppins">{title}</span>
                 </div>

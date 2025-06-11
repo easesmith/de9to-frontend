@@ -34,7 +34,7 @@ const Clinic = ({ clinic }) => {
     <div className="p-4 rounded-[6px] flex max-[500px]:flex-col gap-[10px] shadow-custom4 bg-[#FFFFFF]">
       <div
         onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
-        className="rounded-lg cursor-pointer w-[250px] max-[600px]:w-[350px] h-[250px] max-[500px]:w-full max-[500px]:h-full flex justify-center items-end relative -mt-[10px]"
+        className="rounded-lg cursor-pointer w-[250px] max-[600px]:w-[350px] h-[250px] max-[500px]:w-full max-[500px]:h-full flex justify-center items-end relative"
       >
         <ImageSkeleton
           src={
@@ -53,18 +53,16 @@ const Clinic = ({ clinic }) => {
         />
       </div>
       <div className="pe-[25px] ps-[9px] flex flex-col justify-start gap-2 max-[600px]:w-full w-[calc(100%-210px)]">
-        <div className="flex items-center justify-between max-[650px]:flex-col max-[650px]:items-start gap-4">
-          <div className="flex items-center gap-4">
-            <h4
-              onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
-              className="text-[#1A1A1A] cursor-pointer text-2xl max-[500px]:text-base font-semibold font-inter"
-            >
-              {clinic?.clinicName}
-            </h4>
-          </div>
+        <div className="flex items-start justify-between max-[650px]:flex-col max-[650px]:items-start gap-4">
+          <h4
+            onClick={() => navigate(`/our-clinic/${clinic?._id}`)}
+            className="text-[#1A1A1A] cursor-pointer hover:underline hover:text-blue-800 text-2xl max-[500px]:text-base font-semibold font-inter"
+          >
+            {clinic?.clinicName}
+          </h4>
           <div className="flex flex-col items-end gap-1">
             <ReactStars
-              className="m-0 disable-hover"
+              className="m-0 disable-hover -mt-[10px]"
               size={25}
               count={5}
               value={averageRating}

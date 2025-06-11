@@ -72,17 +72,18 @@ export default {
 				custom9: '0px 4px 4px 2px rgba(0, 0, 0, 0.07)'
 			},
 			animation: {
-				scroll: 'scroll 15s linear infinite ',
+				"scroll": 'scroll 15s linear infinite ',
 				"caret-blink": "caret-blink 1.25s ease-out infinite",
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				"wiggle": 'wiggle 0.5s ease-in-out',
 			},
 			keyframes: {
 				"caret-blink": {
 					"0%,70%,100%": { opacity: "1" },
 					"20%,50%": { opacity: "0" },
 				},
-				scroll: {
+				"scroll": {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(-100%)' },
 				},
@@ -93,6 +94,12 @@ export default {
 				"accordion-up": {
 					from: { height: "var(--radix-accordion-content-height)" },
 					to: { height: "0" },
+				},
+				"wiggle": {
+					'0%': { transform: 'rotate(0deg)' },
+					'25%': { transform: 'rotate(-10deg)' },
+					'75%': { transform: 'rotate(10deg)' },
+					'100%': { transform: 'rotate(0deg)' },
 				},
 			},
 			screens: {

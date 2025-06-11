@@ -2,10 +2,9 @@ import { z } from 'zod'
 
 export const contactFormSchema = z.object({
     fullName: z.string().min(1, "Full Name is required"),
-    // contactNumber: z
-    //     .string()
-    //     .min(10, "Contact Number must be at least 10 digits")
-    //     .max(15, "Contact Number cannot exceed 15 digits"),
+    contactNumber: z
+        .string()
+        .length(10, "Contact Number must be exactly 10 digits"),
     emailId: z.string().email("Invalid email address"),
     location: z.string().min(1, "Location is required"),
     // pincode: z
@@ -21,8 +20,7 @@ export const requestDentalCampSchema = z.object({
     emailId: z.string().email("Invalid email address"),
     contactNumber: z
         .string()
-        .min(10, "Contact Number must be at least 10 digits")
-        .max(15, "Contact Number cannot exceed 15 digits"),
+        .length(10, "Contact Number must be exactly 10 digits"),
     campPerferredDate: z.date({ required_error: "Preferred Date is required" }),
     campStartTime: z.string().min(1, "Camp Start Time is required"),
     campDuration: z.string().min(1, "Camp Duration is required"),

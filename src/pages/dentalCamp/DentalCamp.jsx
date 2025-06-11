@@ -76,6 +76,7 @@ import { format } from "date-fns";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import ScrollTrigger from "react-scroll-trigger";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DentalCamp = () => {
   // const swiperRef = useRef(null);
@@ -84,6 +85,9 @@ const DentalCamp = () => {
   const swiperRef3 = useRef(null);
   const swiperRef4 = useRef(null);
   const [isCounter, setIsCounter] = useState(false);
+
+  const { hash ,pathname} = useLocation();
+  const navigate = useNavigate();
 
   const [selectedPlan, setSelectedPlan] = useState(3);
 
@@ -310,6 +314,23 @@ const DentalCamp = () => {
     }
   }, [res1]);
 
+  const handleClick = ()=>{
+
+    navigate("/dental-camp#dental-camp-form");
+    requestAnimationFrame(() => {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (hash) {
+      handleClick();
+    }
+  }, [pathname, hash]);
+
   return (
     <Layout>
       <main className=" relative">
@@ -320,7 +341,10 @@ const DentalCamp = () => {
         </Helmet>
 
         <div className="bg-[#F6F6F6] w-full px-5 max-med rounded-lg">
-          <section className="flex items-start max-w-[1200px] gap-2 py-5  mx-auto max-large:items-center">
+          <section
+            id="dental-camp-form"
+            className="flex items-start max-w-[1200px] gap-2 py-5  mx-auto max-large:items-center"
+          >
             <div className="left-side w-1/2 flex flex-col gap-3 max-med:w-full max-med:gap-0">
               <div className="upper flex flex-col items-start gap-2">
                 <span className="text-[#95C22B] text-sm italic font-bold font-inter">
@@ -442,7 +466,7 @@ const DentalCamp = () => {
                                         className={cn(
                                           "w-full flex h-12 border-[#808080] gap-2 justify-start text-[#717171] max-med:px-3 max-med:h-[46px] max-med:rounded-lg",
                                           !field.value &&
-                                            "text-muted-foreground"
+                                            "text-muted-foreground",
                                         )}
                                       >
                                         <MdCalendarMonth className="text-[#838383] text-xl absolute top-[35%] right-[6.5%]" />
@@ -748,6 +772,7 @@ const DentalCamp = () => {
                     variant="submit"
                     className="max-large:text-lg max-med:text-base max-small:text-sm max-small:h-[36px] max-small:w-[160px]"
                     size="sm"
+                    onClick={handleClick}
                   >
                     Book Dental Camp
                   </Button>
@@ -877,7 +902,7 @@ const DentalCamp = () => {
                 <SwiperSlide>
                   <ChoosePlanCompo
                     title="BASIC"
-                    amount="1000"
+                    amount="4999"
                     isSelected={selectedPlan === 1}
                     onSelect={() => handleSelectPlan(1)}
                   />
@@ -885,7 +910,7 @@ const DentalCamp = () => {
                 <SwiperSlide>
                   <ChoosePlanCompo
                     title="ADVANCED"
-                    amount="2000"
+                    amount="6999"
                     isSelected={selectedPlan === 2}
                     onSelect={() => handleSelectPlan(2)}
                   />
@@ -893,7 +918,7 @@ const DentalCamp = () => {
                 <SwiperSlide>
                   <ChoosePlanCompo
                     title="PROFESSIONAL"
-                    amount="3000"
+                    amount="9999"
                     isSelected={selectedPlan === 3}
                     onSelect={() => handleSelectPlan(3)}
                   />

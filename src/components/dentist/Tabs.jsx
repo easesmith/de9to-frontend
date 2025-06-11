@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Clinics from "./Clinics";
 import DentistGallery from "../DentistGallery";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Tabs = ({ clinics, dentistAvailableTiming }) => {
   const [currentTab, setCurrentTab] = useState("clinics");
   const navigate = useNavigate();
   const params = useParams();
+  const {hash} = useLocation();
 
   const handleTabClick = (tab) => {
     setCurrentTab(tab);
@@ -14,6 +15,13 @@ const Tabs = ({ clinics, dentistAvailableTiming }) => {
 
   const handleClickReview = () => {
     navigate(`/our-dentist/${params?.dentistId}#reviews`);
+
+    requestAnimationFrame(() => {
+      const el = document.querySelector(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    });
   };
 
   const handleClick = () => {
